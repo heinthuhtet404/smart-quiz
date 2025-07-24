@@ -5,9 +5,9 @@ import Register from './components/Register.jsx'
 function App() {
 
   return (
-    <>
+    <section>
       <Register />
-    </>
+    </section>
   )
 }
 
