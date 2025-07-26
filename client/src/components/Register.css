@@ -5,35 +5,49 @@
   border: 1px solid white;
   border-radius: 8px;
   background: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.register-form{
+  background-color: #fff;
 }
 
 .register-container h2 {
   text-align: center;
   margin-bottom: 20px;
+  color: #3D74B6;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: white;
 }
 
 .register-container input {
-  width: 95%;
+  width: 100%;
   padding: 10px;
   margin: 10px 0;
   border-radius: 4px;
+  background-color: white;
   border: 1px solid #ddd;
 }
 
 .register-container button {
   width: 100%;
   padding: 10px;
-  background-color: #3498db;
+  background-color: #2980b9;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .register-container button:hover {
-  background-color: #2980b9;
+  opacity: 0.9;
 }
 
 input:focus{
     outline: none;
+}
+
+input::placeholder{
+  font-family: 'Courier New', Courier, monospace;
 }

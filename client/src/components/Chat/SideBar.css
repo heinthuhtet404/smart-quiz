@@ -1,0 +1,35 @@
+.sidebar {
+  width: 250px;
+  background-color: #FBF5DE;
+  color: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  margin-bottom: 24px;
+  font-size: 1.5rem;
+  background-color: #FBF5DE;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  /* margin-bottom: 12px; */
+  cursor: pointer;
+}
+
+.sidebar li:hover {
+  text-decoration: underline;
+}
+
+.user-item{
+    padding: 10px;
+    margin: 3px;
+    background-color: #FBF5DE;
+    border: 1px solid gray;
+}

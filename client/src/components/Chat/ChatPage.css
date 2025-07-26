@@ -1,0 +1,7 @@
+.chat-page {
+  display: flex;
+  height: 100vh;
+  background-color: #FBF5DE; /* Soft background */
+  font-family: 'Courier New', Courier, monospace;
+  border: 1px solid rgb(173, 173, 173);
+}

@@ -4,7 +4,7 @@ function Register() {
   return (
     <div className="register-container">
       <h2>Register</h2>
-      <form>
+      <form className='register-form'>
         <input type="text" placeholder="Name" required />
         <input type="email" placeholder="Email" required />
         <input type="password" placeholder="Password" required />

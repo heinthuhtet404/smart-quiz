@@ -1,0 +1,40 @@
+/* MessageInput.css */
+
+.message-input {
+  display: flex;
+  padding: 12px 16px;
+  border-top: 1px solid #ccc;
+  background-color: #FBF5DE;
+  box-sizing: border-box;
+}
+
+.input-field {
+  flex: 1;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 24px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+  border-color: #3D74B6; /* Primary blue focus */
+}
+
+.send-button {
+  background-color: #3D74B6; /* Strong red */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-left: 12px;
+  border-radius: 24px;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: 'Courier New', Courier, monospace;
+  transition: background-color 0.3s ease;
+}
+
+.send-button:hover {
+  background-color: #a62817; /* Darker red hover */
+}
