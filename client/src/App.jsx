@@ -7,7 +7,7 @@ function App() {
 
   return (
     <section className='app-container'>
-      <Register />
+      {/* <Register /> */}
       <ChatPage />
     </section>
   )
