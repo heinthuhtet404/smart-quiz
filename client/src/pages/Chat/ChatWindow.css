@@ -9,11 +9,13 @@
   /* width: 50%; */
   height: 100%;
   flex: 1;
-  overflow-y: auto;
+  overflow-y: hidden;
   /* padding: 16px; */
   /* background-color: #FBF5DE; */
   /* background-color: black; */
   border-left: 1px solid #ccc;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .chat-window::-webkit-scrollbar{

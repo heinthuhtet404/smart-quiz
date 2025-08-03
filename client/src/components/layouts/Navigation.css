@@ -1,0 +1,17 @@
+nav{
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+    position: sticky;
+    top: 0;
+}
+
+a{
+    padding: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+a:hover{
+    background-color: #a29e9e;
+}

@@ -7,7 +7,6 @@ const ChatPage = () => {
     <div className="chat-page">
       <ChatWindow />
       <SideBar />
-      
     </div>
   );
 };
