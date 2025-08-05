@@ -1,32 +1,76 @@
+import React, { useEffect, useState } from 'react';
 import MessageInput from './MessageInput';
-import React, { useState } from 'react';
-import './ChatWindow.css'; // Assuming you have a CSS file for styling
-import kokoImg from '../../assets/images/ko-ko.jpg';
-import youImg from '../../assets/images/You.jpg';
-import heinImg from '../../assets/images/hein.jpg';
+import { io } from 'socket.io-client';
+import './ChatWindow.css';
 
 const ChatWindow = () => {
-  const dummyMessages = [
-    { sender: 'Ko Ko', text: 'Hi!', imgUrl: kokoImg },
-    { sender: 'You', text: 'Hello, how are you?', imgUrl: youImg },
-    { sender: 'hein', text: 'I’m good, thanks!', imgUrl: heinImg },
-    { sender: 'Ko Ko', text: 'What about you?', imgUrl: kokoImg },
-    { sender: 'You', text: 'I’m doing well, just working on a project.', imgUrl: youImg },
-    { sender: 'hein', text: 'That sounds interesting!', imgUrl: heinImg },
-    { sender: 'Ko Ko', text: 'Yeah, it is. What are you up to?', imgUrl: kokoImg },
-    { sender: 'You', text: 'Just relaxing and catching up with friends.', imgUrl: youImg },
-    { sender: 'hein', text: 'Nice! Let’s hang out soon.', imgUrl: heinImg },
-  ];
-  const [messages, setMessages] = useState(dummyMessages);
+  const [messages, setMessages] = useState([]);
 
-  const handleSend = (newMessageText) => {
-    const newMessage = {
-      sender: 'You',
-      text: newMessageText,
-      imgUrl: youImg,
+  // Generate temporary user on first load if no user in localStorage
+  useEffect(() => {
+    let user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+      user = {
+        _id: Math.random().toString(36).substr(2, 9),  // random id
+        name: 'Guest-' + Math.floor(Math.random() * 1000),
+      };
+      localStorage.setItem('user', JSON.stringify(user));
+      console.log('🆕 Generated guest user:', user);
+    }
+  }, []);
+
+  // Get user after it is guaranteed to exist
+  const user = JSON.parse(localStorage.getItem('user'));
+  const userId = user?._id;
+  const userName = user?.name;
+
+  useEffect(() => {
+    // Fetch initial messages from server
+    fetch('http://192.168.100.8:5000/api/chat')
+      .then(res => res.json())
+      .then(data => setMessages(data))
+      .catch(console.error);
+
+    // Create socket connection
+    const socket = io('http://192.168.100.8:5000');
+
+    socket.on('connect', () => {
+      console.log('🟢 Socket connected:', socket.id);
+    });
+
+    socket.on('disconnect', (reason) => {
+      console.log('🔴 Socket disconnected:', reason);
+    });
+
+    socket.on('newMessage', (msg) => {
+      console.log('📨 New message received:', msg);
+      setMessages(prev => [...prev, msg]);
+    });
+
+    return () => {
+      socket.disconnect();
     };
-    setMessages([...messages, newMessage]);
-  }
+  }, []);
+
+  const handleSend = async (text) => {
+    const newMsg = {
+      senderId: userId,
+      senderName: userName,
+      text
+    };
+
+    try {
+      const res = await fetch('http://192.168.100.8:5000/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newMsg),
+      });
+      const data = await res.json();
+      console.log('📤 Message sent:', data);
+    } catch (error) {
+      console.error('❌ Error sending message:', error);
+    }
+  };
 
   return (
     <div className="chat-window">
@@ -34,19 +78,19 @@ const ChatWindow = () => {
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`message ${message.sender === 'You' ? 'my-message' : 'other-message'}`}
+            className={`message ${message.senderId === userId ? 'my-message' : 'other-message'}`}
           >
-            <img src={message.imgUrl} alt={message.sender} className="message-img" />
-            <p className={`message-text ${message.sender === 'You' ? 'my-message-text' : 'other-message-text'}`}>{message.text}</p>
+            <p className={`message-text ${message.senderId === userId ? 'my-message-text' : 'other-message-text'}`}>
+              {message.text}
+            </p>
           </div>
         ))}
       </div>
-      <MessageInput onSend={handleSend} />
+      <div className="message-input-container">
+        <MessageInput onSend={handleSend} />
+      </div>
     </div>
   );
 };
-
-
-
 
 export default ChatWindow;

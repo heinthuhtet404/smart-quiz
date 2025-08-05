@@ -14,10 +14,7 @@ const MessageInput = ({ onSend }) => {
   const handleKeyDown = (e) => {
   if (e.key === 'Enter' && !e.shiftKey) {
     e.preventDefault(); // Prevent newline
-    if (input.trim() !== '') {
-      onSend(input);
-      setInput('');
-    }
+    handleSendClick(); // Call the send function
   }
 };
 
