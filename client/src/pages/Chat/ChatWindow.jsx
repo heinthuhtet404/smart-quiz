@@ -1,92 +1,91 @@
-import React, { useEffect, useState } from 'react';
-import MessageInput from './MessageInput';
+import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
-import './ChatWindow.css';
+import MessageInput from './MessageInput';
 
-const ChatWindow = () => {
-  const [messages, setMessages] = useState([]);
+const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
 
-  // Generate temporary user on first load if no user in localStorage
-  useEffect(() => {
-    let user = JSON.parse(localStorage.getItem('user'));
-    if (!user) {
-      user = {
-        _id: Math.random().toString(36).substr(2, 9),  // random id
-        name: 'Guest-' + Math.floor(Math.random() * 1000),
-      };
-      localStorage.setItem('user', JSON.stringify(user));
-      console.log('🆕 Generated guest user:', user);
-    }
-  }, []);
-
-  // Get user after it is guaranteed to exist
-  const user = JSON.parse(localStorage.getItem('user'));
+const ChatWindow = ({ selectedUser }) => {
+  const user = JSON.parse(localStorage.getItem('user')); // Must exist in storage
   const userId = user?._id;
   const userName = user?.name;
 
+  const [messages, setMessages] = useState([]);
+  const [socket, setSocket] = useState(null);
+
   useEffect(() => {
-    // Fetch initial messages from server
-    fetch('http://192.168.100.8:5000/api/chat')
+    if (!userId || !selectedUser?.id) return;
+
+    fetch(`${API_BASE}/api/chat/${userId}/${selectedUser.id}`)
       .then(res => res.json())
       .then(data => setMessages(data))
       .catch(console.error);
+  }, [selectedUser, userId]);
 
-    // Create socket connection
-    const socket = io('http://192.168.100.8:5000');
+  useEffect(() => {
+    if (!userId) return;
 
-    socket.on('connect', () => {
-      console.log('🟢 Socket connected:', socket.id);
-    });
+    const socketInstance = io(API_BASE);
+    setSocket(socketInstance);
 
-    socket.on('disconnect', (reason) => {
-      console.log('🔴 Socket disconnected:', reason);
-    });
-
-    socket.on('newMessage', (msg) => {
-      console.log('📨 New message received:', msg);
-      setMessages(prev => [...prev, msg]);
+    socketInstance.on('newMessage', (msg) => {
+      if (
+        (msg.senderId === userId && msg.receiverId === selectedUser.id) ||
+        (msg.senderId === selectedUser.id && msg.receiverId === userId)
+      ) {
+        setMessages(prev => [...prev, msg]);
+      }
     });
 
     return () => {
-      socket.disconnect();
+      socketInstance.disconnect();
     };
-  }, []);
+  }, [selectedUser, userId]);
 
   const handleSend = async (text) => {
+    if (!text) return;
+
     const newMsg = {
       senderId: userId,
+      receiverId: selectedUser.id,
       senderName: userName,
-      text
+      text,
     };
 
-    try {
-      const res = await fetch('http://192.168.100.8:5000/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newMsg),
-      });
-      const data = await res.json();
-      console.log('📤 Message sent:', data);
-    } catch (error) {
-      console.error('❌ Error sending message:', error);
-    }
+    const res = await fetch(`${API_BASE}/api/chat`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newMsg),
+    });
+
+    const data = await res.json();
+    setMessages(prev => [...prev, data]);
   };
 
   return (
-    <div className="chat-window">
-      <div className="message-container">
-        {messages.map((message, index) => (
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+      <div style={{ padding: '10px', borderBottom: '1px solid #ccc' }}>
+        <strong>Chatting with {selectedUser.name}</strong>
+      </div>
+      <div style={{ flex: 1, overflowY: 'auto', padding: '10px' }}>
+        {messages.map((msg, i) => (
           <div
-            key={index}
-            className={`message ${message.senderId === userId ? 'my-message' : 'other-message'}`}
+            key={i}
+            style={{
+              textAlign: msg.senderId === userId ? 'right' : 'left',
+              margin: '5px 0',
+              backgroundColor: msg.senderId === userId ? '#aee1f9' : '#eee',
+              padding: '8px',
+              borderRadius: '10px',
+              maxWidth: '60%',
+              alignSelf: msg.senderId === userId ? 'flex-end' : 'flex-start'
+            }}
           >
-            <p className={`message-text ${message.senderId === userId ? 'my-message-text' : 'other-message-text'}`}>
-              {message.text}
-            </p>
+            <b>{msg.senderName}</b><br />
+            {msg.text}
           </div>
         ))}
       </div>
-      <div className="message-input-container">
+      <div style={{ padding: '10px', borderTop: '1px solid #ccc' }}>
         <MessageInput onSend={handleSend} />
       </div>
     </div>

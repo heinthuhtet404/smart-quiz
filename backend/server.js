@@ -34,26 +34,35 @@ const messageSchema = new mongoose.Schema({
 const Message = mongoose.model('Message', messageSchema);
 
 // ✅ Get all messages
-app.get('/api/chat', async (req, res) => {
-  const messages = await Message.find().sort({ createdAt: 1 });
+app.get('/api/chat/:user1/:user2', async (req, res) => {
+  const { user1, user2 } = req.params;
+
+  const messages = await Message.find({
+    $or: [
+      { senderId: user1, receiverId: user2 },
+      { senderId: user2, receiverId: user1 }
+    ]
+  }).sort({ createdAt: 1 });
+
   res.json(messages);
 });
 
+
 // ✅ Receive new message
 app.post('/api/chat', async (req, res) => {
-  const { senderId, senderName, text } = req.body;
-  if (!senderId || !senderName || !text) {
-    return res.status(400).json({ error: 'Missing required fields' });
+  const { senderId, receiverId, senderName, text } = req.body;
+  if (!senderId || !receiverId || !senderName || !text) {
+    return res.status(400).json({ error: 'Missing fields' });
   }
 
-  const newMessage = new Message({ senderId, senderName, text });
+  const newMessage = new Message({ senderId, receiverId, senderName, text });
   await newMessage.save();
 
-  // ✅ Send to all connected clients via Socket.IO
-  io.emit('newMessage', newMessage);
+  io.emit('newMessage', newMessage); // You can filter later if needed
 
   res.status(200).json(newMessage);
 });
+
 
 // ✅ Socket.IO connection
 io.on('connection', (socket) => {

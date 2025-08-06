@@ -1,21 +1,23 @@
 import React from 'react';
-import './SideBar.css'; // Assuming you have a CSS file for styling
 
-const SideBar = () => {
-  const users = ['Ko Ko', 'Hla Hla', 'Ma Ma', 'Aung Aung'];
+const fakeUsers = [
+  { id: 'u1', name: 'Ko Ko', online: true },
+  { id: 'u2', name: 'Hla Hla', online: false },
+  { id: 'u3', name: 'Ma Ma', online: true },
+  { id: 'u4', name: 'Aung Aung', online: false }
+];
 
-  return (
-    <div className="sidebar">
-      <h2 className="sidebar-title">Chats</h2>
-      <ul className="user-list">
-        {users.map((user, idx) => (
-          <li key={idx} className="user-item">
-            {user}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
+const SideBar = ({ onSelectUser }) => (
+  <div style={{ width: '200px', padding: '10px', borderRight: '1px solid #ccc' }}>
+    <h2>Users</h2>
+    <ul>
+      {fakeUsers.map(user => (
+        <li key={user.id} onClick={() => onSelectUser(user)} style={{ cursor: 'pointer', marginBottom: '8px' }}>
+          {user.name} {user.online ? '🟢' : '⚪'}
+        </li>
+      ))}
+    </ul>
+  </div>
+);
 
 export default SideBar;

@@ -1,36 +1,25 @@
 import React, { useState } from 'react';
-import './MessageInput.css'; // Assuming you have a CSS file for styling
 
 const MessageInput = ({ onSend }) => {
-  const [input, setInput] = useState('');
+  const [text, setText] = useState('');
 
-  const handleSendClick = () => {
-    if (input.trim() !== '') {
-      onSend(input); // Call the onSend function passed from ChatWindow
-      setInput(''); // Clear the input field after sending
-    }
-  }
-
-  const handleKeyDown = (e) => {
-  if (e.key === 'Enter' && !e.shiftKey) {
-    e.preventDefault(); // Prevent newline
-    handleSendClick(); // Call the send function
-  }
-};
-
+  const send = () => {
+    if (!text.trim()) return;
+    onSend(text.trim());
+    setText('');
+  };
 
   return (
-    <div className="message-input">
-      <textarea
-        placeholder="Type a message..."
-        className="input-field"
-        value={input}
-        onChange={(e) => {
-          setInput(e.target.value)
-        }}
-        onKeyDown={handleKeyDown}
+    <div style={{ marginTop: '10px' }}>
+      <input
+        type="text"
+        value={text}
+        onChange={e => setText(e.target.value)}
+        onKeyDown={e => e.key === 'Enter' && send()}
+        placeholder="Type a message"
+        style={{ width: '80%', padding: '8px' }}
       />
-      <button className="send-button" onClick={handleSendClick}>Send</button>
+      <button onClick={send} style={{ padding: '8px 16px' }}>Send</button>
     </div>
   );
 };
