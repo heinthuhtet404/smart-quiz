@@ -1,17 +1,32 @@
-nav{
-    display: flex;
-    justify-content: center;
-    background-color: #fff;
-    position: sticky;
-    top: 0;
+/* Navigation container */
+nav {
+  width: 100%;
+  padding: 12px 24px;
+  background-color: #ffd699; /* match chat header/input background */
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  gap: 16px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 600;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 2px 8px 0px; /* subtle shadow */
 }
 
-a{
-    padding: 20px;
-    text-decoration: none;
-    color: black;
+/* Links */
+nav a {
+  text-decoration: none;
+  color: #000;
+  padding: 6px 12px;
+  border-radius: 12px;
+  transition: background-color 0.2s ease;
 }
 
-a:hover{
-    background-color: #a29e9e;
+/* Hover effect */
+nav a:hover {
+  background-color: #ffe0b3; /* slightly lighter pastel */
+}
+
+/* Active link style using router NavLink (optional) */
+nav a.active {
+  background-color: #87ceeb; /* highlight active page with chat bubble color */
+  color: white;
 }

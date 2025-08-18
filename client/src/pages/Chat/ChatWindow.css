@@ -1,91 +1,138 @@
+html, body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
 
+/* Main window */
 .chat-window {
-  height: 100%;
-  flex: 1;
-  overflow-y: hidden;
-  border-left: 1px solid #ccc;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.chat-window::-webkit-scrollbar{
-  display: none;
-}
-
-.message-container{
-  height: 87%;
-  overflow: auto;
-  width: 100%;
-  padding: 16px 16px 0 16px;
-}
-
-.message-container::-webkit-scrollbar-button{
-  display: none;
-}
-
-/* Message container */
-.message {
   display: flex;
-  align-items: flex-end; /* Align avatar and text baseline */
-  margin-bottom: 10px;
-  max-width: 80%;
-  word-wrap: break-word;      /* Break long words */
-  overflow-wrap: break-word;  /* Fallback */
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  background-color: #f0f0f0;
+  font-family: 'Courier New', Courier, monospace;
+  box-sizing: border-box;
 }
 
-/* Other people's messages (avatar left, text right) */
-.other-message {
+/* Header */
+.chat-header {
+  padding: 12px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-align: center;
+  background-color: #ffd699;
+  color: black;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Messages container */
+.message-container {
+  flex: 1;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.message-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Date separator */
+.date-separator {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #888;
+  margin: 10px 0;
+}
+
+/* Each message full-width wrapper */
+.message-wrapper {
+  width: 100%;
+  display: flex;
+}
+
+/* Messages bubble */
+.message {
+  padding: 8px 12px;
+  border-radius: 18px;
+  max-width: 70%;
+  word-break: break-word;
+  box-shadow: rgba(0,0,0,0.05) 1px 1px 3px;
+  margin-bottom: 3px;
+}
+
+/* Sender (right) */
+.my-message-wrapper {
+  justify-content: flex-end;
+}
+
+.my-message {
+  background-color: #ffd699;
+  color: white;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 18px;
+}
+
+/* Receiver (left) */
+.other-message-wrapper {
   justify-content: flex-start;
 }
 
-.other-message .message-img {
-  order: 0;
-  margin-right: 10px;
+.other-message {
+  background-color: #e5e5ea;
+  color: black;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 18px;
 }
 
-/* Your messages (avatar right, text left) */
-.my-message {
-  justify-content: flex-end;
-  align-self: flex-end;
-}
-
-.my-message .message-img {
-  order: 1;
-  margin-left: 10px;
-}
-
-/* Avatar */
-.message-img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  flex-shrink: 0; /* Prevent avatar shrinking */
-}
-
-/* Message bubble */
+/* Message text */
 .message-text {
-  background-color: #f0f0f0;
-  padding: 10px 14px;
-  border-radius: 12px;
-  white-space: pre-wrap; /* Allow multiline */
-  max-width: 70%;       /* Limit width */
-  word-break: break-word;
   font-size: 14px;
   line-height: 1.4;
 }
 
-/* Your message bubble color */
-.my-message-text {
-  background-color: #2980b9;
-  color: white;
-  border-bottom-right-radius: 4px;
+.message img,
+.message video {
+  max-width: 250px;       /* limits width */
+  max-height: 250px;      /* limits height */
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  margin-top: 4px;
+  object-fit: cover;
 }
 
-/* Optional: add border-radius tweak for other messages */
-.other-message .message-text {
-  border-bottom-left-radius: 4px;
+
+.message audio {
+  width: 100%;
+  margin-top: 4px;
 }
 
-.other-message-text{
-  background-color: #879e5b;
+.message a {
+  color: #555;
+  text-decoration: underline;
+  margin-top: 4px;
+}
+
+/* Time */
+.message-time {
+  font-size: 0.7rem;
+  color: #555;
+  margin-top: 4px;
+  align-self: flex-end;
+}
+
+/* Input area */
+.message-input-wrapper {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  padding: 8px 12px;
+  background-color: #f0f0f0;
+  box-sizing: border-box;
+  z-index: 10;
 }

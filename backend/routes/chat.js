@@ -5,11 +5,11 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-// Set up storage folder
+// Multer storage
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const dir = './uploads';
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir);
+    const dir = path.join(__dirname, '../uploads');
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
     cb(null, dir);
   },
   filename: (req, file, cb) => {
@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// ✅ Get all messages
+// Get all messages between two users
 router.get('/:user1/:user2', async (req, res) => {
   const { user1, user2 } = req.params;
   try {
@@ -35,14 +35,17 @@ router.get('/:user1/:user2', async (req, res) => {
   }
 });
 
-// ✅ Save new message with optional file
+// Save new message with optional file
 router.post('/', upload.single('file'), async (req, res) => {
   const { senderId, receiverId, senderName, text } = req.body;
+
   let fileUrl = null;
   let fileType = null;
 
   if (req.file) {
-    fileUrl = `http://localhost:5000/uploads/${req.file.filename}`; // serve files
+    const host = req.get('host');
+    const protocol = req.protocol;
+    fileUrl = `${protocol}://${host}/uploads/${req.file.filename}`;
     fileType = req.file.mimetype;
   }
 
@@ -54,7 +57,7 @@ router.post('/', upload.single('file'), async (req, res) => {
     const newMessage = new Message({ senderId, receiverId, senderName, text, fileUrl, fileType });
     await newMessage.save();
 
-    // ✅ Emit to all connected sockets (optional: only to specific users)
+    // Emit to all connected clients
     req.app.get('io')?.emit('newMessage', newMessage);
 
     res.status(201).json(newMessage);

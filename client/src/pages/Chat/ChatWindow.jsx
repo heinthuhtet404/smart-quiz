@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { io } from 'socket.io-client';
 import MessageInput from './MessageInput';
+import './ChatWindow.css';
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
 
@@ -13,7 +14,7 @@ const ChatWindow = ({ selectedUser }) => {
   const [socket, setSocket] = useState(null);
   const messagesEndRef = useRef(null);
 
-  // Scroll to bottom whenever messages change
+  // Scroll to bottom on new message
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
@@ -36,25 +37,20 @@ const ChatWindow = ({ selectedUser }) => {
     setSocket(socketInstance);
 
     socketInstance.on('newMessage', (msg) => {
-      // Only add if message belongs to this chat
       if (
         (msg.senderId === userId && msg.receiverId === selectedUser.id) ||
         (msg.senderId === selectedUser.id && msg.receiverId === userId)
       ) {
         setMessages(prev => {
-          // Prevent duplicate messages
           if (prev.some(m => m._id === msg._id)) return prev;
           return [...prev, msg];
         });
       }
     });
 
-    return () => {
-      socketInstance.disconnect();
-    };
+    return () => socketInstance.disconnect();
   }, [selectedUser, userId]);
 
-  // Handle sending messages
   const handleSend = async ({ text, file }) => {
     if (!text && !file) return;
 
@@ -65,94 +61,92 @@ const ChatWindow = ({ selectedUser }) => {
     if (text) formData.append('text', text);
     if (file) formData.append('file', file);
 
-    // Send to backend
     await fetch(`${API_BASE}/api/chat`, {
       method: 'POST',
       body: formData,
     });
-
-    // Do NOT setMessages here — socket will handle it
   };
 
+  const formatDate = (iso) => {
+    const date = new Date(iso);
+    const today = new Date();
+    const yesterday = new Date();
+    yesterday.setDate(today.getDate() - 1);
+
+    if (date.toDateString() === today.toDateString()) return 'Today';
+    if (date.toDateString() === yesterday.toDateString()) return 'Yesterday';
+
+    const options = { month: 'long', day: 'numeric' };
+    if (date.getFullYear() !== today.getFullYear()) options.year = 'numeric';
+    return date.toLocaleDateString(undefined, options);
+  };
+
+  const formatTime = (iso) => {
+    const date = new Date(iso);
+    return date.toLocaleTimeString(undefined, {
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true,
+    });
+  };
+
+  const groupedMessages = messages.reduce((acc, msg) => {
+    const date = formatDate(msg.createdAt);
+    if (!acc[date]) acc[date] = [];
+    acc[date].push(msg);
+    return acc;
+  }, {});
+
   return (
-    <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-      {/* Header */}
-      <div style={{ padding: '10px', borderBottom: '1px solid #ccc' }}>
-        <strong>Chatting with {selectedUser.name}</strong>
+    <div className="chat-window">
+      <div className="chat-header">
+        Chatting with {selectedUser.name}
       </div>
 
-      {/* Messages */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '10px' }}>
-        {messages.map((msg) => (
-          <div
-            key={msg._id}
-            style={{
-              textAlign: msg.senderId === userId ? 'right' : 'left',
-              margin: '5px 0',
-              backgroundColor: msg.senderId === userId ? '#aee1f9' : '#eee',
-              padding: '8px',
-              borderRadius: '10px',
-              maxWidth: '60%',
-              alignSelf: msg.senderId === userId ? 'flex-end' : 'flex-start'
-            }}
-          >
-            <b>{msg.senderName}</b><br />
-            {msg.text && <p>{msg.text}</p>}
-            {msg.fileUrl && (
-              <>
-                {msg.fileType?.startsWith("image/") && (
-                  <img
-                    src={msg.fileUrl}
-                    alt="attachment"
-                    style={{
-                      maxWidth: "300px",  // limit width
-                      maxHeight: "300px", // limit height
-                      width: "auto",
-                      height: "auto",
-                      borderRadius: "8px",
-                      objectFit: "cover",
-                    }}
-                  />
-                )}
+      <div className="message-container">
+        {Object.keys(groupedMessages).map(date => (
+          <div key={date}>
+            <div className="date-separator">{date}</div>
+            {groupedMessages[date].map(msg => (
+  <div
+    key={msg._id}
+    className={`message-wrapper ${msg.senderId === userId ? 'my-message-wrapper' : 'other-message-wrapper'}`}
+  >
+    <div className={`message ${msg.senderId === userId ? 'my-message' : 'other-message'}`}>
+      {msg.text && <div className="message-text">{msg.text}</div>}
 
-                {msg.fileType?.startsWith("video/") && (
-                  <video
-                    controls
-                    style={{
-                      maxWidth: "300px",
-                      maxHeight: "300px",
-                      width: "100%",
-                      height: "auto",
-                      borderRadius: "8px",
-                    }}
-                  >
-                    <source src={msg.fileUrl} type={msg.fileType} />
-                  </video>
-                )}
+      {msg.fileUrl && (
+        <div className="message-file">
+          {msg.fileType?.startsWith('image/') && <img src={msg.fileUrl} alt="attachment" />}
+          {msg.fileType?.startsWith('video/') && (
+            <video controls>
+              <source src={msg.fileUrl} type={msg.fileType} />
+            </video>
+          )}
+          {msg.fileType?.startsWith('audio/') && (
+            <audio controls>
+              <source src={msg.fileUrl} type={msg.fileType} />
+            </audio>
+          )}
+          {!msg.fileType?.startsWith('image/') &&
+           !msg.fileType?.startsWith('video/') &&
+           !msg.fileType?.startsWith('audio/') && (
+            <a href={msg.fileUrl} target="_blank" rel="noopener noreferrer">📎 Download File</a>
+          )}
+        </div>
+      )}
 
-                {msg.fileType?.startsWith("audio/") && (
-                  <audio controls style={{ width: "100%" }}>
-                    <source src={msg.fileUrl} type={msg.fileType} />
-                  </audio>
-                )}
-
-                {!msg.fileType?.startsWith("image/") &&
-                  !msg.fileType?.startsWith("video/") &&
-                  !msg.fileType?.startsWith("audio/") && (
-                    <a href={msg.fileUrl} target="_blank" rel="noopener noreferrer">
-                      📎 Download File
-                    </a>
-                  )}
-              </>
-            )}
+      <div className="message-time">{formatTime(msg.createdAt)}</div>
+    </div>
+  </div>
+))}
 
           </div>
         ))}
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input */}
-      <div style={{ padding: '10px', borderTop: '1px solid #ccc' }}>
+      <div className="message-input-wrapper">
         <MessageInput onSend={handleSend} />
       </div>
     </div>

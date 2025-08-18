@@ -1,55 +1,46 @@
-/* Keep input section fixed at the bottom */
+
+
 .message-input {
-  height: 13%;
-  width: 100%;
+  display: flex;
+  gap: 8px;
   padding: 10px 16px;
-  background-color: transparent;
+  background-color: #ffd699; /* match chat header/input background */
   border-top: 1px solid #ccc;
-  position: fixed;
-  bottom: 0;
-  z-index: 1;
-  display: flex;           /* 👈 This makes children line up horizontally */
-  align-items: center;     /* 👈 Align items vertically */
-  gap: 12px;               /* Optional: space between textarea and button */
-  margin: 0;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  align-items: center;
 }
 
-
+/* Text input */
 .input-field {
-  /* background-color: transparent; */
-  /* align-items: center; */
-  width: 70%;
-  resize: none;
-  height: 40px;
+  flex: 1;
   padding: 10px 14px;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 24px;
   outline: none;
-  scrollbar-width: none;
 }
-
-.input-field::-webkit-scrollbar{
-  display: none;
-}
-
 
 .input-field:focus {
-  border-color: #3D74B6; /* Primary blue focus */
+  border-color: #3d74b6; /* primary focus */
 }
 
+/* File input */
+.file-input {
+  border-radius: 12px;
+  padding: 6px;
+  cursor: pointer;
+}
+
+/* Send button */
 .send-button {
-  background-color: #3D74B6; /* Strong red */
+  background-color: #ff9900;
   color: white;
   border: none;
   padding: 10px 25px;
-  margin-left: 12px;
   border-radius: 24px;
   cursor: pointer;
   font-weight: 600;
   font-family: 'Courier New', Courier, monospace;
-  transition: background-color 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .send-button:hover {

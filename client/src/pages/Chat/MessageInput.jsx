@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { FiPaperPlane } from 'react-icons/fi'; // make sure react-icons is installed
 
 const MessageInput = ({ onSend }) => {
   const [text, setText] = useState('');
@@ -8,33 +9,32 @@ const MessageInput = ({ onSend }) => {
     if (!text && !file) return;
 
     onSend({ text, file });
-
-    // Clear text and file state
     setText('');
     setFile(null);
-
-    // Clear the actual file input so filename disappears
     const fileInput = document.getElementById('fileInput');
     if (fileInput) fileInput.value = '';
   };
 
   return (
-    <div style={{ display: 'flex', gap: '8px' }}>
+    <div>
       <input
         type="text"
         placeholder="Type a message..."
+        className="message-input-field"
         value={text}
         onChange={(e) => setText(e.target.value)}
-        style={{ flex: 1, padding: '8px', borderRadius: '8px', border: '1px solid #ccc' }}
       />
 
       <input
         type="file"
         id="fileInput"
+        style={{ display: 'none' }}
         onChange={(e) => setFile(e.target.files[0])}
       />
 
-      <button onClick={handleSend}>Send</button>
+      <button className="send-button" onClick={handleSend}>
+        <FiPaperPlane size={20} />
+      </button>
     </div>
   );
 };

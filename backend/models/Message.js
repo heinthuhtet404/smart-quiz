@@ -5,8 +5,8 @@ const messageSchema = new mongoose.Schema({
   receiverId: String,
   senderName: String,
   text: String,
-  fileUrl: String,     // ✅ new field
-  fileType: String,    // ✅ new field
+  fileUrl: String,     
+  fileType: String,    
   createdAt: { type: Date, default: Date.now },
 });
 
