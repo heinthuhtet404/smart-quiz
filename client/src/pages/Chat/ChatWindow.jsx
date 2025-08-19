@@ -108,38 +108,38 @@ const ChatWindow = ({ selectedUser }) => {
           <div key={date}>
             <div className="date-separator">{date}</div>
             {groupedMessages[date].map(msg => (
-  <div
-    key={msg._id}
-    className={`message-wrapper ${msg.senderId === userId ? 'my-message-wrapper' : 'other-message-wrapper'}`}
-  >
-    <div className={`message ${msg.senderId === userId ? 'my-message' : 'other-message'}`}>
-      {msg.text && <div className="message-text">{msg.text}</div>}
+              <div
+                key={msg._id}
+                className={`message-wrapper ${msg.senderId === userId ? 'my-message-wrapper' : 'other-message-wrapper'}`}
+              >
+                <div className={`message ${msg.senderId === userId ? 'my-message' : 'other-message'}`}>
+                  {msg.text && <div className="message-text">{msg.text}</div>}
 
-      {msg.fileUrl && (
-        <div className="message-file">
-          {msg.fileType?.startsWith('image/') && <img src={msg.fileUrl} alt="attachment" />}
-          {msg.fileType?.startsWith('video/') && (
-            <video controls>
-              <source src={msg.fileUrl} type={msg.fileType} />
-            </video>
-          )}
-          {msg.fileType?.startsWith('audio/') && (
-            <audio controls>
-              <source src={msg.fileUrl} type={msg.fileType} />
-            </audio>
-          )}
-          {!msg.fileType?.startsWith('image/') &&
-           !msg.fileType?.startsWith('video/') &&
-           !msg.fileType?.startsWith('audio/') && (
-            <a href={msg.fileUrl} target="_blank" rel="noopener noreferrer">📎 Download File</a>
-          )}
-        </div>
-      )}
+                  {msg.fileUrl && (
+                    <div className="message-file">
+                      {msg.fileType?.startsWith('image/') && <img src={msg.fileUrl} alt="attachment" />}
+                      {msg.fileType?.startsWith('video/') && (
+                        <video controls>
+                          <source src={msg.fileUrl} type={msg.fileType} />
+                        </video>
+                      )}
+                      {msg.fileType?.startsWith('audio/') && (
+                        <audio controls>
+                          <source src={msg.fileUrl} type={msg.fileType} />
+                        </audio>
+                      )}
+                      {!msg.fileType?.startsWith('image/') &&
+                        !msg.fileType?.startsWith('video/') &&
+                        !msg.fileType?.startsWith('audio/') && (
+                          <a href={msg.fileUrl} target="_blank" rel="noopener noreferrer">📎 Download File</a>
+                        )}
+                    </div>
+                  )}
 
-      <div className="message-time">{formatTime(msg.createdAt)}</div>
-    </div>
-  </div>
-))}
+                  <div className="message-time">{formatTime(msg.createdAt)}</div>
+                </div>
+              </div>
+            ))}
 
           </div>
         ))}

@@ -1,22 +1,33 @@
-import { useState } from 'react';
-import { FiPaperPlane } from 'react-icons/fi'; // make sure react-icons is installed
+import { useState } from "react";
+import "./MessageInput.css";
 
 const MessageInput = ({ onSend }) => {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const [file, setFile] = useState(null);
 
-  const handleSend = () => {
+  const handleSend = (e) => {
+    e.preventDefault();
     if (!text && !file) return;
 
     onSend({ text, file });
-    setText('');
+    setText("");
     setFile(null);
-    const fileInput = document.getElementById('fileInput');
-    if (fileInput) fileInput.value = '';
+
+    // reset file input
+    const fileInput = document.getElementById("fileInput");
+    if (fileInput) fileInput.value = "";
   };
 
   return (
-    <div>
+    <form className="message-input-wrapper" onSubmit={handleSend}>
+      <label htmlFor="fileInput" className="file-label">📎</label>
+      <input
+        type="file"
+        id="fileInput"
+        className="file-input"
+        onChange={(e) => setFile(e.target.files[0])}
+      />
+
       <input
         type="text"
         placeholder="Type a message..."
@@ -25,17 +36,8 @@ const MessageInput = ({ onSend }) => {
         onChange={(e) => setText(e.target.value)}
       />
 
-      <input
-        type="file"
-        id="fileInput"
-        style={{ display: 'none' }}
-        onChange={(e) => setFile(e.target.files[0])}
-      />
-
-      <button className="send-button" onClick={handleSend}>
-        <FiPaperPlane size={20} />
-      </button>
-    </div>
+      <button type="submit" className="send-button">➤</button>
+    </form>
   );
 };
 

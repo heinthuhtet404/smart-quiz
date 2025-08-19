@@ -1,48 +1,54 @@
-
-
-.message-input {
+.message-input-wrapper {
   display: flex;
-  gap: 8px;
-  padding: 10px 16px;
-  background-color: #ffd699; /* match chat header/input background */
-  border-top: 1px solid #ccc;
   align-items: center;
+  padding: 10px;
+  background: #ffffff;
+  border-top: 1px solid #ddd;
+  position: sticky;  /* stays at the bottom of chat */
+  bottom: 0;
 }
 
-/* Text input */
-.input-field {
+.file-label {
+  cursor: pointer;
+  font-size: 20px;
+  margin-right: 8px;
+  color: #555;
+}
+
+.file-input {
+  display: none; /* hide the ugly default file input */
+}
+
+.message-input-field {
   flex: 1;
   padding: 10px 14px;
-  font-size: 1rem;
+  border-radius: 20px;
   border: 1px solid #ccc;
-  border-radius: 24px;
+  font-size: 14px;
   outline: none;
+  transition: border 0.2s;
 }
 
-.input-field:focus {
-  border-color: #3d74b6; /* primary focus */
+.message-input-field:focus {
+  border-color: #0088cc; /* Telegram blue */
 }
 
-/* File input */
-.file-input {
-  border-radius: 12px;
-  padding: 6px;
-  cursor: pointer;
-}
-
-/* Send button */
 .send-button {
-  background-color: #ff9900;
-  color: white;
+  margin-left: 10px;
+  background: #0088cc;
   border: none;
-  padding: 10px 25px;
-  border-radius: 24px;
+  color: white;
+  font-size: 18px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
-  font-weight: 600;
-  font-family: 'Courier New', Courier, monospace;
-  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
 }
 
 .send-button:hover {
-  opacity: 0.9;
+  background: #0077aa;
 }
