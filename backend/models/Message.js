@@ -5,9 +5,11 @@ const messageSchema = new mongoose.Schema({
   receiverId: String,
   senderName: String,
   text: String,
-  fileUrl: String,     
-  fileType: String,    
+  fileUrl: String,
+  fileType: String,
+  replyTo: { type: mongoose.Schema.Types.ObjectId, ref: 'Message', default: null },
   createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model('Message', messageSchema);

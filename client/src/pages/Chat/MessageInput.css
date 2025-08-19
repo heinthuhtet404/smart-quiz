@@ -1,24 +1,66 @@
+/* Outer container */
+.message-input-container {
+  display: flex;
+  flex-direction: column; /* Reply preview on top, input row below */
+  width: 100%;
+  padding: 8px 12px;
+  background-color: #f0f0f0;
+  border-top: 1px solid #ddd;
+  box-sizing: border-box;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+}
+
+/* Reply preview */
+.reply-preview {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff8dc; /* light kid-friendly color */
+  padding: 6px 10px;
+  border-radius: 10px;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #333;
+}
+
+.reply-text {
+  max-width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cancel-reply {
+  background: transparent;
+  border: none;
+  color: #ff5555;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Input row */
 .message-input-wrapper {
   display: flex;
   align-items: center;
-  padding: 10px;
-  background: #ffffff;
-  border-top: 1px solid #ddd;
-  position: sticky;  /* stays at the bottom of chat */
-  bottom: 0;
+  gap: 6px;
 }
 
+/* File label icon */
 .file-label {
   cursor: pointer;
-  font-size: 20px;
-  margin-right: 8px;
+  font-size: 24px;
   color: #555;
 }
 
+/* Hide file input */
 .file-input {
-  display: none; /* hide the ugly default file input */
+  display: none;
 }
 
+/* Text input */
 .message-input-field {
   flex: 1;
   padding: 10px 14px;
@@ -30,11 +72,11 @@
 }
 
 .message-input-field:focus {
-  border-color: #0088cc; /* Telegram blue */
+  border-color: #0088cc;
 }
 
+/* Send button */
 .send-button {
-  margin-left: 10px;
   background: #0088cc;
   border: none;
   color: white;
