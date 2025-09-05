@@ -1,96 +1,64 @@
-/* Outer container */
 .message-input-container {
-  display: flex;
-  flex-direction: column; /* Reply preview on top, input row below */
-  width: 100%;
-  padding: 8px 12px;
-  background-color: #f0f0f0;
   border-top: 1px solid #ddd;
-  box-sizing: border-box;
-  position: sticky;
-  bottom: 0;
-  z-index: 10;
+  padding: 10px 20px;
+  background-color: #fff;
 }
 
-/* Reply preview */
 .reply-preview {
+  background-color: #e6f3ff;
+  border-left: 4px solid #2196f3;
+  padding: 5px 10px;
+  font-size: 0.85rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fff8dc; /* light kid-friendly color */
-  padding: 6px 10px;
-  border-radius: 10px;
-  margin-bottom: 6px;
-  font-size: 14px;
-  color: #333;
+  margin-bottom: 8px;
+  border-radius: 6px;
 }
 
-.reply-text {
-  max-width: 90%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.cancel-reply {
-  background: transparent;
+.reply-preview button {
+  background: none;
   border: none;
-  color: #ff5555;
-  font-weight: bold;
   cursor: pointer;
-  font-size: 16px;
-}
-
-/* Input row */
-.message-input-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-/* File label icon */
-.file-label {
-  cursor: pointer;
-  font-size: 24px;
+  font-weight: 600;
   color: #555;
 }
 
-/* Hide file input */
-.file-input {
+.message-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.message-form input[type="text"] {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 0.95rem;
+}
+
+.message-form input[type="file"] {
   display: none;
 }
 
-/* Text input */
-.message-input-field {
-  flex: 1;
-  padding: 10px 14px;
-  border-radius: 20px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  outline: none;
-  transition: border 0.2s;
+.file-label {
+  cursor: pointer;
+  font-size: 1.2rem;
 }
 
-.message-input-field:focus {
-  border-color: #0088cc;
-}
-
-/* Send button */
-.send-button {
-  background: #0088cc;
+.message-form button {
+  padding: 8px 15px;
+  background-color: #2196f3;
   border: none;
   color: white;
-  font-size: 18px;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  font-size: 0.9rem;
+  border-radius: 20px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   transition: background 0.2s;
 }
 
-.send-button:hover {
-  background: #0077aa;
+.message-form button:hover {
+  background-color: #1976d2;
 }
