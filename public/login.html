@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | KidsLearn</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Fredoka', sans-serif;
+    }
+
+    @keyframes floatBubbles {
+      0% {
+        transform: translateY(0) scale(0.5);
+        opacity: 0.2;
+      }
+
+      100% {
+        transform: translateY(-100vh) scale(1);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .bubble {
+      animation: floatBubbles linear infinite;
+    }
+
+    .fade-in {
+      animation: fadeIn 1s ease-out forwards;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-[#FFF7F0] overflow-hidden relative flex items-center justify-center">
+
+  <!-- Floating bubbles -->
+  <div id="bubbles" class="absolute inset-0 z-0 pointer-events-none"></div>
+
+  <!-- Main Card -->
+  <div
+    class="flex flex-col md:flex-row bg-white rounded-3xl shadow-lg overflow-hidden z-10 w-[90%] max-w-4xl border border-[#FCECEC]">
+    <div class="w-full md:w-1/2 bg-[#F0F6FF] flex items-center justify-center p-6">
+      <img src="kidb.png" alt="Child Illustration" class="w-4/5 object-contain" />
+    </div>
+    <!-- Left: Login Form -->
+    <div class="w-full md:w-1/2 p-8 md:p-10 bg-[#FFF1F1] flex flex-col justify-center">
+      <img src="Baby.jpeg" id="profileImage"
+        class="w-32 h-32 mx-auto rounded-full mb-6 object-cover shadow-md opacity-0 transition-opacity duration-700"
+        alt="Kid Cartoon">
+
+      <div id="formContainer" class="opacity-0 pointer-events-none transition-opacity duration-700">
+        <h2 class="text-3xl font-semibold text-[#F47174] text-center mb-6">Welcome Back!</h2>
+
+        <form action="http://localhost:4000/login" method="POST" class="space-y-4">
+
+          <input type="email" name="email" placeholder="Email" required
+            class="w-full p-3 rounded-xl border border-gray-200 focus:border-[#F47174] outline-none transition" />
+          <input type="password" name="password" placeholder="Password" required
+            class="w-full p-3 rounded-xl border border-gray-200 focus:border-[#F47174] outline-none transition" />
+          <button type="submit"
+            class="w-full py-3 bg-[#F47174] text-white font-bold rounded-xl hover:bg-[#e85c60] transition duration-300">
+            Login
+          </button>
+        </form>
+
+        <p class="mt-5 text-sm text-center text-gray-600">
+          Don't have an account?
+          <a href="signup.html" class="text-[#F47174] font-semibold hover:underline">Signup</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Right: Image -->
+
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Bubble Animation
+    const bubblesContainer = document.getElementById('bubbles');
+    for (let i = 0; i < 8; i++) {
+      const bubble = document.createElement('div');
+      const size = 20 + Math.random() * 25;
+      const duration = 8 + Math.random() * 3;
+
+      bubble.className = 'absolute rounded-full bg-white opacity-10 blur-sm bubble';
+      bubble.style.width = `${size}px`;
+      bubble.style.height = `${size}px`;
+      bubble.style.left = `${Math.random() * 100}vw`;
+      bubble.style.bottom = `-50px`;
+      bubble.style.animationDuration = `${duration}s`;
+
+      bubblesContainer.appendChild(bubble);
+    }
+
+    // Image and Form Reveal
+    window.addEventListener('DOMContentLoaded', () => {
+      const image = document.getElementById('profileImage');
+      const form = document.getElementById('formContainer');
+
+      setTimeout(() => {
+        image.classList.remove('opacity-0');
+        image.classList.add('opacity-100');
+
+        setTimeout(() => {
+          form.classList.remove('opacity-0', 'pointer-events-none');
+          form.classList.add('fade-in');
+        }, 700);
+      }, 500);
+    });
+  </script>
+</body>
+
+</html>
