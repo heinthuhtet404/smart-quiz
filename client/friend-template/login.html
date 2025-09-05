@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - KidsLearn</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; padding: 20px; }
+    form { max-width: 360px; margin: 0 auto; display:flex; flex-direction:column; gap:10px; }
+    input { padding:8px; font-size:14px; }
+    button { padding:10px; background:#4f46e5; color:#fff; border:none; cursor:pointer; }
+    .msg { text-align:center; margin-top:12px; color:#555; }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center">Login</h2>
+
+  <form id="loginForm" autocomplete="off">
+    <input type="email" name="email" placeholder="Email" required />
+    <input type="password" name="password" placeholder="Password" required />
+    <button type="submit">Login</button>
+  </form>
+
+  <p class="msg">Don't have an account? <a href="signup.html">Signup</a></p>
+
+  <script>
+    // Client-side login script - posts to your backend, stores returned user info in localStorage, redirects to homepage.
+    (function () {
+      const form = document.getElementById('loginForm');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const payload = {
+          email: formData.get('email').trim(),
+          password: formData.get('password')
+        };
+
+        try {
+          const res = await fetch('/api/users/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          // parse JSON if possible
+          const result = await res.json().catch(() => ({}));
+
+          if (!res.ok) {
+            const msg = result.message || (await res.text().catch(() => 'Login failed'));
+            alert(msg);
+            return;
+          }
+
+          // Backend might return either:
+          // 1) { message: 'Login successful', user: { userId, name, email, profilePic, friends } }
+          // 2) { message: 'Login successful', userId: '...', name: '...' }
+          // 3) legacy shapes — tolerate them.
+          let userObj = null;
+
+          if (result.user && typeof result.user === 'object') {
+            // 1)
+            userObj = {
+              _id: result.user.userId || result.user._id || result.userId,
+              name: result.user.name,
+              email: result.user.email || payload.email,
+              profilePic: result.user.profilePic || ''
+            };
+          } else if (result.userId || result.user_id) {
+            // 2)
+            userObj = {
+              _id: result.userId || result.user_id,
+              name: result.name || result.userName || '',
+              email: payload.email,
+              profilePic: ''
+            };
+          } else if (result.user && typeof result.user === 'string') {
+            // odd case, fallback
+            userObj = { _id: result.user, name: result.name || '', email: payload.email, profilePic: '' };
+          } else {
+            // fallback - if your backend returns user fields at top-level (older shapes)
+            userObj = {
+              _id: result.userId || result._id || null,
+              name: result.name || '',
+              email: payload.email,
+              profilePic: result.profilePic || ''
+            };
+          }
+
+          if (!userObj._id) {
+            // If we couldn't determine a user id, fail safe
+            console.warn('Login response did not include user id:', result);
+            alert('Login succeeded but server response was unexpected. Check console.');
+            return;
+          }
+
+          // Save logged-in user to localStorage so homepage and React can read it
+          localStorage.setItem('user', JSON.stringify(userObj));
+
+          alert(result.message || 'Login successful');
+          // Redirect to homepage which will read localStorage and display user's profile
+          window.location.href = 'homepage.html';
+        } catch (err) {
+          console.error('Login error', err);
+          alert('Login failed — check console for details');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

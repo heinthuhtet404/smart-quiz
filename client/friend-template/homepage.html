@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KidsLearn | Fun Learning & Friends</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        body {
+            background: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            background: #4f46e5;
+            padding: 15px 20px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        nav a.active {
+            border-bottom: 2px solid #fff;
+            padding-bottom: 2px;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        h1,
+        h2 {
+            margin: 20px;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            background: #eef2ff;
+            padding: 30px 20px;
+            border-radius: 10px;
+            margin: 20px;
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            margin: 20px;
+        }
+
+        .subject-card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .subject-card button {
+            margin-top: 10px;
+            padding: 5px 12px;
+            border: none;
+            background: #4f46e5;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .profile-card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            width: 220px;
+            text-align: center;
+            margin: 20px auto;
+        }
+
+        .profile-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            object-fit: cover;
+        }
+
+        .profile-card button {
+            margin-top: 10px;
+            padding: 5px 12px;
+            border: none;
+            background: #4f46e5;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .search-box {
+            display: block;
+            margin: 0 auto 20px;
+            padding: 8px 12px;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 0 20px 30px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            width: 180px;
+            text-align: center;
+        }
+
+        .card img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 5px;
+        }
+
+        .card button {
+            margin-top: 8px;
+            padding: 5px 10px;
+            border: none;
+            background: #4f46e5;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .no-friends {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+            width: 100%;
+        }
+
+        #chatRoot {
+            display: none;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul class="nav-list">
+                <li><a class="nav-link active" id="homeTab">Home</a></li>
+                <li><a class="nav-link" id="tutorialTab">Tutorial</a></li>
+                <li><a class="nav-link" id="chatTab">Chat Room</a></li>
+                <li><a class="nav-link" id="translateTab">Translate</a></li>
+                <li><a class="nav-link" id="login-btn">Login/Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="homeSection">
+        <h1>Welcome <span id="username"></span>!</h1>
+
+        <div class="hero">
+            <h2>Let's Learn Together!</h2>
+            <p>Fun, interactive lessons designed especially for kids. Explore subjects and meet friends!</p>
+        </div>
+
+        <h2>Learning Subjects</h2>
+        <div class="subjects-grid">
+            <div class="subject-card">
+                <h3>MyanmarSaar</h3>
+                <p>Burmese language lessons</p><button>Start Learning</button>
+            </div>
+            <div class="subject-card">
+                <h3>English</h3>
+                <p>Improve English skills</p><button>Start Learning</button>
+            </div>
+            <div class="subject-card">
+                <h3>Math</h3>
+                <p>Numbers made fun!</p><button>Start Learning</button>
+            </div>
+            <div class="subject-card">
+                <h3>Science</h3>
+                <p>Discover science</p><button>Start Learning</button>
+            </div>
+            <div class="subject-card">
+                <h3>Painting & Art</h3>
+                <p>Creative activities</p><button>Start Learning</button>
+            </div>
+        </div>
+
+        <div class="profile-card" id="profileCard">
+            <img src="" id="profileImg" alt="Profile Picture">
+            <h3 id="profileName">Loading...</h3>
+            <p id="profileEmail">Loading...</p>
+            <button class="edit-btn" onclick="editProfile()">Edit Profile</button>
+        </div>
+
+        <h2>Search Users</h2>
+        <input type="text" id="search" class="search-box" placeholder="Search users by name...">
+        <div class="container" id="userList"></div>
+
+        <h2>Your Friends</h2>
+        <div class="container" id="friendList"></div>
+
+        <h2>Pending Friend Requests</h2>
+        <div class="container" id="friendRequestsContainer"></div>
+    </section>
+
+    <section id="chatRoot"></section>
+
+    <script>
+        // ---------------- User Setup ----------------
+        const user = JSON.parse(localStorage.getItem('user'));
+        let currentUserId = '0';
+        let currentUserName = 'Guest';
+
+        if (user && user._id) {
+            currentUserId = user._id;
+            currentUserName = user.name;
+        }
+
+        document.getElementById('username').textContent = currentUserName;
+
+        // ---------------- Login/Register Tab ----------------
+        const loginBtn = document.getElementById('login-btn');
+        loginBtn.addEventListener('click', () => {
+            if (currentUserId === '0') {
+                window.location.href = 'login.html';
+            } else {
+                if (confirm("You are already logged in. Do you want to logout?")) {
+                    localStorage.removeItem('user');
+                    window.location.reload();
+                }
+            }
+        });
+
+        // ---------------- Load Users ----------------
+        let allUsers = [];
+        let currentFriends = [];
+
+        async function loadUsers() {
+            if (currentUserId === '0') return; // guest users cannot load
+            try {
+                const res = await fetch('/api/users/users');
+                allUsers = await res.json();
+                renderUserList();
+                loadCurrentUserData();
+            } catch (e) { console.error(e); }
+        }
+
+        function renderUserList() {
+            const container = document.getElementById('userList');
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            container.innerHTML = '';
+
+            allUsers
+                .filter(u => u._id !== currentUserId && u.name.toLowerCase().includes(searchTerm))
+                .forEach(u => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    const isFriend = currentFriends.includes(u._id);
+                    card.innerHTML = `
+            <img src="${u.profilePic || 'https://via.placeholder.com/60'}">
+            <h3>${u.name}</h3>
+            <p>${u.email}</p>
+            <button ${isFriend ? 'disabled' : ''} onclick="sendRequest('${u._id}', this)">
+              ${isFriend ? 'Friends' : 'Add Friend'}
+            </button>
+          `;
+                    container.appendChild(card);
+                });
+        }
+
+        document.getElementById('search').addEventListener('input', renderUserList);
+
+        async function loadCurrentUserData() {
+            try {
+                const res = await fetch(`/api/users/user/${currentUserId}`);
+                const userData = await res.json();
+                currentFriends = userData.friends.map(f => f._id);
+                displayProfile(userData);
+                displayFriends(userData.friends);
+                loadFriendRequests();
+            } catch (err) { console.error(err); }
+        }
+
+        function displayProfile(user) {
+            document.getElementById('profileName').textContent = user.name;
+            document.getElementById('profileEmail').textContent = user.email;
+            document.getElementById('profileImg').src = user.profilePic || 'https://via.placeholder.com/80';
+        }
+
+        function displayFriends(friends) {
+            const friendList = document.getElementById('friendList');
+            friendList.innerHTML = '';
+            if (!friends.length) { friendList.innerHTML = '<p class="no-friends">No friends yet.</p>'; return; }
+            friends.forEach(f => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+          <img src="${f.profilePic || 'https://via.placeholder.com/60'}">
+          <h3>${f.name}</h3>
+          <p>${f.email}</p>
+        `;
+                friendList.appendChild(card);
+            });
+        }
+
+        async function sendRequest(friendId, btn) {
+            try {
+                const res = await fetch('/api/friends/send-request', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ fromUserId: currentUserId, toUserId: friendId })
+                });
+                const data = await res.json();
+                alert(data.message);
+                btn.disabled = true;
+                btn.textContent = 'Request Sent';
+            } catch (err) { alert('Error sending request'); }
+        }
+
+        async function loadFriendRequests() {
+            const container = document.getElementById('friendRequestsContainer');
+            container.innerHTML = '';
+            try {
+                const res = await fetch(`/api/friends/requests/${currentUserId}`);
+                const requests = await res.json();
+                if (!requests.length) { container.innerHTML = '<p class="no-friends">No pending requests</p>'; return; }
+                requests.forEach(req => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `
+            <h3>${req.name}</h3>
+            <p>${req.email}</p>
+            <button onclick="acceptRequest('${req._id}', this)">Accept</button>
+          `;
+                    container.appendChild(card);
+                });
+            } catch (err) { console.error(err); }
+        }
+
+        async function acceptRequest(requesterId, btn) {
+            try {
+                const res = await fetch('/api/friends/accept-request', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ userId: currentUserId, requesterId })
+                });
+                const data = await res.json();
+                alert(data.message);
+                btn.parentElement.remove();
+                loadCurrentUserData();
+            } catch (err) { alert('Error accepting request'); }
+        }
+
+        // ---------------- Profile Edit ----------------
+        function editProfile() {
+            const nameEl = document.getElementById('profileName');
+            const emailEl = document.getElementById('profileEmail');
+            const imgEl = document.getElementById('profileImg');
+            const btn = document.querySelector('.edit-btn');
+
+            nameEl.innerHTML = `<input type="text" id="editName" value="${nameEl.textContent}">`;
+            emailEl.innerHTML = `<input type="email" id="editEmail" value="${emailEl.textContent}">`;
+
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file'; fileInput.id = 'editProfilePic'; fileInput.accept = 'image/*';
+            fileInput.style.marginTop = '10px';
+            imgEl.insertAdjacentElement('afterend', fileInput);
+
+            btn.textContent = 'Save';
+            btn.onclick = saveProfile;
+
+            fileInput.addEventListener('change', () => {
+                const file = fileInput.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = e => imgEl.src = e.target.result;
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        function saveProfile() {
+            const name = document.getElementById('editName').value;
+            const email = document.getElementById('editEmail').value;
+            const fileInput = document.getElementById('editProfilePic');
+            const formData = new FormData();
+            formData.append('userId', currentUserId);
+            formData.append('name', name);
+            formData.append('email', email);
+            if (fileInput.files[0]) formData.append('profilePic', fileInput.files[0]);
+
+            fetch('/api/users/update-user', { method: 'POST', body: formData })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) { alert('Profile updated!'); loadCurrentUserData(); }
+                    else alert('Failed to update profile');
+                }).catch(() => alert('Error updating profile'));
+        }
+
+        // ---------------- Tab Handling ----------------
+        const homeTab = document.getElementById('homeTab');
+        const chatTab = document.getElementById('chatTab');
+        const homeSection = document.getElementById('homeSection');
+        const chatRoot = document.getElementById('chatRoot');
+
+        chatTab.addEventListener('click', () => {
+            if (currentUserId === '0') {
+                alert('Please login to enter the chat room.');
+                return;
+            }
+            chatTab.classList.add('active');
+            homeTab.classList.remove('active');
+            chatRoot.style.display = 'block';
+            homeSection.style.display = 'none';
+            if (!window.chatLoaded) {
+                const script = document.createElement('script');
+                script.type = 'module';
+                script.src = '/assets/index.js';
+                document.body.appendChild(script);
+                window.chatLoaded = true;
+            }
+        });
+
+        homeTab.addEventListener('click', () => {
+            homeSection.style.display = 'block';
+            chatRoot.style.display = 'none';
+            homeTab.classList.add('active');
+            chatTab.classList.remove('active');
+        });
+
+        if (currentUserId !== '0') loadUsers();
+    </script>
+</body>
+
+</html>

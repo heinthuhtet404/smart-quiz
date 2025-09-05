@@ -1,26 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './sidebar.css';
 
-const fakeUsers = [
-  { id: 'u1', name: 'Ko Ko', online: true },
-  { id: 'u2', name: 'Hla Hla', online: false },
-  { id: 'u3', name: 'Ma Ma', online: true },
-  { id: 'u4', name: 'Aung Aung', online: false }
-];
+const SideBar = ({ currentUser, onSelectUser }) => {
+  const [friends, setFriends] = useState([]);
 
-const SideBar = ({ onSelectUser }) => {
+  useEffect(() => {
+    if (!currentUser?._id) return;
+
+    // Fetch current user's friends from backend
+    fetch(`/api/users/user/${currentUser._id}`)
+      .then(res => res.json())
+      .then(data => setFriends(data.friends || []))
+      .catch(err => console.error('Error fetching friends:', err));
+  }, [currentUser]);
+
   return (
     <div className="sidebar">
       <h2 className="sidebar-title">Friends</h2>
       <ul className="user-list">
-        {fakeUsers.map(user => (
+        {friends.length === 0 && <li className="no-friends">No friends yet</li>}
+        {friends.map(friend => (
           <li
-            key={user.id}
-            className={`user-item ${user.online ? 'online' : 'offline'}`}
-            onClick={() => onSelectUser(user)}
+            key={friend._id}
+            className={`user-item ${friend.online ? 'online' : 'offline'}`}
+            onClick={() => onSelectUser(friend)}
           >
             <span className="status-dot"></span>
-            <span className="user-name">{user.name}</span>
+            <span className="user-name">{friend.name}</span>
           </li>
         ))}
       </ul>
