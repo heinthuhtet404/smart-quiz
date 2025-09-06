@@ -29,8 +29,7 @@ router.get('/:user1/:user2', async (req, res) => {
       ]
     }).sort({ createdAt: 1 }).populate('replyTo');
     res.json(messages);
-  } catch (error) {
-    console.error('Error fetching messages:', error);
+  } catch (err) {
     res.status(500).json({ error: 'Failed to fetch messages' });
   }
 });
@@ -39,9 +38,12 @@ router.get('/:user1/:user2', async (req, res) => {
 router.post('/', upload.single('file'), async (req, res) => {
   const { senderId, receiverId, senderName, text, replyTo } = req.body;
 
+  if (!senderId || !receiverId || !senderName || (!text && !req.file)) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+
   let fileUrl = null;
   let fileType = null;
-
   if (req.file) {
     const host = req.get('host');
     const protocol = req.protocol;
@@ -49,19 +51,12 @@ router.post('/', upload.single('file'), async (req, res) => {
     fileType = req.file.mimetype;
   }
 
-  if (!senderId || !receiverId || !senderName || (!text && !fileUrl)) {
-    return res.status(400).json({ error: 'Missing required fields' });
-  }
-
   try {
     const newMessage = new Message({ senderId, receiverId, senderName, text, fileUrl, fileType, replyTo });
     await newMessage.save();
-
     req.app.get('io')?.emit('newMessage', await newMessage.populate('replyTo'));
-
     res.status(201).json(newMessage);
-  } catch (error) {
-    console.error('Error saving message:', error);
+  } catch (err) {
     res.status(500).json({ error: 'Failed to save message' });
   }
 });
@@ -71,12 +66,11 @@ router.put('/:id', upload.single('file'), async (req, res) => {
   const { id } = req.params;
   const { text } = req.body;
 
-  if (!text && !req.file) return res.status(400).json({ error: 'Text or file is required to edit' });
+  if (!text && !req.file) return res.status(400).json({ error: 'Text or file required' });
 
   try {
     const updateData = { updatedAt: Date.now() };
     if (text) updateData.text = text;
-
     if (req.file) {
       const host = req.get('host');
       const protocol = req.protocol;
@@ -85,28 +79,20 @@ router.put('/:id', upload.single('file'), async (req, res) => {
     }
 
     const updatedMessage = await Message.findByIdAndUpdate(id, updateData, { new: true }).populate('replyTo');
-
     req.app.get('io')?.emit('updateMessage', updatedMessage);
-
     res.json(updatedMessage);
-  } catch (error) {
-    console.error('Error updating message:', error);
+  } catch (err) {
     res.status(500).json({ error: 'Failed to update message' });
   }
 });
 
 // Delete message
 router.delete('/:id', async (req, res) => {
-  const { id } = req.params;
-
   try {
-    const deletedMessage = await Message.findByIdAndDelete(id);
-
+    const deletedMessage = await Message.findByIdAndDelete(req.params.id);
     req.app.get('io')?.emit('deleteMessage', deletedMessage);
-
-    res.json({ message: 'Message deleted', id });
-  } catch (error) {
-    console.error('Error deleting message:', error);
+    res.json({ message: 'Message deleted', id: req.params.id });
+  } catch (err) {
     res.status(500).json({ error: 'Failed to delete message' });
   }
 });

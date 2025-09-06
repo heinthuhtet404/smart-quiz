@@ -1,101 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="my">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KidsLearn | My Profile</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-body { font-family: 'Nunito', sans-serif; margin:0; padding:0; background:linear-gradient(to right,#00c6ff,#0072ff); color:#333; }
-.navbar { display:flex; justify-content:space-between; align-items:center; padding:12px 20px; background:#1e3c72; color:#fff; position:sticky; top:0; z-index:1000; border-bottom:4px solid #00bfff; }
-.navbar .logo { display:flex; align-items:center; font-size:26px; font-family:'Fredoka One', cursive; }
-.navbar .logo i { margin-right:10px; font-size:30px; }
-.navbar nav a { margin:0 10px; text-decoration:none; color:#fff; font-weight:700; transition: transform 0.2s; }
-.navbar nav a:hover { transform: scale(1.1); }
-.profile-container { max-width:500px; margin:40px auto; background:#fff; border-radius:20px; padding:30px; box-shadow:0 6px 12px rgba(0,0,0,0.2); text-align:center; }
-.profile-container img { width:120px; height:120px; border-radius:50%; object-fit:cover; border:3px solid #0072ff; margin-bottom:20px; }
-.profile-container h2 { margin:10px 0; font-family:'Fredoka One', cursive; color:#0072ff; }
-.profile-container input[type="text"], .profile-container input[type="file"] { width:80%; padding:10px 12px; margin:8px 0; border-radius:10px; border:1px solid #ccc; outline:none; font-size:14px; }
-.profile-container button { margin-top:15px; background:#00bfff; border:none; padding:10px 20px; border-radius:12px; color:#fff; font-weight:700; cursor:pointer; transition: transform 0.2s, background 0.2s; }
-.profile-container button:hover { background:#0072ff; transform:scale(1.05); }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KidsLearn | ကိုယ်ပိုင်စာမျက်နှာ</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Nunito', sans-serif;
+      background: #e8ffe8;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 25px;
+      background: #4A90E2;
+      color: #fff;
+    }
+
+    .navbar .logo {
+      font-family: 'Fredoka One', cursive;
+      font-size: 26px;
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar .logo i {
+      margin-right: 10px;
+      color: #EF476F;
+    }
+
+    .profile-card {
+      max-width: 500px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .profile-card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #50E3C2;
+    }
+
+    .profile-card h2 {
+      margin: 10px 0;
+      color: #4A90E2;
+    }
+
+    .profile-card p {
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .logout-btn {
+      margin-top: 20px;
+      background: #EF476F;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+  </style>
 </head>
+
 <body>
+  <header class="navbar">
+    <div class="logo"><i class="fas fa-leaf"></i> KidsLearn</div>
+    <nav>
+      <a href="homepage.html" style="color:white;text-decoration:none;margin-right:15px;">ပင်မစာမျက်နှာ</a>
+      <a href="chat.html" style="color:white;text-decoration:none;">စကားပြောရန်</a>
+    </nav>
+  </header>
 
-<header class="navbar">
-  <div class="logo"><i class="fas fa-rocket"></i><span>KidsLearn</span></div>
-  <nav>
-    <a href="homepage.html">Home</a>
-    <a href="users.html">Users</a>
-    <a href="profile.html">Profile</a>
-  </nav>
-</header>
+  <div class="profile-card" id="profileCard">
+    <img src="https://i.ibb.co/sq7YtZf/avatar.png" alt="Profile">
+    <h2>Loading...</h2>
+    <p>Email: -</p>
+    <p>Joined: -</p>
+    <button class="logout-btn" onclick="logout()">ထွက်မယ်</button>
+  </div>
 
-<div class="profile-container">
-  <h2>My Profile</h2>
-  <img id="profilePic" src="https://i.ibb.co/sq7YtZf/avatar.png" alt="Profile Picture">
-
-  <form id="profileForm" enctype="multipart/form-data">
-    <input type="file" id="profilePicFile" accept="image/*"><br>
-    <input type="text" id="nameInput" placeholder="Your Name"><br>
-    <input type="text" id="emailInput" placeholder="Your Email" disabled><br>
-    <button type="submit">Save Profile</button>
-  </form>
-
-  <h3>My Courses</h3>
-  <ul id="coursesList"></ul>
-</div>
-
-<script>
-async function fetchCurrentUser() {
-  try {
-    const res = await fetch('/current-user');
-    const user = await res.json();
-    if(user && user._id){
-      document.getElementById('profilePic').src = user.profilePic || 'https://i.ibb.co/sq7YtZf/avatar.png';
-      document.getElementById('nameInput').value = user.name || '';
-      document.getElementById('emailInput').value = user.email || '';
-
-      const coursesList = document.getElementById('coursesList');
-      coursesList.innerHTML = '';
-      if(user.courses && user.courses.length){
-        user.courses.forEach(c => {
-          const li = document.createElement('li');
-          li.textContent = `${c.name} — ${c.progress || 0}% completed`;
-          coursesList.appendChild(li);
-        });
-      } else {
-        coursesList.innerHTML = '<li>No courses yet</li>';
+  <script>
+    async function loadProfile() {
+      try {
+        const res = await fetch('/current-user');
+        if (!res.ok) throw new Error('Not logged in');
+        const user = await res.json();
+        const card = document.getElementById('profileCard');
+        card.innerHTML = `
+      <img src="${user.profilePic || 'https://i.ibb.co/sq7YtZf/avatar.png'}">
+      <h2>${user.name}</h2>
+      <p>Email: ${user.email}</p>
+      <p>Joined: ${new Date(user.createdAt).toLocaleDateString()}</p>
+      <button class="logout-btn" onclick="logout()">ထွက်မယ်</button>
+    `;
+      } catch (e) {
+        alert("မဖြစ်သေးပါ။ login လုပ်ပါ");
+        window.location.href = "login.html";
       }
     }
-  } catch(err){ console.error(err); }
-}
-
-document.getElementById('profileForm').addEventListener('submit', async e => {
-  e.preventDefault();
-  const name = document.getElementById('nameInput').value;
-  const fileInput = document.getElementById('profilePicFile');
-
-  const formData = new FormData();
-  formData.append('name', name);
-  if(fileInput.files.length > 0){
-    formData.append('profilePicFile', fileInput.files[0]);
-  }
-
-  try {
-    const res = await fetch('/update-profile', { method:'POST', body: formData });
-    const data = await res.json();
-    if(res.ok && data.success){
-      alert('Profile updated!');
-      fetchCurrentUser();
-      fileInput.value = '';
-    } else alert('Failed to update profile');
-  } catch(err){ console.error(err); alert('Server error'); }
-});
-
-fetchCurrentUser();
-</script>
-
+    async function logout() {
+      await fetch('/api/auth/logout', { method: 'POST' });
+      window.location.href = "login.html";
+    }
+    loadProfile();
+  </script>
 </body>
+
 </html>

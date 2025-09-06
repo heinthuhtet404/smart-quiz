@@ -12,7 +12,7 @@ const fs = require('fs');
 // Import routes
 const chatRoutes = require('./routes/chat');
 const authRoutes = require('./routes/auth');
-const userRoutes = require('./routes/users'); // only user management
+const userRoutes = require('./routes/users');
 
 const User = require('./models/User');
 
@@ -21,10 +21,7 @@ const server = http.createServer(app);
 
 // ------------------- SOCKET.IO -------------------
 const io = new Server(server, {
-  cors: {
-    origin: ['http://localhost:5173'], // frontend URL
-    methods: ['GET', 'POST']
-  }
+  cors: { origin: ['http://localhost:5173'], methods: ['GET','POST'] }
 });
 app.set('io', io);
 
@@ -54,29 +51,26 @@ mongoose.connect('mongodb://localhost:27017/chat-app', {
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const dir = path.join(__dirname, 'uploads');
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir);
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
     cb(null, dir);
   },
   filename: (req, file, cb) => {
-    if (req.session.user) {
-      const ext = path.extname(file.originalname);
-      cb(null, req.session.user._id + '-' + Date.now() + ext);
-    } else {
-      cb(new Error('No session user found'));
-    }
+    const ext = path.extname(file.originalname);
+    if (req.session.user) cb(null, req.session.user._id + '-' + Date.now() + ext);
+    else cb(null, Date.now() + ext);
   }
 });
 const upload = multer({ storage });
 
 // ------------------- ROUTES -------------------
-app.use('/api/auth', authRoutes); // signup/login/logout
-app.use('/api/users', userRoutes); // user management (get users, add friend, etc.)
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
 app.use('/api/chat', chatRoutes);
 
-// Profile update (with upload)
+// Profile update route
 app.post('/api/users/update-profile', upload.single('profilePicFile'), async (req, res) => {
   try {
-    if (!req.session.user) return res.json({ success: false, msg: 'Not logged in' });
+    if (!req.session.user) return res.status(401).json({ success: false, msg: 'Not logged in' });
 
     const { name, profilePicUrl } = req.body;
     const updateData = {};
@@ -85,23 +79,26 @@ app.post('/api/users/update-profile', upload.single('profilePicFile'), async (re
     else if (profilePicUrl) updateData.profilePic = profilePicUrl;
 
     const user = await User.findByIdAndUpdate(req.session.user._id, updateData, { new: true });
-
     req.session.user.name = user.name;
     req.session.user.profilePic = user.profilePic;
 
     res.json({ success: true, user });
   } catch (err) {
     console.error(err);
-    res.json({ success: false, msg: 'Server error' });
+    res.status(500).json({ success: false, msg: 'Server error' });
   }
 });
 
 // Get current logged-in user
-app.get('/api/users/current', async (req, res) => {
-  if (!req.session.user) return res.json({});
-  const user = await User.findById(req.session.user._id);
-  res.json(user);
+app.get('/current-user', (req, res) => {
+  if (req.session.user) {
+    res.json(req.session.user);
+  } else {
+    res.status(401).json({ success: false, message: 'Not logged in' });
+  }
 });
+
+
 
 // Serve homepage
 app.get('/', (req, res) => {
@@ -111,10 +108,7 @@ app.get('/', (req, res) => {
 // ------------------- SOCKET.IO -------------------
 io.on('connection', (socket) => {
   console.log('🟢 User connected:', socket.id);
-
-  socket.on('disconnect', () => {
-    console.log('🔴 User disconnected:', socket.id);
-  });
+  socket.on('disconnect', () => console.log('🔴 User disconnected:', socket.id));
 });
 
 // ------------------- START SERVER -------------------
