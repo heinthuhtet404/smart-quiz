@@ -319,25 +319,38 @@
     }
 
     // အသုံးပြုသူတွေကို UI မှာ ပြရန်
+
     function displayUserCards(users) {
       const userList = document.getElementById('userList');
       userList.innerHTML = '';
+
       if (!users || users.length === 0) {
         userList.innerHTML = "<p style='grid-column:1/-1;text-align:center;'>အသုံးပြုသူ မတွေ့ပါ 😢</p>";
         return;
       }
+
       users.forEach(u => {
         const card = document.createElement('div');
         card.className = 'card';
         card.innerHTML = `
-      <img src="${u.profilePic ? u.profilePic : 'https://i.ibb.co/sq7YtZf/avatar.png'}" alt="profile">
+      <img src="${u.profilePic ? u.profilePic : 'https://i.pravatar.cc/150?img=3'}" alt="profile">
       <h3>${u.name}</h3>
       <p>${u.email ? u.email : ''}</p>
-      <button onclick="sendMessage('${u._id}')">💌 စာပို့မယ်</button>
     `;
+
+        const btn = document.createElement('button');
+        btn.textContent = '💌 စာပို့မယ်';
+
+        // Redirect to React chat-page with query params
+        btn.onclick = () => sendMessage(u._id, u.name);
+
+
+        card.appendChild(btn);
         userList.appendChild(card);
       });
     }
+
+
 
     // ရှာဖွေရေး
     document.getElementById('searchInput').addEventListener('input', (e) => {
@@ -350,9 +363,15 @@
     });
 
     // စာပို့ function
-    function sendMessage(id) {
-      showCustomMessage('အသုံးပြုသူကို စာပို့မယ်: ' + id);
+    // Replace previous sendMessage function
+    function sendMessage(userId, userName) {
+      console.log("Opening React chat with:", { id: userId, name: userName });
+      window.open(`http://localhost:5173/chat-page?userId=${userId}&name=${encodeURIComponent(userName)}`, "_blank");
     }
+
+
+
+
 
     // လက်ရှိ အသုံးပြုသူကို ပြရန်
     async function fetchCurrentUser() {
