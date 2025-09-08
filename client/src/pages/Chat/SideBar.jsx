@@ -82,17 +82,20 @@ const SideBar = ({ onSelectUser, users: propUsers, loginUserName, loginUserEmail
     <div className="sidebar">
       <h2 className="sidebar-title">Friends</h2>
       <ul className="user-list">
-        {users.map(user => (
-          <li
-            key={user.id}
-            className="user-item"
-            onClick={() => onSelectUser(user)}
-          >
-            {/* receiver name ကိုသာ ပြရန် */}
-            <span className="user-name">{user.receiverName || user.name}</span>
-          </li>
-        ))}
-      </ul>
+  {users
+    .filter(u => u.name !== loginUserName) // exclude login user by name
+    .map(user => (
+      <li
+        key={user.id}
+        className="user-item"
+        onClick={() => onSelectUser(user)}
+      >
+        {/* receiver name ကိုသာ ပြရန် */}
+        <span className="user-name">{user.receiverName || user.name}</span>
+      </li>
+    ))}
+</ul>
+
     </div>
   );
 };

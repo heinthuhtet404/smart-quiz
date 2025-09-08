@@ -17,12 +17,12 @@ function App() {
       {/* Page content below nav */}
       <div className="page-container">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="*" element={<NotFound />} />
+          {/* <Route path="/" element={<Home />} />
+          <Route path="*" element={<NotFound />} /> */}
           <Route path="/chat-page" element={<ChatPage />} />
-          <Route path="/register" element={<Register />} />
+          {/* <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/video-call" element={<VideoCall />} />
+          <Route path="/video-call" element={<VideoCall />} /> */}
         </Routes>
       </div>
     </div>
