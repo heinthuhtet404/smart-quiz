@@ -350,8 +350,6 @@
       });
     }
 
-
-
     // ရှာဖွေရေး
     document.getElementById('searchInput').addEventListener('input', (e) => {
       const keyword = e.target.value.toLowerCase();
@@ -362,33 +360,56 @@
       displayUserCards(filtered);
     });
 
-    function sendMessage(userId, userName) {
+    function sendMessage(receiverId, receiverName) {
+      // fetch only the currently logged-in user
+      const loginUser = JSON.parse(localStorage.getItem("user")) || {};
+      const loginUserName = loginUser.name || "Unknown";
+      const loginUserEmail = loginUser.email || "";
+
       let dynamicUsers = JSON.parse(localStorage.getItem("dynamicSidebarUsers") || "[]");
 
-      if (!dynamicUsers.find(u => u.id === userId)) {
-        dynamicUsers.push({ id: userId, name: userName, online: true });
+      // store receiver in dynamicUsers if not already present
+      if (!dynamicUsers.find(u => u.id === receiverId)) {
+        dynamicUsers.push({
+          id: receiverId,
+          name: receiverName,
+          sender: {
+            name: loginUserName,
+            email: loginUserEmail,
+          }
+        });
         localStorage.setItem("dynamicSidebarUsers", JSON.stringify(dynamicUsers));
       }
 
-      window.open(
-        `http://localhost:5173/chat-page?userId=${userId}&name=${encodeURIComponent(userName)}`,
-        "_blank"
-      );
+      // open chat page with query params
+      const url = `http://localhost:5173/chat-page?receiverId=${encodeURIComponent(receiverId)}&receiverName=${encodeURIComponent(receiverName)}&loginUserName=${encodeURIComponent(loginUserName)}&loginUserEmail=${encodeURIComponent(loginUserEmail)}`;
+      window.open(url, "_blank");
     }
+
 
     // လက်ရှိ အသုံးပြုသူကို ပြရန်
     async function fetchCurrentUser() {
       try {
         const res = await fetch('/current-user');
         const user = await res.json();
-        if (user && user.name) {
+
+        if (user && user.name && user.email) {
+          // 1️⃣ UI update
           const profileLink = document.getElementById('profileLink');
           profileLink.innerHTML = `👋 ဟယ်လို၊ ${user.name} <i class="fas fa-user-circle" style="margin-left:5px;"></i>`;
+
+          // 2️⃣ LocalStorage မှာ သိမ်း
+          localStorage.setItem('user', JSON.stringify({
+            _id: user._id || '',   // အရေးကြီးပါက backend မှ id ပါလာရမယ်
+            name: user.name,
+            email: user.email
+          }));
         }
       } catch (err) {
         console.error("လက်ရှိ အသုံးပြုသူ မရနိုင်ပါ:", err);
       }
     }
+
 
     fetchCurrentUser();
     fetchUsers();

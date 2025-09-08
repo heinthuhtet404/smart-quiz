@@ -1,48 +1,70 @@
-// ChatPage.jsx
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import SideBar from './SideBar';
 import ChatWindow from './ChatWindow';
 import './ChatPage.css';
 
-const ChatPage = () => {
+export default function ChatPage() {
   const [selectedUser, setSelectedUser] = useState(null);
   const [sidebarUsers, setSidebarUsers] = useState([]);
+  const [loginUserName, setLoginUserName] = useState("");
+  const [loginUserEmail, setLoginUserEmail] = useState("");
   const [searchParams] = useSearchParams();
 
-  // Function to add user to sidebar
-  const addUserToSidebar = (user) => {
-    setSidebarUsers(prev => {
-      const exists = prev.find(u => u.id === user.id);
-      if (!exists) return [...prev, user];
-      return prev;
-    });
-  };
-
-  // Expose globally to HTML redirect
-  window.addUserToSidebar = addUserToSidebar;
-
-  // Load user from query params
+  // load from localStorage at mount
   useEffect(() => {
-    const userId = searchParams.get('userId');
-    const userName = searchParams.get('name');
+    const saved = localStorage.getItem('dynamicSidebarUsers');
+    if (saved) setSidebarUsers(JSON.parse(saved));
+  }, []);
 
-    if (userId && userName) {
-      const user = { id: userId, name: userName };
+  // save to localStorage on every change
+  useEffect(() => {
+    localStorage.setItem('dynamicSidebarUsers', JSON.stringify(sidebarUsers));
+  }, [sidebarUsers]);
+
+  // Add user if present in URL
+  useEffect(() => {
+    const receiverId = searchParams.get('receiverId');
+    const receiverName = searchParams.get('receiverName');
+    const _loginUserName = searchParams.get('loginUserName');
+    const _loginUserEmail = searchParams.get('loginUserEmail');
+
+    setLoginUserName(_loginUserName || "");
+    setLoginUserEmail(_loginUserEmail || "");
+
+    if (receiverId && receiverName) {
+      const user = {
+        id: receiverId,
+        name: receiverName
+      };
       setSelectedUser(user);
-      addUserToSidebar(user);
+
+      // sidebar update
+      setSidebarUsers(prev =>
+        prev.find(u => u.id === receiverId)
+          ? prev
+          : [...prev, { id: receiverId, name: receiverName }]
+      );
     }
   }, [searchParams]);
 
   return (
     <div className="chat-page">
       <div className="sidebar-wrapper">
-        <SideBar users={sidebarUsers} onSelectUser={setSelectedUser} />
+        <SideBar 
+          users={sidebarUsers} 
+          onSelectUser={setSelectedUser} 
+          loginUserName={loginUserName} 
+          loginUserEmail={loginUserEmail} 
+        />
       </div>
-
       <div className="chat-wrapper">
         {selectedUser ? (
-          <ChatWindow selectedUser={selectedUser} />
+          <ChatWindow 
+            selectedUser={selectedUser} 
+            loginUserName={loginUserName} 
+            loginUserEmail={loginUserEmail} 
+          />
         ) : (
           <div className="chat-placeholder">
             <h2>Select a user to start chatting</h2>
@@ -51,6 +73,4 @@ const ChatPage = () => {
       </div>
     </div>
   );
-};
-
-export default ChatPage;
+}

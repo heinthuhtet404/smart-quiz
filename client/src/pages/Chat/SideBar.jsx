@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './sidebar.css';
 
-const SideBar = ({ onSelectUser }) => {
-  const [users, setUsers] = useState([
-    { id: 'u1', name: 'Ko Ko', online: true },
-    { id: 'u2', name: 'Hla Hla', online: false },
-  ]);
-
+const SideBar = ({ onSelectUser, users: propUsers, loginUserName, loginUserEmail }) => {
+  const [users, setUsers] = useState(propUsers || []);
 
   // Load dynamic users from localStorage on mount
   useEffect(() => {
@@ -78,11 +74,11 @@ const SideBar = ({ onSelectUser }) => {
         {users.map(user => (
           <li
             key={user.id}
-            className={`user-item ${user.online ? 'online' : 'offline'}`}
+            className="user-item"
             onClick={() => onSelectUser(user)}
           >
-            <span className="status-dot"></span>
-            <span className="user-name">{user.name}</span>
+            {/* receiver name ကိုသာ ပြရန် */}
+            <span className="user-name">{user.receiverName || user.name}</span>
           </li>
         ))}
       </ul>

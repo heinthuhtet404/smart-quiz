@@ -5,10 +5,11 @@ import "./ChatWindow.css";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
 
-const ChatWindow = ({ selectedUser }) => {
+const ChatWindow = ({ selectedUser, loginUserName, loginUserEmail }) => {
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user?._id;
-  const userName = user?.name;
+  const userName = loginUserName || user?.name;
+
 
   const [messages, setMessages] = useState([]);
   const [socket, setSocket] = useState(null);
@@ -149,14 +150,12 @@ const ChatWindow = ({ selectedUser }) => {
             {groupedMessages[date].map((msg) => (
               <div
                 key={msg._id}
-                className={`message-wrapper ${
-                  msg.senderId === userId ? "my-message-wrapper" : "other-message-wrapper"
-                }`}
+                className={`message-wrapper ${msg.senderId === userId ? "my-message-wrapper" : "other-message-wrapper"
+                  }`}
               >
                 <div
-                  className={`message ${
-                    msg.senderId === userId ? "my-message" : "other-message"
-                  }`}
+                  className={`message ${msg.senderId === userId ? "my-message" : "other-message"
+                    }`}
                   onContextMenu={(e) => handleRightClick(e, msg)}
                 >
                   {msg.replyTo && msg.replyTo.text && (
@@ -173,10 +172,10 @@ const ChatWindow = ({ selectedUser }) => {
                       {msg.fileType?.startsWith("video/") && <video controls><source src={msg.fileUrl} type={msg.fileType} /></video>}
                       {msg.fileType?.startsWith("audio/") && <audio controls><source src={msg.fileUrl} type={msg.fileType} /></audio>}
                       {!msg.fileType?.startsWith("image/") &&
-                       !msg.fileType?.startsWith("video/") &&
-                       !msg.fileType?.startsWith("audio/") && (
-                        <a href={msg.fileUrl} target="_blank" rel="noopener noreferrer">📎 Download File</a>
-                      )}
+                        !msg.fileType?.startsWith("video/") &&
+                        !msg.fileType?.startsWith("audio/") && (
+                          <a href={msg.fileUrl} target="_blank" rel="noopener noreferrer">📎 Download File</a>
+                        )}
                     </div>
                   )}
 

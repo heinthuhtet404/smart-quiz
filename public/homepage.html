@@ -42,15 +42,27 @@ async function fetchCurrentUser() {
   try {
     const res = await fetch('/current-user');
     if (!res.ok) throw new Error('Not logged in');
+    
     const user = await res.json();
     if (!user || !user._id) throw new Error('Not logged in');
-    document.getElementById('welcomeMessage').textContent = `Welcome, ${user.name}!`;
+
+    // Name ကိုယူ
+    const userName = user.name;
+    // Email ကိုယူ
+    const userEmail = user.email;
+
+    console.log("Username:", userName);
+    console.log("Email:", userEmail);
+
+    // Page update လုပ်နိုင်ပါတယ်
+    document.getElementById('welcomeMessage').textContent = `Welcome, ${userName} ,${userEmail}!`;
   } catch(err) {
     console.error(err);
     alert('You are not logged in! Redirecting to login page.');
     window.location.href = '/login.html';
   }
 }
+
 
 // Logout button
 document.getElementById('logoutBtn').addEventListener('click', async (e) => {
