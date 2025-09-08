@@ -1,34 +1,75 @@
 import React, { useState, useEffect } from 'react';
 import './sidebar.css';
 
-const SideBar = ({ onSelectUser, externalAddUser }) => {
+const SideBar = ({ onSelectUser }) => {
   const [users, setUsers] = useState([
     { id: 'u1', name: 'Ko Ko', online: true },
     { id: 'u2', name: 'Hla Hla', online: false },
   ]);
 
-  // Add users from outside (chat.html redirection or any external script)
+
+  // Load dynamic users from localStorage on mount
   useEffect(() => {
-    if (externalAddUser) {
-      window.addUserToSidebar = (user) => {
-        if (!user || !user.id) return;
-        setUsers((prevUsers) => {
-          const exists = prevUsers.find(u => u.id === user.id);
-          if (exists) return prevUsers;
-          console.log("✅ Adding user to sidebar:", user);
-          return [...prevUsers, user];
+    const storedUsers = JSON.parse(localStorage.getItem("dynamicSidebarUsers") || "[]");
+
+    if (storedUsers.length > 0) {
+      setUsers((prevUsers) => {
+        const allUsers = [...prevUsers];
+        storedUsers.forEach(u => {
+          if (!allUsers.find(user => user.id === u.id)) {
+            allUsers.push(u);
+          }
         });
-
-        // Optionally auto-select the new user
-        if (onSelectUser) onSelectUser(user);
-      };
+        return allUsers;
+      });
     }
+  }, []);
 
-    // Cleanup function to remove the global method when component unmounts
+  // Live update: listen to storage changes (from chat.html or another tab)
+  useEffect(() => {
+    const handleStorageChange = (event) => {
+      if (event.key === "dynamicSidebarUsers") {
+        const updatedUsers = JSON.parse(event.newValue || "[]");
+        setUsers((prevUsers) => {
+          const allUsers = [...prevUsers];
+          updatedUsers.forEach(u => {
+            if (!allUsers.find(user => user.id === u.id)) {
+              allUsers.push(u);
+            }
+          });
+          return allUsers;
+        });
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
+
+  // Optional: expose addUserToSidebar for live React updates
+  useEffect(() => {
+    window.addUserToSidebar = (user) => {
+      if (!user || !user.id) return;
+
+      setUsers((prevUsers) => {
+        const exists = prevUsers.find(u => u.id === user.id);
+        if (exists) return prevUsers;
+        return [...prevUsers, user];
+      });
+
+      // Update localStorage so other tabs can read
+      const current = JSON.parse(localStorage.getItem("dynamicSidebarUsers") || "[]");
+      if (!current.find(u => u.id === user.id)) {
+        localStorage.setItem("dynamicSidebarUsers", JSON.stringify([...current, user]));
+      }
+
+      if (onSelectUser) onSelectUser(user);
+    };
+
     return () => {
       if (window.addUserToSidebar) delete window.addUserToSidebar;
     };
-  }, [externalAddUser, onSelectUser]);
+  }, [onSelectUser]);
 
   return (
     <div className="sidebar">

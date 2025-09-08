@@ -362,16 +362,19 @@
       displayUserCards(filtered);
     });
 
-    // စာပို့ function
-    // Replace previous sendMessage function
     function sendMessage(userId, userName) {
-      console.log("Opening React chat with:", { id: userId, name: userName });
-      window.open(`http://localhost:5173/chat-page?userId=${userId}&name=${encodeURIComponent(userName)}`, "_blank");
+      let dynamicUsers = JSON.parse(localStorage.getItem("dynamicSidebarUsers") || "[]");
+
+      if (!dynamicUsers.find(u => u.id === userId)) {
+        dynamicUsers.push({ id: userId, name: userName, online: true });
+        localStorage.setItem("dynamicSidebarUsers", JSON.stringify(dynamicUsers));
+      }
+
+      window.open(
+        `http://localhost:5173/chat-page?userId=${userId}&name=${encodeURIComponent(userName)}`,
+        "_blank"
+      );
     }
-
-
-
-
 
     // လက်ရှိ အသုံးပြုသူကို ပြရန်
     async function fetchCurrentUser() {
