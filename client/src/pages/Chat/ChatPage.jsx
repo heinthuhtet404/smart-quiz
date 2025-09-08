@@ -9,6 +9,7 @@ export default function ChatPage() {
   const [sidebarUsers, setSidebarUsers] = useState([]);
   const [loginUserName, setLoginUserName] = useState("");
   const [loginUserEmail, setLoginUserEmail] = useState("");
+  const [loginUserId, setLoginUserId] = useState("");
   const [searchParams] = useSearchParams();
 
   // load from localStorage at mount
@@ -26,20 +27,18 @@ export default function ChatPage() {
   useEffect(() => {
     const receiverId = searchParams.get('receiverId');
     const receiverName = searchParams.get('receiverName');
+    const _loginUserId = searchParams.get('loginUserId');   // ✅ new
     const _loginUserName = searchParams.get('loginUserName');
     const _loginUserEmail = searchParams.get('loginUserEmail');
 
+    setLoginUserId(_loginUserId || "");        // ✅ save to state
     setLoginUserName(_loginUserName || "");
     setLoginUserEmail(_loginUserEmail || "");
 
     if (receiverId && receiverName) {
-      const user = {
-        id: receiverId,
-        name: receiverName
-      };
+      const user = { id: receiverId, name: receiverName };
       setSelectedUser(user);
 
-      // sidebar update
       setSidebarUsers(prev =>
         prev.find(u => u.id === receiverId)
           ? prev
@@ -48,22 +47,25 @@ export default function ChatPage() {
     }
   }, [searchParams]);
 
+
   return (
     <div className="chat-page">
       <div className="sidebar-wrapper">
-        <SideBar 
-          users={sidebarUsers} 
-          onSelectUser={setSelectedUser} 
-          loginUserName={loginUserName} 
-          loginUserEmail={loginUserEmail} 
+        <SideBar
+          users={sidebarUsers}
+          onSelectUser={setSelectedUser}
+          loginUserId={loginUserId}            // ✅
+          loginUserName={loginUserName}
+          loginUserEmail={loginUserEmail}
         />
       </div>
       <div className="chat-wrapper">
         {selectedUser ? (
-          <ChatWindow 
-            selectedUser={selectedUser} 
-            loginUserName={loginUserName} 
-            loginUserEmail={loginUserEmail} 
+          <ChatWindow
+            selectedUser={selectedUser}
+            loginUserId={loginUserId}            // ✅
+            loginUserName={loginUserName}
+            loginUserEmail={loginUserEmail}
           />
         ) : (
           <div className="chat-placeholder">

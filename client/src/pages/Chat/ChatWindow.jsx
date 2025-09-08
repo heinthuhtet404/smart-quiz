@@ -5,10 +5,10 @@ import "./ChatWindow.css";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
 
-const ChatWindow = ({ selectedUser, loginUserName, loginUserEmail }) => {
+const ChatWindow = ({ selectedUser, loginUserName, loginUserEmail, loginUserId }) => {
   const user = JSON.parse(localStorage.getItem("user"));
-  const userId = user?._id;
-  const userName = loginUserName || user?.name;
+  const userId = loginUserId || (user && user.id);  // ✅ use loginUserId prop if available
+  const userName = loginUserName || user.name;
 
 
   const [messages, setMessages] = useState([]);

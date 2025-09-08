@@ -363,6 +363,7 @@
     function sendMessage(receiverId, receiverName) {
       // fetch only the currently logged-in user
       const loginUser = JSON.parse(localStorage.getItem("user")) || {};
+      const loginUserId = loginUser._id || "";  // add userId
       const loginUserName = loginUser.name || "Unknown";
       const loginUserEmail = loginUser.email || "";
 
@@ -374,6 +375,7 @@
           id: receiverId,
           name: receiverName,
           sender: {
+            id: loginUserId,       // store sender id
             name: loginUserName,
             email: loginUserEmail,
           }
@@ -382,9 +384,10 @@
       }
 
       // open chat page with query params
-      const url = `http://localhost:5173/chat-page?receiverId=${encodeURIComponent(receiverId)}&receiverName=${encodeURIComponent(receiverName)}&loginUserName=${encodeURIComponent(loginUserName)}&loginUserEmail=${encodeURIComponent(loginUserEmail)}`;
+      const url = `http://localhost:5173/chat-page?receiverId=${encodeURIComponent(receiverId)}&receiverName=${encodeURIComponent(receiverName)}&loginUserId=${encodeURIComponent(loginUserId)}&loginUserName=${encodeURIComponent(loginUserName)}&loginUserEmail=${encodeURIComponent(loginUserEmail)}`;
       window.open(url, "_blank");
     }
+
 
 
     // လက်ရှိ အသုံးပြုသူကို ပြရန်
@@ -400,7 +403,7 @@
 
           // 2️⃣ LocalStorage မှာ သိမ်း
           localStorage.setItem('user', JSON.stringify({
-            _id: user._id || '',   // အရေးကြီးပါက backend မှ id ပါလာရမယ်
+            _id: user._id,   // အရေးကြီးပါက backend မှ id ပါလာရမယ်
             name: user.name,
             email: user.email
           }));

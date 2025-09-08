@@ -1,25 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import './sidebar.css';
 
-const SideBar = ({ onSelectUser, users: propUsers, loginUserName, loginUserEmail }) => {
+const SideBar = ({ onSelectUser, users: propUsers, loginUserName, loginUserEmail, loginUserId }) => {
   const [users, setUsers] = useState(propUsers || []);
 
   // Load dynamic users from localStorage on mount
   useEffect(() => {
     const storedUsers = JSON.parse(localStorage.getItem("dynamicSidebarUsers") || "[]");
+    if (storedUsers.length === 0) return;
 
-    if (storedUsers.length > 0) {
-      setUsers((prevUsers) => {
-        const allUsers = [...prevUsers];
-        storedUsers.forEach(u => {
-          if (!allUsers.find(user => user.id === u.id)) {
-            allUsers.push(u);
-          }
-        });
-        return allUsers;
+    setUsers((prevUsers) => {
+      const allUsers = [...prevUsers];
+
+      const filtered = storedUsers.filter(u => {
+        // exclude the login user itself
+        return u.id?.toString() !== loginUserId?.toString();
       });
-    }
-  }, []);
+
+      filtered.forEach(u => {
+        if (!allUsers.find(user => user.id === u.id)) {
+          allUsers.push(u);
+        }
+      });
+
+      return allUsers;
+    });
+  }, [loginUserId]);
+
+
 
   // Live update: listen to storage changes (from chat.html or another tab)
   useEffect(() => {
@@ -28,11 +36,13 @@ const SideBar = ({ onSelectUser, users: propUsers, loginUserName, loginUserEmail
         const updatedUsers = JSON.parse(event.newValue || "[]");
         setUsers((prevUsers) => {
           const allUsers = [...prevUsers];
-          updatedUsers.forEach(u => {
-            if (!allUsers.find(user => user.id === u.id)) {
-              allUsers.push(u);
-            }
-          });
+          updatedUsers
+            .filter(u => u.id?.toString() !== loginUserId?.toString())
+            .forEach(u => {
+              if (!allUsers.find(user => user.id === u.id)) {
+                allUsers.push(u);
+              }
+            });
           return allUsers;
         });
       }
@@ -45,7 +55,8 @@ const SideBar = ({ onSelectUser, users: propUsers, loginUserName, loginUserEmail
   // Optional: expose addUserToSidebar for live React updates
   useEffect(() => {
     window.addUserToSidebar = (user) => {
-      if (!user || !user.id) return;
+      if (!user || !user.id || user.id.toString() === loginUserId?.toString()) return;
+
 
       setUsers((prevUsers) => {
         const exists = prevUsers.find(u => u.id === user.id);
