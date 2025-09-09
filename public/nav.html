@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KidsLearn | Navigation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Nunito', sans-serif;
+      background: #f4f7fb;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #4A90E2;
+      padding: 12px 40px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 26px;
+      font-family: 'Fredoka One', cursive;
+      color: #fff;
+      gap: 10px;
+    }
+
+    .logo i {
+      font-size: 30px;
+      color: #FFD166;
+    }
+
+    .nav-list {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-item {
+      text-align: center;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 10px 20px;
+      background-color: rgba(255, 255, 255, 0.15);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      background-color: #50E3C2;
+      color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .nav-link.active {
+      background-color: #FFD166;
+      color: #333;
+      box-shadow: 0 4px 12px rgba(255, 213, 102, 0.5);
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="logo">
+      <i class="fas fa-leaf"></i>
+      <span>KidsLearn</span>
+    </div>
+    <ul class="nav-list">
+      <li class="nav-item"><a href="#" class="nav-link active" data-page="home" onclick="navigateTo('home')">ပင်မစာမျက်နှာ</a></li>
+      <li class="nav-item"><a href="#" class="nav-link" data-page="tutorial" onclick="navigateTo('tutorial')">သင်ခန်းစာများ</a></li>
+      <li class="nav-item"><a href="#" class="nav-link" data-page="chat" onclick="navigateTo('chat')">စကားပြောခန်း</a></li>
+      <li class="nav-item"><a href="#" class="nav-link" data-page="login" onclick="navigateTo('login')">အကောင့်ဝင်ရန်</a></li>
+    </ul>
+  </nav>
+</body>
+
+</html>

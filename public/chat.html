@@ -329,6 +329,11 @@
         return;
       }
 
+      // 👉 login user ကို localStorage ထဲကနေ ယူ
+      const loginUser = JSON.parse(localStorage.getItem("user")) || {};
+      const loginUserId = loginUser._id || "";
+      const loginUserName = loginUser.name || "";
+
       users.forEach(u => {
         const card = document.createElement('div');
         card.className = 'card';
@@ -338,17 +343,18 @@
       <p>${u.email ? u.email : ''}</p>
     `;
 
-        const btn = document.createElement('button');
-        btn.textContent = '💌 စာပို့မယ်';
+        // ❌ login user ကိုယ်တိုင်ဆိုရင် ခလုပ်မထည့်
+        if (u._id?.toString() !== loginUserId?.toString() && u.name !== loginUserName) {
+          const btn = document.createElement('button');
+          btn.textContent = '💌 စာပို့မယ်';
+          btn.onclick = () => sendMessage(u._id, u.name);
+          card.appendChild(btn);
+        }
 
-        // Redirect to React chat-page with query params
-        btn.onclick = () => sendMessage(u._id, u.name);
-
-
-        card.appendChild(btn);
         userList.appendChild(card);
       });
     }
+
 
     // ရှာဖွေရေး
     document.getElementById('searchInput').addEventListener('input', (e) => {
