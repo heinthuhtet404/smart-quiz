@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="my">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>မြန်မာ Cloud Tags</title>
+  <style>
+    :root {
+      --ink: #6b4e3d;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Noto Sans Myanmar", Helvetica, Arial;
+      color: #333;
+      min-height: 100svh;
+      padding: 26px;
+      background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+    }
+
+    h1 {
+      font-size: clamp(20px, 3.5vw, 32px);
+      margin: 0 0 18px;
+      font-weight: 800;
+      color: #5a3e31;
+      text-align: center;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 22px;
+    }
+
+    .cloud-pill {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      height: 80px;
+      border-radius: 999px;
+      box-shadow: 0 10px 16px rgba(0, 0, 0, .06);
+      overflow: visible;
+      isolation: isolate;
+      border: 3px solid var(--ink);
+      cursor: pointer;
+      max-width: 200px;
+    }
+
+    .cloud-pill::after {
+      content: "";
+      position: absolute;
+      right: 26px;
+      top: 50%;
+      width: 80px;
+      height: 3px;
+      background: var(--ink);
+      transform: translateY(-50%);
+      opacity: .55;
+      border-radius: 3px;
+    }
+
+    .cloud {
+      width: 100px;
+      height: 120px;
+      flex: 0 0 auto;
+      margin-left: -8px;
+      z-index: 2;
+    }
+
+    .eye {
+      transition: transform .25s ease
+    }
+
+    .cheek {
+      opacity: .9
+    }
+
+    .mouth {
+      transform-origin: 50% 50%
+    }
+
+    .cloud-pill:hover .cloud {
+      animation: floaty .9s ease-out both
+    }
+
+    @keyframes floaty {
+      40% {
+        transform: translateY(-6px)
+      }
+    }
+
+    .content {
+      display: grid;
+      gap: 10px;
+      flex: 1 1 auto;
+      min-width: 0;
+      opacity: 1;
+      transition: opacity 0.4s ease;
+    }
+
+    .cloud-pill:hover .content {
+      opacity: 1;
+    }
+
+    .title {
+      font-weight: 800;
+      letter-spacing: .2px;
+      font-size: clamp(20px, 2.6vw, 28px);
+      color: #5a3e31
+    }
+
+    .lines {
+      display: flex;
+      gap: 10px;
+      align-items: center
+    }
+
+    .line {
+      height: 6px;
+      border-radius: 999px;
+      background: #fff;
+      opacity: .85;
+      flex: 0 0 auto
+    }
+
+    .line.l1 {
+      width: 80px
+    }
+
+    .line.l2 {
+      width: 55px
+    }
+
+    .line.l3 {
+      width: 35px
+    }
+
+    .sprinkles {
+      pointer-events: none
+    }
+
+    .dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      border: 3px solid var(--ink);
+      background: #fff;
+      opacity: .9
+    }
+
+    .dot.small {
+      width: 6px;
+      height: 6px;
+      border-width: 2px
+    }
+
+    .cloud-pill .dot.d1 {
+      left: 8px;
+      top: -10px
+    }
+
+    .cloud-pill .dot.d2 {
+      left: calc(100% - 24px);
+      top: -12px
+    }
+
+    .cloud-pill .dot.d3 {
+      left: -14px;
+      top: 56%
+    }
+
+    .cloud-pill .dot.d4 {
+      left: calc(100% + 6px);
+      top: 58%
+    }
+
+    .cloud-pill .dot.d5 {
+      left: 50%;
+      bottom: -14px
+    }
+
+    @media (max-width:560px) {
+      .cloud {
+        width: 70px;
+        height: 70px
+      }
+
+      .cloud-pill {
+        height: 70px
+      }
+
+      .cloud-pill::after {
+        width: 70px
+      }
+    }
+
+    @media (min-width:1200px) {
+      .grid {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+
+    /* overlay popup */
+    .card-overlay {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      max-width: 90%;
+      min-height: 300px;
+      background: #fff;
+      border: 5px solid var(--ink);
+      border-radius: 25px;
+      padding: 30px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, .2);
+      display: none;
+      z-index: 50;
+    }
+
+    .card-overlay.active {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      animation: popupScale 0.35s ease-out;
+      box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.35),
+        0 20px 40px rgba(0, 0, 0, .2),
+        0 0 25px rgba(107, 78, 61, 0.4);
+    }
+
+    @keyframes popupScale {
+      0% {
+        transform: translate(-50%, -50%) scale(0.7);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+    }
+
+    .card-overlay .overlay-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .card-overlay .overlay-content h2 {
+      flex: 1;
+      font-size: 2.5rem;
+      color: #5a3e31;
+      margin: 0;
+      text-align: left;
+      white-space: pre-line;
+    }
+
+    .card-overlay .overlay-content img {
+      max-width: 280px;
+      border-radius: 15px;
+    }
+
+    .card-overlay .overlay-content.reverse {
+      flex-direction: row-reverse;
+      text-align: right;
+    }
+
+    /* ❌ close button */
+    .card-overlay .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--ink);
+      background: #fff;
+      border: 3px solid var(--ink);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      line-height: 34px;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.2s;
+    }
+
+    .card-overlay .close-btn:hover {
+      background: var(--ink);
+      color: #fff;
+      transform: scale(1.1);
+    }
+
+    /* grid ထဲက card 31, 32, 33 (ဟ, ဠ, အ) ကို အလယ်တည့်စေမယ် */
+  </style>
+</head>
+
+<body>
+  <h1>မြန်မာ့ဗျည်းအက္ခရာများ</h1>
+  <div id="grid" class="grid"></div>
+  <div id="cardOverlay" class="card-overlay"></div>
+
+  <script>
+    function gradientFromHue(h) {
+      const h1 = (h) % 360; const h2 = (h + 16) % 360;
+      return `linear-gradient(90deg, hsl(${h1} 90% 85%) 0%, hsl(${h2} 88% 78%) 100%)`;
+    }
+
+    const Faces = {
+      happy: () => `<circle class="eye" cx="80" cy="86" r="8" fill="#000"/>
+    <circle class="eye" cx="130" cy="86" r="8" fill="#000"/>
+    <circle class="cheek" cx="65" cy="102" r="7" fill="#ff9db2"/>
+    <circle class="cheek" cx="145" cy="102" r="7" fill="#ff9db2"/>
+    <path class="mouth" d="M92 108 q13 12 26 0" fill="none" stroke="#000" stroke-width="5" stroke-linecap="round"/>`,
+      uwu: () => `<circle class="eye" cx="82" cy="86" r="6" fill="#000"/>
+    <circle class="eye" cx="132" cy="86" r="6" fill="#000"/>
+    <circle class="cheek" cx="67" cy="102" r="8" fill="#ffb4c4"/>
+    <circle class="cheek" cx="147" cy="102" r="8" fill="#ffb4c4"/>
+    <path class="mouth" d="M100 106 q10 16 20 0" fill="none" stroke="#000" stroke-width="5" stroke-linecap="round"/>`
+    };
+    const faceKeys = Object.keys(Faces);
+
+    // မြန်မာအက္ခရာ ၃၃ လုံး
+    const myanmarLetters = ["က", "ခ", "ဂ", "ဃ", "င", "စ", "ဆ", "ဇ", "ဈ", "ည", "ဋ", "ဌ", "ဍ", "ဎ", "ဏ", "တ", "ထ", "ဒ", "ဓ", "န", "ပ", "ဖ", "ဗ", "ဘ", "မ", "ယ", "ရ", "လ", "ဝ", "သ", "ဟ", "ဠ", "အ"];
+
+    // letter-specific content
+    const letterContent = {
+      "က": { text: "က ကြီးရေ က\nမမ က\nကကြိုးစုံစွာက\nပျော်ရွှင်မြူးကြွ ကခုန်ပြီး\nဆိုင်းတွေ ဗုံတွေတီး။", img: "ka.jpg" },
+      "ခ": { text: "ခခွေး ခခွေး ခရုလေး\nပန်းပင်တက်တဲ့\nခရုလေး\nသွားနေတာက\nခပ်နှေးနှေး\nဖယ်ရှားကြစို့လေး။", img: "kha.jpg" },
+      "ဂ": { text: "ဂငယ် ဂငယ်\nဂဏန်းသင်မယ်\nတစ်နှစ်သုံးလေး ရေတွက်မယ်\nဂရုစိုက်ပါကွယ်။", img: "ga.jpg" },
+      "ဃ": { text: "ဃ အတွက် စာရဲ့ ပုံစံ", img: "gha.jpg" },
+      "င": { text: "င‌ကလေး ငကလေး\nအရွယ်ငယ်ငယ်လေး\nငလက်မ အရွယ်ငယ်\nငေးငေးမှိုင်မှိုင် မနေနဲ့ကွယ်။", img: "nga.jpg" },
+      "စ": { text: "စလုံး စလုံး ဖိုးစလုံး\nခါးကိုကုန်းလို့ စပါးစိုက်တုန်း\nအထွက်တိုးမှာမိုပြုံး။", img: "sa.jpg" },
+      "ဆ": { text: "ဆလိမ် ဆလိမ်\nကျောင်းတက်ချိန်\nကျောင်းတက်ချိန်မှာ ပျော်ရွှင်လှ\nဆရာမကိုနှုတ်ဆက်ကြ။", img: "hsa.jpg" },
+      "ဇ": { text: "ဇကွဲလေး ဇကွဲလေး\nဇလပ်ဖြူဖြူဖွေး\nဇလက်ဖြူက မွှေးကြူကြူ\nမလေးပန်ဖို့ယူ။", img: "za.jpg" },
+      "ဈ": { text: "", img: "za2.jpg" },
+      "ည": { text: "ည ည ည ည လပြည့်ည\nဖိုးရွှေလက ဝင်းပပ\nလရောင်အောက်မှာ ပျော်ရွှင်လို့\nတို့တွေကစားကြစို့။", img: "nya.jpg" },
+      "ဋ": { text: "ဋ အတွက် စာရဲ့ ပုံစံ", img: "ta1.jpg" },
+      "ဌ": { text: "ဌ အတွက် စာရဲ့ ပုံစံ", img: "hta.jpg" },
+      "ဍ": { text: "ဍ အတွက် စာရဲ့ ပုံစံ", img: "da1.jpg" },
+      "ဎ": { text: "ဎ အတွက် စာရဲ့ ပုံစံ", img: "dha.jpg" },
+      "ဏ": { text: "ဏ အတွက် စာရဲ့ ပုံစံ", img: "na1.jpg" },
+      "တ": { text: "တဝမ်းပူ တဝမ်းပူ\nဝမ်းဗိုက်ကလေးကပူ\nတဝမ်းပူလေး လှလှရေး\nတအားပျော်တယ်လေး", img: "ta2.jpg" },
+      "ထ": { text: "ထဆင်ထူး ထဆင်ထူး\nတို့တွေထမင်းခူး\nထူးထူးခြားခြား ပြင်ဆင်ကွယ်\nတိုတွေဝိုင်းစားမယ်။", img: "hta2.jpg" },
+      "ဒ": { text: "ဒဒွေး ဒဒွေး မ‌ဒဒွေး \nဒဒွေးလေးကဒရယ်မလေး ဟိုဟိုဒီဒီပြေး", img: "da2.jpg" },
+      "ဓ": { text: "ဓအောက်ခြိုက် ဓအောက်ခြိုက် ဝတ်ဆံလေးနဲ့ ဓအောက်ခြိုက် နှစ်ခြိုက်စရာ ဓလေ့များ တို့များအလေးထား", img: "dha.jpg" },
+      "န": { text: "နငယ် နငယ် ကိုနငယ် အစွမ်းရှိလှတယ် နဂါးငယ်နဲ့ နပန်းလုံး ဘယ်တော့မှ သူမရှုံး", img: "na2.jpg" },
+      "ပ": { text: "ပစောက်လေး ပစောက်လေး ပလွေသံချိုပေး ပဝါလေးနဲ့ ရွှေမင်းသမီး ပထမရလို့ရှုမငြီး", img: "pa.jpg" },
+      "ဖ": { text: "‌ဖဦးထုပ် ဖဦးထုပ် နေပူဆောင်းတဲ့ဖဦးထုပ် ဦးထုပ်ကလေးဆောင်းခဲ့ကွယ် ဖရဲသီးစိတ် သွားဝယ်မယ်", img: "pha.jpg" },
+      "ဗ": { text: "ဗထက်ခြိုက် ဗထက်ခြိုက် ဗဟုသုတ အလွန်ကြိုက် နှစ်ခြိုက်စရာ မှတ်သားထား ဗလာစာအုပ်မှာရေးစို့လား", img: "ba1.jpg" },
+      "ဘ": { text: "ဘကုန်း ဘကုန်း ဘိုးဘကုန်း ခါးကခပ်ကုန်းကုန်း သန်စွမ်းပါလို့ ကျန်းမာတုန်း", img: "bha.jpg" },
+      "မ": { text: "မ မမ မမလေး မရွေးမုန့်ကိုစားမယ်လေး မကုန်တာလေးချန်လို့ထား မနက်ဖြန်အတွက်လား", img: "ma.jpg" },
+      "ယ": { text: "ယပက်လက်လေး ယပက်လက်လေး ကကြီးပြောင်းပြန်ရေး ယဉ်ယဉ်ကျေးကျေးယမင်းရုပ် ပြုံးပြုံးကလေး ဟန်ပန်လုပ်", img: "ya.jpg" },
+      "ရ": { text: "ရကောက် ရကောက် ကိုရကောက် ရထားစီးလို့ခရီးရောက် ပွဲခင်းရောက်တာပျော်စရာ ရဟတ်စီးကြမှာ ရနံ့ဖြာတဲ့ရေမွှေးလေး ဝယ်သွားကြစို့လေး", img: "ra.jpg" },
+      "လ": { text: "လ လ လ လ ဖိုးရွှေလ မိုးပေါ်သာတဲ့လ အမှောင်ညကို လရောင်ခွင်း လင်ပန်းကြီးလိုငွေလမင်း", img: "la.jpg" },
+      "ဝ": { text: "ဝလုံး ဝလုံး ဖိုးဝလုံး ချစ်စရာလေး ဖိုးဝလုံး ချိုချို‌ပြုံးတဲ့ ဝလုံးရယ် ဝိုင်းဝိုင်းကလေးရေး‌ပါတယ်", img: "wa.jpg" },
+      "သ": { text: "သ ကလေး သ ကလေး ချစ်စရာ သ ကလေး သရက် သခွား ချိုချိုအေး သဇင်ပန်းက ကြူကြူမွှေး အဲဒါ သ ကလေး", img: "tha.jpg" },
+      "ဟ": { text: "ဟ ကလေး ဟ ကလေး သားသား မီးမီး သံချိုတေး ဟ ဟလေး ရယ်‌သံပေး မေ့မေ့နားဝင်အေး", img: "ha.jpg" },
+      "ဠ": { text: "ဠ အတွက် စာရဲ့ ပုံစံ", img: "la2.jpg" },
+      "အ": { text: "အ အမေ တို့တိုင်းပြည် အမြဲချစ်ခင်ပေ အမေ့ရဲ့သား မြန်ပြည်ဖွား အများအတွက် တို့ကြိုးစား", img: "a.jpg" }
+    };
+
+    function buildCard(index, hue, faceKey) {
+      const div = document.createElement('div');
+      div.className = 'cloud-pill';
+      div.style.background = gradientFromHue(hue);
+      div.innerHTML = `
+    <span class="sprinkles dot d1 small"></span>
+    <span class="sprinkles dot d2"></span>
+    <span class="sprinkles dot d3 small"></span>
+    <span class="sprinkles dot d4 small"></span>
+    <span class="sprinkles dot d5"></span>
+    <svg viewBox="0 0 210 160" class="cloud" aria-hidden="true">
+      <g fill="#fff" stroke="var(--ink)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M66,124 C35,124,18,106,18,86 c0-18,15-35,37-38 c7-18,24-28,43-28 c19,0,36,10,43,26 c15,2,28,12,33,25 c4,10,4,21-2,31 c-9,14-26,22-48,22 Z"/>
+      </g>
+      ${Faces[faceKey]()}
+    </svg>
+    <div class="content">
+      <div class="title"> ${myanmarLetters[index]} </div>
+      <div class="lines">
+        <span class="line l1"></span>
+        <span class="line l2"></span>
+        <span class="line l3"></span>
+      </div>
+    </div>
+  `;
+
+      div.addEventListener('click', () => {
+        const overlay = document.getElementById('cardOverlay');
+        const reverse = Math.random() > 0.5 ? 'reverse' : '';
+        const letter = myanmarLetters[index];
+        overlay.innerHTML = `
+      <span class="close-btn">❌</span>
+      <div class="overlay-content ${reverse}">
+        <h2>${letterContent[letter].text}</h2>
+        <img src="${letterContent[letter].img}">
+      </div>
+    `;
+        overlay.classList.add('active');
+
+        // ❌ button click
+        overlay.querySelector('.close-btn').addEventListener('click', e => {
+          e.stopPropagation();
+          overlay.classList.remove('active');
+        });
+      });
+
+      return div;
+    }
+
+    const grid = document.getElementById('grid');
+    const total = 33;
+    for (let i = 0; i < total; i++) {
+      const hue = Math.round((360 / total) * i);
+      const faceKey = faceKeys[i % faceKeys.length];
+      grid.appendChild(buildCard(i, hue, faceKey));
+    }
+
+    // click overlay background to close
+    document.getElementById('cardOverlay').addEventListener('click', e => {
+      e.currentTarget.classList.remove('active');
+    });
+  </script>
+</body>
+
+</html>

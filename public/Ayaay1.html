@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="my">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ရေးတော့အမှန် ဖတ်တော့အသံ</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sky: #e6f4ff;
+      --ink: #0b2b4a;
+      --accent: #ffb74d;
+      --card: #ffffff;
+      --border: #0b2b4a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Noto Sans Myanmar", "Myanmar Text", system-ui, Arial;
+      background: var(--sky);
+      color: var(--ink);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    .floaters span {
+      position: fixed;
+      opacity: 0.18;
+      font-size: 48px;
+      animation: float 20s linear infinite;
+      filter: drop-shadow(0 6px 6px rgba(0, 0, 0, .08));
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .floaters span:nth-child(1) {
+      left: 5vw;
+      top: 70vh;
+      animation-duration: 22s;
+    }
+
+    .floaters span:nth-child(2) {
+      left: 20vw;
+      top: 20vh;
+      animation-duration: 25s;
+    }
+
+    .floaters span:nth-child(3) {
+      left: 50vw;
+      top: 80vh;
+      animation-duration: 18s;
+    }
+
+    .floaters span:nth-child(4) {
+      left: 72vw;
+      top: 30vh;
+      animation-duration: 27s;
+    }
+
+    .floaters span:nth-child(5) {
+      left: 85vw;
+      top: 60vh;
+      animation-duration: 21s;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(-120vh);
+      }
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 28px;
+      margin: 20px;
+      color: var(--ink);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      padding: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .card {
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .inner {
+      position: relative;
+      width: 100%;
+      height: 120px;
+      transform-style: preserve-3d;
+      transition: transform 0.8s;
+    }
+
+    .card:hover .inner {
+      transform: rotateY(180deg);
+      animation: bounce 0.4s;
+    }
+
+    @keyframes bounce {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.05);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .face {
+      position: absolute;
+      inset: 0;
+      background: var(--card);
+      border: 3px solid var(--accent);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px;
+      backface-visibility: hidden;
+      box-shadow: 6px 6px 0 rgba(0, 0, 0, .1);
+      font-size: 18px;
+    }
+
+    .front .emoji {
+      font-size: 28px;
+    }
+
+    .back {
+      transform: rotateY(180deg);
+      background: #fff8dc;
+    }
+
+    .label {
+      position: absolute;
+      top: -10px;
+      left: 10px;
+      background: #fff;
+      border: 2px solid var(--accent);
+      border-radius: 10px;
+      padding: 2px 8px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .back-btn {
+      background-color: rgb(225, 225, 235);
+      color: #333;
+      border: 2px solid black;
+      border-radius: 15px;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 2px 2px 5px rgba(200, 37, 37, 0.3);
+      transition: transform 0.2s ease;
+      font-weight: bold;
+      margin-left: 60%;
+    }
+
+    .back-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .back-btn-wrap {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .logo i {
+      margin-left: 10px;
+      font-size: 32px;
+      color: #FFD166;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      background: #4A90E2;
+      padding: 15px 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-list {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
+    }
+
+    .nav-item {
+      text-align: center;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 16px 28px;
+      background-color: rgba(255, 255, 255, 0.15);
+      color: white;
+      text-decoration: none;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      min-height: 25px;
+      min-width: 54px;
+    }
+
+    .nav-link:hover {
+      background-color: #50E3C2;
+      color: #fff;
+      transform: scale(1.08);
+    }
+
+    .nav-link.active {
+      background-color: #ffd566;
+      color: #333;
+      box-shadow: 0 4px 14px rgba(255, 213, 102, 0.5);
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <ul class="nav-list">
+      <div class="logo">
+        <i class="fas fa-leaf"></i>
+        <span>KidsLearn</span>
+
+      </div>
+      <li class="nav-item"><a href="home.html" class="nav-link active" data-page="home"
+          onclick="navigateTo('home')">ပင်မစာမျက်နှာ</a></li>
+      <li class="nav-item"><a href="home.html" class="nav-link" data-page="tutorial"
+          onclick="navigateTo('tutorial')">သင်ခန်းစာများ</a></li>
+      <li class="nav-item"><a href="chat.html" class="nav-link" data-page="chat" onclick="navigateTo('chat')">စကားပြောခန်း</a>
+      </li>
+      <li class="nav-item"><a href="profile.html" class="nav-link" data-page="login"
+          onclick="navigateTo('login')">အကောင့်ဝင်ရန်</a></li>
+    </ul>
+  </nav>
+  <div class="floaters" aria-hidden="true">
+    <span>🧸</span><span>🐝</span><span>🎈</span><span>🐰</span><span>🚗</span>
+  </div>
+
+  <h1>✏️ ရေးတော့အမှန် / ဖတ်တော့အသံ 🗣️</h1>
+
+  <div class="grid" id="cardGrid"></div>
+
+  <div class="back-btn-wrap">
+    <button class="back-btn" onclick="goNext()">ရှေ့သို့ ဆက်သွားမည်</button>
+  </div>
+
+  <script>
+    const pairs = [
+      { write: "စေတီ", read: "ဇေဒီ", icon: "" },
+      { write: "စံပယ်", read: "ဆံပယ်", icon: "" },
+      { write: "ခုံးကောင်", read: "ဂုံးကောင်", icon: "" },
+      { write: "ခွကျ", read: "ဂွကျ", icon: "" },
+      { write: "ချိုးငှက်", read: "ဂျိုးငှက်", icon: "" },
+      { write: "ခွေးတောက်ပင်", read: "ဂွေးတောက်ပင်", icon: "" },
+      { write: "ဂဠုန်", read: "ဂလုန်", icon: "" },
+      { write: "ချို", read: "ဂျို", icon: "" },
+      { write: "အဘိဓာန်", read: "အဘိဒါန်", icon: "" },
+      { write: "သံဃာ", read: "သန်ကာ", icon: "" },
+      { write: "ချို", read: "ဂျို", icon: "" },
+      { write: "ချင်း", read: "ဂျင်း", icon: "" },
+      { write: "ချောက်", read: "ဂျောက်", icon: "" },
+      { write: "လေးခွ", read: "လေးဂွ", icon: "" },
+      { write: "ပညာ", read: "ပျင်ညာ", icon: "" },
+      { write: "ခုတင်", read: "ဂတင်", icon: "" },
+      { write: "ခောတ်မီ", read: "ခေတ်မှီ", icon: "" },
+      { write: "စက်ဘီးခွေ", read: "စက်ဘီးဂွေ", icon: "" },
+      { write: "ငါးပိရည်", read: "ငပိရေ", icon: "" },
+      { write: "တဘက်", read: "ဒဘက်", icon: "" },
+      { write: "ပုဇွန်", read: "ဗဇွန်", icon: "" },
+      { write: "စေတနာ", read: "စေဒနာ", icon: "" },
+      { write: "ခဲတံ", read: "ခဲတန်", icon: "" },
+      { write: "ရန်ကုန်", read: "ရန်ဂုန်", icon: "" },
+      { write: "ကျပန်း", read: "ကျဘန်း", icon: "" },
+
+
+    ];
+
+    const grid = document.getElementById('cardGrid');
+
+    pairs.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+      <div class="inner">
+        <div class="face front">
+          <span class="emoji">${item.icon}</span>
+          <b>${item.write}</b>
+          <span class="label">အရေး</span>
+        </div>
+        <div class="face back">
+          <span class="emoji">🔁</span>
+          <b>${item.read}</b>
+          <span class="label">အဖတ်</span>
+        </div>
+      </div>
+    `;
+      grid.appendChild(card);
+    });
+    function goNext() {
+      window.location.href = "kk.html";
+    }
+
+
+  </script>
+
+</body>
+
+</html>

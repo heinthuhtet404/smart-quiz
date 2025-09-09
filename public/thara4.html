@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+</head>
+<style>
+  .video-section {
+    background: rgb(225, 225, 235);
+    border: 2px solid #131210;
+    border-radius: 16px;
+    padding: 20px;
+    margin-top: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  .animated-title {
+    font-size: 22px;
+    color: black;
+    font-weight: bold;
+    animation: bounceText 2s infinite;
+  }
+
+  .video-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 20px;
+  }
+
+  .video-list li {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 2.5s ease forwards;
+    animation-delay: calc(var(--i) * 0.3s);
+    margin-bottom: 12px;
+    font-size: 18px;
+    background: #bdcde5;
+    padding: 10px 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .video-list li:nth-child(1) {
+    --i: 1;
+  }
+
+  .video-list li:nth-child(2) {
+    --i: 2;
+  }
+
+  .video-list li:nth-child(3) {
+    --i: 3;
+  }
+
+  .video-list li:nth-child(4) {
+    --i: 4;
+  }
+
+  .video-list li:nth-child(5) {
+    --i: 5;
+  }
+
+  .video-list li:nth-child(6) {
+    --i: 6;
+  }
+
+  .video-list a {
+    text-decoration: none;
+    color: #4e342e;
+    font-weight: 500;
+  }
+
+  .video-list a:hover {
+    color: black;
+    text-decoration: underline;
+  }
+
+  /* Animations */
+  @keyframes bounceText {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  @keyframes slideUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  .back-btn {
+    background-color: rgb(225, 225, 235);
+    color: #333;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(200, 37, 37, 0.3);
+    transition: transform 0.2s ease;
+    font-weight: bold;
+    margin-left: 60%;
+  }
+
+  .back-btn:hover {
+    transform: scale(1.05);
+  }
+
+  .back-btn-wrap {
+    text-align: center;
+    margin: 40px 0;
+  }
+
+  .logo i {
+    margin-left: 10px;
+    font-size: 32px;
+    color: #FFD166;
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background: #4A90E2;
+    padding: 15px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-list {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .nav-item {
+    text-align: center;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 16px 28px;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+    text-decoration: none;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    min-height: 25px;
+    min-width: 54px;
+  }
+
+  .nav-link:hover {
+    background-color: #50E3C2;
+    color: #fff;
+    transform: scale(1.08);
+  }
+
+  .nav-link.active {
+    background-color: #ffd566;
+    color: #333;
+    box-shadow: 0 4px 14px rgba(255, 213, 102, 0.5);
+  }
+</style>
+
+<body>
+  <!-- 🎵 Background Music -->
+  <audio autoplay loop>
+    <source src="your-music-file.mp3" type="audio/mpeg">
+
+  </audio>
+  <nav>
+    <ul class="nav-list">
+      <div class="logo">
+        <i class="fas fa-leaf"></i>
+        <span>KidsLearn</span>
+
+      </div>
+      <li class="nav-item"><a href="home.html" class="nav-link active" data-page="home"
+          onclick="navigateTo('home')">ပင်မစာမျက်နှာ</a></li>
+      <li class="nav-item"><a href="home.html" class="nav-link" data-page="tutorial"
+          onclick="navigateTo('tutorial')">သင်ခန်းစာများ</a></li>
+      <li class="nav-item"><a href="chat.html" class="nav-link" data-page="chat" onclick="navigateTo('chat')">စကားပြောခန်း</a>
+      </li>
+      <li class="nav-item"><a href="profile.html" class="nav-link" data-page="login"
+          onclick="navigateTo('login')">အကောင့်ဝင်ရန်</a></li>
+    </ul>
+  </nav>
+  <!-- 🎥 Animated Video Section -->
+  <div class="task video-section">
+    <b class="animated-title">🎥 video နှင့်လေ့လာချင်သော သားသားမီးမီး များအတွက် ➡️</b>
+    <ul class="video-list">
+      <li><a href="https://www.youtube.com/watch?v=AMsn4evKpqI" target="_blank">မြန်မာဗျည်းအက္ခရာများ</a></li>
+      <li><a href="https://www.youtube.com/watch?v=wN8PL3Xkm2E" target="_blank">ဗျည်းအသံ ၊ဗျည်းအမည်လေးတွေ</a></li>
+      <li><a href="https://www.youtube.com/watch?v=pfkRhG-9DnU" target="_blank">ကျောင်းသား/သူလေးများ
+          စကားအပြန်အလှန်ပြောရင်းဆွေးနွေးကြ</a></li>
+      <li><a href="https://www.youtube.com/watch?v=fPm2qFBzU5w" target="_blank">ဗျည်းအမည်များကို အသံထွက်နဲ့အတူ
+          သင်ကြားပေးထား</a></li>
+      <li><a href="https://www.youtube.com/watch?v=gR7kkUvCgTw" target="_blank">သရကွဲပုံနဲ့ ဗျည်းကွဲပုံကို
+          ရှင်းလင်းဖော်ပြထား</a></li>
+      <li><a href="https://www.youtube.com/watch?v=IoXZWjyRoKs" target="_blank">သရနှင့်ဗျည်းပေါင်းစပ်နည်း</a></li>
+    </ul>
+  </div>
+  <div class="back-btn-wrap">
+    <button class="back-btn" onclick="goNext()">ရှေ့သို့ ဆက်သွားမည်</button>
+  </div>
+
+  <script>
+    function goNext() {
+      window.location.href = "kk.html";
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="my">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=0" />
+  <title>🔬 သိပ္ပံ Flash ကတ်များ</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    .logo {
+      display: flex;
+      position: absolute;
+      left: 0;
+      top: 5%;
+      font-size: 28px;
+      font-family: 'Fredoka One', cursive;
+    }
+
+    .logo i {
+      margin-left: 10px;
+      font-size: 32px;
+      color: #FFD166;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      background: #4A90E2;
+      padding: 15px 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-list {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
+    }
+
+    .nav-item {
+      text-align: center;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 16px 28px;
+      background-color: rgba(255, 255, 255, 0.15);
+      color: white;
+      text-decoration: none;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      /* min-height: 14px; */
+      min-width: 54px;
+    }
+
+    .nav-link:hover {
+      background-color: #50E3C2;
+      color: #fff;
+      transform: scale(1.08);
+    }
+
+    .nav-link.active {
+      background-color: #ffd566;
+      color: #333;
+      box-shadow: 0 4px 14px rgba(255, 213, 102, 0.5);
+    }
+
+    /* Existing Styles */
+    body {
+      font-family: 'Comic Neue', cursive;
+      margin: 0;
+      background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+      color: #333333;
+      overflow-x: hidden;
+      /* padding-top: 90px; Added padding to account for fixed nav */
+    }
+
+    header {
+      padding: 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+
+      top: 90px;
+      /* Changed from 0 to nav height */
+      z-index: 10;
+
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+      color: #444444;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 30px;
+      background: #ffb6b9;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 4px 0 #e76f51;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn.active {
+      background: #ff6f61;
+      color: #fff;
+    }
+
+    .search-box {
+      padding: 10px;
+      width: 200px;
+      border-radius: 20px;
+      border: 2px dashed #ccc;
+      font-size: 16px;
+    }
+
+    main {
+      padding: 30px 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: linear-gradient(135deg, #ffe4e1, #e0ffff);
+      border-radius: 25px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+      border: 4px #6c060a;
+      font-family: 'Comic Neue', cursive;
+      color: #444;
+    }
+
+    .card:hover {
+      transform: scale(1.05) rotate(-1deg);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+    }
+
+    .card .emoji {
+      font-size: 50px;
+      margin-bottom: 10px;
+      z-index: 2;
+      position: relative;
+      animation: bounce 2s infinite;
+    }
+
+    .card .title {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .card .detail {
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .card .extra-info {
+      margin-top: 10px;
+      font-size: 12px;
+      font-style: italic;
+      color: #666;
+    }
+
+    /* Sparkle background effect */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background-image: radial-gradient(#ffd700 1px, transparent 1px), radial-gradient(#00ced1 1px, transparent 1px);
+      background-size: 20px 20px;
+      opacity: 0.1;
+      animation: sparkle 4s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes sparkle {
+      0% {
+        transform: rotate(0deg) translate(0, 0);
+      }
+
+      100% {
+        transform: rotate(360deg) translate(10px, 10px);
+      }
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+    }
+
+    .modal-content {
+      background: #fff5f5;
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 500px;
+      width: 90%;
+      animation: zoomIn 0.3s ease;
+      position: relative;
+      border: 5px solid #fcbf49;
+    }
+
+    .modal-content h2 {
+      margin-top: 0;
+      color: #222;
+    }
+
+    .modal-content p {
+      font-size: 18px;
+    }
+
+    .modal-content .extra-info {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #666;
+      font-style: italic;
+    }
+
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 28px;
+      cursor: pointer;
+      color: #399be6;
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    audio {
+      display: none;
+    }
+
+    /* Quiz Section Styles */
+    .quiz-btn {
+      background: #8ac926;
+      box-shadow: 0 4px 0 #52b788;
+    }
+
+    .quiz-btn:hover {
+      background: #52b788;
+    }
+
+    .quiz-container {
+      background: #fff;
+      border-radius: 20px;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 600px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      border: 4px dashed #8ac926;
+      display: none;
+    }
+
+    .quiz-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .quiz-header h2 {
+      color: #2a9d8f;
+      margin: 0;
+    }
+
+    .score-display {
+      font-size: 24px;
+      color: #e76f51;
+      margin: 10px 0;
+    }
+
+    .question-container {
+      margin-bottom: 20px;
+    }
+
+    .question {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .option {
+      background: #e9f5db;
+      border: 2px solid #52b788;
+      border-radius: 15px;
+      padding: 15px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .option:hover {
+      background: #c8e6c9;
+      transform: scale(1.05);
+    }
+
+    .option.selected {
+      background: #a8dadc;
+      border-color: #457b9d;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.1);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes shake {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      20%,
+      60% {
+        transform: translateX(-5px);
+      }
+
+      40%,
+      80% {
+        transform: translateX(5px);
+      }
+    }
+
+    .quiz-controls {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .quiz-btn-control {
+      background: #d31218;
+      box-shadow: 0 4px 0 #519ae7;
+      border: none;
+      border-radius: 30px;
+      padding: 10px 20px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .quiz-btn-control:hover {
+      transform: translateY(-2px);
+    }
+
+    .quiz-btn-control:disabled {
+      background: #ccc;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+
+    .quiz-result {
+      text-align: center;
+      padding: 20px;
+      border-radius: 15px;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .quiz-result h3 {
+      margin: 0 0 15px 0;
+      font-size: 24px;
+    }
+
+    .quiz-result.success {
+      background: #d4edda;
+      color: #155724;
+      border: 2px solid #28a745;
+    }
+
+    .quiz-result.fail {
+      background: #f8d7da;
+      color: #721c24;
+      border: 2px solid #dc3545;
+    }
+
+    .quiz-result.average {
+      background: #fff3cd;
+      color: #856404;
+      border: 2px solid #ffc107;
+    }
+
+    .emoji-reaction {
+      font-size: 40px;
+      margin: 10px 0;
+    }
+
+    .back-btn {
+      background: #4361ee;
+      box-shadow: 0 4px 0 #3a0ca3;
+    }
+
+    .back-btn:hover {
+      background: #3a0ca3;
+    }
+
+    .results-summary {
+      margin-top: 20px;
+      text-align: left;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .result-item {
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 10px;
+      background: #f8f9fa;
+    }
+
+    .result-item h4 {
+      margin: 0 0 5px 0;
+      color: #333;
+    }
+
+    .result-item p {
+      margin: 5px 0;
+    }
+
+    .correct-answer {
+      color: #28a745;
+      font-weight: bold;
+    }
+
+    .incorrect-answer {
+      color: #dc3545;
+      font-weight: bold;
+    }
+
+    .user-answer {
+      color: #6c757d;
+    }
+
+    .card-reference {
+      font-size: 12px;
+      color: #6c757d;
+      font-style: italic;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <ul class="nav-list">
+      <div class="logo">
+        <i class="fas fa-leaf"></i>
+        <span>KidsLearn</span>
+      </div>
+      <li class="nav-item"><a href="home.html" class="nav-link active" data-page="home"
+          onclick="navigateTo('home')">ပင်မစာမျက်နှာ</a></li>
+      <li class="nav-item"><a href="home.html" class="nav-link" data-page="tutorial"
+          onclick="navigateTo('tutorial')">သင်ခန်းစာများ</a></li>
+      <li class="nav-item"><a href="chat.html" class="nav-link" data-page="chat" onclick="navigateTo('chat')">စကားပြောခန်း</a>
+      </li>
+      <li class="nav-item"><a href="profile.html" class="nav-link" data-page="login"
+          onclick="navigateTo('login')">အကောင့်ဝင်ရန်</a></li>
+    </ul>
+  </nav>
+  <header>
+    <h1>🔬 သိပ္ပံ Flash ကတ်များ</h1>
+    <div class="toolbar">
+      <button class="btn active" data-filter="all">အားလုံး</button>
+      <button class="btn" data-filter="general">အထွေထွေ သိပ္ပံ</button>
+      <button class="btn" data-filter="body">ခန္ဓာကိုယ်</button>
+      <button class="btn" data-filter="animals">တိရစ္ဆာန်</button>
+      <button class="btn" data-filter="weather">ရာသီဥတု</button>
+      <button class="btn" data-filter="senses">အာရုံ</button>
+      <button class="btn quiz-btn" id="quiz-btn">🧠 မေးခွန်းများ</button>
+
+    </div>
+  </header>
+
+  <main>
+    <!-- Quiz Section -->
+    <div class="quiz-container" id="quiz-container">
+      <div class="quiz-header">
+        <h2>🧠 သိပ္ပံ မေးခွန်းများ</h2>
+        <div class="score-display">မေးခွန်း: <span id="current-question">1</span> / <span id="total-questions">10</span>
+        </div>
+      </div>
+
+      <div class="question-container">
+        <div class="question" id="question">မေးခွန်းကို ဤနေရာတွင် ပြသမည်</div>
+        <div class="options" id="options">
+          <!-- Options will be dynamically generated -->
+        </div>
+      </div>
+
+      <div class="quiz-controls">
+        <button class="quiz-btn-control back-btn" id="back-btn">ကတ်များသို့ ပြန်သွားရန်</button>
+        <button class="quiz-btn-control" id="prev-btn" disabled>နောက်</button>
+        <button class="quiz-btn-control" id="next-btn" disabled>ရှေ့</button>
+        <button class="quiz-btn-control" id="submit-btn" style="display: none;">အဖြေများကို ပြရန်</button>
+        <button class="quiz-btn-control" id="restart-btn" style="display: none;">ပြန်စမည်</button>
+      </div>
+
+      <div class="quiz-result" id="quiz-result">
+        <h3 id="result-title">ရလဒ်</h3>
+        <div class="emoji-reaction" id="emoji-reaction">🎉</div>
+        <p id="result-message">သင့်ရမှတ်ကို ဤနေရာတွင် ပြသမည်</p>
+        <div class="results-summary" id="results-summary"></div>
+        <button class="quiz-btn-control back-btn" id="back-to-cards-btn" style="margin-top: 15px;">ကတ်များသို့
+          ပြန်သွားရန်</button>
+      </div>
+    </div>
+
+    <div class="grid" id="grid">
+      <!-- Enhanced cards with more data -->
+      <div class="card" data-category="body" data-title="နှလုံး" data-detail="နှလုံးက တစ်ကိုယ်လုံးကို သွေးညှစ်ပေးပါတယ်။"
+        data-extra="နှလုံးဟာ တစ်မိနစ်လျှင် ၆၀-၁၀၀ ကြိမ်ခုန်နိုင်ပါတယ်။">
+        <div class="emoji">❤️</div>
+        <div class="title">နှလုံး</div>
+        <div class="detail">နှလုံးက တစ်ကိုယ်လုံးကို သွေးညှစ်ပေးပါတယ်။</div>
+        <div class="extra-info">တစ်မိနစ်လျှင် ၆၀-၁၀၀ ကြိမ်ခုန်နိုင်ပါတယ်</div>
+        <audio class="card-sound" src="1n.m4a"></audio>
+      </div>
+      <div class="card" data-category="body" data-title="ဦးနှောက်"
+        data-detail="ဦးနှောက်က တွေးတောခြင်းနဲ့ ခန္ဓာကိုယ်လှုပ်ရှားမှုတွေကို ထိန်းချုပ်ပေးပါတယ်။"
+        data-extra="ဦးနှောက်မှာ နာရီဗ်ဆဲလ် ဘီလီယံပေါင်းများစွာ ပါဝင်ပါတယ်။">
+        <div class="emoji">🧠</div>
+        <div class="title">ဦးနှောက်</div>
+        <div class="detail">ဦးနှောက်က တွေးတောခြင်းနဲ့ ခန္ဓာကိုယ်လှုပ်ရှားမှုတွေကို ထိန်းချုပ်ပေးပါတယ်။</div>
+        <div class="extra-info">နာဗ်ဆဲလ် ဘီလီယံပေါင်းများစွာ ပါဝင်</div>
+        <audio class="card-sound" src="2n.m4a"></audio>
+      </div>
+      <div class="card" data-category="body" data-title="အဆုတ်"
+        data-detail="အဆုတ်က အောက်ဆီဂျင်ကို ရှူသွင်းပြီး ကာဗွန်ဒိုင်အောက်ဆိုဒ်ကို ရှူထုတ်ဖို့ ကူညီပေးပါတယ်။"
+        data-extra="လူတစ်ယောက်မှာ အဆုတ် နှစ်လုံး ရှိပါတယ်။">
+        <div class="emoji">🫁</div>
+        <div class="title">အဆုတ်</div>
+        <div class="detail">အဆုတ်က အောက်ဆီဂျင်ကို ရှူသွင်းပြီး ကာဗွန်ဒိုင်အောက်ဆိုဒ်ကို ရှူထုတ်ဖို့ ကူညီပေးပါတယ်။</div>
+        <div class="extra-info">လူတစ်ယောက်မှာ အဆုတ် နှစ်လုံး ရှိပါတယ်</div>
+        <audio class="card-sound" src="3n.m4a"></audio>
+      </div>
+      <div class="card" data-category="body" data-title="အစာအိမ်"
+        data-detail="အစာအိမ်က အစာချေဖျက်ဖို့အတွက် အစားအစာတွေကို ချေဖျက်ပေးပါတယ်။"
+        data-extra="အစာအိမ်ဟာ ချွန်းပျော့ပုံ ဖြစ်ပြီး ကျယ်ပြန့်နိုင်ပါတယ်။">
+        <div class="emoji">🥴</div>
+        <div class="title">အစာအိမ်</div>
+        <div class="detail">အစာအိမ်က အစာချေဖျက်ဖို့အတွက် အစားအစာတွေကို ချေဖျက်ပေးပါတယ်။</div>
+        <div class="extra-info">ချွန်းပျော့ပုံ ဖြစ်ပြီး ကျယ်ပြန့်နိုင်ပါတယ်</div>
+        <audio class="card-sound" src="4n.m4a"></audio>
+      </div>
+      <div class="card" data-category="body" data-title="အရိုးများ"
+        data-detail="အရိုးတွေက ခန္ဓာကိုယ်ကို ထောက်ပံ့ကာကွယ်ပေးပါတယ်။"
+        data-extra="လူ့ခန္ဓာကိုယ်မှာ အရိုး ၂၀၆ ခု ရှိပါတယ်။">
+        <div class="emoji">🦴</div>
+        <div class="title">အရိုးများ</div>
+        <div class="detail">အရိုးတွေက ခန္ဓာကိုယ်ကို ထောက်ပံ့ကာကွယ်ပေးပါတယ်။</div>
+        <div class="extra-info">လူ့ခန္ဓာကိုယ်မှာ အရိုး ၂၀၆ ခု ရှိပါတယ်</div>
+        <audio class="card-sound" src="5n.m4a"></audio>
+      </div>
+      <div class="card" data-category="body" data-title="ကြွက်သားများ"
+        data-detail="ကြွက်သားတွေက ခန္ဓာကိုယ်အစိတ်အပိုင်းတွေကို လှုပ်ရှားဖို့ ကူညီပေးပါတယ်။"
+        data-extra="လူ့ခန္ဓာကိုယ်မှာ ကြွက်သား ၆၀၀ ကျော် ရှိပါတယ်။">
+        <div class="emoji">💪</div>
+        <div class="title">ကြွက်သားများ</div>
+        <div class="detail">ကြွက်သားတွေက ခန္ဓာကိုယ်အစိတ်အပိုင်းတွေကို လှုပ်ရှားဖို့ ကူညီပေးပါတယ်။</div>
+        <div class="extra-info">လူ့ခန္ဓာကိုယ်မှာ ကြွက်သား ၆၀၀ ကျော် ရှိပါတယ်</div>
+        <audio class="card-sound" src="6.m4a"></audio>
+      </div>
+      <div class="card" data-category="body" data-title="အရေပြား"
+        data-detail="အရေပြားက ကျွန်တော်တို့ရဲ့ ခန္ဓာကိုယ်ကို ဖုံးအုပ်ကာကွယ်ပေးပါတယ်။"
+        data-extra="အရေပြားဟာ ကိုယ်ခန္ဓာရဲ့ အကြီးဆုံးအင်္ဂါဖြစ်ပါတယ်။">
+        <div class="emoji">🧍</div>
+        <div class="title">အရေပြား</div>
+        <div class="detail">အရေပြားက ကျွန်တော်တို့ရဲ့ ခန္ဓာကိုယ်ကို ဖုံးအုပ်ကာကွယ်ပေးပါတယ်။</div>
+        <div class="extra-info">ကိုယ်ခန္ဓာရဲ့ အကြီးဆုံးအင်္ဂါဖြစ်ပါတယ်</div>
+        <audio class="card-sound" src="7n.m4a"></audio>
+      </div>
+      <div class="card" data-category="animals" data-title="ဆင်"
+        data-detail="ဆင်တွေဟာ သစ်တောတွေနဲ့ ဆာဗားနားတွေမှာ နေထိုင်ကြတဲ့ ကြီးမားတဲ့ နို့တိုက်သတ္တဝါတွေ ဖြစ်ပါတယ်။"
+        data-extra="ဆင်တွေဟာ အာဖရိကနဲ့ အာရှတိုက်တွင် တွေ့ရပါတယ်။">
+        <div class="emoji">🐘</div>
+        <div class="title">ဆင်</div>
+        <div class="detail">ဆင်တွေဟာ သစ်တောတွေနဲ့ ဆာဗားနားတွေမှာ နေထိုင်ကြတဲ့ ကြီးမားတဲ့ နို့တိုက်သတ္တဝါတွေ ဖြစ်ပါတယ်။
+        </div>
+        <div class="extra-info">အာဖရိကနဲ့ အာရှတိုက်တွင် တွေ့ရပါတယ်</div>
+        <audio class="card-sound" src="8n.m4a"></audio>
+      </div>
+      <div class="card" data-category="animals" data-title="ဖား"
+        data-detail="ဖားတွေဟာ ရေအနီးအနားမှာနေပြီး ခုန်ဖို့အတွက် ၎င်းတို့ရဲ့ခြေထောက်တွေကို အသုံးပြုပါတယ်။"
+        data-extra="ဖားတွေဟာ ကျောရိုးမဲ့သတ္တဝါများဖြစ်ပါတယ်။">
+        <div class="emoji">🐸</div>
+        <div class="title">ဖား</div>
+        <div class="detail">ဖားတွေဟာ ရေအနီးအနားမှာနေပြီး ခုန်ဖို့အတွက် ၎င်းတို့ရဲ့ခြေထောက်တွေကို အသုံးပြုပါတယ်။</div>
+        <div class="extra-info">ကျောရိုးမဲ့သတ္တဝါများဖြစ်ပါတယ်</div>
+        <audio class="card-sound" src="9n.m4a"></audio>
+      </div>
+      <div class="card" data-category="animals" data-title="ကုလားအုတ်"
+        data-detail="ကုလားအုတ်တွေဟာ သဲကန္တာရမှာ နေထိုင်ပြီး ရေမသောက်ဘဲ ရက်ပေါင်းများစွာ နေနိုင်ပါတယ်။"
+        data-extra="ကုလားအုတ်တွေမှာ ခါးပတ်မှာ ရေသိုလှောင်နိုင်တဲ့ အိတ်ရှိပါတယ်။">
+        <div class="emoji">🐫</div>
+        <div class="title">ကုလားအုတ်</div>
+        <div class="detail">ကုလားအုတ်တွေဟာ သဲကန္တာရမှာ နေထိုင်ပြီး ရေမသောက်ဘဲ ရက်ပေါင်းများစွာ နေနိုင်ပါတယ်။</div>
+        <div class="extra-info">ခါးပတ်မှာ ရေသိုလှောင်နိုင်တဲ့ အိတ်ရှိပါတယ်</div>
+        <audio class="card-sound" src="10n.m4a"></audio>
+      </div>
+      <div class="card" data-category="animals" data-title="ငါး"
+        data-detail="ငါးတွေက ရေထဲမှာနေပြီး ပါးဟက်တွေကနေ အသက်ရှူပါတယ်။"
+        data-extra="ငါးတွေမှာ အမြီးနဲ့ ဆူးတောင်များ ရှိပါတယ်။">
+        <div class="emoji">🐟</div>
+        <div class="title">ငါး</div>
+        <div class="detail">ငါးတွေက ရေထဲမှာနေပြီး ပါးဟက်တွေကနေ အသက်ရှူပါတယ်။</div>
+        <div class="extra-info">အမြီးနဲ့ ဆူးတောင်များ ရှိပါတယ်</div>
+        <audio class="card-sound" src="11n.m4a"></audio>
+      </div>
+      <div class="card" data-category="animals" data-title="ပျား"
+        data-detail="ပျားတွေက ပန်းဝတ်ရည်တွေ စုဆောင်းပြီး ဝတ်မှုန်ကူးခြင်းဖြင့် အပင်တွေ ကြီးထွားဖို့ ကူညီပေးပါတယ်။"
+        data-extra="ပျားတွေဟာ ပျားအုံမှာ အဖွဲ့လိုက်နေထိုင်ကြပါတယ်။">
+        <div class="emoji">🐝</div>
+        <div class="title">ပျား</div>
+        <div class="detail">ပျားတွေက ပန်းဝတ်ရည်တွေ စုဆောင်းပြီး ဝတ်မှုန်ကူးခြင်းဖြင့် အပင်တွေ ကြီးထွားဖို့ ကူညီပေးပါတယ်။
+        </div>
+        <div class="extra-info">ပျားအုံမှာ အဖွဲ့လိုက်နေထိုင်ကြပါတယ်</div>
+        <audio class="card-sound" src="12.m4a"></audio>
+      </div>
+      <div class="card" data-category="animals" data-title="ဇီးကွက်"
+        data-detail="ဇီးကွက်တွေဟာ ညဘက်မှာ ကျက်စားတဲ့ငှက်တွေဖြစ်ပြီး အမှောင်ထဲမှာ ကောင်းကောင်မြင်နိုင်ပါတယ်။"
+        data-extra="ဇီးကွက်တွေမှာ ဦးခေါင်း ၂၇၀ ဒီဂရီ လှည့်နိုင်ပါတယ်။">
+        <div class="emoji">🦉</div>
+        <div class="title">ဇီးကွက်</div>
+        <div class="detail">ဇီးကွက်တွေဟာ ညဘက်မှာ ကျက်စားတဲ့ငှက်တွေဖြစ်ပြီး အမှောင်ထဲမှာ ကောင်းကောင်မြင်နိုင်ပါတယ်။</div>
+        <div class="extra-info">ဦးခေါင်း ၂၇၀ ဒီဂရီ လှည့်နိုင်ပါတယ်</div>
+        <audio class="card-sound" src="13n.m4a"></audio>
+      </div>
+      <div class="card" data-category="animals" data-title="ပင်ဂွင်း"
+        data-detail="ပင်ဂွင်းတွေဟာ အအေးပိုင်းဒေသမှာ နေထိုင်ပြီး မပျံသန်းနိုင်တဲ့ငှက်တွေ ဖြစ်ပါတယ်။"
+        data-extra="ပင်ဂွင်းတွေဟာ ရေထဲမှာ ကောင်းကောင်ဆားနိုင်ပါတယ်။">
+        <div class="emoji">🐧</div>
+        <div class="title">ပင်ဂွင်း</div>
+        <div class="detail">ပင်ဂွင်းတွေဟာ အအေးပိုင်းဒေသမှာ နေထိုင်ပြီး မပျံသန်းနိုင်တဲ့ငှက်တွေ ဖြစ်ပါတယ်။</div>
+        <div class="extra-info">ရေထဲမှာ ကောင်းကောင်စားနိုင်ပါတယ်</div>
+        <audio class="card-sound" src="14.m4a"></audio>
+      </div>
+      <div class="card" data-category="animals" data-title="ကျား"
+        data-detail="ကျားတွေဟာ သစ်တောတွေမှာ နေထိုင်ပြီး တခြားတိရစ္ဆာန်တွေကို အမဲလိုက်တဲ့ ကြောင်ကြီးတွေ ဖြစ်ပါတယ်။"
+        data-extra="ကျားတွေဟာ ညဘက်မှာ အမဲလိုက်တတ်ကြပါတယ်။">
+        <div class="emoji">🐅</div>
+        <div class="title">ကျား</div>
+        <div class="detail">ကျားတွေဟာ သစ်တောတွေမှာ နေထိုင်ပြီး တစ်ခြားတိရစ္ဆာန်တွေကို အမဲလိုက်တဲ့ ကြောင်ကြီးတွေ
+          ဖြစ်ပါတယ်။</div>
+        <div class="extra-info">ညဘက်မှာ အမဲလိုက်တတ်ကြပါတယ်</div>
+        <audio class="card-sound" src="15n.m4a"></audio>
+      </div>
+      <div class="card" data-category="animals" data-title="သစ်ကုလားအုတ်"
+        data-detail="သစ်ကုလားအုတ်တွေက သစ်ရွက်တွေကိုစားပြီး အာဖရိကရဲ့ မြက်ခင်းပြင်တွေမှာ နေထိုင်ပါတယ်။"
+        data-extra="သစ်ကုလားအုတ်တွေမှာ လည်ပင်းရှည်ပြီး အရပ်အမြင့်မြင့်ပါတယ်။">
+        <div class="emoji">🦒</div>
+        <div class="title">သစ်ကုလားအုတ်</div>
+        <div class="detail">သစ်ကုလားအုတ်တွေက သစ်ရွက်တွေကိုစားပြီး အာဖရိကရဲ့ မြက်ခင်းပြင်တွေမှာ နေထိုင်ပါတယ်။</div>
+        <div class="extra-info">လည်ပင်းရှည်ပြီး အရပ်မြင့်ပါတယ်</div>
+        <audio class="card-sound" src="16n.m4a"></audio>
+      </div>
+      <div class="card" data-category="animals" data-title="ကန်ဂရူး"
+        data-detail="ကန်ဂရူးတွေဟာ သားအိတ်ပါတဲ့နို့တိုက်သတ္တဝါတွေဖြစ်ပြီး သူတို့ရဲ့ကလေးတွေကို သားအိတ်ထဲမှာ သယ်ဆောင်ပါတယ်။"
+        data-extra="ကန်ဂရူးတွေဟာ ခုန်ခြင်းဖြင့် ရွေ့လျားကြပါတယ်။">
+        <div class="emoji">🦘</div>
+        <div class="title">ကန်ဂရူး</div>
+        <div class="detail">ကန်ဂရူးတွေဟာ သားအိတ်ပါတဲ့နို့တိုက်သတ္တဝါတွေဖြစ်ပြီး သူတို့ရဲ့ကလေးတွေကို သားအိတ်ထဲမှာ
+          သယ်ဆောင်ပါတယ်။</div>
+        <div class="extra-info">ခုန်ခြင်းဖြင့် ရွေ့လျားကြပါတယ်</div>
+        <audio class="card-sound" src="17n.m4a"></audio>
+      </div>
+      <div class="card" data-category="animals" data-title="လင်းပိုင်"
+        data-detail="လင်းပိုင်တွေဟာ အသံတွေကို အသုံးပြုပြီး အချင်းချင်း ဆက်သွယ်ပြောဆိုတဲ့ စမတ်ကျတဲ့ပင်လယ်သတ္တဝါတွေ ဖြစ်ပါတယ်။"
+        data-extra="လင်းပိုင်တွေဟာ အုပ်စုဖွဲ့နေထိုင်ကြပါတယ်။">
+        <div class="emoji">🐬</div>
+        <div class="title">လင်းပိုင်</div>
+        <div class="detail">လင်းပိုင်တွေဟာ အသံတွေကို အသုံးပြုပြီး အချင်းချင်း ဆက်သွယ်ပြောဆိုတဲ့ စမတ်ကျတဲ့ပင်လယ်သတ္တဝါတွေ
+          ဖြစ်ပါတယ်။</div>
+        <div class="extra-info">အုပ်စုဖွဲ့နေထိုင်ကြပါတယ်</div>
+        <audio class="card-sound" src="18.m4a"></audio>
+      </div>
+      <div class="card" data-category="weather" data-title="နေသာ"
+        data-detail="နေသာတဲ့ရာသီဥတုဆိုတာကောင်းကင်ရှင်းပြီး နေရောင်ခြည်တောက်ပနေတာကို ဆိုလိုပါတယ်။"
+        data-extra="နေသာရက်တွေမှာ အပူချိန်မြင့်တတ်ပါတယ်။">
+        <div class="emoji">☀️</div>
+        <div class="title">နေသာ</div>
+        <div class="detail">နေသာတဲ့ရာသီဥတုဆိုတာကောင်းကင်ရှင်းပြီး နေရောင်ခြည်တောက်ပနေတာကို ဆိုလိုပါတယ်။</div>
+        <div class="extra-info">နေသာတဲ့ရက်တွေမှာ အပူချိန်မြင့်တတ်ပါတယ်</div>
+        <audio class="card-sound" src="19.m4a"></audio>
+      </div>
+      <div class="card" data-category="weather" data-title="နှင်း"
+        data-detail="နှင်းကျတဲ့ရာသီဥတုက ဆီးနှင်းတွေကျပြီး အေးတဲ့အပူချိန်ရှိပါတယ်။"
+        data-extra="နှင်းကျတဲ့နေရာတွေမှာ ရေခဲဖုံးလွှမ်းနေတတ်ပါတယ်။">
+        <div class="emoji">❄️</div>
+        <div class="title">နှင်း</div>
+        <div class="detail">နှင်းကျတဲ့ရာသီဥတုက ဆီးနှင်းတွေကျပြီး အေးတဲ့အပူချိန်ရှိပါတယ်။</div>
+        <div class="extra-info">ရေခဲဖုံးလွှမ်းနေတတ်ပါတယ်</div>
+        <audio class="card-sound" src="20.m4a"></audio>
+      </div>
+      <div class="card" data-category="weather" data-title="လေတိုက်"
+        data-detail="လေတိုက်တဲ့ရာသီဥတုက လေပြင်းတွေတိုက်ခတ်နေတာကို ဆိုလိုပါတယ်။"
+        data-extra="လေတိုက်တဲ့အခါ သစ်ပင်တွေ လှုပ်ရှားတတ်ပါတယ်။">
+        <div class="emoji">💨</div>
+        <div class="title">လေတိုက်</div>
+        <div class="detail">လေတိုက်တဲ့ရာသီဥတုက လေပြင်းတွေတိုက်ခတ်နေတာကို ဆိုလိုပါတယ်။</div>
+        <div class="extra-info">သစ်ပင်တွေ လှုပ်ရှားတတ်ပါတယ်</div>
+        <audio class="card-sound" src="21.m4a"></audio>
+      </div>
+      <div class="card" data-category="weather" data-title="မိုးသက်မုန်တိုင်း"
+        data-detail="မိုးသက်မုန်တိုင်းက မိုးခြိမ်းသံ၊ လျှပ်စီးနဲ့ မိုးရေတွေ ပါလာပါတယ်။"
+        data-extra="မိုးသက်မုန်တိုင်းတွေဟာ အန္တရားကြီးတတ်ပါတယ်။">
+        <div class="emoji">🌩</div>
+        <div class="title">မိုးသက်မုန်တိုင်း</div>
+        <div class="detail">မိုးသက်မုန်တိုင်းက မိုးခြိမ်းသံ၊ လျှပ်စီးနဲ့ မိုးရေတွေ ပါလာပါတယ်။</div>
+        <div class="extra-info">အန္တရာယ်ကြီးတတ်ပါတယ်</div>
+        <audio class="card-sound" src="22.m4a"></audio>
+      </div>
+      <div class="card" data-category="weather" data-title="တိမ်ထူ"
+        data-detail="တိမ်ထူတဲ့ကောင်းကင်မှာ တိမ်တွေပြည့်နေပြီး နေရောင်ခြည် နည်းနည်းပဲရှိပါတယ်။"
+        data-extra="တိမ်ထူတဲ့နေ့တွေမှာ အပူချိန်နည်းတတ်ပါတယ်။">
+        <div class="emoji">☁️</div>
+        <div class="title">တိမ်ထူ</div>
+        <div class="detail">တိမ်ထူတဲ့ကောင်းကင်မှာ တိမ်တွေပြည့်နေပြီး နေရောင်ခြည် နည်းနည်းပဲရှိပါတယ်။</div>
+        <div class="extra-info">အပူချိန်နည်းတတ်ပါတယ်</div>
+        <audio class="card-sound" src="23.m4a"></audio>
+      </div>
+      <div class="card" data-category="weather" data-title="မိုးရွာ"
+        data-detail="မိုးရွာတဲ့ရာသီဥတုမှာ မိုးရေစက်တွေနဲ့ ရေအိုင်တွေ ရှိနေပြီး ထီးတွေ လိုအပ်လေ့ရှိပါတယ်။"
+        data-extra="မိုးရွာတဲ့အခါ လယ်ယာများ စိုပြည်တတ်ပါတယ်။">
+        <div class="emoji">🌧</div>
+        <div class="title">မိုးရွာ</div>
+        <div class="detail">မိုးရွာတဲ့ရာသီဥတုမှာ မိုးရေစက်တွေနဲ့ ရေအိုင်တွေ ရှိနေပြီး ထီးတွေ လိုအပ်လေ့ရှိပါတယ်။</div>
+        <div class="extra-info">လယ်ယာများ စိုပြည်တတ်ပါတယ်</div>
+        <audio class="card-sound" src="34.m4a"></audio>
+      </div>
+      <div class="card" data-category="senses" data-title="အကြားအာရုံ"
+        data-detail="အကြားအာရုံက ကျွန်တော်တို့ရဲ့ နားနဲ့နားထောင်နိုင်စေပါတယ်။"
+        data-extra="နားတွေဟာ အသံလှိုင်းတွေကို လှုပ်ရှားမှုအဖြစ် ပြောင်းလဲပေးပါတယ်။">
+        <div class="emoji">👂</div>
+        <div class="title">အကြားအာရုံ</div>
+        <div class="detail">အကြားအာရုံက ကျွန်တော်တို့ရဲ့ နားနဲ့နားထောင်နိုင်စေပါတယ်။</div>
+        <div class="extra-info">အသံလှိုင်းတွေကို လှုပ်ရှားမှုအဖြစ် ပြောင်းလဲပေးပါတယ်</div>
+        <audio class="card-sound" src="24.m4a"></audio>
+      </div>
+      <div class="card" data-category="senses" data-title="အနံ့"
+        data-detail="အနံ့အာရုံက နှာခေါင်းနဲ့ အနံ့ခံနိုင်စေပါတယ်။"
+        data-extra="နှာခေါင်းမှာ အနံ့ခံဆဲလ်ပေါင်းများစွာ ရှိပါတယ်။">
+        <div class="emoji">👃</div>
+        <div class="title">အနံ့</div>
+        <div class="detail">အနံ့အာရုံက နှာခေါင်းနဲ့ အနံ့ခံနိုင်စေပါတယ်။</div>
+        <div class="extra-info">နှာခေါင်းမှာ အနံ့ခံဆဲလ်ပေါင်းများစွာ ရှိပါတယ်</div>
+        <audio class="card-sound" src="25n.m4a"></audio>
+      </div>
+      <div class="card" data-category="senses" data-title="အရသာ"
+        data-detail="အရသာအာရုံက လျှာနဲ့ အရသာတွေ ခံစားနိုင်စေပါတယ်။" data-extra="လျှာမှာ အရသာခံမျိုးစုံတပ်ဆင်းနေပါတယ်။">
+        <div class="emoji">👅</div>
+        <div class="title">အရသာ</div>
+        <div class="detail">အရသာအာရုံက လျှာနဲ့ အရသာတွေ ခံစားနိုင်စေပါတယ်။</div>
+        <div class="extra-info">လျှာမှာ အရသာခံမျိုးစုံတပ်ဆင်းနေပါတယ်</div>
+        <audio class="card-sound" src="26n.m4a"></audio>
+      </div>
+      <div class="card" data-category="senses" data-title="အထိအတွေ့"
+        data-detail="အထိအတွေ့အာရုံက ကျွန်တော်တို့ရဲ့ အရေပြားနဲ့ အရာဝတ္ထုတွေကို ခံစားနိုင်ဖို့ ကူညီပေးပါတယ်။"
+        data-extra="အရေပြားမှာ အပူအအေး ခံစားနိုင်တဲ့ အာရုံကျဆင်များ ရှိပါတယ်။">
+        <div class="emoji">🤚</div>
+        <div class="title">အထိအတွေ့</div>
+        <div class="detail">အထိအတွေ့အာရုံက ကျွန်တော်တို့ရဲ့ အရေပြားနဲ့ အရာဝတ္ထုတွေကို ခံစားနိုင်ဖို့ ကူညီပေးပါတယ်။</div>
+        <div class="extra-info">အရေပြားမှာ အပူအအေး ခံစားနိုင်တဲ့ အာရုံခံများ ရှိပါတယ်</div>
+        <audio class="card-sound" src="27n.m4a"></audio>
+      </div>
+      <div class="card" data-category="senses" data-title="အမြင်"
+        data-detail="အမြင်အာရုံက ကျွန်တော်တို့ရဲ့ မျက်လုံးနဲ့ မြင်နိုင်စေပါတယ်။"
+        data-extra="မျက်လုံးတွေဟာ အလင်းကို ခံစားနိုင်ပါတယ်။">
+        <div class="emoji">👀</div>
+        <div class="title">အမြင်</div>
+        <div class="detail">အမြင်အာရုံက ကျွန်တော်တို့ရဲ့ မျက်လုံးနဲ့ မြင်နိုင်စေပါတယ်။</div>
+        <div class="extra-info">မျက်လုံးတွေဟာ အလင်းကို ခံစားနိုင်ပါတယ်</div>
+        <audio class="card-sound" src="35.m4a"></audio>
+      </div>
+      <div class="card" data-category="general" data-title="အပင်"
+        data-detail="အပင်တွေက အလင်းရောင်ကိုအသုံးပြုပြီး အစာချက်လုပ်တဲ့ 'photosynthesis' လို့ခေါ်တဲ့ ဖြစ်စဉ်နဲ့ သူတို့ရဲ့ ကိုယ်ပိုင်အစာကို ဖန်တီးကြပါတယ်။"
+        data-extra="အပင်တွေဟာ ကာဗွန်ဒိုင်အောက်ဆိုဒ်ကို စုပ်ယူပြီး အောက်ဆီဂျင်ထုတ်လွှတ်ပေးပါတယ်။">
+        <div class="emoji">🌳</div>
+        <div class="title">အပင်</div>
+        <div class="detail">အပင်တွေက အလင်းရောင်ကိုအသုံးပြုပြီး အစာချက်လုပ်တဲ့ 'photosynthesis' လို့ခေါ်တဲ့ ဖြစ်စဉ်နဲ့
+          သူတို့ရဲ့ ကိုယ်ပိုင်အစာကို ဖန်တီးကြပါတယ်။</div>
+        <div class="extra-info">ကာဗွန်ဒိုင်အောက်ဆိုဒ်ကို စုပ်ယူပြီး အောက်ဆီဂျင်ထုတ်လွှတ်ပေးပါတယ်</div>
+        <audio class="card-sound" src="28n.m4a"></audio>
+      </div>
+      <div class="card" data-category="general" data-title="နေ"
+        data-detail="နေဟာ ကမ္ဘာမြေကို အပူနဲ့ အလင်းရောင်ပေးတဲ့ ကြယ်တစ်လုံး ဖြစ်ပါတယ်။"
+        data-extra="နေဟာ နေအဖွဲ့အစည်းရဲ့ အလယ်ဗဟိုမှာ ရှိပါတယ်။">
+        <div class="emoji">🌞</div>
+        <div class="title">နေ</div>
+        <div class="detail">နေဟာ ကမ္ဘာမြေကို အပူနဲ့ အလင်းရောင်ပေးတဲ့ ကြယ်တစ်လုံး ဖြစ်ပါတယ်။</div>
+        <div class="extra-info">နေအဖွဲ့အစည်းရဲ့ အလယ်ဗဟိုမှာ ရှိပါတယ်</div>
+        <audio class="card-sound" src="29n.m4a"></audio>
+      </div>
+      <div class="card" data-category="general" data-title="လ"
+        data-detail="လဟာ ကမ္ဘာကို လှည့်ပတ်နေပြီး သမုဒ္ဒရာဒီရေအတက်အကျကို သက်ရောက်မှုရှိပါတယ်။"
+        data-extra="လဟာ ကမ္ဘာ့ သဘာဝ ဂြိုဟ်တစ်လုံးဖြစ်ပါတယ်။">
+        <div class="emoji">🌕</div>
+        <div class="title">လ</div>
+        <div class="detail">လဟာ ကမ္ဘာကို လှည့်ပတ်နေပြီး သမုဒ္ဒရာဒီရေအတက်အကျကို သက်ရောက်မှုရှိပါတယ်။</div>
+        <div class="extra-info">ကမ္ဘာ့ သဘာဝ ဂြိုဟ်တစ်လုံးဖြစ်ပါတယ်</div>
+        <audio class="card-sound" src="30n.m4a"></audio>
+      </div>
+      <div class="card" data-category="general" data-title="သံလိုက်"
+        data-detail="သံလိုက်တွေဟာ သံနဲ့လုပ်ထားတဲ့ အရာဝတ္ထုတွေကို ဆွဲငင်ပြီး မြောက်နဲ့ တောင်ဝင်ရိုးစွန်းတွေ ရှိပါတယ်။"
+        data-extra="ကမ္ဘာ့သံလိုက်စက်ကွင်းက အရပ်တွေကို ညွှန်ပြပေးပါတယ်။">
+        <div class="emoji">🧲</div>
+        <div class="title">သံလိုက်</div>
+        <div class="detail">သံလိုက်တွေဟာ သံနဲ့လုပ်ထားတဲ့ အရာဝတ္ထုတွေကို ဆွဲငင်ပြီး မြောက်နဲ့ တောင်ဝင်ရိုးစွန်းတွေ
+          ရှိပါတယ်။</div>
+        <div class="extra-info">ကမ္ဘာ့သံလိုက်စက်ကွင်းက အရပ်တွေကို ညွှန်ပြပေးပါတယ်</div>
+        <audio class="card-sound" src="31.m4a"></audio>
+      </div>
+      <div class="card" data-category="general" data-title="ဆွဲငင်အား"
+        data-detail="ဆွဲငင်အားဆိုတာ အရာဝတ္ထုတွေကို မြေပြင်ဘက်ဆီ ဆွဲတင်တဲ့အား ဖြစ်ပါတယ်။"
+        data-extra="ဆွဲငင်အားဟာ ကမ္ဘာ့မျက်နှာပြင်မှာ အရာဝတ္ထုတွေကို ဆွဲဆောင်တတ်ပါတယ်။">
+        <div class="emoji">🌍</div>
+        <div class="title">ဆွဲငင်အား</div>
+        <div class="detail">ဆွဲငင်အားဆိုတာ အရာဝတ္ထုတွေကို မြေပြင်ဘက်ဆီ ဆွဲတင်တဲ့အား ဖြစ်ပါတယ်။</div>
+        <div class="extra-info">ကမ္ဘာ့မျက်နှာပြင်မှာ အရာဝတ္ထုတွေကို ဆွဲဆောင်တတ်ပါတယ်</div>
+        <audio class="card-sound" src="32.m4a"></audio>
+      </div>
+      <div class="card" data-category="animals" data-title="ဝင်ရိုးစွန်းဝက်ဝံ"
+        data-detail="ဝင်ရိုးစွန်းဝက်ဝံတွေဟာ အေးခဲနေတဲ့နေရာတွေမှာ နေထိုင်ပြီး အာတိတ်ဒေသမှာ နေထိုင်ကြပါတယ်။"
+        data-extra="ဝက်ဝံတွေဟာ ဆောင်းရာသီမှာ ဆောင်းခေါင်းတတ်ကြပါတယ်။">
+        <div class="emoji">🐻</div>
+        <div class="title">ဝင်ရိုးစွန်းဝက်ဝံ</div>
+        <div class="detail">ဝင်ရိုးစွန်းဝက်ဝံတွေဟာ အေးခဲနေတဲ့နေရာတွေမှာ နေထိုင်ပြီး အာတိတ်ဒေသမှာ နေထိုင်ကြပါတယ်။</div>
+        <div class="extra-info">ဆောင်းရာသီမှာ ဆောင်းခေါင်းတတ်ကြပါတယ်</div>
+        <audio class="card-sound" src="33.m4a"></audio>
+      </div>
+    </div>
+  </main>
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="close" id="close">&times;</span>
+      <h2 id="modal-title"></h2>
+      <p id="modal-detail"></p>
+      <div class="extra-info" id="modal-extra"></div>
+    </div>
+  </div>
+
+  <!-- 🔊 Sound Effects & Music -->
+  <audio id="clickSound" src="https://www.fesliyanstudios.com/play-mp3/387"></audio>
+  <audio id="bgMusic" src="https://www.bensound.com/bensound-music/bensound-littleidea.mp3" loop autoplay></audio>
+
+  <script>
+    // Extract card data from DOM
+    function extractCardData() {
+      const cards = document.querySelectorAll('.card');
+      const cardData = [];
+      cards.forEach(card => {
+        cardData.push({
+          title: card.dataset.title,
+          detail: card.dataset.detail,
+          extra: card.dataset.extra,
+          category: card.dataset.category,
+          emoji: card.querySelector('.emoji').textContent
+        });
+      });
+      return cardData;
+    }
+    // Generate quiz questions from card data
+    function generateQuizData(cardData) {
+      const quizData = [];
+      const shuffledCards = [...cardData].sort(() => 0.5 - Math.random());
+      const selectedCards = shuffledCards.slice(0, 10); // Select 10 random cards
+
+      selectedCards.forEach(card => {
+        // Create question based on card
+        let question = '';
+        if (card.category === 'body') {
+          question = `${card.title}က ဘာလုပ်ပေးသလဲ?`;
+        } else if (card.category === 'animals') {
+          question = `${card.title}အကြောင်းက ဘာလဲ?`;
+        } else if (card.category === 'weather') {
+          question = `${card.title}တဲ့ရာသီဥတုမှာ ဘာဖြစ်လဲ?`;
+        } else if (card.category === 'senses') {
+          question = `${card.title}အာရုံက ဘာလုပ်ပေးသလဲ?`;
+        } else {
+          question = `${card.title}အကြောင်း ကဘာလဲ?`;
+        }
+
+        // Get wrong answers from other cards (preferably same category)
+        const sameCategoryCards = cardData.filter(c =>
+          c.category === card.category && c.title !== card.title
+        );
+        const otherCategoryCards = cardData.filter(c =>
+          c.category !== card.category && c.title !== card.title
+        );
+
+        let wrongAnswers = [];
+
+        // Try to get 3 wrong answers from same category
+        if (sameCategoryCards.length >= 3) {
+          const shuffledSameCategory = [...sameCategoryCards].sort(() => 0.5 - Math.random());
+          wrongAnswers = shuffledSameCategory.slice(0, 3).map(c => c.detail);
+        } else {
+          // If not enough in same category, mix from same and other categories
+          const neededFromOther = 3 - sameCategoryCards.length;
+          const shuffledSameCategory = [...sameCategoryCards].sort(() => 0.5 - Math.random());
+          const shuffledOtherCategory = [...otherCategoryCards].sort(() => 0.5 - Math.random());
+
+          wrongAnswers = [
+            ...shuffledSameCategory.map(c => c.detail),
+            ...shuffledOtherCategory.slice(0, neededFromOther).map(c => c.detail)
+          ];
+        }
+
+        // Combine correct and wrong answers, then shuffle
+        const allOptions = [card.detail, ...wrongAnswers];
+        const shuffledOptions = [...allOptions].sort(() => 0.5 - Math.random());
+
+        // Find index of correct answer
+        const correctIndex = shuffledOptions.indexOf(card.detail);
+
+        quizData.push({
+          question,
+          options: shuffledOptions,
+          correct: correctIndex,
+          card: card
+        });
+      });
+
+      return quizData;
+    }
+    // Shuffle array function
+    function shuffleArray(array) {
+      const newArray = [...array];
+      for (let i = newArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+      }
+      return newArray;
+    }
+    // Quiz State
+    let currentQuestion = 0;
+    let score = 0;
+    let userAnswers = [];
+    let quizActive = false;
+    let quizCompleted = false;
+    let quizData = [];
+    let cardData = [];
+
+    // DOM Elements
+    const quizBtn = document.getElementById('quiz-btn');
+    const quizContainer = document.getElementById('quiz-container');
+    const grid = document.getElementById('grid');
+    const questionEl = document.getElementById('question');
+    const optionsEl = document.getElementById('options');
+    const currentQuestionEl = document.getElementById('current-question');
+    const totalQuestionsEl = document.getElementById('total-questions');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const submitBtn = document.getElementById('submit-btn');
+    const restartBtn = document.getElementById('restart-btn');
+    const backBtn = document.getElementById('back-btn');
+    const backToCardsBtn = document.getElementById('back-to-cards-btn');
+    const quizResult = document.getElementById('quiz-result');
+    const resultTitle = document.getElementById('result-title');
+    const emojiReaction = document.getElementById('emoji-reaction');
+    const resultMessage = document.getElementById('result-message');
+    const resultsSummary = document.getElementById('results-summary');
+
+    // Initialize
+    cardData = extractCardData();
+    totalQuestionsEl.textContent = 10;
+
+    // Show/Hide Quiz
+    quizBtn.addEventListener('click', () => {
+      quizActive = true;
+      quizContainer.style.display = 'block';
+      grid.style.display = 'none';
+      quizBtn.classList.add('active');
+      startQuiz();
+    });
+
+    backBtn.addEventListener('click', () => {
+      quizActive = false;
+      quizContainer.style.display = 'none';
+      grid.style.display = 'grid';
+      quizBtn.classList.remove('active');
+    });
+
+    backToCardsBtn.addEventListener('click', () => {
+      quizActive = false;
+      quizContainer.style.display = 'none';
+      grid.style.display = 'grid';
+      quizBtn.classList.remove('active');
+    });
+
+    function startQuiz() {
+      // Generate new quiz data each time
+      quizData = generateQuizData(cardData);
+
+      currentQuestion = 0;
+      score = 0;
+      userAnswers = [];
+      quizCompleted = false;
+      currentQuestionEl.textContent = currentQuestion + 1;
+      quizResult.style.display = 'none';
+      restartBtn.style.display = 'none';
+      submitBtn.style.display = 'none';
+      prevBtn.disabled = true;
+      nextBtn.disabled = true;
+      showQuestion();
+    }
+
+    function showQuestion() {
+      const question = quizData[currentQuestion];
+      questionEl.textContent = question.question;
+      optionsEl.innerHTML = '';
+
+      question.options.forEach((option, index) => {
+        const optionEl = document.createElement('div');
+        optionEl.classList.add('option');
+        optionEl.textContent = option;
+        optionEl.addEventListener('click', () => selectOption(index));
+        optionsEl.appendChild(optionEl);
+      });
+
+      prevBtn.disabled = currentQuestion === 0;
+      nextBtn.disabled = true;
+
+      // If user already answered this question, show their selection
+      if (userAnswers[currentQuestion] !== undefined) {
+        const options = optionsEl.querySelectorAll('.option');
+        options[userAnswers[currentQuestion]].classList.add('selected');
+        nextBtn.disabled = false;
+
+        // If this is the last question, show submit button
+        if (currentQuestion === quizData.length - 1) {
+          nextBtn.style.display = 'none';
+          submitBtn.style.display = 'inline-block';
+        }
+      }
+    }
+
+    function selectOption(index) {
+      if (quizCompleted) return; // Don't allow changes after quiz is completed
+
+      // Clear previous selection
+      const options = optionsEl.querySelectorAll('.option');
+      options.forEach(option => option.classList.remove('selected'));
+
+      // Mark selected option
+      options[index].classList.add('selected');
+
+      // Store user's answer
+      userAnswers[currentQuestion] = index;
+
+      // Enable next button
+      nextBtn.disabled = false;
+
+      // If this is the last question, show submit button
+      if (currentQuestion === quizData.length - 1) {
+        nextBtn.style.display = 'none';
+        submitBtn.style.display = 'inline-block';
+      }
+    }
+
+    function showResult() {
+      quizCompleted = true;
+
+      // Calculate score
+      score = 0;
+      userAnswers.forEach((answer, index) => {
+        if (answer === quizData[index].correct) {
+          score++;
+        }
+      });
+
+      // Show result summary
+      quizResult.style.display = 'block';
+      restartBtn.style.display = 'inline-block';
+      submitBtn.style.display = 'none';
+      prevBtn.style.display = 'none';
+      nextBtn.style.display = 'none';
+      backBtn.style.display = 'none';
+      backToCardsBtn.style.display = 'inline-block';
+
+      // Generate detailed results
+      resultsSummary.innerHTML = '';
+      userAnswers.forEach((answer, index) => {
+        const question = quizData[index];
+        const resultItem = document.createElement('div');
+        resultItem.classList.add('result-item');
+
+        const questionTitle = document.createElement('h4');
+        questionTitle.innerHTML = `${index + 1}. ${question.question}`;
+        resultItem.appendChild(questionTitle);
+
+        const userAnswerText = document.createElement('p');
+        userAnswerText.innerHTML = `<span class="user-answer">သင့်အဖြေ: ${question.options[answer]}</span>`;
+        resultItem.appendChild(userAnswerText);
+
+        const correctAnswerText = document.createElement('p');
+        if (answer === question.correct) {
+          correctAnswerText.innerHTML = `<span class="correct-answer">မှန်ကန်ပါတယ်! ✓</span>`;
+        } else {
+          correctAnswerText.innerHTML = `<span class="correct-answer">အဖြေမှန်: ${question.options[question.correct]}</span>`;
+        }
+        resultItem.appendChild(correctAnswerText);
+
+        // Add card reference
+        const cardReference = document.createElement('div');
+        cardReference.classList.add('card-reference');
+        cardReference.innerHTML = `ဆက်စပ်ကတ်: ${question.card.emoji} ${question.card.title}`;
+        resultItem.appendChild(cardReference);
+
+        resultsSummary.appendChild(resultItem);
+      });
+
+      // Show overall result
+      const percentage = Math.round((score / quizData.length) * 100);
+
+      if (percentage >= 80) {
+        quizResult.classList.add('success');
+        quizResult.classList.remove('fail', 'average');
+        resultTitle.textContent = 'အံ့ဩစွာကောင်းပါတယ်!';
+        emojiReaction.textContent = '🎉🌟👏';
+        resultMessage.textContent = `သင် ${score} မှတ်ရရှိခဲ့ပါတယ် (ရာခိုင်နှုန်း ${percentage}%)။ သင်သည် သိပ္ပံပညာရှင်တစ်ယောက်ပါ!`;
+      } else if (percentage >= 50) {
+        quizResult.classList.add('average');
+        quizResult.classList.remove('success', 'fail');
+        resultTitle.textContent = 'ကောင်းပါတယ်!';
+        emojiReaction.textContent = '👍😊';
+        resultMessage.textContent = `သင် ${score} မှတ်ရရှိခဲ့ပါတယ် (ရာခိုင်နှုန်း ${percentage}%)။ ဆက်လက်ကြိုးစားပါ!`;
+      } else {
+        quizResult.classList.add('fail');
+        quizResult.classList.remove('success', 'average');
+        resultTitle.textContent = 'ထပ်ကြိုးစားကြည့်ပါ!';
+        emojiReaction.textContent = '📚💪';
+        resultMessage.textContent = `သင် ${score} မှတ်ရရှိခဲ့ပါတယ် (ရာခိုင်နှုန်း ${percentage}%)။ ပြန်လေ့လာပြီး ထပ်စမ်းကြည့်ပါ!`;
+      }
+    }
+
+    // Quiz Navigation
+    nextBtn.addEventListener('click', () => {
+      currentQuestion++;
+      currentQuestionEl.textContent = currentQuestion + 1;
+
+      if (currentQuestion < quizData.length) {
+        showQuestion();
+      }
+    });
+
+    prevBtn.addEventListener('click', () => {
+      currentQuestion--;
+      currentQuestionEl.textContent = currentQuestion + 1;
+      showQuestion();
+    });
+
+    submitBtn.addEventListener('click', () => {
+      showResult();
+    });
+
+    restartBtn.addEventListener('click', () => {
+      nextBtn.style.display = 'inline-block';
+      prevBtn.style.display = 'inline-block';
+      backBtn.style.display = 'inline-block';
+      backToCardsBtn.style.display = 'none';
+      startQuiz();
+    });
+
+    // Existing card functionality
+    const cards = document.querySelectorAll('.card');
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDetail = document.getElementById('modal-detail');
+    const modalExtra = document.getElementById('modal-extra');
+    const close = document.getElementById('close');
+    const clickSound = document.getElementById('clickSound');
+    const bgMusic = document.getElementById('bgMusic');
+
+    cards.forEach(card => {
+      const cardSound = card.querySelector('.card-sound');
+      card.addEventListener('click', () => {
+        if (quizActive) return; // Don't open cards during quiz
+
+        clickSound.play();
+        if (cardSound) cardSound.play();
+        modalTitle.textContent = card.dataset.title;
+        modalDetail.textContent = card.dataset.detail;
+        modalExtra.textContent = card.dataset.extra;
+        modal.style.display = 'flex';
+      });
+    });
+
+    close.addEventListener('click', () => modal.style.display = 'none');
+    window.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
+
+    const buttons = document.querySelectorAll('.btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.id === 'quiz-btn') return; // Skip quiz button
+
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        cards.forEach(c => {
+          c.style.display = (filter === 'all' || c.dataset.category === filter) ? 'block' : 'none';
+        });
+      });
+    });
+
+    // Search functionality
+    const search = document.getElementById('search');
+    search.addEventListener('input', () => {
+      const text = search.value.toLowerCase();
+      cards.forEach(c => {
+        const title = c.dataset.title.toLowerCase();
+        c.style.display = title.includes(text) ? 'block' : 'none';
+      });
+    });
+
+    window.addEventListener('click', () => {
+      if (bgMusic.paused) {
+        bgMusic.play().catch(() => { });
+      }
+    });
+
+    // Navigation functionality
+    function navigateTo(page) {
+      // Update active nav link
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+        if (link.dataset.page === page) {
+          link.classList.add('active');
+        }
+      });
+
+      // Handle page navigation
+      if (page === 'home') {
+        // Show all cards
+        document.getElementById('grid').style.display = 'grid';
+        document.getElementById('quiz-container').style.display = 'none';
+        quizActive = false;
+        quizBtn.classList.remove('active');
+      } else if (page === 'cards') {
+        // Show all cards
+        document.getElementById('grid').style.display = 'grid';
+        document.getElementById('quiz-container').style.display = 'none';
+        quizActive = false;
+        quizBtn.classList.remove('active');
+      } else if (page === 'quiz') {
+        // Show quiz
+        document.getElementById('grid').style.display = 'none';
+        document.getElementById('quiz-container').style.display = 'block';
+        quizActive = true;
+        quizBtn.classList.add('active');
+        if (!quizData.length) {
+          startQuiz();
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>

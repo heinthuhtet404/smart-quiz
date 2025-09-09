@@ -1,0 +1,3237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EnglishForKids - Enhanced Learning</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    /* All CSS styles with fixes applied */
+    :root {
+      --primary: #4A90E2;
+      --secondary: #50E3C2;
+      --accent1: #FFD166;
+      --accent2: #EF476F;
+      --accent3: #A78BFA;
+      --background: #F9F7FE;
+      --card-bg: #FFFFFF;
+      --text: #333333;
+      --text-light: #666666;
+      --border: #E0E0E0;
+      --font-heading: 'Fredoka One', cursive;
+      --font-body: 'Nunito', sans-serif;
+      --font-size-base: 16px;
+      --font-size-md: 18px;
+      --font-size-lg: 22px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-xxl: 48px;
+      --animation-speed: 0.3s;
+      --animation-ease: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      --card-gap: 40px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: var(--font-size-base);
+      color: var(--text);
+      line-height: 1.5;
+      text-align: center;
+      background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+      margin: 0;
+      padding: 20px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      background: linear-gradient(135deg, #4A90E2, #2E86DE);
+      padding: 15px 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+
+    .nav-list {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .nav-item {
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .nav-item:hover {
+      transform: translateY(-3px);
+    }
+
+    .nav-link {
+      display: block;
+      padding: 16px 28px;
+      background-color: rgba(255, 255, 255, 0.15);
+      color: white;
+      text-decoration: none;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      min-height: 54px;
+      min-width: 54px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-link:hover {
+      background-color: #50E3C2;
+      color: #fff;
+      transform: scale(1.08);
+      box-shadow: 0 8px 20px rgba(80, 227, 194, 0.4);
+    }
+
+    .nav-link.active {
+      background: linear-gradient(135deg, #ffd566, #ffcc02);
+      color: #333;
+      box-shadow: 0 4px 14px rgba(255, 213, 102, 0.5);
+      font-weight: 800;
+    }
+
+    main {
+      margin-top: 160px;
+      padding: 0 5%;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: var(--space-lg);
+    }
+
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-bottom: var(--space-md);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--accent2);
+      color: white;
+      padding: var(--space-md) var(--space-lg);
+      border-radius: 50px;
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      margin-top: var(--space-md);
+      transition: transform 0.2s;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      text-align: center;
+      margin: var(--space-xl) 0;
+      color: var(--primary);
+      position: relative;
+      top: auto;
+    }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: var(--accent2);
+      border-radius: 2px;
+    }
+
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--card-gap);
+      justify-content: center;
+      margin-bottom: var(--space-xxl);
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .card-image {
+      height: 180px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover .card-image img {
+      transform: scale(1.05);
+    }
+
+    .card-content {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .subject-title {
+      font-weight: 700;
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      color: #2d3436;
+      font-family: var(--font-heading);
+    }
+
+    .description {
+      color: #636e72;
+      margin-bottom: 20px;
+      line-height: 1.5;
+      flex-grow: 1;
+      font-family: var(--font-body);
+    }
+
+    .progress-container {
+      margin-bottom: 20px;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      color: #636e72;
+      font-size: 0.9rem;
+    }
+
+    .progress-bar {
+      height: 8px;
+      background-color: #e0e0e0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 4px;
+    }
+
+    .action-button {
+      background-color: #0984e3;
+      color: white;
+      border: none;
+      padding: 12px 0;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-size: 1rem;
+      font-family: var(--font-body);
+    }
+
+    .action-button:hover {
+      background-color: #0770c3;
+    }
+
+    .purple .progress-fill {
+      background-color: #6c5ce7;
+    }
+
+    .purple .card-image {
+      background-color: #a29bfe;
+    }
+
+    .blue .progress-fill {
+      background-color: #0984e3;
+    }
+
+    .blue .card-image {
+      background-color: #74b9ff;
+    }
+
+    .yellow .progress-fill {
+      background-color: #fdcb6e;
+    }
+
+    .yellow .card-image {
+      background-color: #ffeaa7;
+    }
+
+    .green .progress-fill {
+      background-color: #00b894;
+    }
+
+    .green .card-image {
+      background-color: #55efc4;
+    }
+
+    .red .progress-fill {
+      background-color: #d63031;
+    }
+
+    .red .card-image {
+      background-color: #ff7675;
+    }
+
+    .daily-lesson {
+      background: linear-gradient(135deg, var(--accent1), #E6A800);
+      border-radius: 20px;
+      padding: var(--space-xl);
+      text-align: center;
+      color: #333;
+      margin-bottom: var(--space-xxl);
+      box-shadow: 0 10px 25px rgba(255, 213, 102, 0.3);
+    }
+
+    .daily-lesson h2 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      margin-bottom: var(--space-md);
+    }
+
+    .daily-lesson p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto var(--space-md);
+    }
+
+    .extra-fun-fact {
+      border-radius: 24px;
+      padding: var(--space-xl);
+      margin: var(--space-xxl) auto;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      max-width: 1100px;
+      background: linear-gradient(135deg, #ffd1e3, #ffd6ff);
+      color: #333;
+    }
+
+    .extra-challenge {
+      border-radius: 24px;
+      padding: var(--space-xl);
+      margin: var(--space-xxl) auto;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      max-width: 1100px;
+      background: #cfe6ff;
+    }
+
+    .extra-heading {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      text-align: center;
+      margin-bottom: var(--space-md);
+      color: #5b6ee1;
+    }
+
+    .extra-text {
+      font-size: 1.1rem;
+      text-align: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .extra-question {
+      font-size: 1.4rem;
+      text-align: center;
+      margin: var(--space-lg) auto;
+      font-weight: 700;
+      color: #2b2b2b;
+    }
+
+    .extra-options {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+
+    .option-btn {
+      background: #fff;
+      border: 3px solid #8da4ff;
+      border-radius: 16px;
+      padding: 18px 12px;
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+    }
+
+    .option-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .option-btn:active {
+      transform: translateY(0);
+    }
+
+    .option-btn.selected {
+      background: var(--accent1);
+      color: #333;
+      border-color: #ffd166;
+      box-shadow: 0 0 0 4px rgba(255, 209, 102, 0.45) inset;
+    }
+
+    .extra-status {
+      text-align: center;
+      margin-top: var(--space-md);
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 820px) {
+      .extra-options {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-list {
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .cards-container {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-list {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .extra-options {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .logo {
+      display: flex;
+      position: absolute;
+      left: 20px;
+      font-size: 28px;
+      font-family: var(--font-heading);
+      align-items: center;
+      z-index: 1001;
+    }
+
+    .logo i {
+      margin-right: 10px;
+      font-size: 32px;
+      color: var(--accent1);
+    }
+
+    /* Additional styles for the learning app */
+    h1 {
+      background-color: #16a085;
+      width: auto;
+      color: #2c3e50;
+      margin-bottom: 15px;
+      margin-top: 150px;
+      font-size: 2.8rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      padding: 15px;
+      border-radius: 15px;
+    }
+
+    h2 {
+      color: #34495e;
+      margin-top: 150px;
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+    }
+
+    .tabs {
+      margin-bottom: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .tabs button {
+      margin: 5px;
+      padding: 12px 24px;
+      font-size: 18px;
+      border: none;
+      border-radius: 25px;
+      background: linear-gradient(145deg, #e3f2fd, #bbdefb);
+      color: #101113;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 200px;
+      height: 200px;
+    }
+
+    .tabs button:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .tabs button.active {
+      background: linear-gradient(145deg, #ffecb3, #ffe082);
+      color: #e67e22;
+    }
+
+    .tab-icon {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    .tab-text {
+      font-size: 14px;
+    }
+
+    .section {
+      display: none;
+      animation: fadeIn 0.5s;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card,
+    .sentence-card,
+    .quiz-card {
+      width: 400px;
+      height: 400px;
+      margin: 20px auto;
+      background: linear-gradient(145deg, #e3f2fd, #bbdefb);
+      border-radius: 25px;
+      padding: 30px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card:hover,
+    .sentence-card:hover,
+    .quiz-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .letter {
+      font-size: 70px;
+      font-weight: bold;
+      color: #101113;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .image {
+      font-size: 120px;
+      margin: 20px 0;
+      filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.2));
+    }
+
+    .word {
+      font-size: 36px;
+      color: #e67e22;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+
+    .phonics {
+      font-size: 24px;
+      color: #16a085;
+      margin: 8px 0;
+      font-style: italic;
+    }
+
+    button.nav {
+      margin: 15px;
+      padding: 12px 24px;
+      font-size: 18px;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(45deg, #3498db, #2980b9);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    button.nav:hover {
+      background: linear-gradient(45deg, #2980b9, #3498db);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .sentence-card .sentence {
+      font-size: 22px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .sentence-card select {
+      font-size: 18px;
+      padding: 10px 15px;
+      border-radius: 10px;
+      border: 2px solid #416492;
+      margin-bottom: 15px;
+      background: white;
+      cursor: pointer;
+    }
+
+    .sentence-card button {
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(45deg, #4CAF50, #45a049);
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .sentence-card button:hover {
+      background: linear-gradient(45deg, #45a049, #4CAF50);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .result {
+      margin-top: 15px;
+      font-weight: bold;
+      font-size: 20px;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    .opposite-card {
+      width: 120px;
+      height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      cursor: pointer;
+      background: linear-gradient(145deg, #e6f7ff, #bae7ff);
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      margin: 10px;
+    }
+
+    .opposite-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .opposite-card.matched {
+      background: linear-gradient(145deg, #d4edda, #c3e6cb);
+      cursor: default;
+    }
+
+    .opposite-card.revealed {
+      background: linear-gradient(145deg, #fff3cd, #ffeaa7);
+    }
+
+    .progress-container {
+      margin: 20px auto;
+      max-width: 600px;
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 15px;
+      padding: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .progress-bar {
+      height: 20px;
+      background-color: #e0e0e0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 10px 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(45deg, #4CAF50, #45a049);
+      border-radius: 10px;
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+
+    .score-display {
+      font-size: 20px;
+      font-weight: bold;
+      color: #2c3e50;
+      margin: 10px 0;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      .tabs {
+        padding: 8px 12px;
+        font-size: 12px;
+        min-width: 60px;
+        height: 60px;
+      }
+
+      .tab-icon {
+        font-size: 20px;
+        margin-bottom: 2px;
+      }
+
+      .tab-text {
+        font-size: 12px;
+      }
+
+      .card,
+      .sentence-card,
+      .quiz-card {
+        padding: 20px;
+      }
+
+      .letter {
+        font-size: 60px;
+      }
+
+      .image {
+        font-size: 100px;
+      }
+
+      .word {
+        font-size: 30px;
+      }
+
+      .phonics {
+        font-size: 20px;
+      }
+
+      .sentence-card .sentence {
+        font-size: 18px;
+      }
+
+      .passage {
+        font-size: 18px;
+        padding: 15px;
+      }
+
+      .sentence-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .quiz-options {
+        grid-template-columns: 1fr !important;
+      }
+
+      .sight-word-sentence {
+        font-size: 18px;
+      }
+    }
+
+    .sentence-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(5, auto);
+      gap: 15px 80px;
+      max-width: 1200px;
+      margin: 20px auto;
+    }
+
+    .sentence-grid .sentence-card {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+    }
+
+    .flash-card {
+      width: 400px;
+      height: 400px;
+      perspective: 1000px;
+      margin: 20px auto;
+    }
+
+    .flash-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .flash-card.flipped .flash-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flash-card-front,
+    .flash-card-back {
+      position: absolute;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 25px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      padding: 30px;
+      background: linear-gradient(145deg, #e3f2fd, #bbdefb);
+    }
+
+    .flash-card-back {
+      transform: rotateY(180deg);
+      background: linear-gradient(145deg, #ffecb3, #ffe082);
+    }
+
+    .flip-btn {
+      margin: 15px;
+      padding: 12px 24px;
+      font-size: 18px;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(45deg, #9c27b0, #673ab7);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .quiz-btn {
+      margin: 15px;
+      padding: 12px 24px;
+      font-size: 18px;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(45deg, #9c27b0, #673ab7);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .flip-btn:hover,
+    .quiz-btn:hover {
+      background: linear-gradient(45deg, #673ab7, #9c27b0);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .flash-card-word {
+      font-size: 48px;
+      color: #e67e22;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(45deg, #2ecc71, #27ae60);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .notification.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .quiz-selector {
+      margin: 20px auto;
+      max-width: 500px;
+    }
+
+    .quiz-selector select {
+      width: 100%;
+      padding: 12px 20px;
+      font-size: 18px;
+      border-radius: 10px;
+      border: 2px solid #416492;
+      background: white;
+      cursor: pointer;
+      margin-bottom: 15px;
+    }
+
+    .quiz-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .quiz-card {
+      width: 400px;
+      height: 400px;
+      margin-bottom: 25px;
+      text-align: left;
+    }
+
+    .quiz-question {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #2c3e50;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .quiz-option {
+      background: white;
+      border: 2px solid #416492;
+      border-radius: 10px;
+      padding: 12px 15px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .quiz-option:hover {
+      background: #e3f2fd;
+      transform: translateY(-3px);
+    }
+
+    .quiz-option.selected {
+      background: linear-gradient(45deg, #3498db, #2980b9);
+      color: white;
+      border-color: #2980b9;
+    }
+
+    .quiz-option.correct {
+      background: linear-gradient(45deg, #4CAF50, #45a049);
+      color: white;
+      border-color: #45a049;
+    }
+
+    .quiz-option.incorrect {
+      background: linear-gradient(45deg, #e74c3c, #c0392b);
+      color: white;
+      border-color: #c0392b";
+
+    }
+
+    .quiz-submit {
+      margin: 30px auto;
+      padding: 15px 30px;
+      font-size: 20px;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(45deg, #e74c3c, #c0392b);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      display: block;
+    }
+
+    .quiz-submit:hover {
+      background: linear-gradient(45deg, #c0392b, #e74c3c);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .quiz-result {
+      margin-top: 30px;
+      padding: 20px;
+      border-radius: 15px;
+      background: linear-gradient(145deg, #e3f2fd, #bbdefb);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .quiz-result h3 {
+      font-size: 24px;
+      margin-top: 0;
+      color: #2c3e50;
+    }
+
+    .quiz-result-score {
+      font-size: 28px;
+      font-weight: bold;
+      margin: 15px 0;
+      color: #e67e22;
+    }
+
+    .quiz-result-feedback {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+
+    .quiz-result-details {
+      text-align: left;
+      margin-top: 20px;
+    }
+
+    .quiz-result-item {
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .quiz-result-item.correct {
+      border-left: 5px solid #4CAF50;
+    }
+
+    .quiz-result-item.incorrect {
+      border-left: 5px solid #e74c3c;
+    }
+
+    .quiz-restart {
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 18px;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(45deg, #3498db, #2980b9);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .quiz-restart:hover {
+      background: linear-gradient(45deg, #2980b9, #3498db);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .sight-words-intro {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 500px;
+      margin: 20px auto;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .sight-words-intro p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 10px 0;
+    }
+
+    .sight-word-flashcard {
+      width: 400px;
+      height: 400px;
+      perspective: 1000px;
+      margin: 20px auto;
+    }
+
+    .sight-word-flashcard-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .sight-word-flashcard.flipped .sight-word-flashcard-inner {
+      transform: rotateY(180deg);
+    }
+
+    .sight-word-flashcard-front,
+    .sight-word-flashcard-back {
+      position: absolute;
+      width: 100%;
+      height: 80%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 25px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      padding: 30px;
+      background: linear-gradient(145deg, #e8f5e9, #c8e6c9);
+    }
+
+    .sight-word-flashcard-back {
+      transform: rotateY(180deg);
+      background: linear-gradient(145deg, #e1f5fe, #b3e5fc);
+    }
+
+    .sight-word-display {
+      font-size: 72px;
+      font-weight: bold;
+      color: #2e7d32;
+      margin: 20px 0;
+    }
+
+    .sight-word-sentence {
+      font-size: 24px;
+      line-height: 1.5;
+      text-align: center;
+      color: #0277bd;
+      margin: 15px 0;
+    }
+
+    .sight-word-example {
+      font-size: 18px;
+      color: #555;
+      margin-top: 10px;
+      font-style: italic;
+    }
+
+    .sight-word-controls {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .sight-word-practice {
+      margin-top: 30px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .sight-word-practice h3 {
+      font-size: 22px;
+      color: #2c3e50;
+      margin-bottom: 15px;
+    }
+
+    .sight-word-practice-items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .sight-word-practice-item {
+      background: white;
+      border: 2px solid #4CAF50;
+      border-radius: 15px;
+      padding: 15px 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #2e7d32;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .sight-word-practice-item:hover {
+      background: #e8f5e9;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .dashboard-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .dashboard-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .dashboard-card h3 {
+      color: #2c3e50;
+      margin-top: 0;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 10px;
+    }
+
+    .badge-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .badge {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(145deg, #e1f5fe, #b3e5fc);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .badge:hover {
+      transform: scale(1.1);
+    }
+
+    .badge.earned {
+      background: linear-gradient(145deg, #d4edda, #c3e6cb);
+    }
+
+    .badge-icon {
+      font-size: 30px;
+    }
+
+    .badge-name {
+      font-size: 12px;
+      margin-top: 5px;
+      text-align: center;
+    }
+
+    .activity-item {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .activity-date {
+      font-size: 14px;
+      color: #7f8c8d;
+    }
+
+    .hint-btn {
+      background: linear-gradient(45deg, #f39c12, #e67e22);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 8px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .hint-btn:hover {
+      background: linear-gradient(45deg, #e67e22, #d35400);
+      transform: translateY(-2px);
+    }
+
+    .category-selector {
+      margin: 20px auto;
+      max-width: 300px;
+    }
+
+    .category-selector select {
+      width: 100%;
+      padding: 10px 15px;
+      font-size: 18px;
+      border-radius: 10px;
+      border: 2px solid #416492;
+      background: white;
+      cursor: pointer;
+    }
+
+    .number-color-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    .number-card,
+    .color-card {
+      width: 120px;
+      height: 120px;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(145deg, #e3f2fd, #bbdefb);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .number-card:hover,
+    .color-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .number-value,
+    .color-name {
+      font-size: 36px;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+
+    .number-word,
+    .color-example {
+      font-size: 18px;
+      color: #7f8c8d;
+      margin-top: 5px;
+    }
+
+    .color-card.red {
+      background: linear-gradient(145deg, #ffcdd2, #ef9a9a);
+    }
+
+    .color-card.blue {
+      background: linear-gradient(145deg, #bbdefb, #90caf9);
+    }
+
+    .color-card.green {
+      background: linear-gradient(145deg, #c8e6c9, #a5d6a7);
+    }
+
+    .color-card.yellow {
+      background: linear-gradient(145deg, #fff9c4, #fff59d);
+    }
+
+    .color-card.purple {
+      background: linear-gradient(145deg, #e1bee7, #ce93d8);
+    }
+
+    .color-card.orange {
+      background: linear-gradient(145deg, #ffe0b2, #ffcc80);
+    }
+
+    .daily-challenge-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .challenge-header {
+      background: linear-gradient(145deg, #fff8e1, #ffecb3);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .challenge-date {
+      font-size: 18px;
+      color: #e65100;
+      margin-bottom: 10px;
+    }
+
+    .challenge-progress {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 15px;
+    }
+
+    .challenge-timer {
+      font-size: 24px;
+      font-weight: bold;
+      color: #e65100;
+    }
+
+    .challenge-item {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .challenge-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .challenge-item.completed {
+      background: linear-gradient(145deg, #d4edda, #c3e6cb);
+    }
+
+    .challenge-question {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #2c3e50;
+    }
+
+    .challenge-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .challenge-option {
+      background: #f8f9fa;
+      border: 2px solid #dee2e6;
+      border-radius: 10px;
+      padding: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .challenge-option:hover {
+      background: #e9ecef;
+    }
+
+    .challenge-option.selected {
+      background: linear-gradient(45deg, #3498db, #2980b9);
+      color: white;
+      border-color: #2980b9;
+    }
+
+    .challenge-option.correct {
+      background: linear-gradient(45deg, #4CAF50, #45a049);
+      color: white;
+      border-color: #45a049;
+    }
+
+    .challenge-option.incorrect {
+      background: linear-gradient(45deg, #e74c3c, #c0392b);
+      color: white;
+      border-color: #c0392b";
+
+    }
+
+    .challenge-result {
+      margin-top: 15px;
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .challenge-result.success {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .challenge-result.error {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    .challenge-reward {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #e65100;
+    }
+
+    .challenge-complete {
+      text-align: center;
+      margin-top: 30px;
+      padding: 20px;
+      background: linear-gradient(145deg, #d4edda, #c3e6cb);
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .challenge-complete h3 {
+      font-size: 24px;
+      color: #155724;
+      margin-bottom: 10px;
+    }
+
+    .challenge-complete p {
+      font-size: 18px;
+      color: #155724;
+    }
+
+    .single-sentence-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px auto;
+      max-width: 600px;
+    }
+
+    .single-sentence-card {
+      width: 400px;
+      height: 400px;
+      margin-bottom: 20px;
+    }
+
+    .sentence-navigation {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 300px;
+      margin-top: 20px;
+    }
+
+    .sentence-progress-text {
+      font-size: 18px;
+      font-weight: bold;
+      color: #2c3e50;
+      margin: 10px 0;
+    }
+
+    .single-quiz-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px auto;
+      max-width: 600px;
+    }
+
+    .single-quiz-card {
+      width: 400px;
+      height: 400px;
+      margin-bottom: 20px;
+    }
+
+    .quiz-navigation {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 300px;
+      margin-top: 20px;
+    }
+
+    .quiz-progress-text {
+      font-size: 18px;
+      font-weight: bold;
+      color: #2c3e50;
+      margin: 10px 0;
+    }
+
+    .back-btn {
+      margin: 15px;
+      padding: 12px 24px;
+      font-size: 18px;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(45deg, #e74c3c, #c0392b);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: linear-gradient(45deg, #c0392b, #e74c3c);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .home-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .section-title {
+      top: auto;
+      font-size: 2.2rem;
+      color: #34495e;
+      margin: 80px 0 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <ul class="nav-list">
+        <div class="logo">
+          <i class="fas fa-leaf"></i>
+          <span>KidsLearn</span>
+        </div>
+        <li class="nav-item"><a href="home.html" class="nav-link active" data-page="home">ပင်မစာမျက်နှာ</a></li>
+        <li class="nav-item"><a href="home.html" class="nav-link" data-page="tutorial">သင်ခန်းစာများ</a></li>
+        <li class="nav-item"><a href="chat.html" class="nav-link" data-page="chat">စကားပြောခန်း</a></li>
+        <li class="nav-item"><a href="profile.html" class="nav-link" data-page="translate">အကောင့်ဝင်ရန်</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div id="homePage" class="home-page">
+    <h1>English for Kids</h1>
+    <h2 class="section-title">Choose a Learning Activity</h2>
+    <div class="tabs" role="tablist">
+      <button class="tab-btn" onclick="showSection('az')" role="tab" aria-selected="false" aria-controls="az">
+        <span class="tab-icon">🔤</span>
+        <span class="tab-text">A–Z</span>
+      </button>
+      <button class="tab-btn" onclick="showSection('vocabulary')" role="tab" aria-selected="false"
+        aria-controls="vocabulary">
+        <span class="tab-icon">📚</span>
+        <span class="tab-text">Vocab</span>
+      </button>
+      <button class="tab-btn" onclick="showSection('sentences')" role="tab" aria-selected="false"
+        aria-controls="sentences">
+        <span class="tab-icon">✍️</span>
+        <span class="tab-text">Sentences</span>
+      </button>
+      <button class="tab-btn" onclick="showSection('opposites')" role="tab" aria-selected="false"
+        aria-controls="opposites">
+        <span class="tab-icon">🔄</span>
+        <span class="tab-text">Opposites</span>
+      </button>
+      <button class="tab-btn" onclick="showSection('sightwords')" role="tab" aria-selected="false"
+        aria-controls="sightwords">
+        <span class="tab-icon">👀</span>
+        <span class="tab-text">Sight Words</span>
+      </button>
+      <button class="tab-btn" onclick="showSection('numbers-colors')" role="tab" aria-selected="false"
+        aria-controls="numbers-colors">
+        <span class="tab-icon">🔢</span>
+        <span class="tab-text">Numbers</span>
+      </button>
+      <button class="tab-btn" onclick="showSection('daily-challenge')" role="tab" aria-selected="false"
+        aria-controls="daily-challenge">
+        <span class="tab-icon">🌟</span>
+        <span class="tab-text">Challenge</span>
+      </button>
+      <button class="tab-btn" onclick="showSection('quiz')" role="tab" aria-selected="false" aria-controls="quiz">
+        <span class="tab-icon">❓</span>
+        <span class="tab-text">Quiz</span>
+      </button>
+      <button class="tab-btn" onclick="showSection('dashboard')" role="tab" aria-selected="false"
+        aria-controls="dashboard">
+        <span class="tab-icon">📊</span>
+        <span class="tab-text">Dashboard</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- A–Z Cards -->
+  <div id="az" class="section" style="display: none;" role="tabpanel" aria-labelledby="az-tab">
+    <h2 class="section-title">A-Z Cards</h2>
+    <div class="flash-card" id="flashCard">
+      <div class="flash-card-inner">
+        <div class="flash-card-front">
+          <div class="letter" id="letter">A</div>
+          <div class="image" id="azImage">🍎</div>
+          <div style="font-size: 18px; color: #7f8c8d; margin-top: 20px;">Click "Flip Card" to see the word</div>
+        </div>
+        <div class="flash-card-back">
+          <div class="flash-card-word" id="azWord">Apple</div>
+          <div style="font-size: 20px; margin-top: 20px;">This word starts with the letter</div>
+          <div class="letter" style="margin-top: 10px;" id="backLetter">A</div>
+        </div>
+      </div>
+    </div>
+    <button class="flip-btn" onclick="flipCard()" aria-label="Flip card to see the word">Flip Card</button>
+    <button class="quiz-btn" onclick="startAZQuiz()" aria-label="Start A-Z quiz">Quiz</button>
+    <button class="nav" onclick="prevCard('az')" aria-label="Previous card">⬅ Prev</button>
+    <button class="nav" onclick="playSound('az')" aria-label="Play sound">🔊 Voice</button>
+    <button class="nav" onclick="nextCard('az')" aria-label="Next card">Next ➡</button>
+    <button class="back-btn" onclick="showHome()">🏠</button>
+  </div>
+
+  <!-- Vocabulary Cards -->
+  <div id="vocabulary" class="section" style="display: none;" role="tabpanel" aria-labelledby="vocabulary-tab">
+    <h2 class="section-title">Vocabulary</h2>
+    <div class="category-selector">
+      <select id="vocabCategory" onchange="changeVocabCategory()">
+        <option value="animals">Animals</option>
+        <option value="food">Food</option>
+        <option value="family">Family</option>
+        <option value="objects">Objects</option>
+      </select>
+    </div>
+    <div class="card" id="vocabCard">
+      <div class="image" id="vocabImage">🐶</div>
+      <div class="word" id="vocabWord">Dog</div>
+      <div class="phonics" id="vocabPhonics">/d/</div>
+    </div>
+    <button class="quiz-btn" onclick="startVocabularyQuiz()" aria-label="Start vocabulary quiz">Quiz</button>
+    <button class="nav" onclick="prevCard('vocab')" aria-label="Previous card">⬅ Prev</button>
+    <button class="nav" onclick="playSound('vocab')" aria-label="Play sound">🔊 Voice</button>
+    <button class="nav" onclick="nextCard('vocab')" aria-label="Next card">Next ➡</button>
+    <button class="back-btn" onclick="showHome()">🏠</button>
+  </div>
+
+  <!-- Simple Sentences -->
+  <div id="sentences" class="section" style="display: none;" role="tabpanel" aria-labelledby="sentences-tab">
+    <h2 class="section-title">Simple Sentences</h2>
+    <div class="passage">
+      Tom is a boy. <br>
+      He has a cat named Mimi.<br>
+      Every morning, Tom feeds Mimi fish and plays with her.<br>
+      After school, Tom goes to the park and meets his friends.<br>
+      He likes to play football and ride his bike.<br>
+      In the evening, Tom reads books and eats an apple.<br>
+      Mimi sleeps on his bed at night.
+    </div>
+    <div class="progress-container">
+      <div class="score-display" id="sentenceScore">Score: 0/10</div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="sentenceProgress"></div>
+      </div>
+    </div>
+    <div class="single-sentence-container">
+      <div class="sentence-progress-text" id="sentenceProgressText">Sentence 1 of 10</div>
+      <div class="sentence-card single-sentence-card" id="singleSentenceCard">
+        <div class="sentence" id="currentSentence">1.Tom has a ___ named Mimi.</div>
+        <select id="currentSentenceSelect" aria-label="Select answer for current sentence">
+          <option value="">Select an answer</option>
+        </select>
+        <button onclick="checkCurrentAnswer()" aria-label="Check answer for current sentence">Check Answer</button>
+        <div class="result" id="currentResult" role="status" aria-live="polite"></div>
+      </div>
+      <div class="sentence-navigation">
+        <button class="nav" onclick="prevSentence()" aria-label="Previous sentence">⬅ Prev</button>
+        <button class="nav" onclick="nextSentence()" aria-label="Next sentence">Next ➡</button>
+        <button class="back-btn" onclick="showHome()">🏠</button>
+      </div>
+    </div>
+    <button class="quiz-btn" onclick="startSentencesQuiz()" aria-label="Start sentences quiz">Quiz</button>
+  </div>
+
+  <!-- Opposites -->
+  <div id="opposites" class="section" style="display: none;" role="tabpanel" aria-labelledby="opposites-tab">
+    <h2 class="section-title">Opposites Matching Game</h2>
+    <p>Big>>Small<br>Hot>>Cold <br>Fast>>Slow<br> Tall>>Short <br>Light>>Heavy</p>
+    <button class="quiz-btn" onclick="startOppositesQuiz()" aria-label="Start opposites quiz">Quiz</button>
+    <div class="progress-container">
+      <div class="score-display" id="oppositesScore">Matches: 0/5</div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="oppositesProgress"></div>
+      </div>
+    </div>
+    <div id="oppositesContainer" style="display:flex; flex-wrap:wrap; justify-content:center; gap:15px;"></div>
+    <button class="back-btn" onclick="showHome()">🏠</button>
+  </div>
+
+  <!-- Sight Words -->
+  <div id="sightwords" class="section" style="display: none;" role="tabpanel" aria-labelledby="sightwords-tab">
+    <h2 class="section-title">Sight Words Learning</h2>
+    <div class="sight-words-intro">
+      <p><strong>What are Sight Words?</strong></p>
+      <p>Sight words ဆိုသည်မှာ ရေးထားသော စာသားတွင် မကြာခဏ ပါ၀င်လာတတ်သော စကားလုံးများ ဖြစ်သည်။ ဤစကားလုံးများကို
+        သင်ယူခြင်းသည် ကလေးများအား အသံထွက်ရန်မလိုဘဲ ကလေးများကို ချက်ချင်းမှတ်မိ‌‌ စေ နိုင်သောကြောင့် ကလေးများကို English
+        စာကြောင်းများကို ပိုမိုကျွမ်းကျင်စွာဖတ်နိုင်ရန် အတွက်ကူညီပေးပါသည်။</p>
+    </div>
+    <div class="sight-word-flashcard" id="sightWordFlashcard">
+      <div class="sight-word-flashcard-inner">
+        <div class="sight-word-flashcard-front">
+          <div class="sight-word-display" id="sightWordDisplay">I</div>
+          <div class="sight-word-example">Click "Flip Card" to see an example sentence</div>
+        </div>
+        <div class="sight-word-flashcard-back">
+          <div class="sight-word-sentence" id="sightWordSentence">I am happy.</div>
+          <div class="sight-word-example">This sentence uses the sight word correctly</div>
+        </div>
+      </div>
+    </div>
+    <div class="sight-word-controls">
+      <button class="flip-btn" onclick="flipSightWordCard()" aria-label="Flip card to see example sentence">Flip
+        Card</button>
+      <button class="nav" onclick="prevSightWord()" aria-label="Previous sight word">⬅ Prev</button>
+      <button class="nav" onclick="playSound('sight')" aria-label="Play sound">🔊 Voice</button>
+      <button class="nav" onclick="nextSightWord()" aria-label="Next sight word">Next ➡</button>
+      <button class="quiz-btn" onclick="startSightWordsQuiz()" aria-label="Start sight words quiz">Quiz</button>
+    </div>
+    <div class="sight-word-practice">
+      <h3>Practice All Sight Words</h3>
+      <div class="sight-word-practice-items" id="sightWordPracticeItems"></div>
+    </div>
+    <button class="back-btn" onclick="showHome()">🏠</button>
+  </div>
+
+  <!-- Numbers & Colors -->
+  <div id="numbers-colors" class="section" style="display: none;" role="tabpanel" aria-labelledby="numbers-colors-tab">
+    <h2 class="section-title">Numbers & Colors</h2>
+    <h3>Numbers</h3>
+    <div class="number-color-container" id="numbersContainer"></div>
+    <h3>Colors</h3>
+    <div class="number-color-container" id="colorsContainer"></div>
+    <button class="quiz-btn" onclick="startNumbersColorsQuiz()" aria-label="Start numbers and colors quiz">Quiz</button>
+    <button class="back-btn" onclick="showHome()">🏠</button>
+  </div>
+
+  <!-- Daily Challenge -->
+  <div id="daily-challenge" class="section" style="display: none;" role="tabpanel"
+    aria-labelledby="daily-challenge-tab">
+    <h2 class="section-title">Daily Challenge</h2>
+    <div class="daily-challenge-container">
+      <div class="challenge-header">
+        <h2>Daily Challenge</h2>
+        <div class="challenge-date" id="challengeDate"></div>
+        <p>Complete today's challenges to earn bonus stars!</p>
+        <div class="challenge-progress">
+          <div class="score-display" id="challengeScore">Completed: 0/5</div>
+          <div class="challenge-timer" id="challengeTimer">Time: 00:00</div>
+          <button class="back-btn" onclick="showHome()">🏠</button>
+        </div>
+      </div>
+      <div id="challengeContainer"></div>
+      <div id="challengeComplete" class="challenge-complete" style="display: none;">
+        <h3>🎉 Challenge Complete! 🎉</h3>
+        <p>You've completed all today's challenges and earned 15 bonus stars!</p>
+        <button class="quiz-btn" onclick="generateDailyChallenge()">New Challenge</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quiz Section -->
+  <div id="quiz" class="section" style="display: none;" role="tabpanel" aria-labelledby="quiz-tab">
+    <h2 class="section-title">Test Your Knowledge</h2>
+    <div class="quiz-selector">
+      <select id="quizType" onchange="loadQuiz()">
+        <option value="">Select a quiz</option>
+        <option value="az">A-Z Quiz</option>
+        <option value="vocabulary">Vocabulary Quiz</option>
+        <option value="sentences">Sentences Quiz</option>
+        <option value="opposites">Opposites Quiz</option>
+        <option value="sightwords">Sight Words Quiz</option>
+        <option value="numbers-colors">Numbers & Colors Quiz</option>
+      </select>
+    </div>
+    <div id="quizContainer" class="quiz-container"></div>
+    <button class="back-btn" onclick="showHome()">🏠</button>
+  </div>
+
+  <!-- Dashboard Section -->
+  <div id="dashboard" class="section" style="display: none;" role="tabpanel" aria-labelledby="dashboard-tab">
+    <h2 class="section-title">Learning Dashboard</h2>
+    <div class="dashboard-container">
+      <div class="dashboard-grid">
+        <div class="dashboard-card">
+          <h3>Progress Overview</h3>
+          <div id="progressOverview"></div>
+        </div>
+        <div class="dashboard-card">
+          <h3>Achievements</h3>
+          <div class="badge-container" id="badgesContainer"></div>
+        </div>
+        <div class="dashboard-card">
+          <h3>Recent Activity</h3>
+          <div id="recentActivity"></div>
+        </div>
+      </div>
+      <button class="back-btn" onclick="showHome()">🏠</button>
+    </div>
+  </div>
+
+  <!-- Notification element -->
+  <div id="notification" class="notification" role="alert" aria-live="polite"></div>
+
+  <script>
+    // ===== Notification System =====
+    function showNotification(message, type = 'success') {
+      const notification = document.getElementById('notification');
+      notification.textContent = message;
+      // Set background color based on type
+      if (type === 'success') {
+        notification.style.background = 'linear-gradient(45deg, #2ecc71, #27ae60)';
+      } else if (type === 'error') {
+        notification.style.background = 'linear-gradient(45deg, #e74c3c, #c0392b)';
+      } else if (type === 'info') {
+        notification.style.background = 'linear-gradient(45deg, #3498db, #2980b9)';
+      }
+      notification.classList.add('show');
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 3000);
+    }
+
+    // ===== Reward System =====
+    const rewardSystem = {
+      stars: 0,
+      badges: [],
+      streak: 0,
+      lastVisit: null
+    };
+
+    const availableBadges = [
+      { id: 'first-visit', name: 'First Visit', icon: '👋', description: 'Welcome to English for Kids!' },
+      { id: 'az-master', name: 'A-Z Master', icon: '🔤', description: 'Complete all A-Z cards' },
+      { id: 'vocab-expert', name: 'Vocabulary Expert', icon: '📚', description: 'Learn 20 vocabulary words' },
+      { id: 'sentence-hero', name: 'Sentence Hero', icon: '✍️', description: 'Complete all sentence exercises' },
+      { id: 'opposites-champ', name: 'Opposites Champion', icon: '🔄', description: 'Match all opposite pairs' },
+      { id: 'sight-words-pro', name: 'Sight Words Pro', icon: '👀', description: 'Learn all sight words' },
+      { id: 'quiz-master', name: 'Quiz Master', icon: '🏆', description: 'Score 100% on any quiz' },
+      { id: 'streak-7', name: '7-Day Streak', icon: '🔥', description: 'Use the app for 7 consecutive days' },
+      { id: 'daily-champion', name: 'Daily Champion', icon: '🌟', description: 'Complete 5 daily challenges' }
+    ];
+
+    function awardStars(amount) {
+      rewardSystem.stars += amount;
+      showNotification(`You earned ${amount} star${amount > 1 ? 's' : ''}! ⭐`, 'success');
+      saveState();
+    }
+
+    function checkAndAwardBadges() {
+      // Check for first visit badge
+      if (!rewardSystem.badges.includes('first-visit')) {
+        awardBadge('first-visit');
+      }
+      // Check for A-Z master badge
+      if (azIndex === azCards.length - 1 && !rewardSystem.badges.includes('az-master')) {
+        awardBadge('az-master');
+      }
+      // Check for vocabulary expert badge
+      if (vocabIndex >= 19 && !rewardSystem.badges.includes('vocab-expert')) {
+        awardBadge('vocab-expert');
+      }
+      // Check for sentence hero badge
+      if (sentenceProgress.correct === 10 && !rewardSystem.badges.includes('sentence-hero')) {
+        awardBadge('sentence-hero');
+      }
+      // Check for opposites champion badge
+      if (oppositesProgress.matched === 5 && !rewardSystem.badges.includes('opposites-champ')) {
+        awardBadge('opposites-champ');
+      }
+      // Check for sight words pro badge
+      if (sightIndex === sightWordsData.length - 1 && !rewardSystem.badges.includes('sight-words-pro')) {
+        awardBadge('sight-words-pro');
+      }
+      // Check for 7-day streak badge
+      if (rewardSystem.streak >= 7 && !rewardSystem.badges.includes('streak-7')) {
+        awardBadge('streak-7');
+      }
+    }
+
+    function awardBadge(badgeId) {
+      if (!rewardSystem.badges.includes(badgeId)) {
+        rewardSystem.badges.push(badgeId);
+        const badge = availableBadges.find(b => b.id === badgeId);
+        showNotification(`Badge earned: ${badge.name} ${badge.icon}`, 'success');
+        updateRewardDisplay();
+        saveState();
+      }
+    }
+
+    function updateStreak() {
+      const today = new Date().toDateString();
+      const lastVisit = rewardSystem.lastVisit;
+      if (lastVisit) {
+        const lastDate = new Date(lastVisit);
+        const todayDate = new Date(today);
+        const diffTime = Math.abs(todayDate - lastDate);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        if (diffDays === 1) {
+          rewardSystem.streak++;
+        } else if (diffDays > 1) {
+          rewardSystem.streak = 1;
+        }
+      } else {
+        rewardSystem.streak = 1;
+      }
+      rewardSystem.lastVisit = today;
+      updateRewardDisplay();
+      saveState();
+    }
+
+    function updateRewardDisplay() {
+      // Removed reward container display update
+    }
+
+    // ===== Local Storage Functions =====
+    function saveState() {
+      const state = {
+        activeTab: document.querySelector('.tab-btn.active')?.textContent || '',
+        azIndex: azIndex,
+        vocabIndex: vocabIndex,
+        vocabCategory: currentVocabCategory,
+        sightIndex: sightIndex,
+        sentenceProgress: sentenceProgress,
+        oppositesProgress: oppositesProgress,
+        quizScores: quizScores,
+        rewardSystem: rewardSystem,
+        activityLog: activityLog,
+        dailyChallenge: {
+          date: new Date().toDateString(),
+          completed: dailyChallengeCompleted
+        },
+        currentSentenceIndex: currentSentenceIndex,
+        currentQuizIndex: currentQuizIndex,
+        currentQuizType: currentQuizType
+      };
+      localStorage.setItem('englishForKidsState', JSON.stringify(state));
+    }
+
+    function loadState() {
+      const savedState = localStorage.getItem('englishForKidsState');
+      if (savedState) {
+        const state = JSON.parse(savedState);
+        // Set card indices
+        azIndex = state.azIndex || 0;
+        vocabIndex = state.vocabIndex || 0;
+        currentVocabCategory = state.vocabCategory || 'animals';
+        sightIndex = state.sightIndex || 0;
+        currentSentenceIndex = state.currentSentenceIndex || 0;
+        currentQuizIndex = state.currentQuizIndex || 0;
+        currentQuizType = state.currentQuizType || '';
+        // Set progress
+        sentenceProgress = state.sentenceProgress || { correct: 0, total: 10, answered: new Set() };
+        oppositesProgress = state.oppositesProgress || { matched: 0, total: oppositePairs.length };
+        quizScores = state.quizScores || {};
+        // Load reward system
+        if (state.rewardSystem) {
+          rewardSystem.stars = state.rewardSystem.stars || 0;
+          rewardSystem.badges = state.rewardSystem.badges || [];
+          rewardSystem.streak = state.rewardSystem.streak || 0;
+          rewardSystem.lastVisit = state.rewardSystem.lastVisit;
+        }
+        // Load activity log
+        activityLog = state.activityLog || [];
+        // Load daily challenge
+        if (state.dailyChallenge) {
+          const today = new Date().toDateString();
+          if (state.dailyChallenge.date === today) {
+            dailyChallengeCompleted = state.dailyChallenge.completed || false;
+          } else {
+            dailyChallengeCompleted = false;
+          }
+        }
+        // Update displays
+        updateProgressDisplay();
+        updateDashboard();
+        showCurrentSentence();
+        // Update streak
+        updateStreak();
+      } else {
+        // First visit
+        updateStreak();
+        awardBadge('first-visit');
+      }
+    }
+
+    // ===== Activity Log =====
+    let activityLog = [];
+
+    function logActivity(activity) {
+      const timestamp = new Date();
+      activityLog.unshift({
+        activity: activity,
+        timestamp: timestamp
+      });
+      // Keep only the last 10 activities
+      if (activityLog.length > 10) {
+        activityLog = activityLog.slice(0, 10);
+      }
+      updateDashboard();
+      saveState();
+    }
+
+    // ===== Dashboard =====
+    function updateDashboard() {
+      // Update progress overview
+      const progressOverview = document.getElementById('progressOverview');
+      if (progressOverview) {
+        progressOverview.innerHTML = `
+          <div class="progress-item">
+            <div>A-Z Cards: ${azIndex + 1}/${azCards.length}</div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: ${((azIndex + 1) / azCards.length) * 100}%"></div>
+            </div>
+          </div>
+          <div class="progress-item">
+            <div>Vocabulary: ${vocabIndex + 1}/${vocabCards[currentVocabCategory].length}</div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: ${((vocabIndex + 1) / vocabCards[currentVocabCategory].length) * 100}%"></div>
+            </div>
+          </div>
+          <div class="progress-item">
+            <div>Sentences: ${sentenceProgress.correct}/10</div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: ${(sentenceProgress.correct / 10) * 100}%"></div>
+            </div>
+          </div>
+          <div class="progress-item">
+            <div>Opposites: ${oppositesProgress.matched}/5</div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: ${(oppositesProgress.matched / 5) * 100}%"></div>
+            </div>
+          </div>
+        `;
+      }
+      // Update badges
+      const badgesContainer = document.getElementById('badgesContainer');
+      if (badgesContainer) {
+        badgesContainer.innerHTML = '';
+        availableBadges.forEach(badge => {
+          const badgeElement = document.createElement('div');
+          badgeElement.className = `badge ${rewardSystem.badges.includes(badge.id) ? 'earned' : ''}`;
+          badgeElement.innerHTML = `
+            <div class="badge-icon">${badge.icon}</div>
+            <div class="badge-name">${badge.name}</div>
+          `;
+          badgeElement.title = badge.description;
+          badgesContainer.appendChild(badgeElement);
+        });
+      }
+      // Update recent activity
+      const recentActivity = document.getElementById('recentActivity');
+      if (recentActivity) {
+        recentActivity.innerHTML = '';
+        if (activityLog.length === 0) {
+          recentActivity.innerHTML = '<div class="activity-item">No activity yet</div>';
+        } else {
+          activityLog.forEach(item => {
+            const activityElement = document.createElement('div');
+            activityElement.className = 'activity-item';
+            const date = new Date(item.timestamp);
+            const formattedDate = `${date.getDate()}/${date.getMonth() + 1} ${date.getHours()}:${date.getMinutes().toString().padStart(2, '0')}`;
+            activityElement.innerHTML = `
+              <div>${item.activity}</div>
+              <div class="activity-date">${formattedDate}</div>
+            `;
+            recentActivity.appendChild(activityElement);
+          });
+        }
+      }
+    }
+
+    // ===== Tabs =====
+    function showSection(section, save = true) {
+      // Hide home page
+      document.getElementById('homePage').style.display = 'none';
+      // Hide all sections
+      document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+      // Show the selected section
+      document.getElementById(section).style.display = 'block';
+      // Initialize section-specific content if needed
+      if (section === 'opposites') {
+        initOppositesGame();
+      } else if (section === 'numbers-colors') {
+        initNumbersColors();
+      } else if (section === 'dashboard') {
+        updateDashboard();
+      } else if (section === 'daily-challenge') {
+        initDailyChallenge();
+      } else if (section === 'sentences') {
+        showCurrentSentence();
+      } else if (section === 'quiz') {
+        if (currentQuizType) {
+          showCurrentQuizQuestion();
+        }
+      }
+      // Log activity
+      if (save) {
+        const sectionNames = {
+          'az': 'A-Z Cards',
+          'vocabulary': 'Vocabulary',
+          'sentences': 'Simple Sentences',
+          'opposites': 'Opposites',
+          'sightwords': 'Sight Words',
+          'numbers-colors': 'Numbers & Colors',
+          'daily-challenge': 'Daily Challenge',
+          'quiz': 'Quiz',
+          'dashboard': 'Dashboard'
+        };
+        logActivity(`Visited ${sectionNames[section]}`);
+        saveState();
+      }
+    }
+
+    // Function to show home page (tabs only)
+    function showHome() {
+      // Hide all sections
+      document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+      // Show home page
+      document.getElementById('homePage').style.display = 'flex';
+      // Remove active class from all tabs
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    }
+
+    // ===== A-Z Flash Cards =====
+    const azCards = [
+      { letter: "A", image: "🍎", word: "Apple" }, { letter: "B", image: "🐻", word: "Bear" },
+      { letter: "C", image: "🐱", word: "Cat" }, { letter: "D", image: "🐶", word: "Dog" },
+      { letter: "E", image: "🐘", word: "Elephant" }, { letter: "F", image: "🐠", word: "Fish" },
+      { letter: "G", image: "🦒", word: "Giraffe" }, { letter: "H", image: "🏠", word: "House" },
+      { letter: "I", image: "🍦", word: "Ice Cream" }, { letter: "J", image: "🍇", word: "Jam" },
+      { letter: "K", image: "🐨", word: "Koala" }, { letter: "L", image: "🦁", word: "Lion" },
+      { letter: "M", image: "🐒", word: "Monkey" }, { letter: "N", image: "🐦", word: "Nest" },
+      { letter: "O", image: "🍊", word: "Orange" }, { letter: "P", image: "🐧", word: "Penguin" },
+      { letter: "Q", image: "👑", word: "Queen" }, { letter: "R", image: "🐇", word: "Rabbit" },
+      { letter: "S", image: "🐍", word: "Snake" }, { letter: "T", image: "🐯", word: "Tiger" },
+      { letter: "U", image: "☂️", word: "Umbrella" }, { letter: "V", image: "🎻", word: "Violin" },
+      { letter: "W", image: "🐳", word: "Whale" }, { letter: "X", image: "🎶", word: "Xylophone" },
+      { letter: "Y", image: "🪀", word: "Yo-Yo" }, { letter: "Z", image: "🦓", word: "Zebra" }
+    ];
+    let azIndex = 0;
+
+    // Flip card function
+    function flipCard() {
+      const flashCard = document.getElementById('flashCard');
+      flashCard.classList.toggle('flipped');
+    }
+
+    // ===== Vocabulary Cards =====
+    const vocabCards = {
+      animals: [
+        { image: "🐶", word: "Dog", phonics: "/d/" },
+        { image: "🐱", word: "Cat", phonics: "/k/" },
+        { image: "🐘", word: "Elephant", phonics: "/ɛ/" },
+        { image: "🦁", word: "Lion", phonics: "/l/" },
+        { image: "🐵", word: "Monkey", phonics: "/m/" }
+      ],
+      food: [
+        { image: "🍎", word: "Apple", phonics: "/æ/" },
+        { image: "🍌", word: "Banana", phonics: "/b/" },
+        { image: "🍇", word: "Grapes", phonics: "/g/" },
+        { image: "🍓", word: "Strawberry", phonics: "/str/" },
+        { image: "🥕", word: "Carrot", phonics: "/k/" }
+      ],
+      family: [
+        { image: "👨", word: "Father", phonics: "/f/" },
+        { image: "👩", word: "Mother", phonics: "/m/" },
+        { image: "👧", word: "Sister", phonics: "/s/" },
+        { image: "👦", word: "Brother", phonics: "/br/" },
+        { image: "👴", word: "Grandfather", phonics: "/gr/" }
+      ],
+      objects: [
+        { image: "🚗", word: "Car", phonics: "/k/" },
+        { image: "🏠", word: "House", phonics: "/h/" },
+        { image: "📚", word: "Book", phonics: "/b/" },
+        { image: "⚽", word: "Ball", phonics: "/b/" },
+        { image: "🎨", word: "Pencil", phonics: "/p/" }
+      ]
+    };
+    let vocabIndex = 0;
+    let currentVocabCategory = 'animals';
+
+    function changeVocabCategory() {
+      currentVocabCategory = document.getElementById('vocabCategory').value;
+      vocabIndex = 0;
+      showCard('vocab');
+      saveState();
+    }
+
+    // ===== Numbers & Colors =====
+    const numbers = [
+      { value: 1, word: "One", image: "1️⃣" },
+      { value: 2, word: "Two", image: "2️⃣" },
+      { value: 3, word: "Three", image: "3️⃣" },
+      { value: 4, word: "Four", image: "4️⃣" },
+      { value: 5, word: "Five", image: "5️⃣" },
+      { value: 6, word: "Six", image: "6️⃣" },
+      { value: 7, word: "Seven", image: "7️⃣" },
+      { value: 8, word: "Eight", image: "8️⃣" },
+      { value: 9, word: "Nine", image: "9️⃣" },
+      { value: 10, word: "Ten", image: "🔟" }
+    ];
+
+    const colors = [
+      { name: "Red", example: "Apple", class: "red" },
+      { name: "Blue", example: "Sky", class: "blue" },
+      { name: "Green", example: "Grass", class: "green" },
+      { name: "Yellow", example: "Sun", class: "yellow" },
+      { name: "Purple", example: "Grapes", class: "purple" },
+      { name: "Orange", example: "Orange", class: "orange" }
+    ];
+
+    function initNumbersColors() {
+      // Initialize numbers
+      const numbersContainer = document.getElementById('numbersContainer');
+      if (numbersContainer) {
+        numbersContainer.innerHTML = '';
+        numbers.forEach(num => {
+          const card = document.createElement('div');
+          card.className = 'number-card';
+          card.innerHTML = `
+            <div class="number-value">${num.value}</div>
+            <div class="number-word">${num.word}</div>
+          `;
+          card.onclick = function () {
+            speakText(`${num.value}, ${num.word}`);
+            showNotification(`Number: ${num.word}`);
+            awardStars(1);
+          };
+          numbersContainer.appendChild(card);
+        });
+      }
+      // Initialize colors
+      const colorsContainer = document.getElementById('colorsContainer');
+      if (colorsContainer) {
+        colorsContainer.innerHTML = '';
+        colors.forEach(color => {
+          const card = document.createElement('div');
+          card.className = `color-card ${color.class}`;
+          card.innerHTML = `
+            <div class="color-name">${color.name}</div>
+            <div class="color-example">${color.example}</div>
+          `;
+          card.onclick = function () {
+            speakText(`${color.name}, like ${color.example}`);
+            showNotification(`Color: ${color.name}`);
+            awardStars(1);
+          };
+          colorsContainer.appendChild(card);
+        });
+      }
+    }
+
+    // ===== Sight Words =====
+    const sightWordsData = [
+      { word: "I", sentence: "I am happy." },
+      { word: "you", sentence: "You are my friend." },
+      { word: "we", sentence: "We play together." },
+      { word: "the", sentence: "The sun is bright." },
+      { word: "and", sentence: "I like apples and bananas." },
+      { word: "he", sentence: "He is running." },
+      { word: "she", sentence: "She is reading." },
+      { word: "it", sentence: "It is a cat." },
+      { word: "they", sentence: "They are jumping." },
+      { word: "me", sentence: "Give me the ball." }
+    ];
+    let sightIndex = 0;
+
+    // Initialize sight words practice section
+    function initSightWordsPractice() {
+      const container = document.getElementById('sightWordPracticeItems');
+      if (container) {
+        container.innerHTML = '';
+        sightWordsData.forEach(item => {
+          const element = document.createElement('div');
+          element.className = 'sight-word-practice-item';
+          element.textContent = item.word;
+          element.setAttribute('aria-label', `Practice sight word: ${item.word}`);
+          element.onclick = function () {
+            speakText(item.word);
+            showNotification(`Practicing: ${item.word}`);
+            awardStars(1);
+          };
+          container.appendChild(element);
+        });
+      }
+    }
+
+    // Show sight word card
+    function showSightWordCard() {
+      const word = sightWordsData[sightIndex];
+      document.getElementById("sightWordDisplay").textContent = word.word;
+      document.getElementById("sightWordSentence").textContent = word.sentence;
+      // Reset flip state when changing cards
+      const flashcard = document.getElementById('sightWordFlashcard');
+      flashcard.classList.remove('flipped');
+    }
+
+    function nextSightWord() {
+      sightIndex = (sightIndex + 1) % sightWordsData.length;
+      showSightWordCard();
+      saveState();
+      checkAndAwardBadges();
+    }
+
+    function prevSightWord() {
+      sightIndex = (sightIndex - 1 + sightWordsData.length) % sightWordsData.length;
+      showSightWordCard();
+      saveState();
+    }
+
+    function flipSightWordCard() {
+      const flashcard = document.getElementById('sightWordFlashcard');
+      flashcard.classList.toggle('flipped');
+    }
+
+    // ===== Text-to-Speech =====
+    function speakText(text) {
+      if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.volume = 0.8;
+        utterance.rate = 0.8;
+        utterance.pitch = 1.2;
+        speechSynthesis.speak(utterance);
+      } else {
+        showNotification("Speech synthesis not supported in your browser", 'error');
+      }
+    }
+
+    // ===== Show Cards =====
+    function showCard(section) {
+      if (section === 'az') {
+        const card = azCards[azIndex];
+        document.getElementById("letter").textContent = card.letter;
+        document.getElementById("azImage").textContent = card.image;
+        document.getElementById("azWord").textContent = card.word;
+        document.getElementById("backLetter").textContent = card.letter;
+        // Reset flip state when changing cards
+        const flashCard = document.getElementById('flashCard');
+        flashCard.classList.remove('flipped');
+        // Auto-pronounce the word
+        speakText(card.word);
+      } else if (section === 'vocab') {
+        const card = vocabCards[currentVocabCategory][vocabIndex];
+        document.getElementById("vocabImage").textContent = card.image;
+        document.getElementById("vocabWord").textContent = card.word;
+        document.getElementById("vocabPhonics").textContent = card.phonics;
+        // Auto-pronounce the word
+        speakText(card.word);
+      } else if (section === 'sight') {
+        showSightWordCard();
+        // Auto-pronounce the word
+        speakText(sightWordsData[sightIndex].word);
+      }
+    }
+
+    function nextCard(section) {
+      if (section === 'az') {
+        azIndex = (azIndex + 1) % azCards.length;
+        awardStars(1);
+      } else if (section === 'vocab') {
+        vocabIndex = (vocabIndex + 1) % vocabCards[currentVocabCategory].length;
+        awardStars(1);
+      } else if (section === 'sight') {
+        nextSightWord();
+        awardStars(1);
+      }
+      showCard(section);
+      saveState();
+      checkAndAwardBadges();
+    }
+
+    function prevCard(section) {
+      if (section === 'az') {
+        azIndex = (azIndex - 1 + azCards.length) % azCards.length;
+      } else if (section === 'vocab') {
+        vocabIndex = (vocabIndex - 1 + vocabCards[currentVocabCategory].length) % vocabCards[currentVocabCategory].length;
+      } else if (section === 'sight') {
+        prevSightWord();
+      }
+      showCard(section);
+      saveState();
+    }
+
+    function playSound(section) {
+      if (section === 'az') {
+        const card = azCards[azIndex];
+        speakText(card.word);
+      } else if (section === 'vocab') {
+        const card = vocabCards[currentVocabCategory][vocabIndex];
+        speakText(card.word);
+      } else if (section === 'sight') {
+        speakText(sightWordsData[sightIndex].word);
+      }
+    }
+
+    // ===== Simple Sentences =====
+    const sentences = [
+      { sentence: "1.Tom has a ___ named Mimi.", options: ["dog", "cat", "bird"], answer: "cat" },
+      { sentence: "2.Every morning, Tom ___ Mimi.", options: ["feeds", "ignores", "hugs"], answer: "feeds" },
+      { sentence: "3.Tom feeds Mimi ___.", options: ["milk", "fish", "bread"], answer: "fish" },
+      { sentence: "4.After school, Tom goes to the ___.", options: ["park", "school", "market"], answer: "park" },
+      { sentence: "5.Tom meets his ___ at the park.", options: ["friends", "teachers", "siblings"], answer: "friends" },
+      { sentence: "6.He likes to play ___.", options: ["football", "chess", "piano"], answer: "football" },
+      { sentence: "7.Tom rides his ___.", options: ["bike", "car", "skateboard"], answer: "bike" },
+      { sentence: "8.In the evening, Tom ___ books.", options: ["reads", "writes", "throws"], answer: "reads" },
+      { sentence: "9.Tom eats an ___ in the evening.", options: ["apple", "banana", "grape"], answer: "apple" },
+      { sentence: "10.Mimi sleeps on Tom's ___ at night.", options: ["bed", "sofa", "floor"], answer: "bed" },
+    ];
+
+    let sentenceProgress = {
+      correct: 0,
+      total: 10,
+      answered: new Set()
+    };
+    let currentSentenceIndex = 0;
+
+    function showCurrentSentence() {
+      const sentence = sentences[currentSentenceIndex];
+      document.getElementById("currentSentence").textContent = sentence.sentence;
+      // Update select options
+      const selectElement = document.getElementById("currentSentenceSelect");
+      if (selectElement) {
+        selectElement.innerHTML = '<option value="">Select an answer</option>';
+        sentence.options.forEach(option => {
+          const optionElement = document.createElement("option");
+          optionElement.value = option;
+          optionElement.textContent = option;
+          selectElement.appendChild(optionElement);
+        });
+      }
+      // Clear previous result
+      const resultElement = document.getElementById("currentResult");
+      if (resultElement) {
+        resultElement.textContent = "";
+        resultElement.style.backgroundColor = "";
+      }
+      // Update progress text
+      const progressTextElement = document.getElementById("sentenceProgressText");
+      if (progressTextElement) {
+        progressTextElement.textContent = `Sentence ${currentSentenceIndex + 1} of ${sentences.length}`;
+      }
+    }
+
+    function checkCurrentAnswer() {
+      const selected = document.getElementById("currentSentenceSelect").value;
+      const result = document.getElementById("currentResult");
+      const sentence = sentences[currentSentenceIndex];
+
+      if (!selected) {
+        result.textContent = "Please select an answer!";
+        result.style.color = "orange";
+        result.style.backgroundColor = "#fff3cd";
+        return;
+      }
+
+      if (selected === sentence.answer) {
+        result.textContent = "✅ Correct!";
+        result.style.color = "green";
+        result.style.backgroundColor = "#d4edda";
+        // Only update progress if this question hasn't been answered correctly before
+        if (!sentenceProgress.answered.has(currentSentenceIndex)) {
+          sentenceProgress.answered.add(currentSentenceIndex);
+          sentenceProgress.correct++;
+          awardStars(2);
+          updateProgressDisplay();
+          saveState();
+          checkAndAwardBadges();
+        }
+      } else {
+        result.textContent = `❌ Incorrect. The correct answer is: "${sentence.answer}"`;
+        result.style.color = "red";
+        result.style.backgroundColor = "#f8d7da";
+        // Don't mark as answered if incorrect, allowing retries
+        updateProgressDisplay();
+        saveState();
+      }
+    }
+
+    function nextSentence() {
+      currentSentenceIndex = (currentSentenceIndex + 1) % sentences.length;
+      showCurrentSentence();
+      saveState();
+    }
+
+    function prevSentence() {
+      currentSentenceIndex = (currentSentenceIndex - 1 + sentences.length) % sentences.length;
+      showCurrentSentence();
+      saveState();
+    }
+
+    // ===== Opposites Matching Game =====
+    const oppositePairs = [["Big", "Small"], ["Hot", "Cold"], ["Fast", "Slow"], ["Tall", "Short"], ["Light", "Heavy"]];
+    let oppCards = [];
+    let oppositesProgress = {
+      matched: 0,
+      total: oppositePairs.length
+    };
+    let firstCard = null, secondCard = null;
+    let lockBoard = false;
+
+    function initOppositesGame() {
+      // Reset game state
+      oppCards = [];
+      firstCard = null;
+      secondCard = null;
+      lockBoard = false;
+      oppositesProgress.matched = 0;
+
+      // Get the container
+      const oppContainer = document.getElementById("oppositesContainer");
+      if (!oppContainer) {
+        console.error("Opposites container not found");
+        return;
+      }
+
+      // Clear existing cards
+      oppContainer.innerHTML = '';
+
+      // Create and shuffle cards
+      oppositePairs.forEach(pair => oppCards.push(...pair));
+      oppCards = oppCards.sort(() => 0.8 - Math.random());
+
+      // Create card elements
+      oppCards.forEach(word => {
+        const card = document.createElement("div");
+        card.className = "opposite-card";
+        card.dataset.word = word;
+        card.textContent = "?";
+        card.setAttribute("aria-label", "Opposite card, click to reveal");
+
+        card.addEventListener("click", function () {
+          if (lockBoard) return;
+          if (card === firstCard) return;
+          if (card.classList.contains('matched')) return;
+
+          card.classList.add('revealed');
+          card.textContent = card.dataset.word;
+          card.setAttribute("aria-label", `Revealed card: ${card.dataset.word}`);
+
+          if (!firstCard) {
+            firstCard = card;
+            return;
+          }
+
+          secondCard = card;
+          lockBoard = true;
+
+          setTimeout(checkMatch, 800);
+        });
+
+        oppContainer.appendChild(card);
+      });
+
+      // Update progress display
+      updateProgressDisplay();
+    }
+
+    function checkMatch() {
+      const w1 = firstCard.dataset.word;
+      const w2 = secondCard.dataset.word;
+      let correct = false;
+
+      oppositePairs.forEach(pair => {
+        if (pair.includes(w1) && pair.includes(w2)) {
+          correct = true;
+        }
+      });
+
+      if (correct) {
+        firstCard.classList.add('matched');
+        secondCard.classList.add('matched');
+        firstCard.setAttribute("aria-label", `Matched card: ${w1}`);
+        secondCard.setAttribute("aria-label", `Matched card: ${w2}`);
+
+        // Update progress
+        oppositesProgress.matched++;
+        awardStars(3);
+        updateProgressDisplay();
+        saveState();
+        checkAndAwardBadges();
+
+        // Check if all pairs are matched
+        if (oppositesProgress.matched === oppositesProgress.total) {
+          showNotification("Congratulations! You've matched all the opposites!");
+        }
+      } else {
+        firstCard.textContent = "?";
+        secondCard.textContent = "?";
+        firstCard.classList.remove('revealed');
+        secondCard.classList.remove('revealed');
+        firstCard.setAttribute("aria-label", "Opposite card, click to reveal");
+        secondCard.setAttribute("aria-label", "Opposite card, click to reveal");
+      }
+
+      setTimeout(() => {
+        firstCard = null;
+        secondCard = null;
+        lockBoard = false;
+      }, 500);
+    }
+
+    // ===== Progress Display =====
+    function updateProgressDisplay() {
+      // Update sentence progress
+      const sentenceScore = document.getElementById("sentenceScore");
+      const sentenceProgressBar = document.getElementById("sentenceProgress");
+      const sentencePercentage = (sentenceProgress.correct / 10) * 100;
+
+      if (sentenceScore) {
+        sentenceScore.textContent = `Score: ${sentenceProgress.correct}/10`;
+        sentenceProgressBar.style.width = `${sentencePercentage}%`;
+      }
+
+      // Update opposites progress
+      const oppositesScore = document.getElementById("oppositesScore");
+      const oppositesProgressBar = document.getElementById("oppositesProgress");
+      const oppositesPercentage = (oppositesProgress.matched / oppositesProgress.total) * 100;
+
+      if (oppositesScore) {
+        oppositesScore.textContent = `Matches: ${oppositesProgress.matched}/${oppositesProgress.total}`;
+        oppositesProgressBar.style.width = `${oppositesPercentage}%`;
+      }
+    }
+
+    // ===== Quiz System =====
+    const quizData = {
+      az: [
+        { question: "Which word starts with 'A'?", options: ["Apple", "Banana", "Cat", "Dog"], answer: "Apple", hint: "Think of a fruit that's red" },
+        { question: "Which word starts with 'B'?", options: ["Bear", "Apple", "Cat", "Dog"], answer: "Bear", hint: "This animal lives in the forest" },
+        { question: "Which word starts with 'C'?", options: ["Cat", "Apple", "Banana", "Dog"], answer: "Cat", hint: "This animal says meow" },
+        { question: "Which word starts with 'D'?", options: ["Dog", "Apple", "Banana", "Cat"], answer: "Dog", hint: "This animal says woof" },
+        { question: "Which word starts with 'E'?", options: ["Elephant", "Apple", "Banana", "Cat"], answer: "Elephant", hint: "This is a very large animal" }
+      ],
+      vocabulary: [
+        { question: "What is this? 🐶", options: ["Dog", "Cat", "Elephant", "Lion"], answer: "Dog", hint: "This animal barks" },
+        { question: "What is this? 🐱", options: ["Cat", "Dog", "Elephant", "Lion"], answer: "Cat", hint: "This animal meows" },
+        { question: "What is this? 🐘", options: ["Elephant", "Dog", "Cat", "Lion"], answer: "Elephant", hint: "This animal has a trunk" },
+        { question: "What is this? 🦁", options: ["Lion", "Dog", "Cat", "Elephant"], answer: "Lion", hint: "This is the king of the jungle" },
+        { question: "What is this? 🍎", options: ["Apple", "Banana", "Grapes", "Orange"], answer: "Apple", hint: "This fruit is red or green" }
+      ],
+      sentences: [
+        { question: "Tom has a ___ named Mimi.", options: ["dog", "cat", "bird"], answer: "cat", hint: "This animal meows" },
+        { question: "Every morning, Tom ___ Mimi.", options: ["feeds", "ignores", "hugs"], answer: "feeds", hint: "Tom gives Mimi food" },
+        { question: "Tom feeds Mimi ___.", options: ["milk", "fish", "bread"], answer: "fish", hint: "Cats like to eat this" },
+        { question: "After school, Tom goes to the ___.", options: ["park", "school", "market"], answer: "park", hint: "This is a place to play" },
+        { question: "Tom meets his ___ at the park.", options: ["friends", "teachers", "siblings"], answer: "friends", hint: "These are people you like to play with" }
+      ],
+      opposites: [
+        { question: "What is the opposite of 'Big'?", options: ["Small", "Large", "Huge", "Tall"], answer: "Small", hint: "Think of something tiny" },
+        { question: "What is the opposite of 'Hot'?", options: ["Cold", "Warm", "Cool", "Freezing"], answer: "Cold", hint: "Think of winter" },
+        { question: "What is the opposite of 'Fast'?", options: ["Slow", "Quick", "Rapid", "Swift"], answer: "Slow", hint: "Think of a turtle" },
+        { question: "What is the opposite of 'Tall'?", options: ["Short", "High", "Long", "Wide"], answer: "Short", hint: "Think of something not high" },
+        { question: "What is the opposite of 'Light'?", options: ["Heavy", "Dark", "Bright", "Dim"], answer: "Heavy", hint: "Think of something hard to lift" }
+      ],
+      sightwords: [
+        { question: "___ am a boy.", options: ["I", "You", "We", "They"], answer: "I", hint: "This refers to yourself" },
+        { question: "___ are my friends.", options: ["They", "I", "You", "He"], answer: "They", hint: "This refers to a group of people" },
+        { question: "___ is a girl.", options: ["She", "He", "It", "They"], answer: "She", hint: "This refers to a female person" },
+        { question: "___ have a ball.", options: ["We", "I", "You", "He"], answer: "We", hint: "This refers to yourself and others" },
+        { question: "___ is a cat.", options: ["It", "He", "She", "They"], answer: "It", hint: "This refers to an animal or thing" }
+      ],
+      'numbers-colors': [
+        { question: "What number comes after 2?", options: ["1", "3", "4", "5"], answer: "3", hint: "Count: 1, 2, ?" },
+        { question: "What number comes before 5?", options: ["3", "4", "6", "7"], answer: "4", hint: "Count: 3, 4, 5" },
+        { question: "What color is the sun?", options: ["Red", "Blue", "Yellow", "Green"], answer: "Yellow", hint: "The sun is bright and warm" },
+        { question: "What color is grass?", options: ["Red", "Blue", "Yellow", "Green"], answer: "Green", hint: "Grass is the color of nature" },
+        { question: "What color is the sky on a clear day?", options: ["Red", "Blue", "Yellow", "Green"], answer: "Blue", hint: "Look up on a sunny day" }
+      ]
+    };
+
+    let quizScores = {};
+    let currentQuiz = null;
+    let userAnswers = [];
+    let currentQuizIndex = 0;
+    let currentQuizType = '';
+
+    function loadQuiz() {
+      const quizType = document.getElementById('quizType').value;
+      if (!quizType) {
+        document.getElementById('quizContainer').innerHTML = '';
+        currentQuizType = '';
+        currentQuizIndex = 0;
+        return;
+      }
+
+      currentQuizType = quizType;
+      currentQuizIndex = 0;
+      userAnswers = [];
+      showCurrentQuizQuestion();
+      saveState();
+    }
+
+    function showCurrentQuizQuestion() {
+      if (!currentQuizType) return;
+
+      const questions = quizData[currentQuizType];
+      const currentQuestion = questions[currentQuizIndex];
+      const container = document.getElementById('quizContainer');
+
+      container.innerHTML = `
+        <div class="single-quiz-container">
+          <div class="quiz-progress-text" id="quizProgressText">Question ${currentQuizIndex + 1} of ${questions.length}</div>
+          <div class="quiz-card single-quiz-card">
+            <div class="quiz-question">${currentQuizIndex + 1}. ${currentQuestion.question}</div>
+            <div class="quiz-options">
+              ${currentQuestion.options.map((option, optIndex) => `
+                <div class="quiz-option" onclick="selectQuizOption('${option}', this)">${option}</div>
+              `).join('')}
+            </div>
+            <button class="hint-btn" onclick="showQuizHint()">Hint</button>
+            <div id="quizHint" class="result" style="display:none;"></div>
+            <div class="result" id="quizResult" role="status" aria-live="polite"></div>
+          </div>
+          <div class="quiz-navigation">
+            <button class="nav" onclick="prevQuizQuestion()" aria-label="Previous question">⬅ Prev</button>
+            <button class="nav" onclick="nextQuizQuestion()" aria-label="Next question">Next ➡</button>
+          </div>
+          ${currentQuizIndex === questions.length - 1 ? '<button class="quiz-submit" onclick="submitQuiz()">Submit Quiz</button>' : ''}
+        </div>
+      `;
+    }
+
+    function showQuizHint() {
+      if (!currentQuizType) return;
+
+      const questions = quizData[currentQuizType];
+      const hint = questions[currentQuizIndex].hint;
+      const hintElement = document.getElementById('quizHint');
+
+      hintElement.textContent = `💡 Hint: ${hint}`;
+      hintElement.style.display = 'block';
+      hintElement.style.color = "#f39c12";
+      hintElement.style.backgroundColor = "#fff3cd";
+    }
+
+    function selectQuizOption(option, element) {
+      // Remove previous selection for this question
+      const questionCard = element.closest('.quiz-card');
+      const options = questionCard.querySelectorAll('.quiz-option');
+      options.forEach(opt => opt.classList.remove('selected'));
+
+      // Mark this option as selected
+      element.classList.add('selected');
+
+      // Store the answer
+      userAnswers[currentQuizIndex] = option;
+    }
+
+    function nextQuizQuestion() {
+      if (!currentQuizType) return;
+
+      const questions = quizData[currentQuizType];
+      if (currentQuizIndex < questions.length - 1) {
+        currentQuizIndex++;
+        showCurrentQuizQuestion();
+        saveState();
+      }
+    }
+
+    function prevQuizQuestion() {
+      if (!currentQuizType) return;
+
+      if (currentQuizIndex > 0) {
+        currentQuizIndex--;
+        showCurrentQuizQuestion();
+        saveState();
+      }
+    }
+
+    function submitQuiz() {
+      if (!currentQuizType) return;
+
+      const questions = quizData[currentQuizType];
+      let score = 0;
+      const results = [];
+
+      // Calculate score and collect results
+      questions.forEach((q, index) => {
+        const isCorrect = userAnswers[index] === q.answer;
+        if (isCorrect) score++;
+
+        results.push({
+          question: q.question,
+          userAnswer: userAnswers[index] || "No answer",
+          correctAnswer: q.answer,
+          isCorrect: isCorrect
+        });
+      });
+
+      // Save score
+      const percentage = Math.round((score / questions.length) * 100);
+      quizScores[currentQuizType] = { score, total: questions.length, percentage };
+      saveState();
+
+      // Award stars based on performance
+      if (percentage === 100) {
+        awardStars(10);
+        awardBadge('quiz-master');
+      } else if (percentage >= 80) {
+        awardStars(7);
+      } else if (percentage >= 60) {
+        awardStars(5);
+      } else {
+        awardStars(2);
+      }
+
+      // Log activity
+      logActivity(`Completed ${currentQuizType} quiz: ${score}/${questions.length}`);
+
+      // Display results
+      displayQuizResults(score, questions.length, results);
+    }
+
+    function displayQuizResults(score, total, results) {
+      const container = document.getElementById('quizContainer');
+      const percentage = Math.round((score / total) * 100);
+
+      let feedback = '';
+      if (percentage >= 80) {
+        feedback = "Excellent work! You're a star! 🌟";
+      } else if (percentage >= 60) {
+        feedback = "Good job! Keep practicing! 👍";
+      } else {
+        feedback = "Keep trying! You'll get better! 💪";
+      }
+
+      let html = `
+        <div class="quiz-result">
+          <h3>Quiz Results</h3>
+          <div class="quiz-result-score">${score}/${total} (${percentage}%)</div>
+          <div class="quiz-result-feedback">${feedback}</div>
+          
+          <div class="quiz-result-details">
+            <h4>Review:</h4>
+      `;
+
+      results.forEach(result => {
+        html += `
+          <div class="quiz-result-item ${result.isCorrect ? 'correct' : 'incorrect'}">
+            <strong>Question:</strong> ${result.question}<br>
+            <strong>Your answer:</strong> ${result.userAnswer}<br>
+            ${!result.isCorrect ? `<strong>Correct answer:</strong> ${result.correctAnswer}` : ''}
+          </div>
+        `;
+      });
+
+      html += `
+          </div>
+          <button class="quiz-restart" onclick="restartQuiz()">Try Again</button>
+        </div>
+      `;
+
+      container.innerHTML = html;
+    }
+
+    function restartQuiz() {
+      if (currentQuizType) {
+        currentQuizIndex = 0;
+        userAnswers = [];
+        showCurrentQuizQuestion();
+      }
+    }
+
+    // ===== Quiz Start Functions =====
+    function startAZQuiz() {
+      showSection('quiz');
+      document.getElementById('quizType').value = 'az';
+      loadQuiz();
+    }
+
+    function startVocabularyQuiz() {
+      showSection('quiz');
+      document.getElementById('quizType').value = 'vocabulary';
+      loadQuiz();
+    }
+
+    function startOppositesQuiz() {
+      showSection('quiz');
+      document.getElementById('quizType').value = 'opposites';
+      loadQuiz();
+    }
+
+    function startSentencesQuiz() {
+      showSection('quiz');
+      document.getElementById('quizType').value = 'sentences';
+      loadQuiz();
+    }
+
+    function startSightWordsQuiz() {
+      showSection('quiz');
+      document.getElementById('quizType').value = 'sightwords';
+      loadQuiz();
+    }
+
+    function startNumbersColorsQuiz() {
+      showSection('quiz');
+      document.getElementById('quizType').value = 'numbers-colors';
+      loadQuiz();
+    }
+
+    // ===== Daily Challenge =====
+    let dailyChallengeCompleted = 0;
+    let challengeTimer = null;
+    let challengeSeconds = 0;
+
+    function initDailyChallenge() {
+      // Check if we need to generate a new challenge
+      const today = new Date().toDateString();
+      const savedDate = localStorage.getItem('dailyChallengeDate');
+
+      if (savedDate !== today) {
+        generateDailyChallenge();
+        localStorage.setItem('dailyChallengeDate', today);
+        dailyChallengeCompleted = 0;
+      } else {
+        displayDailyChallenge();
+      }
+
+      // Start timer
+      startChallengeTimer();
+    }
+
+    function generateDailyChallenge() {
+      const challenges = [];
+
+      // Generate 5 random challenges from different categories
+      const categories = ['az', 'vocabulary', 'numbers-colors', 'sightwords', 'sentences'];
+      categories.forEach(category => {
+        const questions = quizData[category];
+        const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
+
+        challenges.push({
+          category: category,
+          question: randomQuestion.question,
+          options: randomQuestion.options,
+          answer: randomQuestion.answer,
+          hint: randomQuestion.hint
+        });
+      });
+
+      // Save challenges
+      localStorage.setItem('dailyChallenge', JSON.stringify(challenges));
+
+      // Reset completed count
+      dailyChallengeCompleted = 0;
+
+      // Display challenges
+      displayDailyChallenge();
+    }
+
+    function displayDailyChallenge() {
+      const challenges = JSON.parse(localStorage.getItem('dailyChallenge') || '[]');
+      const container = document.getElementById('challengeContainer');
+
+      if (challenges.length === 0) {
+        generateDailyChallenge();
+        return;
+      }
+
+      // Update date
+      const today = new Date();
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const dateElement = document.getElementById('challengeDate');
+      if (dateElement) {
+        dateElement.textContent = today.toLocaleDateString('en-US', options);
+      }
+
+      // Update score
+      const scoreElement = document.getElementById('challengeScore');
+      if (scoreElement) {
+        scoreElement.textContent = `Completed: ${dailyChallengeCompleted}/5`;
+      }
+
+      // Display challenges
+      if (container) {
+        container.innerHTML = '';
+
+        challenges.forEach((challenge, index) => {
+          const challengeElement = document.createElement('div');
+          challengeElement.className = 'challenge-item';
+
+          if (index < dailyChallengeCompleted) {
+            challengeElement.classList.add('completed');
+          }
+
+          challengeElement.innerHTML = `
+            <div class="challenge-question">${index + 1}. ${challenge.question}</div>
+            <div class="challenge-options">
+              ${challenge.options.map(option => `
+                <div class="challenge-option" onclick="selectChallengeOption(${index}, '${option}', this)">${option}</div>
+              `).join('')}
+            </div>
+            <div class="challenge-result" id="challengeResult${index}"></div>
+            <div class="challenge-reward" id="challengeReward${index}"></div>
+          `;
+
+          container.appendChild(challengeElement);
+        });
+      }
+
+      // Check if all challenges are completed
+      const completeElement = document.getElementById('challengeComplete');
+      if (dailyChallengeCompleted === 5) {
+        if (completeElement) {
+          completeElement.style.display = 'block';
+        }
+        if (container) {
+          container.style.display = 'none';
+        }
+      } else {
+        if (completeElement) {
+          completeElement.style.display = 'none';
+        }
+        if (container) {
+          container.style.display = 'block';
+        }
+      }
+    }
+
+    function selectChallengeOption(challengeIndex, option, element) {
+      // Check if challenge is already completed
+      if (challengeIndex < dailyChallengeCompleted) {
+        return;
+      }
+
+      // Get challenges
+      const challenges = JSON.parse(localStorage.getItem('dailyChallenge') || '[]');
+      const challenge = challenges[challengeIndex];
+
+      // Check if answer is correct
+      const isCorrect = option === challenge.answer;
+      const resultElement = document.getElementById(`challengeResult${challengeIndex}`);
+      const rewardElement = document.getElementById(`challengeReward${challengeIndex}`);
+
+      if (isCorrect) {
+        resultElement.textContent = "✅ Correct!";
+        resultElement.className = 'challenge-result success';
+        rewardElement.textContent = "You earned 3 stars! ⭐⭐⭐";
+        rewardElement.style.color = "#e65100";
+
+        // Mark challenge as completed
+        dailyChallengeCompleted++;
+
+        // Award stars
+        awardStars(3);
+
+        // Update score
+        const scoreElement = document.getElementById('challengeScore');
+        if (scoreElement) {
+          scoreElement.textContent = `Completed: ${dailyChallengeCompleted}/5`;
+        }
+
+        // Save progress
+        saveState();
+
+        // Check if all challenges are completed
+        if (dailyChallengeCompleted === 5) {
+          awardBadge('daily-champion');
+
+          const completeElement = document.getElementById('challengeComplete');
+          const containerElement = document.getElementById('challengeContainer');
+
+          if (completeElement) {
+            completeElement.style.display = 'block';
+          }
+          if (containerElement) {
+            containerElement.style.display = 'none';
+          }
+        }
+      } else {
+        resultElement.textContent = "❌ Try again!";
+        resultElement.className = 'challenge-result error';
+      }
+
+      // Mark selected option
+      const options = element.parentElement.querySelectorAll('.challenge-option');
+      options.forEach(opt => opt.classList.remove('selected'));
+      element.classList.add('selected');
+    }
+
+    function startChallengeTimer() {
+      // Clear existing timer
+      if (challengeTimer) {
+        clearInterval(challengeTimer);
+      }
+
+      // Reset timer
+      challengeSeconds = 0;
+
+      // Start new timer
+      challengeTimer = setInterval(() => {
+        challengeSeconds++;
+
+        // Format time as MM:SS
+        const minutes = Math.floor(challengeSeconds / 60);
+        const seconds = challengeSeconds % 60;
+        const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+        // Update display
+        const timerElement = document.getElementById('challengeTimer');
+        if (timerElement) {
+          timerElement.textContent = `Time: ${formattedTime}`;
+        }
+      }, 1000);
+    }
+
+    // ===== Initialize Application =====
+    function initializeApp() {
+      // Initialize progress display
+      updateProgressDisplay();
+
+      // Initialize sight words practice section
+      initSightWordsPractice();
+
+      // Initialize numbers and colors
+      initNumbersColors();
+
+      // Load saved state
+      loadState();
+
+      // Show welcome message
+      showNotification("Welcome to English for Kids! Start learning today!", 'info');
+    }
+
+    // Start the application when the page loads
+    window.addEventListener('load', initializeApp);
+
+    // Save state when page is closed
+    window.addEventListener('beforeunload', saveState);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Quiz for Kids</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Comic Sans MS', 'Arial', sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .logo {
+      display: flex;
+      position: absolute;
+      left: 0;
+      top: 3%;
+      font-size: 28px;
+      font-family: 'Fredoka One', cursive;
+    }
+
+    .logo i {
+      font-size: 32px;
+      color: #FFD166;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      background: #4A90E2;
+      padding: 15px 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-list {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
+    }
+
+    .nav-item {
+      text-align: center;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 16px 28px;
+      background-color: rgba(255, 255, 255, 0.15);
+      color: white;
+      text-decoration: none;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      min-height: 54px;
+      min-width: 54px;
+    }
+
+    .nav-link:hover {
+      background-color: #50E3C2;
+      color: #fff;
+      transform: scale(1.08);
+    }
+
+    .nav-link.active {
+      background-color: #ffd566;
+      color: #333;
+      box-shadow: 0 4px 14px rgba(255, 213, 102, 0.5);
+    }
+
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 15px;
+      font-size: 2.8rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+      color: #34495e;
+      margin: 20px 0 15px;
+      font-size: 2.2rem;
+    }
+
+    .quiz-selector {
+      margin: 20px auto;
+      max-width: 500px;
+    }
+
+    .quiz-selector select {
+      width: 100%;
+      padding: 12px 20px;
+      font-size: 18px;
+      border-radius: 10px;
+      border: 2px solid #416492;
+      background: white;
+      cursor: pointer;
+      margin-bottom: 15px;
+    }
+
+    .quiz-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .quiz-card {
+      width: 100%;
+      max-width: none;
+      margin-bottom: 25px;
+      text-align: left;
+      background: linear-gradient(145deg, #e3f2fd, #bbdefb);
+      border-radius: 25px;
+      padding: 30px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .quiz-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .quiz-question {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #2c3e50;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .quiz-option {
+      background: white;
+      border: 2px solid #416492;
+      border-radius: 10px;
+      padding: 12px 15px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .quiz-option:hover {
+      background: #e3f2fd;
+      transform: translateY(-3px);
+    }
+
+    .quiz-option.selected {
+      background: linear-gradient(45deg, #3498db, #2980b9);
+      color: white;
+      border-color: #2980b9;
+    }
+
+    .quiz-option.correct {
+      background: linear-gradient(45deg, #4CAF50, #45a049);
+      color: white;
+      border-color: #45a049;
+    }
+
+    .quiz-option.incorrect {
+      background: linear-gradient(45deg, #e74c3c, #c0392b);
+      color: white;
+      border-color: #c0392b;
+    }
+
+    .quiz-submit {
+      margin: 30px auto;
+      padding: 15px 30px;
+      font-size: 20px;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(45deg, #e74c3c, #c0392b);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      display: block;
+    }
+
+    .quiz-submit:hover {
+      background: linear-gradient(45deg, #c0392b, #e74c3c);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .quiz-result {
+      margin-top: 30px;
+      padding: 20px;
+      border-radius: 15px;
+      background: linear-gradient(145deg, #e3f2fd, #bbdefb);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .quiz-result h3 {
+      font-size: 24px;
+      margin-top: 0;
+      color: #2c3e50;
+    }
+
+    .quiz-result-score {
+      font-size: 28px;
+      font-weight: bold;
+      margin: 15px 0;
+      color: #e67e22;
+    }
+
+    .quiz-result-feedback {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+
+    .quiz-result-details {
+      text-align: left;
+      margin-top: 20px;
+    }
+
+    .quiz-result-item {
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .quiz-result-item.correct {
+      border-left: 5px solid #4CAF50;
+    }
+
+    .quiz-result-item.incorrect {
+      border-left: 5px solid #e74c3c;
+    }
+
+    .quiz-restart {
+
+
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 18px;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(45deg, #3498db, #2980b9);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .quiz-restart:hover {
+      background: linear-gradient(45deg, #2980b9, #3498db);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .single-quiz-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px auto;
+      max-width: 600px;
+    }
+
+    .single-quiz-card {
+      width: 100%;
+      max-width: 500px;
+      margin-bottom: 20px;
+    }
+
+    .quiz-navigation {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 300px;
+      margin-top: 20px;
+    }
+
+    .quiz-progress-text {
+      font-size: 18px;
+      font-weight: bold;
+      color: #2c3e50;
+      margin: 10px 0;
+    }
+
+    .nav {
+      margin: 15px;
+      padding: 12px 24px;
+      font-size: 18px;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(45deg, #3498db, #2980b9);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .nav:hover {
+      background: linear-gradient(45deg, #2980b9, #3498db);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .hint-btn {
+      background: linear-gradient(45deg, #f39c12, #e67e22);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 8px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .hint-btn:hover {
+      background: linear-gradient(45deg, #e67e22, #d35400);
+      transform: translateY(-2px);
+    }
+
+    .result {
+      margin-top: 15px;
+      font-weight: bold;
+      font-size: 20px;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(45deg, #2ecc71, #27ae60);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .notification.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      .quiz-options {
+        grid-template-columns: 1fr !important;
+      }
+
+      .quiz-option {
+        font-size: 16px;
+      }
+
+      .quiz-question {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <ul class="nav-list">
+      <div class="logo">
+        <i class="fas fa-leaf"></i>
+        <span>KidsLearn</span>
+      </div>
+      <li class="nav-item"><a href="home.html" class="nav-link active" data-page="home"
+          onclick="navigateTo('home')">ပင်မစာမျက်နှာ</a></li>
+      <li class="nav-item"><a href="home.html" class="nav-link" data-page="tutorial"
+          onclick="navigateTo('tutorial')">သင်ခန်းစာများ</a></li>
+      <li class="nav-item"><a href="chat.html" class="nav-link" data-page="chat" onclick="navigateTo('chat')">စကားပြောခန်း</a>
+      </li>
+      <li class="nav-item"><a href="profile.html" class="nav-link" data-page="login"
+          onclick="navigateTo('login')">အကောင့်ဝင်ရန်</a></li>
+    </ul>
+  </nav>
+  <h1>ကလေးတိုရဲ့‌ဗဟုသုတတွေကိုစမ်းကြည့်မယ်</h1>
+  <h2>မေးခွန်းတွေဖြေကြရအောင်</h2>
+
+  <div class="quiz-selector">
+    <select id="quizType" onchange="loadQuiz()">
+      <option value="">ခေါင်းစဉ်လေးတွေရွေးကြမယ်</option>
+      <option value="az">မြန်မာ့ဗျည်းအက္ခရာများ</option>
+      <option value="vocabulary">မြန်မာအသံထွက်</option>
+      <option value="sentences">မြန်မာစကားပုံ</option>
+      <option value="opposites">မြန်မာ့ရိုးရာပုံပြင်</option>
+    </select>
+  </div>
+
+  <div id="quizContainer" class="quiz-container"></div>
+
+  <!-- Notification element -->
+  <div id="notification" class="notification" role="alert" aria-live="polite"></div>
+
+  <script>
+    // ===== Notification System =====
+    function showNotification(message, type = 'success') {
+      const notification = document.getElementById('notification');
+      notification.textContent = message;
+
+      // Set background color based on type
+      if (type === 'success') {
+        notification.style.background = 'linear-gradient(45deg, #2ecc71, #27ae60)';
+      } else if (type === 'error') {
+
+
+        notification.style.background = 'linear-gradient(45deg, #e74c3c, #c0392b)';
+      } else if (type === 'info') {
+        notification.style.background = 'linear-gradient(45deg, #3498db, #2980b9)';
+      }
+
+      notification.classList.add('show');
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 3000);
+    }
+
+    // ===== Quiz Data =====
+    const quizData = {
+      az: [
+        { question: "Which word starts with 'A'?", options: ["Apple", "Banana", "Cat", "Dog"], answer: "Apple", hint: "Think of a fruit that's red" },
+        { question: "Which word starts with 'B'?", options: ["Bear", "Apple", "Cat", "Dog"], answer: "Bear", hint: "This animal lives in the forest" },
+        { question: "Which word starts with 'C'?", options: ["Cat", "Apple", "Banana", "Dog"], answer: "Cat", hint: "This animal says meow" },
+        { question: "Which word starts with 'D'?", options: ["Dog", "Apple", "Banana", "Cat"], answer: "Dog", hint: "This animal says woof" },
+        { question: "Which word starts with 'E'?", options: ["Elephant", "Apple", "Banana", "Cat"], answer: "Elephant", hint: "This is a very large animal" }
+      ],
+      vocabulary: [
+        { question: "What is this? 🐶", options: ["Dog", "Cat", "Elephant", "Lion"], answer: "Dog", hint: "This animal barks" },
+        { question: "What is this? 🐱", options: ["Cat", "Dog", "Elephant", "Lion"], answer: "Cat", hint: "This animal meows" },
+        { question: "What is this? 🐘", options: ["Elephant", "Dog", "Cat", "Lion"], answer: "Elephant", hint: "This animal has a trunk" },
+        { question: "What is this? 🦁", options: ["Lion", "Dog", "Cat", "Elephant"], answer: "Lion", hint: "This is the king of the jungle" },
+        { question: "What is this? 🍎", options: ["Apple", "Banana", "Grapes", "Orange"], answer: "Apple", hint: "This fruit is red or green" }
+      ],
+      sentences: [
+        { question: "Tom has a ___ named Mimi.", options: ["dog", "cat", "bird"], answer: "cat", hint: "This animal meows" },
+        { question: "Every morning, Tom ___ Mimi.", options: ["feeds", "ignores", "hugs"], answer: "feeds", hint: "Tom gives Mimi food" },
+        { question: "Tom feeds Mimi ___.", options: ["milk", "fish", "bread"], answer: "fish", hint: "Cats like to eat this" },
+        { question: "After school, Tom goes to the ___.", options: ["park", "school", "market"], answer: "park", hint: "This is a place to play" },
+        { question: "Tom meets his ___ at the park.", options: ["friends", "teachers", "siblings"], answer: "friends", hint: "These are people you like to play with" }
+      ],
+      opposites: [
+        { question: "What is the opposite of 'Big'?", options: ["Small", "Large", "Huge", "Tall"], answer: "Small", hint: "Think of something tiny" },
+        { question: "What is the opposite of 'Hot'?", options: ["Cold", "Warm", "Cool", "Freezing"], answer: "Cold", hint: "Think of winter" },
+        { question: "What is the opposite of 'Fast'?", options: ["Slow", "Quick", "Rapid", "Swift"], answer: "Slow", hint: "Think of a turtle" },
+        { question: "What is the opposite of 'Tall'?", options: ["Short", "High", "Long", "Wide"], answer: "Short", hint: "Think of something not high" },
+        { question: "What is the opposite of 'Light'?", options: ["Heavy", "Dark", "Bright", "Dim"], answer: "Heavy", hint: "Think of something hard to lift" }
+      ],
+      sightwords: [
+        { question: "___ am a boy.", options: ["I", "You", "We", "They"], answer: "I", hint: "This refers to yourself" },
+        { question: "___ are my friends.", options: ["They", "I", "You", "He"], answer: "They", hint: "This refers to a group of people" },
+        { question: "___ is a girl.", options: ["She", "He", "It", "They"], answer: "She", hint: "This refers to a female person" },
+        { question: "___ have a ball.", options: ["We", "I", "You", "He"], answer: "We", hint: "This refers to yourself and others" },
+        { question: "___ is a cat.", options: ["It", "He", "She", "They"], answer: "It", hint: "This refers to an animal or thing" }
+      ],
+
+      'numbers-colors': [
+        { question: "What number comes after 2?", options: ["1", "3", "4", "5"], answer: "3", hint: "Count: 1, 2, ?" },
+        { question: "What number comes before 5?", options: ["3", "4", "6", "7"], answer: "4", hint: "Count: 3, 4, 5" },
+        { question: "What color is the sun?", options: ["Red", "Blue", "Yellow", "Green"], answer: "Yellow", hint: "The sun is bright and warm" },
+        { question: "What color is grass?", options: ["Red", "Blue", "Yellow", "Green"], answer: "Green", hint: "Grass is the color of nature" },
+        { question: "What color is the sky on a clear day?", options: ["Red", "Blue", "Yellow", "Green"], answer: "Blue", hint: "Look up on a sunny day" }
+      ]
+    };
+
+    let quizScores = {};
+    let currentQuiz = null;
+    let userAnswers = [];
+    let currentQuizIndex = 0;
+    let currentQuizType = '';
+
+    function loadQuiz() {
+      const quizType = document.getElementById('quizType').value;
+      if (!quizType) {
+        document.getElementById('quizContainer').innerHTML = '';
+        currentQuizType = '';
+        currentQuizIndex = 0;
+        return;
+      }
+      currentQuizType = quizType;
+      currentQuizIndex = 0;
+      userAnswers = [];
+      showCurrentQuizQuestion();
+    }
+
+    function showCurrentQuizQuestion() {
+      if (!currentQuizType) return;
+
+      const questions = quizData[currentQuizType];
+      const currentQuestion = questions[currentQuizIndex];
+
+      const container = document.getElementById('quizContainer');
+      container.innerHTML = `
+        <div class="single-quiz-container">
+          <div class="quiz-progress-text" id="quizProgressText">Question ${currentQuizIndex + 1} of ${questions.length}</div>
+          <div class="quiz-card single-quiz-card">
+            <div class="quiz-question">${currentQuizIndex + 1}. ${currentQuestion.question}</div>
+            <div class="quiz-options">
+              ${currentQuestion.options.map((option, optIndex) => `
+                <div class="quiz-option" onclick="selectQuizOption('${option}', this)">${option}</div>
+              `).join('')}
+            </div>
+            <button class="hint-btn" onclick="showQuizHint()">Hint</button>
+            <div id="quizHint" class="result" style="display:none;"></div>
+            <div class="result" id="quizResult" role="status" aria-live="polite"></div>
+          </div>
+          <div class="quiz-navigation">
+            <button class="nav" onclick="prevQuizQuestion()" aria-label="Previous question">⬅️ Prev</button>
+            <button class="nav" onclick="nextQuizQuestion()" aria-label="Next question">Next ➡️</button>
+          </div>
+          ${currentQuizIndex === questions.length - 1 ? '<button class="quiz-submit" onclick="submitQuiz()">Submit Quiz</button>' : ''}
+        </div>
+      `;
+    }
+
+    function showQuizHint() {
+      if (!currentQuizType) return;
+      const questions = quizData[currentQuizType];
+      const hint = questions[currentQuizIndex].hint;
+      const hintElement = document.getElementById('quizHint');
+      hintElement.textContent = `💡 Hint: ${hint}`;
+      hintElement.style.display = 'block';
+      hintElement.style.color = "#f39c12";
+      hintElement.style.backgroundColor = "#fff3cd";
+    }
+
+    function selectQuizOption(option, element) {
+      // Remove previous selection for this question
+      const questionCard = element.closest('.quiz-card');
+      const options = questionCard.querySelectorAll('.quiz-option');
+      options.forEach(opt => opt.classList.remove('selected'));
+
+      // Mark this option as selected
+      element.classList.add('selected');
+
+      // Store the answer
+      userAnswers[currentQuizIndex] = option;
+    }
+
+    function nextQuizQuestion() {
+      if (!currentQuizType) return;
+      const questions = quizData[currentQuizType];
+      if (currentQuizIndex < questions.length - 1) {
+        currentQuizIndex++;
+        showCurrentQuizQuestion();
+      }
+    }
+
+    function prevQuizQuestion() {
+      if (!currentQuizType) return;
+
+
+      if (currentQuizIndex > 0) {
+        currentQuizIndex--;
+        showCurrentQuizQuestion();
+      }
+    }
+
+    function submitQuiz() {
+      if (!currentQuizType) return;
+      const questions = quizData[currentQuizType];
+      let score = 0;
+      const results = [];
+
+      // Calculate score and collect results
+      questions.forEach((q, index) => {
+        const isCorrect = userAnswers[index] === q.answer;
+        if (isCorrect) score++;
+        results.push({
+          question: q.question,
+          userAnswer: userAnswers[index] || "No answer",
+          correctAnswer: q.answer,
+          isCorrect: isCorrect
+        });
+      });
+
+      // Save score
+      const percentage = Math.round((score / questions.length) * 100);
+      quizScores[currentQuizType] = { score, total: questions.length, percentage };
+
+      // Display results
+      displayQuizResults(score, questions.length, results);
+    }
+
+    function displayQuizResults(score, total, results) {
+      const container = document.getElementById('quizContainer');
+      const percentage = Math.round((score / total) * 100);
+      let feedback = '';
+      if (percentage >= 80) {
+        feedback = "Excellent work! You're a star! 🌟";
+      } else if (percentage >= 60) {
+        feedback = "Good job! Keep practicing! 👍";
+      } else {
+        feedback = "Keep trying! You'll get better! 💪";
+      }
+
+      let html = `
+        <div class="quiz-result">
+          <h3>Quiz Results</h3>
+          <div class="quiz-result-score">${score}/${total} (${percentage}%)</div>
+          <div class="quiz-result-feedback">${feedback}</div>
+          
+          <div class="quiz-result-details">
+            <h4>Review:</h4>
+      `;
+
+      results.forEach(result => {
+        html += `
+          <div class="quiz-result-item ${result.isCorrect ? 'correct' : 'incorrect'}">
+            <strong>Question:</strong> ${result.question}<br>
+            <strong>Your answer:</strong> ${result.userAnswer}<br>
+            ${!result.isCorrect ? `<strong>Correct answer:</strong> ${result.correctAnswer}` : ''}
+          </div>
+        `;
+      });
+
+      html += `
+          </div>
+          <button class="quiz-restart" onclick="restartQuiz()">Try Again</button>
+        </div>
+      `;
+
+      container.innerHTML = html;
+
+      // Show notification based on score
+      if (percentage >= 80) {
+        showNotification(`Excellent! You scored ${percentage}%!`, 'success');
+      } else if (percentage >= 60) {
+        showNotification(`Good job! You scored ${percentage}%`, 'success');
+      } else {
+        showNotification(`You scored ${percentage}%. Keep practicing!`, 'info');
+      }
+    }
+
+    function restartQuiz() {
+      if (currentQuizType) {
+        currentQuizIndex = 0;
+        userAnswers = [];
+        showCurrentQuizQuestion();
+      }
+    }
+
+    // Initialize the application
+    window.addEventListener('load', function () {
+      showNotification("Welcome to English Quiz for Kids! Select a quiz to begin.", 'info');
+    });
+  </script>
+</body>
+
+</html>

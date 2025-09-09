@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: white;
+      width: 100%;
+      height: 100vh;
+      display: grid;
+      place-items: center;
+    }
+
+    .book-mein {
+      width: 90%;
+      margin: auto;
+      text-align: center;
+    }
+
+    .book {
+      width: 30%;
+      height: 300px;
+      display: inline-block;
+      margin: 10px;
+      background: #fff;
+      transform-style: preserve-3d;
+
+      transition: 1s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .book:hover {
+      box-shadow: inset 20px 0 50px rgba(13, 13, 13, 0.678), 0 10px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .book::before {
+      content: '';
+      position: absolute;
+      right: -5px;
+      top: 0;
+      width: 100%;
+      height: 5px;
+      background: rgb(39, 34, 34);
+      transform-origin: left;
+      transform: skewY(-45deg);
+    }
+
+    .imgbox {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-origin: left;
+      transition: 1s;
+      z-index: 2;
+      background-color: #fff;
+    }
+
+    .imgbox img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .book:hover .imgbox {
+      transform: rotateY(-135deg);
+    }
+
+    .content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      padding: 30px;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+    }
+
+    .content h1 {
+      font-size: 50px;
+      font-weight: 600;
+      color: #000;
+    }
+
+    .content p {
+      font-size: 12px;
+      font-weight: 100;
+      color: #444;
+      text-align: justify;
+    }
+
+    .book-btn {
+      margin-top: 15px;
+      padding: 8px 16px;
+      font-size: 14px;
+      background-color: #9bcbee;
+      color: rgb(14, 14, 14);
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .book-btn:hover {
+      background-color: rgb(239, 175, 107);
+    }
+
+    @media only screen and (max-width: 767px) {
+      .book-mein {
+        width: 90%;
+      }
+
+      .book {
+        width: 100%;
+        height: auto;
+        margin: 10px 0;
+      }
+
+      .imgbox img {
+        height: auto;
+      }
+
+      .book {
+        width: 100%;
+        height: auto;
+        margin: 10px 0px;
+      }
+    }
+
+    .Pfont {
+      font-size: 20px;
+      font-family: 'Times New Roman', Times;
+    }
+
+    .back-btn {
+      background-color: rgb(225, 225, 235);
+      color: #333;
+      border: 2px solid black;
+      border-radius: 15px;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 2px 2px 5px rgba(200, 37, 37, 0.3);
+      transition: transform 0.2s ease;
+      font-weight: bold;
+      margin-left: 60%;
+    }
+
+    .back-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .back-btn-wrap {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .logo {
+      display: flex;
+      position: absolute;
+      left: 0;
+      top: 3%;
+      font-size: 28px;
+      font-family: 'Fredoka One', cursive;
+    }
+
+    .logo i {
+      margin-left: 10px;
+      font-size: 32px;
+      color: #FFD166;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      background: #4A90E2;
+      padding: 15px 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-list {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
+    }
+
+    .nav-item {
+      text-align: center;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 16px 28px;
+      background-color: rgba(255, 255, 255, 0.15);
+      color: white;
+      text-decoration: none;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      min-height: 25px;
+      min-width: 54px;
+    }
+
+    .nav-link:hover {
+      background-color: #50E3C2;
+      color: #fff;
+      transform: scale(1.08);
+    }
+
+    .nav-link.active {
+      background-color: #ffd566;
+      color: #333;
+      box-shadow: 0 4px 14px rgba(255, 213, 102, 0.5);
+    }
+  </style>
+</head>
+<nav>
+  <ul class="nav-list">
+    <div class="logo">
+      <i class="fas fa-leaf"></i>
+      <span>KidsLearn</span>
+
+    </div>
+    <li class="nav-item"><a href="home.html" class="nav-link active" data-page="home"
+        onclick="navigateTo('home')">ပင်မစာမျက်နှာ</a></li>
+    <li class="nav-item"><a href="home.html" class="nav-link" data-page="tutorial"
+        onclick="navigateTo('tutorial')">သင်ခန်းစာများ</a></li>
+    <li class="nav-item"><a href="chat.html" class="nav-link" data-page="chat" onclick="navigateTo('chat')">စကားပြောခန်း</a>
+    </li>
+    <li class="nav-item"><a href="profile.html" class="nav-link" data-page="login" onclick="navigateTo('login')">အကောင့်ဝင်ရန်</a>
+    </li>
+  </ul>
+</nav>
+
+<body>
+  <div class="book-mein">
+    <div class="book">
+      <div class="imgbox">
+        <img src="byee.png" alt="Book Cover">
+      </div>
+      <div class="content">
+
+        <p>“ဗျည်း” ဆိုသည်မှာ မြန်မာစာပေတွင် အခြေခံကျသော အစိတ်အပိုင်းကြီးတစ်ခုပါ။</p>
+        <a href="thara2.html" class="book-btn">လေ့လာရန်...</a>
+      </div>
+    </div>
+
+    <div class="book">
+      <div class="imgbox">
+        <img src="TharaPhoto.png" alt="Book Cover">
+      </div>
+      <div class="content">
+        <p class="Pfont">📖 သရ ဆိုသည်မှာ
+
+          ဗျည်းများကို အသံထွက်အပြည့်စုံ ဖြစ်စေသော အသံအမျိုးအစားများကို “သရ” ဟုခေါ်သည်။<br>
+
+          ➡️ အခြားသဘောတရားနှင့် ပြောရလျှင် စကားလုံးတစ်လုံးတွင်အသံထွက်ရန် ဗျည်း + သရ သွားမပေါင်းမှ
+          စကားလုံးအပြည့်စုံဖြစ်နိုင်သည်။</p>
+
+        <a href="thara3.html" class="book-btn">ဆက်လေ့လာရန်</a>
+      </div>
+    </div>
+
+    <div class="back-btn-wrap">
+      <button class="back-btn" onclick="goNext()">ရှေ့သို့ ဆက်သွားမည်</button>
+    </div>
+
+    <script>
+      function goNext() {
+        window.location.href = "thara4.html";
+      }
+    </script>
+
+  </div>
+</body>
+
+</html>

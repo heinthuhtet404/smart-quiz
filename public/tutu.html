@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="my">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📖 မြန်မာသံတူ စကားလုံးများ</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #28E0F8;
+      --ink: #111;
+      --card-bg: #fff;
+      --accent: #ffcc70;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Noto Sans Myanmar", "Myanmar Text", system-ui, sans-serif;
+      background: var(--bg);
+      min-height: 100svh;
+      overflow-x: hidden;
+    }
+
+    /* ===== Title Bar ===== */
+    .title-wrap {
+      top: 0;
+      z-index: 20;
+      background: linear-gradient(180deg, rgba(230, 247, 255, .95), rgba(230, 247, 255, .6));
+      backdrop-filter: blur(2px);
+      border-bottom: 2px solid rgba(0, 0, 0, .06);
+    }
+
+    .title {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 16px;
+      text-align: center;
+      color: #0f3057;
+      font-weight: 800;
+      font-size: 28px;
+    }
+
+    /* ===== Cards Grid ===== */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 3px solid #000;
+      border-radius: 16px;
+      padding: 14px 16px;
+      box-shadow: 6px 6px 0 #0003;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      color: #222;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pair {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 10px;
+      border: 2px solid #000;
+      border-radius: 12px;
+      background: #fffaf0;
+    }
+
+    .text {
+      font-size: 16px;
+    }
+
+    /* ===== Background Cartoon Runners ===== */
+    .stage {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .runner {
+      position: absolute;
+      top: 0;
+      animation: run linear infinite;
+      font-size: 32px;
+      filter: drop-shadow(0 3px 1px rgba(0, 0, 0, .15));
+      opacity: .9;
+    }
+
+    @keyframes run {
+      from {
+        transform: translateX(-12vw) translateY(var(--y));
+      }
+
+      to {
+        transform: translateX(112vw) translateY(var(--y));
+      }
+    }
+
+    .r1 {
+      --y: 10vh;
+      animation-duration: 16s;
+    }
+
+    .r2 {
+      --y: 26vh;
+      animation-duration: 20s;
+      animation-delay: -4s;
+    }
+
+    .r3 {
+      --y: 42vh;
+      animation-duration: 18s;
+      animation-delay: -8s;
+    }
+
+    .r4 {
+      --y: 60vh;
+      animation-duration: 22s;
+      animation-delay: -12s;
+    }
+
+    .r5 {
+      --y: 78vh;
+      animation-duration: 19s;
+      animation-delay: -6s;
+    }
+
+    .paused .runner {
+      animation-play-state: paused;
+    }
+
+    /* ===== Footer Note ===== */
+    .note {
+      text-align: center;
+      font-size: 20px;
+      color: #031212;
+      padding: 18px 12px 28px;
+      opacity: .8;
+    }
+
+    /* ===== Back Button at Bottom ===== */
+    .back-btn {
+      background-color: rgb(192, 192, 226);
+      color: #333;
+      border: 2px solid black;
+      border-radius: 10px;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 2px 2px 5px rgba(200, 37, 37, 0.3);
+      transition: transform 0.2s ease;
+      font-weight: bold;
+    }
+
+    .back-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .back-btn-wrap {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .logo {
+      display: flex;
+      position: absolute;
+      left: 0;
+      top: 3%;
+      font-size: 28px;
+      font-family: 'Fredoka One', cursive;
+    }
+
+    .logo i {
+      margin-left: 10px;
+      font-size: 32px;
+      color: #FFD166;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      background: #4A90E2;
+      padding: 15px 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-list {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
+    }
+
+    .nav-item {
+      text-align: center;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 16px 28px;
+      background-color: rgba(255, 255, 255, 0.15);
+      color: white;
+      text-decoration: none;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      min-height: 25px;
+      min-width: 54px;
+    }
+
+    .nav-link:hover {
+      background-color: #50E3C2;
+      color: #fff;
+      transform: scale(1.08);
+    }
+
+    .nav-link.active {
+      background-color: #ffd566;
+      color: #333;
+      box-shadow: 0 4px 14px rgba(255, 213, 102, 0.5);
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <ul class="nav-list">
+      <div class="logo">
+        <i class="fas fa-leaf"></i>
+        <span>KidsLearn</span>
+
+      </div>
+      <li class="nav-item"><a href="#" class="nav-link active" data-page="home"
+          onclick="navigateTo('home')">ပင်မစာမျက်နှာ</a></li>
+      <li class="nav-item"><a href="#" class="nav-link" data-page="tutorial"
+          onclick="navigateTo('tutorial')">သင်ခန်းစာများ</a></li>
+      <li class="nav-item"><a href="chat.html" class="nav-link" data-page="chat" onclick="navigateTo('chat')">စကားပြောခန်း</a>
+      </li>
+      <li class="nav-item"><a href="profile.html" class="nav-link" data-page="login"
+          onclick="navigateTo('login')">အကောင့်ဝင်ရန်</a></li>
+    </ul>
+  </nav>
+  <!-- Cartoon runners background -->
+  <div class="stage" id="stage">
+    <div class="runner r1">🧸</div>
+    <div class="runner r2">🚗</div>
+    <div class="runner r3">🐰</div>
+    <div class="runner r4">🦖</div>
+    <div class="runner r5">🎈</div>
+  </div>
+
+  <!-- Title -->
+  <div class="title-wrap">
+    <div class="title">📖 မြန်မာသံတူ စကားလုံးများ</div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="container">
+    <section class="grid">
+
+      <!-- Sample Card -->
+      <article class="card">
+        <h3>ကဏန်း/ဂဏန်း</h3>
+        <div class="pair">
+          <div class="text"><b>ကဏန်း</b> — ပုစွန်လုံးကောင်</div>
+          <div class="text"><b>ဂဏန်း</b> — ၁၊ ၂၊ ၃၊ ...သင်္ချာအမှတ်အသား</div>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>ကတိ/ဂတိ</h3>
+        <div class="pair">
+          <div class="emoji"></div>
+          <div class="text"><b>ကတိ</b> — သဘောတူညီချက်။ ပြောသည့်အတိုင်းလုပ်မည်ဟု အာမခံချက်။<br><br>
+            <div class="text"><b>ဂတိ</b> — သတ္တဝါတို့၏ လားရာဘဝ။</div>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="card">
+        <h3>ကာရံ/ကာရန်</h3>
+        <div class="pair">
+          <div class="emoji"></div>
+          <div class="text"><b>ကာရံ </b> — ခြံ၊ တံတိုင်း ကာရံသည်။<br><br>
+            <div class="text"><b>ကာရန် </b> — ကဗျာအလင်္ကာတွင် စကားလုံးတို့၏ ညီညွတ်သောအသံ။
+            </div>
+
+      </article>
+
+
+      <article class="card">
+        <h3>ခရင်း/ခက်ရင်း</h3>
+        <div class="pair">
+          <div class="emoji"></div>
+          <div class="text"><b>ခရင်း</b> — ခရုငယ်တစ်မျိုး။<br><br>
+            <div class="text"><b>ခက်ရင်း </b> —ကော်ထိုးစားရန် အသုံးပြုသည့် အသုံးအဆောင်။ </div>
+          </div>
+        </div>
+
+      </article>
+
+
+      <article class="card">
+        <h3>ချို့ယွင်း/ချွတ်ယွင်း</h3>
+        <div class="pair">
+          <div class="emoji"></div>
+          <div class="text"><b>ချို့ယွင်း</b> — ပကတိအခြေအနေမှ ယုတ်လျော့ပျက်ယွင်းသည်။<br><br>
+            <div class="text"><b>ချွတ်ယွင်း</b> — လွဲသည်၊ မှားသည်။ </div>
+          </div>
+
+      </article>
+
+
+      <article class="card">
+        <h3>စာတန်း /စာတမ်း</h3>
+        <div class="pair">
+          <div class="emoji"></div>
+          <div class="text"><b>စာတန်း </b> — စာကြောင်း။<br><br>
+            <div class="text"><b>စာတမ်း</b> — အခိုင်အမာ အထောက်အထားပြုအပ်သော စာ။</div>
+          </div>
+        </div>
+
+      </article>
+
+
+      <article class="card">
+        <h3>သဒ္ဒါ/သဒ္ဓါ </h3>
+        <div class="pair">
+          <div class="emoji"></div>
+          <div class="text"><b>သဒ္ဒါ </b> — စကားဖွဲ့စည်းပုံ၊ ဝါကျဖွဲ့စည်းပုံစသော စည်းစနစ်ကို ဖော်ပြသောကျမ်း။<br><br>
+            <div class="text"><b>သဒ္ဓါ </b> — လိုလားကြည်ဖြူသည်။ ရတနာသုံးပါး၊ ကံ၊ ကံ၏အကျိုးကို ယုံကြည်မှု။</div>
+          </div>
+        </div>
+
+      </article>
+
+
+      <article class="card">
+        <h3>အာရုံ/အရုဏ် </h3>
+        <div class="pair">
+          <div class="emoji"></div>
+          <div class="text"><b>အာရုံ </b> —အဆင်း၊ အသံ၊ အနံ့၊ အရသာ၊ အတွေ့ အာရုံ။<br><br>
+            <div class="text"><b>အရုဏ်</b> — နေမထွက်မီ အရှေ့အရပ်မှ ဦးစွာဖြစ်ပေါ်လာသော ရှေ့ပြေးအလင်းရောင်။ </div>
+          </div>
+        </div>
+
+      </article>
+
+
+      <article class="card">
+        <h3>ထုပ်/ထုတ်</h3>
+        <div class="pair">
+          <div class="emoji"></div>
+          <div class="text"><b>ထုပ်</b> — ခရီးသွားမယ် အဝတ်တွေထုပ်<br><br>
+            <div class="text"><b>ထုတ်</b> —ဂိုထောင်ထဲက ကားလည်းထုတ်။ </div>
+          </div>
+        </div>
+
+      </article>
+
+
+      <article class="card">
+        <h3>စီး/ဆီး</h3>
+        <div class="pair">
+          <div class="emoji"></div>
+          <div class="text"><b>စီး</b> —ကား"စီး"ရတာကြာပါမယ်<br><br>
+            <div class="text"><b>ဆီး</b> — "ဆီး" ဝမ်းကြိုတင်သွားထားကွယ်။ </div>
+          </div>
+
+      </article>
+
+      <article class="card">
+        <h3>မှီ/မီ</h3>
+        <div class="pair">
+          <div class="emoji"></div>
+          <div class="text"><b>မှီ</b> — "မှီ"မနေနဲ့ ချစ်သူရာ <br><br>
+            <div class="text"><b>မီ</b> — လေယာဉ်မ"မီ"ဘဲနေမယ် </div>
+          </div>
+
+      </article>
+
+      <article class="card">
+        <h3>ဖျန်း/ဖြန်း</h3>
+        <div class="pair">
+          <div class="emoji"></div>
+          <div class="text"><b>ဖျန်း</b> — အိပ်ပုပ်ကြီးလို့ရေနဲ့"ဖျန်း" <br><br>
+            <div class="text"><b>ဖြန်း</b> — သူလေးရှက်သွေး"ဖြန်း"။ </div>
+          </div>
+
+      </article>
+
+      <article class="card">
+        <h3>သုပ်/သုတ်</h3>
+        <div class="pair">
+          <div class="emoji"></div>
+          <div class="text"><b>သုပ် </b> —မနက်စာကို နန်းကြီး"သုပ်"<br><br>
+            <div class="text"><b>သုတ်</b> — နှုတ်ခမ်းပေရင် စင်အောင်"သုတ်"။ </div>
+          </div>
+
+      </article>
+
+
+    </section>
+
+    <p class="note">
+      သတိပြုရန် : သံတူတွေကို သရသလက္ခဏာတူ—အဓိပ္ပါယ်မတူတဲ့ စကားလုံးများအဖြစ် စာကိုယ်တည်ထဲက ဝါကျနဲ့အတူမှတ်သားပါ။
+    </p>
+
+    <!-- Back Button at Bottom -->
+    <div class="back-btn-wrap">
+      <button class="back-btn" onclick="goBack()">⬅️ နောက်သို့ ပြန်သွားမည်</button>
+      <button class="back-btn" onclick="goNext()">ရှေ့သို့ ဆက်သွားမည်</button>
+    </div>
+  </main>
+
+  <!-- JavaScript -->
+  <script>
+    function goBack() {
+      if (document.referrer !== "") {
+        window.history.back();
+      } else {
+        window.location.href = "kk.html"; // fallback page
+
+      }
+    }
+
+    function goNext() {
+      // Replace 'nextpage.html' with the actual URL you want to navigate to
+      window.location.href = "tutu1.html";
+    }
+  </script>
+
+</body>
+
+</html>

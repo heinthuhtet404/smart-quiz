@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="my">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>မြန်မာစာ — သရ (Vowels) Interactive Notes</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg1: #e6f4ff;
+      /* light blue */
+      --bg2: #fffdf7;
+      /* creamy */
+      --ink: #0b3b5a;
+      /* dark blue text */
+      --muted: #416b8b;
+      --card: #ffffff;
+      --border: #0b3b5a;
+      --accent: #0f6fb0;
+      --accent-2: #ff9f1c;
+      --accent-3: #3cc47c;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      margin: 0;
+      font-family: "Noto Sans Myanmar", "Myanmar Text", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background: radial-gradient(1200px 800px at 20% -10%, var(--bg2), transparent 60%),
+        radial-gradient(1200px 800px at 120% 10%, #f0fbff, transparent 60%),
+        linear-gradient(180deg, var(--bg1), #f6fbff);
+      overflow-x: hidden;
+    }
+
+    /* Floating cute stickers in the back */
+    .stage {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .7
+    }
+
+    .bubble {
+      position: absolute;
+      font-size: 38px;
+      filter: drop-shadow(0 6px 6px rgba(0, 0, 0, .08));
+      animation: floatUp linear infinite;
+    }
+
+    .b1 {
+      left: 6vw;
+      bottom: -10vh;
+      animation-duration: 16s
+    }
+
+    .b2 {
+      left: 22vw;
+      bottom: -14vh;
+      animation-duration: 18s;
+      animation-delay: -6s
+    }
+
+    .b3 {
+      left: 52vw;
+      bottom: -12vh;
+      animation-duration: 20s;
+      animation-delay: -3s
+    }
+
+    .b4 {
+      left: 78vw;
+      bottom: -16vh;
+      animation-duration: 19s;
+      animation-delay: -10s
+    }
+
+    .b5 {
+      left: 35vw;
+      bottom: -18vh;
+      animation-duration: 22s;
+      animation-delay: -7s
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0)
+      }
+
+      to {
+        transform: translateY(-120vh)
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .bubble {
+        animation: none
+      }
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: linear-gradient(180deg, rgba(255, 255, 255, .9), rgba(255, 255, 255, .7));
+      backdrop-filter: saturate(1.2) blur(6px);
+      border-bottom: 2px solid rgba(0, 0, 0, .06);
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 14px 14px 10px
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 26px;
+      letter-spacing: .2px
+    }
+
+    .lead {
+      margin: 6px 0 12px;
+      color: var(--muted);
+      font-weight: 600
+    }
+
+    /* Tabs (buttons) */
+    .tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      appearance: none;
+      border: 2px solid var(--border);
+      background: #fff;
+      color: var(--ink);
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 3px 3px 0 rgba(0, 0, 0, .08);
+      transition: transform .15s ease, background .2s ease, color .2s ease;
+    }
+
+    .tab-btn:hover {
+      transform: translateY(-2px)
+    }
+
+    .tab-btn:active {
+      transform: translateY(0)
+    }
+
+    .tab-btn.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: #083b5e;
+    }
+
+    .tab-btn[data-color="gold"].active {
+      background: var(--accent-2)
+    }
+
+    .tab-btn[data-color="green"].active {
+      background: var(--accent-3)
+    }
+
+    /* Main content */
+    main {
+      position: relative;
+      z-index: 1
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 18px auto 80px;
+      padding: 0 14px
+    }
+
+    .panel {
+      display: none;
+      animation: fadeIn .28s ease-out both;
+    }
+
+    .panel.active {
+      display: block
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .card {
+      background: var(--card);
+      border: 3px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 14px;
+      box-shadow: 6px 6px 0 rgba(0, 0, 0, .08);
+    }
+
+    .card h3 {
+      margin: 0 0 8px
+    }
+
+    .grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 2px dashed var(--ink);
+      background: #fff;
+      font-weight: 700;
+    }
+
+    .ex {
+      background: linear-gradient(180deg, #fff, #f7fbff);
+      border: 2px dashed var(--accent);
+      border-radius: 14px;
+      padding: 12px;
+    }
+
+    ul {
+      margin: 8px 0 0 16px
+    }
+
+    li {
+      margin: 6px 0
+    }
+
+    code {
+      background: #fff3d6;
+      padding: 2px 6px;
+      border-radius: 6px;
+      border: 1px solid #ffe3a0;
+    }
+
+    /* Footer controls */
+
+    .ghost {
+      background: transparent;
+      border: 2px dashed var(--border);
+      color: var(--ink);
+    }
+
+    .back-btn {
+      background-color: rgb(225, 225, 235);
+      color: #333;
+      border: 2px solid black;
+      border-radius: 15px;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 2px 2px 5px rgba(200, 37, 37, 0.3);
+      transition: transform 0.2s ease;
+      font-weight: bold;
+      margin-left: 60%;
+    }
+
+    .back-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .back-btn-wrap {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+
+    .logo i {
+      margin-left: 10px;
+      font-size: 32px;
+      color: #FFD166;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      background: #4A90E2;
+      padding: 15px 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-list {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
+    }
+
+    .nav-item {
+      text-align: center;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 16px 28px;
+      background-color: rgba(255, 255, 255, 0.15);
+      color: white;
+      text-decoration: none;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      min-height: 25px;
+      min-width: 54px;
+    }
+
+    .nav-link:hover {
+      background-color: #50E3C2;
+      color: #fff;
+      transform: scale(1.08);
+    }
+
+    .nav-link.active {
+      background-color: #ffd566;
+      color: #333;
+      box-shadow: 0 4px 14px rgba(255, 213, 102, 0.5);
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <ul class="nav-list">
+      <div class="logo">
+        <i class="fas fa-leaf"></i>
+        <span>KidsLearn</span>
+
+      </div>
+      <li class="nav-item"><a href="home.html" class="nav-link active" data-page="home"
+          onclick="navigateTo('home')">ပင်မစာမျက်နှာ</a></li>
+      <li class="nav-item"><a href="home.html" class="nav-link" data-page="tutorial"
+          onclick="navigateTo('tutorial')">သင်ခန်းစာများ</a></li>
+      <li class="nav-item"><a href="chat.html" class="nav-link" data-page="chat" onclick="navigateTo('chat')">စကားပြောခန်း</a>
+      </li>
+      <li class="nav-item"><a href="profile.html" class="nav-link" data-page="login"
+          onclick="navigateTo('login')">အကောင့်ဝင်ရန်</a></li>
+    </ul>
+  </nav>
+  <!-- cute floating stickers -->
+  <div class="stage" aria-hidden="true">
+    <div class="bubble b1">🧸</div>
+    <div class="bubble b2">📚</div>
+    <div class="bubble b3">🎈</div>
+    <div class="bubble b4">🐣</div>
+    <div class="bubble b5">🐤</div>
+    <div class="bubble b5">💋</div>
+    <div class="bubble b5">🎉</div>
+    <div class="bubble b5">😛</div>
+  </div>
+
+  <header>
+    <div class="wrap">
+
+
+
+      <!-- Tabs -->
+      <div class="tabs" role="tablist" aria-label="Vowel Topics">
+        <button class="tab-btn active" data-target="core" aria-selected="true" role="tab">📌 အဓိကသဘောတရား</button>
+        <button class="tab-btn" data-target="list" data-color="gold" role="tab">📚 သရ ၁၂ လုံး</button>
+        <button class="tab-btn" data-target="examples" data-color="green" role="tab">📝 အသုံးပြု ဥပမာ</button>
+        <button class="tab-btn" data-target="tips" role="tab">🌟 နားလည်ရမည့်အချက်များ</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <!-- 1) Core principles -->
+      <section id="core" class="panel active" role="tabpanel" aria-labelledby="tab-core">
+        <div class="card">
+          <h3>📌 အဓိကသဘောတရား</h3>
+          <div class="grid">
+            <div class="ex">
+              <span class="badge">1️⃣ ရေးနည်း ၂ မျိုး </span>
+              <ul>
+                <li>(၁) လုံးချင်းသရရေးနည်းနှင့် <br>
+                  (၂) ဗျည်းယှဉ်သရ (သင်္ကေတ) ရေးနည်းတို့ ဖြစ်ပါသည်။</li>
+                <p>စာပေအရေးအသား၏ အခြေခံမှာ သရနှင့်ဗျည်းများဖြစ်ကြသည်။ ထိုသရနှင့် ဗျည်းတို့
+                  အမျိုးမျိုးပေါင်းစပ်ခြင်းဖြင့် ဝေါဟာရများစွာ ရရှိသည်။၊<br><br>
+                  💡အဆင်ပြေစွာ သတိပြုရန်<br>
+                  🎉လုံးချင်းသရ = တစ်ယောက်တည်းအသံထွက်နိုင်သည်။
+                  🎉ဗျည်းယှဉ်သရ = ဗျည်းနဲ့ပေါင်းမှသာ အသံဖွဲ့နိုင်သည်။
+                </p>
+              </ul>
+            </div>
+            <div class="ex">
+              <span class="badge">2️⃣ လုံးချင်းသရ/ဗျည်းယှဉ်သရ</span>
+              <ul>
+                <p>🎉လုံးချင်းသရ</p>
+                <li>အ၊ အာ၊ ဣ၊ ဤ၊ ဥ၊ ဦ၊ ဧ၊ အဲ၊ ဩ၊ ဪ၊ အို။</li>
+                <p>🎉ဗျည်းယှဉ်သရ (က ဗျည်းဖြင့် ပေါင်းလျက်)</p>
+                <li>က၊ ကာ၊ ကိ၊ ကီ၊ ကု၊ ကူ၊ ကေ၊ ကဲ၊ ကော၊ ကော်၊ ကို။</li>
+              </ul>
+            </div>
+            <div class="ex">
+              <span class="badge">3️⃣ဗျည်းနှင့်သရ</span>
+              <ul>
+                <p>🎉ဗျည်းနှင့်သရတွင် သရသည် ဗျည်းနောက်မှသာ လိုက်သည်ကို တွေ့ရမည်ဖြစ်ပါသည်။ မြန်မာ ဗျည်းယှဉ်သရများကို
+                  လေ့လာရာတွင် အမျိုးမျိုးဖြစ်နေသည်ကို တွေ့ရသည်။</p>
+                <li>ဥပမာ</li>
+                <p>ဗျည်းရှေ့မှ နေခြင်း= အေ<br>
+                  ဗျည်းနောက်မှနေခြင်း= အာ<br>
+                  ဗျည်းအထက်မှနေခြင်း= အိ၊ အီ၊ အဲ<br>
+                  ဗျည်းအောက်မှနေခြင်း= အု၊ အူ<br>
+                  ဗျည်းကိုရှေ့နောက်ခွ၍နေခြင်း= အော၊ အော်<br>
+                  ဗျည်းကိုအထက်အောက်ခွ၍နေခြင်း= အို<br>
+                  ဗျည်းအတွင်းတိမ်မြုပ်နေခြင်း= အ</p>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2) List of 12 vowels -->
+      <section id="list" class="panel" role="tabpanel" aria-labelledby="tab-list">
+        <div class="card">
+          <h3>📚 မြန်မာစာလုံးပေါင်းစနစ်ထဲရှိ သရများ (၁၂)</h3>
+          <div class="grid">
+            <div class="ex"><span class="badge">①</span> အ</div>
+            <div class="ex"><span class="badge">②</span> အာ</div>
+            <div class="ex"><span class="badge">③</span> ဣ</div>
+            <div class="ex"><span class="badge">④</span> ဤ</div>
+            <div class="ex"><span class="badge">⑤</span> ဥ</div>
+            <div class="ex"><span class="badge">⑥</span> ဦ</div>
+            <div class="ex"><span class="badge">⑦</span> ဧ</div>
+            <div class="ex"><span class="badge">⑧</span> အဲ</div>
+            <div class="ex"><span class="badge">⑨</span> ဩ</div>
+            <div class="ex"><span class="badge">⑩</span> ဪ</div>
+            <div class="ex"><span class="badge">⑪</span> အံ</div>
+            <div class="ex"><span class="badge">⑫</span> အား</div>
+          </div>
+          <li>အသံထွက်အတိုင်းရေးရင်<div class="br"></div>
+            ( အ၊ အာ၊ အိ၊ အီ၊ အု၊ အူ၊ အေ၊ အဲ၊အော၊ အော်၊ အံ၊ အား) ပါ။
+          </li>
+          <li>သင်္ကေတ အနေနဲ့ "အ"မထည့်ဘဲရေးရင်...<br>
+            ( -၊ ာ၊ ိ၊ီ၊ ု၊ ူ၊ ေ-၊ ဲ၊ ော၊ော်၊ ံ၊ ား)ပါ။
+          </li>
+          <li>အဲဒါကို ဗျည်းနဲ့တွဲရင်...<br>
+            ( က၊ ကာ၊ ကိ၊ ကီ၊ ကု၊ ကူ၊ ကေ၊ ကဲ၊ ကော၊ ကော်၊ ကံ၊ ကား) ဖြစ်ပါသည်။
+
+          </li>
+
+        </div>
+      </section>
+
+      <!-- 3) Examples -->
+      <section id="examples" class="panel" role="tabpanel" aria-labelledby="tab-examples">
+        <div class="card">
+          <h3>📝 အသုံးပြု ဥပမာ</h3>
+          <div class="grid">
+            <div class="ex">
+              <strong>က + အ = <u>က</u></strong>
+            </div>
+            <div class="ex">
+              <strong>က + အာ = <u>ကာ</u></strong>
+            </div>
+            <div class="ex">
+              <strong>က + အိ = <u>ကိ</u></strong>
+            </div>
+            <div class="ex">
+              <strong>က + အီ = <u>ကီ</u></strong>
+            </div>
+            <div class="ex">
+              <strong>က + အု = <u>ကု</u></strong>
+            </div>
+            <div class="ex">
+              <strong>က + အူ = <u>ကူ</u></strong>
+            </div>
+            <div class="ex">
+              <strong>က + ေအ = <u>ကေ</u></strong>
+            </div>
+            <div class="ex">
+              <strong>က + အဲ = <u>ကဲ</u></strong>
+            </div>
+            <div class="ex">
+              <strong>က + အော = <u>ကော</u></strong>
+            </div>
+            <div class="ex">
+              <strong>က + အိုး = <u>ကိုး</u></strong>
+            </div>
+            <div class="ex">
+              <strong>က + အဉ် = <u>ကဉ်</u></strong>
+            </div>
+            <div class="ex">
+              <strong>က + အံ = <u>ကံ</u></strong>
+            </div>
+            <div class="ex">
+              <strong>မ + အာ = <u>မာ</u></strong>
+            </div>
+            <div class="ex">
+              <strong>က + အီ = <u>ကီ</u></strong>
+            </div>
+            <div class="ex">
+              <strong>က + အဲ = <u>ကဲ</u></strong>
+            </div>
+            <div class="ex">
+              <strong>မ + အာ = <u>မာ</u></strong>
+            </div>
+            <div class="ex">
+              <strong>က + အူ = <u>ကူ</u></strong>
+            </div>
+            <div class="ex">
+              <strong>က + အ = <u>က</u></strong>
+            </div>
+            <div class="ex">
+              <strong>က + အူ = <u>ကူ</u></strong>
+            </div>
+            <div class="ex">
+              <strong>မ + အာ = <u>မာ</u></strong>
+            </div>
+            <div class="ex">
+              <strong>မ + အာ = <u>မာ</u></strong>
+            </div>
+            <div class="ex">
+              <strong>က + အီ = <u>ကီ</u></strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4) Tips -->
+      <section id="tips" class="panel" role="tabpanel" aria-labelledby="tab-tips">
+        <div class="card">
+          <h3>🌟 သရကို နားလည်ရမည့် အချက်တွေ</h3>
+          <ul>
+            <li>🔹စကားလုံးတစ်လုံးကို အသံထွက်အပြည့် <b>(ဗျည်း + သရ)</b> ပေါင်းမှသာ ဖြစ်တယ်။</li>
+            <li>🔹သရမပါဘဲ အချို့သော<b>ဗျည်း</b>အသံတွေ အပြည့်မထွက်နိုင်ဘူး။</li>
+            <li>🔹သရများက အသံ/အဓိပ္ပါယ်ကို ပြောင်းပေးနိုင်သော <b>အဓိကအခန်းကဏ္ဍ</b>ဖြစ်တယ်။</li>
+            <li>🔹သရသည် <b>အသံဖွဲ့ရေးအတွက်</b> မဖြစ်မနေ လိုအပ်သည်။</li>
+            <li>🔹သရ၏ သံထွက်ကို <b>ကောင်းစွာနားထောင်၍ ရှင်းလင်းစွာ</b>ဖတ်ရမည်။</li>
+            <li>🔹သရ ၁၂ လုံးအား <b>ရှင်းလင်းစွာ</b> မှတ်သားထားရမည်။<br>
+              အ၊ အာ၊ အိ၊ အီ၊ အု၊ အူ၊ ေအ၊ အဲ၊ အော၊ အိုး၊ အဉ်၊ အံ</li>
+            <li>🔹သရ+ဗျည်း ပေါင်းခြင်းကို <b>လေ့ကျင့်ခြင်းဖြင့်</b> မြန်မာအသံထွက်ကျွမ်းကျင်နိုင်သည်။</li>
+            <li>🔹သရသည် မြန်မာစကားအဓိပ္ပာယ်ကို <b>ပြောင်းပေး</b>နိုင်သောအရာဖြစ်သည်။</li>
+          </ul>
+
+        </div>
+      </section>
+
+
+      <div class="back-btn-wrap">
+        <button class="back-btn" onclick="goNext()">ရှေ့သို့ ဆက်သွားမည်</button>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    // Simple tabs: click to activate a panel; active tab changes color.
+    const tabs = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.panel');
+
+    function setActive(targetId, clickedBtn) {
+      panels.forEach(p => p.classList.toggle('active', p.id === targetId));
+      tabs.forEach(b => b.classList.toggle('active', b === clickedBtn));
+    }
+
+    tabs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.target;
+        if (!id) return;
+
+        // toggle active tab color by dataset
+        tabs.forEach(b => {
+          // keep active class on clicked only
+          if (b !== btn) b.classList.remove('active');
+        });
+        btn.classList.add('active');
+
+        // show the panel
+        panels.forEach(p => p.classList.toggle('active', p.id === id));
+
+        // playful tiny flash effect on body background
+        document.body.style.transition = 'background .35s ease';
+        if (btn.dataset.color === 'gold') {
+          document.body.style.background =
+            'linear-gradient(180deg,#fff7e6,#f6fbff)';
+        } else if (btn.dataset.color === 'green') {
+          document.body.style.background =
+            'linear-gradient(180deg,#e9fff3,#f6fbff)';
+        } else {
+          document.body.style.background =
+            'linear-gradient(180deg,#e6f4ff,#f6fbff)';
+        }
+
+        // scroll to top of content on mobile
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
+    function goNext() {
+      window.location.href = "thara1.html";
+    }
+  </script>
+</body>
+
+</html>

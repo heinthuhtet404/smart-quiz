@@ -262,6 +262,24 @@
         font-size: 32px;
       }
     }
+
+    .hein {
+    background-color: #ffd566;
+    padding: 16px 28px;
+    border: 1px solid white;
+    border-radius: 30px;
+    color: #333;
+    text-decoration: none; /* link underline မပေါ်အောင် */
+    transition: all 0.3s ease; /* ကြွပြီး smooth ဖြစ်အောင် */
+  }
+
+  .hein:hover {
+    background-color: #ffcc33; /* hover ဖြစ်တဲ့အချိန် နည်းနည်းနက် */
+     /* အနည်းငယ်ကြွတက် */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* မျက်နှာကျက်ထဲကနေ ထွက်ပေါ် */
+    transform: scale(1.1);
+  }
+    
   </style>
 </head>
 
@@ -273,9 +291,9 @@
       <span>KidsLearn</span>
     </div>
 
-    <div class="search-box">
+    <div class="search-box" style="background-color: #ffffff;">
       <input type="text" id="searchInput" placeholder="အသုံးပြုသူ ရှာရန်...">
-      <button><i class="fas fa-search"></i></button>
+      <button style="background-color: #4A90E2;"><i class="fas fa-search" ></i></button>
     </div>
 
     <div class="current-user" id="currentUser">
@@ -284,8 +302,8 @@
     </div>
 
     <nav>
-      <a href="homepage.html">ပင်မစာမျက်နှာ</a>
-      <a href="profile.html">ကိုယ်ပိုင်စာမျက်နှာ</a>
+      <a href="home.html" style="background-color: #ffd566; padding: 16px 28px; border: 1px solid white; border-radius: 30px; color: #333;" class="hein">ပင်မစာမျက်နှာ</a>
+      <a href="profile.html" style="background-color: #6596ce; padding: 16px 28px; border: 1px solid white; border-radius: 30px; color: #333; " class="hein">ကိုယ်ပိုင်စာမျက်နှာ</a>
     </nav>
   </header>
 

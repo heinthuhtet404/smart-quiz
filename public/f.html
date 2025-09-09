@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="my">
+
+<head>
+  <meta charset="utf-8">
+  <title>Myanmar Letter Learning - Pages</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+
+      background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+      font-family: "Noto Sans Myanmar", sans-serif;
+    }
+
+    .logo {
+      display: flex;
+      position: absolute;
+      left: 0;
+      top: 3%;
+      font-size: 28px;
+      font-family: 'Fredoka One', cursive;
+    }
+
+    .logo i {
+      font-size: 32px;
+      color: #FFD166;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      background: #4A90E2;
+      padding: 30px 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-list {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
+    }
+
+    .nav-item {
+      text-align: center;
+    }
+
+    .nav-link {
+      /* display: block; */
+      padding: 16px 28px;
+      background-color: rgba(255, 255, 255, 0.15);
+      color: white;
+      text-decoration: none;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      min-height: 54px;
+      min-width: 54px;
+    }
+
+    .nav-link:hover {
+      background-color: #50E3C2;
+      color: #fff;
+      transform: scale(1.08);
+    }
+
+    .nav-link.active {
+      background-color: #ffd566;
+      color: #333;
+      box-shadow: 0 4px 14px rgba(255, 213, 102, 0.5);
+    }
+
+    /* Page container */
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: grid;
+    }
+
+    /* --- Page 1 (Top Grid) --- */
+    #page1 {
+      grid-template-columns: repeat(5, 90px);
+      gap: 12px;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .cell {
+      width: 90px;
+      height: 90px;
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 40px;
+      font-weight: bold;
+      color: #333;
+      background: #fff;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+    }
+
+    .cell:nth-child(5n+1) {
+      background: #ffcccc;
+    }
+
+    .cell:nth-child(5n+2) {
+      background: #ffe0b3;
+    }
+
+    .cell:nth-child(5n+3) {
+      background: #ffffb3;
+    }
+
+    .cell:nth-child(5n+4) {
+      background: #ccffcc;
+    }
+
+    .cell:nth-child(5n+5) {
+      background: #e0ccff;
+    }
+
+    .cell:hover {
+      transform: scale(1.1) rotate(-3deg);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .last-row {
+      grid-column: span 5;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .last-row .cell {
+      flex: 0 0 90px;
+    }
+
+    /* --- Page 2 (Letter Boxes) --- */
+    /* --- Page 2 (Letter Boxes) --- */
+    /* --- Page 2 (Letter Boxes) --- */
+    #page2 {
+      grid-template-columns: repeat(5, 100px);
+      gap: 15px;
+      margin-top: 20px;
+      justify-content: center;
+    }
+
+    .box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 32px;
+      font-weight: bold;
+      width: 100px;
+      height: 100px;
+      border-radius: 18px;
+      cursor: pointer;
+      background: #fff;
+      color: #333;
+      border: 3px solid transparent;
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.08),
+        0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .box:hover {
+      transform: scale(1.08) rotate(2deg);
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1),
+        0 8px 18px rgba(0, 0, 0, 0.35);
+    }
+
+    /* အရောင် theme — border glow အနေနဲ့သုံး */
+    .orange {
+      border-color: #ff9800;
+      box-shadow: 0 0 12px #ff9800aa;
+    }
+
+    .green {
+      border-color: #4caf50;
+      box-shadow: 0 0 12px #4caf50aa;
+    }
+
+    .red {
+      border-color: #f44336;
+      box-shadow: 0 0 12px #f44336aa;
+    }
+
+    .blue {
+      border-color: #2196f3;
+      box-shadow: 0 0 12px #2196f3aa;
+    }
+
+    .black {
+      border-color: #555;
+      box-shadow: 0 0 12px #555555aa;
+    }
+
+
+    /* --- Buttons --- */
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      /* center မှာထားချင်တာ */
+      gap: 20px;
+      /* buttons ကြားထဲ space */
+      margin: 20px auto;
+      /* center အတွက် auto */
+    }
+
+    .btn-container button {
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      background: #ffcc80;
+      transition: background 0.2s;
+    }
+
+    .btn-container button:hover {
+      background: #ffa726;
+    }
+
+    /* --- Modal --- */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 600px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      position: relative;
+    }
+
+    .modal-text {
+      flex: 1;
+      text-align: left;
+    }
+
+    .modal-text h2 {
+      margin: 0 0 10px 0;
+    }
+
+    .modal-text p {
+      margin: 0;
+      line-height: 1.5em;
+    }
+
+    .modal-content img {
+      width: 200px;
+      border-radius: 10px;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 22px;
+      cursor: pointer;
+      color: red;
+    }
+
+
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      /* horizontally center */
+      gap: 20px;
+      /* space between buttons */
+      margin-top: 20px;
+      /* space above buttons */
+    }
+
+
+    .btn-container button {
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      background: #ffcc80;
+      transition: background 0.2s;
+    }
+
+    .btn-container button:hover {
+      background: #ffa726;
+    }
+
+    /* --- Modal --- */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 600px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      position: relative;
+    }
+
+    .modal-text {
+      flex: 1;
+      text-align: left;
+    }
+
+    .modal-text h2 {
+      margin: 0 0 10px 0;
+    }
+
+    .modal-text p {
+      margin: 0;
+      line-height: 1.5em;
+    }
+
+    .modal-content img {
+      width: 200px;
+      border-radius: 10px;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 22px;
+      cursor: pointer;
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <ul class="nav-list">
+      <div class="logo">
+        <i class="fas fa-leaf"></i>
+        <span>KidsLearn</span>
+      </div>
+      <li class="nav-item"><a href="home.html" class="nav-link active" data-page="home"
+          onclick="navigateTo('home')">ပင်မစာမျက်နှာ</a></li>
+      <li class="nav-item"><a href="home.html" class="nav-link" data-page="tutorial"
+          onclick="navigateTo('tutorial')">သင်ခန်းစာများ</a></li>
+      <li class="nav-item"><a href="chat.html" class="nav-link" data-page="chat" onclick="navigateTo('chat')">စကားပြောခန်း</a>
+      </li>
+      <li class="nav-item"><a href="profile.html" class="nav-link" data-page="login"
+          onclick="navigateTo('login')">အကောင့်ဝင်ရန်</a></li>
+    </ul>
+  </nav>
+  <!-- Page 1 -->
+  <div id="page1" class="page active">
+    <div class="cell">က</div>
+    <div class="cell">ခ</div>
+    <div class="cell">ဂ</div>
+    <div class="cell">ဃ</div>
+    <div class="cell">င</div>
+    <div class="cell">စ</div>
+    <div class="cell">ဆ</div>
+    <div class="cell">ဇ</div>
+    <div class="cell">ဈ</div>
+    <div class="cell">ည</div>
+    <div class="cell">ဋ</div>
+    <div class="cell">ဌ</div>
+    <div class="cell">ဍ</div>
+    <div class="cell">ဎ</div>
+    <div class="cell">ဏ</div>
+    <div class="cell">တ</div>
+    <div class="cell">ထ</div>
+    <div class="cell">ဒ</div>
+    <div class="cell">ဓ</div>
+    <div class="cell">န</div>
+    <div class="cell">ပ</div>
+    <div class="cell">ဖ</div>
+    <div class="cell">ဗ</div>
+    <div class="cell">ဘ</div>
+    <div class="cell">မ</div>
+    <div class="cell">ယ</div>
+    <div class="cell">ရ</div>
+    <div class="cell">လ</div>
+    <div class="cell">ဝ</div>
+    <div class="cell">သ</div>
+    <div class="last-row">
+      <div class="cell">ဟ</div>
+      <div class="cell">ဠ</div>
+      <div class="cell">အ</div>
+    </div>
+  </div>
+
+
+
+
+  <!-- Page 2 -->
+  <div id="page2" class="page">
+    <div class="box orange"
+      onclick="openModal('က', 'က ကြီးရေ က\nမမ က\nကကြိုးစုံစွာက\nပျော်ရွှင်မြူးကြွ ကခုန်ပြီး\nဆိုင်းတွေ ဗုံတွေတီး။', 'ka.jpg')">
+      က</div>
+    <div class="box green"
+      onclick="openModal('ခ', 'ခခွေး ခခွေး ခရုလေး\nပန်းပင်တက်တဲ့\nခရုလေး\nသွားနေတာက\nခပ်နှေးနှေး\nဖယ်ရှားကြစို့လေး။', 'kha.jpg')">
+      ခ</div>
+    <div class="box red"
+      onclick="openModal('ဂ', 'ဂငယ် ဂငယ်\nဂဏန်းသင်မယ်\nတစ်နှစ်သုံးလေး ရေတွက်မယ်\nဂရုစိုက်ပါကွယ်။', 'ga.jpg')">ဂ</div>
+    <div class="box black"
+      onclick="openModal('င', 'င‌ကလေး ငကလေး\nအရွယ်ငယ်ငယ်လေး\nငလက်မ အရွယ်ငယ်\nငေးငေးမှိုင်မှိုင် မနေနဲ့ကွယ်။', 'nga.jpg')">
+      င</div>
+
+    <div class="box orange"
+      onclick="openModal('စ', 'စလုံး စလုံး ဖိုးစလုံး\nခါးကိုကုန်းလို့ စပါးစိုက်တုန်း\nအထွက်တိုးမှာမိုပြုံး။', 'sa.jpg')">
+      စ</div>
+    <div class="box green"
+      onclick="openModal('ဆ', 'ဆလိမ် ဆလိမ်\nကျောင်းတက်ချိန်\nကျောင်းတက်ချိန်မှာ ပျော်ရွှင်လှ\nဆရာမကိုနှုတ်ဆက်ကြ။', 'hsa.jpg')">
+      ဆ</div>
+    <div class="box red"
+      onclick="openModal('ဇ', 'ဇကွဲလေး ဇကွဲလေး\nဇလပ်ဖြူဖြူဖွေး\nဇလက်ဖြူက မွှေးကြူကြူ\nမလေးပန်ဖို့ယူ။', 'za.jpg')">ဇ
+    </div>
+    <div class="box black"
+      onclick="openModal('ည', 'ည ည ည ည လပြည့်ည\nဖိုးရွှေလက ဝင်းပပ\nလရောင်အောက်မှာ ပျော်ရွှင်လို့\nတို့တွေကစားကြစို့။', 'nya.jpg')">
+      ည</div>
+
+
+
+    <div class="box orange"
+      onclick="openModal('တ', 'တဝမ်းပူ တဝမ်းပူ\nဝမ်းဗိုက်ကလေးကပူ\nတဝမ်းပူလေး လှလှရေး\nတအားပျော်တယ်လေး။', 'ta2.jpg')">တ
+    </div>
+    <div class="box green"
+      onclick="openModal('ထ', 'ထဆင်ထူး ထဆင်ထူး\nတို့တွေထမင်းခူး\nထူးထူးခြားခြား ပြင်ဆင်ကွယ်\nတိုတွေဝိုင်းစားမယ်။', 'hta2.jpg')">
+      ထ</div>
+    <div class="box red" onclick="openModal('ဒ', 'ဒဒွေး ဒဒွေး မ‌ဒဒွေး \nဒဒွေးလေးကဒရယ်မလေး ဟိုဟိုဒီဒီပြေး', 'da2.jpg')">ဒ
+    </div>
+    <div class="box blue"
+      onclick="openModal('ဓ', 'ဓအောက်ခြိုက် ဓအောက်ခြိုက် ဝတ်ဆံလေးနဲ့ ဓအောက်ခြိုက် နှစ်ခြိုက်စရာ ဓလေ့များ တို့များအလေးထား', 'dha.jpg')">
+      ဓ</div>
+    <div class="box black"
+      onclick="openModal('န', 'နငယ် နငယ် ကိုနငယ် အစွမ်းရှိလှတယ် နဂါးငယ်နဲ့ နပန်းလုံး ဘယ်တော့မှ သူမရှုံး', 'na2.jpg')">န
+    </div>
+
+    <div class="box orange"
+      onclick="openModal('ပ', 'ပစောက်လေး ပစောက်လေး ပလွေသံချိုပေး ပဝါလေးနဲ့ ရွှေမင်းသမီး ပထမရလို့ရှုမငြီး', 'pa.jpg')">ပ
+    </div>
+    <div class="box green"
+      onclick="openModal('ဖ', '‌ဖဦးထုပ် ဖဦးထုပ် နေပူဆောင်းတဲ့ဖဦးထုပ် ဦးထုပ်ကလေးဆောင်းခဲ့ကွယ် ဖရဲသီးစိတ် သွားဝယ်မယ်', 'pha.jpg')">
+      ဖ</div>
+    <div class="box red"
+      onclick="openModal('ဗ', 'ဗထက်ခြိုက် ဗထက်ခြိုက် ဗဟုသုတ အလွန်ကြိုက် နှစ်ခြိုက်စရာ မှတ်သားထား ဗလာစာအုပ်မှာရေးစို့လား', 'ba1.jpg')">
+      ဗ</div>
+    <div class="box blue"
+      onclick="openModal('ဘ', 'ဘကုန်း ဘကုန်း ဘိုးဘကုန်း ခါးကခပ်ကုန်းကုန်း သန်စွမ်းပါလို့ ကျန်းမာတုန်း', 'bha.jpg')">ဘ
+    </div>
+    <div class="box black"
+      onclick="openModal('မ', 'မ မမ မမလေး မရွေးမုန့်ကိုစားမယ်လေး မကုန်တာလေးချန်လို့ထား မနက်ဖြန်အတွက်လား', 'ma.jpg')">မ
+    </div>
+
+    <div class="box orange"
+      onclick="openModal('ယ', 'ယပက်လက်လေး ယပက်လက်လေး ကကြီးပြောင်းပြန်ရေး ယဉ်ယဉ်ကျေးကျေးယမင်းရုပ် ပြုံးပြုံးကလေး ဟန်ပန်လုပ်', 'ya.jpg')">
+      ယ</div>
+    <div class="box green"
+      onclick="openModal('ရ', 'ရကောက် ရကောက် ကိုရကောက် ရထားစီးလို့ခရီးရောက် ပွဲခင်းရောက်တာပျော်စရာ ရဟတ်စီးကြမှာ ရနံ့ဖြာတဲ့ရေမွှေးလေး ဝယ်သွားကြစို့လေး', 'ra.jpg')">
+      ရ</div>
+    <div class="box red"
+      onclick="openModal('လ', 'လ လ လ လ ဖိုးရွှေလ မိုးပေါ်သာတဲ့လ အမှောင်ညကို လရောင်ခွင်း လင်ပန်းကြီးလိုငွေလမင်း', 'la.jpg')">
+      လ</div>
+    <div class="box blue"
+      onclick="openModal('ဝ', 'ဝလုံး ဝလုံး ဖိုးဝလုံး ချစ်စရာလေး ဖိုးဝလုံး ချိုချို‌ပြုံးတဲ့ ဝလုံးရယ် ဝိုင်းဝိုင်းကလေးရေး‌ပါတယ်', 'wa.jpg')">
+      ဝ</div>
+    <div class="box black"
+      onclick="openModal('သ', 'သ ကလေး သ ကလေး ချစ်စရာ သ ကလေး သရက် သခွား ချိုချိုအေး သဇင်ပန်းက ကြူကြူမွှေး အဲဒါ သ ကလေး', 'tha.jpg')">
+      သ</div>
+
+    <div class="box green"
+      onclick="openModal('ဟ', 'ဟ ကလေး ဟ ကလေး သားသား မီးမီး သံချိုတေး ဟ ဟလေး ရယ်‌သံပေး မေ့မေ့နားဝင်အေး', 'ha.jpg')">ဟ
+    </div>
+    <div class="box blue"
+      onclick="openModal('အ', 'အ အမေ တို့တိုင်းပြည် အမြဲချစ်ခင်ပေ အမေ့ရဲ့သား မြန်ပြည်ဖွား အများအတွက် တို့ကြိုးစား', 'a.jpg')">
+      အ</div>
+  </div>
+  </div>
+
+  <!-- Buttons -->
+  <div class="btn-container">
+    <button id="prevBtn">နောက်သို့</button>
+    <button id="nextBtn">ရှေ့သို့</button>
+  </div>
+
+  <!-- Modal -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modalImage" src="" alt="Image">
+      <div class="modal-text">
+        <h2 id="letter"></h2>
+        <p id="description"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentPage = 1;
+    const totalPages = 2;
+
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    function showPage(page) {
+      document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+      document.getElementById("page" + page).classList.add("active");
+    }
+
+    prevBtn.addEventListener("click", () => {
+      if (currentPage === 1) {
+        // page1 မှာရင် နောက်သို့ button ကိုနှိပ်တာနဲ့ b.html သို့သွား
+        window.location.href = "b.html";
+      } else if (currentPage > 1) {
+        currentPage--;
+        showPage(currentPage);
+      }
+    });
+
+
+    nextBtn.addEventListener("click", () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        showPage(currentPage);
+      }
+    });
+
+    function openModal(letter, desc, img) {
+      document.getElementById("letter").innerText = letter;
+      document.getElementById("description").innerText = desc;
+      document.getElementById("modalImage").src = img;
+      document.getElementById("myModal").style.display = "flex";
+    }
+    function closeModal() {
+      document.getElementById("myModal").style.display = "none";
+    }
+
+    function updateButtons() {
+      // page2 မှာ nextBtn ကို disable
+      if (currentPage === 2) {
+        nextBtn.disabled = true;
+        nextBtn.style.opacity = 0.5;   // disabled feel
+        nextBtn.style.cursor = 'not-allowed';
+      } else {
+        nextBtn.disabled = false;
+        nextBtn.style.opacity = 1;
+        nextBtn.style.cursor = 'pointer';
+      }
+    }
+
+    // showPage function မှာ call လုပ်မယ်
+    function showPage(page) {
+      document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+      const pageEl = document.getElementById("page" + page);
+      if (pageEl) pageEl.classList.add("active");
+
+      updateButtons(); // button status refresh
+    }
+
+    // အစမှာလည်း update
+    updateButtons();
+
+  </script>
+</body>
+
+</html>

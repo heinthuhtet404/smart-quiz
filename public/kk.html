@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>မြန်မာအသံထွက်</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Baloo 2', cursive;
+      background-color: #28E0F8;
+      margin: 0;
+      padding: 0;
+      overflow-x: auto;
+    }
+
+    header {
+      background-color:#28E0F8;
+      color: black;
+      padding: 20px;
+      text-align: left;
+      font-size: 2em;
+      font-weight:bold;
+      box-shadow: 0 8px 8px rgba(8, 6, 6, 0.2);
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .tab {
+      background-color: #fff;
+      border-radius: 20px;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      font-size: 1.2em;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .tab:hover {
+      background-color: #ffe0b2;
+      transform: scale(1.05);
+    }
+
+    .content {
+      display: none;
+      border: 2px solid black;
+      animation: fadeIn 0.5s ease-in-out;
+      background-color: #fff8dc;
+      border-radius: 15px;
+      padding: 20px;
+      width: 90%;
+      margin: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      
+    }
+
+    .active {
+      display: block;
+    }
+
+    .example {
+      margin: 15px 0;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #ecd5b0;
+      padding: 10px 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      
+
+
+      }
+
+    button {
+      background-color: #ffb74d;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 50%;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ffa726;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    .sticker {
+      text-align: center;
+      position: relative;
+      
+    }
+
+    .sticker img {
+      width: 180px;
+      height: 150px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .title-box {
+      position: absolute;
+      bottom: 1px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 12px;
+      padding: 10px;
+      font-size: 15px;
+      font-weight: bold;
+    }
+      .cartoon-button {
+      background: linear-gradient(to bottom, #ffcc80, #ffb74d);
+      border: 4px solid #ff9800;
+      border-radius: 30px;
+      padding: 15px 30px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #4e342e;
+      box-shadow: 0 6px 0 #fb8c00;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .cartoon-button:hover {
+      top: -2px;
+      box-shadow: 0 8px 0 #ef6c00;
+    }
+
+    .cartoon-button:active {
+      top: 2px;
+      box-shadow: 0 4px 0 #e65100;
+    }
+
+    .bear-btn {
+      position: relative;
+      width: 160px;
+      height: 120px;
+      background: #8B5E3C;
+      border-radius: 100px 100px 80px 80px;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .bear-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+
+    /* အကြွင်း (ears) */
+    .bear-btn::before,
+    .bear-btn::after {
+      content: '';
+      position: absolute;
+      top: -30px;
+      width: 50px;
+      height: 50px;
+      background: #8B5E3C;
+      border-radius: 50%;
+    }
+    .bear-btn::before { left: 20px; }
+    .bear-btn::after { right: 20px; }
+
+    /* မျက်လုံးနှစ်ဖက် */
+    .bear-btn span.eye {
+      position: absolute;
+      top: 40px;
+      width: 15px;
+      height: 15px;
+      background: #000;
+      border-radius: 50%;
+    }
+    .bear-btn span.eye.left { left: 40px; }
+    .bear-btn span.eye.right { right: 40px; }
+
+    /* နှုတ်ခမ်း */
+    .bear-btn span.mouth {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      width: 40px;
+      height: 25px;
+      margin-left: -20px;
+      background: #4E2C1D;
+      border-radius: 0 0 50px 50px;
+    }
+   .logo {
+      display: flex;
+      position: absolute ;
+      left: 0;
+      top: 3%;
+      font-size: 28px;
+      font-family: 'Fredoka One', cursive;
+    }
+    
+        .logo i {
+      margin-left: 10px;
+      font-size: 32px;
+      color: #FFD166;
+    }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            background: #4A90E2;
+            padding: 15px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+        }
+        .nav-item {
+            text-align: center;
+        }
+        .nav-link {
+            display: block;
+            padding: 16px 28px;
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            text-decoration: none;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            min-height: 25px;
+            min-width: 54px;
+        }
+        .nav-link:hover {
+            background-color: #50E3C2;
+            color: #fff;
+            transform: scale(1.08);
+        }
+        .nav-link.active {
+            background-color: #ffd566;
+            color: #333;
+            box-shadow: 0 4px 14px rgba(255, 213, 102, 0.5);
+        }
+        .back-btn {
+    background-color: rgb(225, 225, 235);
+    color: #333;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(200, 37, 37, 0.3);
+    transition: transform 0.2s ease;
+    font-weight: bold;
+    margin-left: 60%;
+  }
+
+  .back-btn:hover {
+    transform: scale(1.05);
+  }
+
+  .back-btn-wrap {
+    text-align: center;
+    margin: 40px 0;
+  }
+        
+  </style>
+  
+</head>
+<body>
+  <nav>
+        <ul class="nav-list">
+            <div class="logo">
+    <i class="fas fa-leaf"></i>
+      <span>KidsLearn</span>
+  
+  </div> 
+            <li class="nav-item"><a href="home.html" class="nav-link active" data-page="home" onclick="navigateTo('home')">ပင်မစာမျက်နှာ</a></li>
+            <li class="nav-item"><a href="home.html" class="nav-link" data-page="tutorial" onclick="navigateTo('tutorial')">သင်ခန်းစာများ</a></li>
+            <li class="nav-item"><a href="#" class="nav-link" data-page="chat" onclick="navigateTo('chat')">စကားပြောခန်း</a></li>
+            <li class="nav-item"><a href="#" class="nav-link" data-page="login" onclick="navigateTo('login')">အကောင့်ဝင်ရန်</a></li>
+        </ul>
+    </nav>
+
+  <header>📚 မြန်မာအသံထွက် (သံတူ၊ ဗျည်း/သရ ၊စာလုံး‌ပေါင်း)</header>
+
+  <div class="tabs">
+    <div class="sticker">
+    <img src="Thaya(2).png" alt="သံတူ">
+    <div class="title-box" onclick="showTab('tutu')">သံတူ</div>
+    </div>
+    <div class="sticker">
+    <img src="Thaya(2).png" alt="သံတူ">
+    <div class="title-box" onclick="showTab('tkwe')">ဗျည်း/သရ</div>
+    </div>
+    <div class="sticker">
+    <img src="Thaya(2).png" alt="သံတူ">
+    <div class="title-box" onclick="showTab('thara')">စာလုံး‌ပေါင်း</div>
+    </div>
+    
+  </div>
+
+  
+<!-- သံတူ -->
+<div id="tutu" class="content">
+  <h2>🎵 သံတူ</h2>
+  <div class="example">
+    “သံတူ” ဆိုသည်မှာ အသံထွက်တူညီပေမယ့် အဓိပ္ပါယ်မတူတဲ့ စကားလုံး တွေကို ခေါ်ပါသည်။<br><br>
+    📖 အဓိပ္ပာယ်<br>
+    • အသံတူ = အသံထွက်တူညီခြင်း<br>
+    • အဓိပ္ပာယ်မတူ = အကြောင်းအရာ၊ အဓိပ္ပာယ်မတူခြင်း<br><br>
+    <button class="bear-btn" onclick="goToTutuPage()">
+      <span class="eye left"></span>
+      <span class="eye right"></span>
+      <span class="mouth"></span>
+      </button>
+    
+  </div>
+</div>
+
+
+<div id="tkwe" class="content">
+  <h2>📝ဗျည်း </h2>
+  <div class="example">
+    📖 ဗျည်း ဆိုသည်မှာ<br>
+
+➡️ဗျည်း ဆိုသည်မှာ အသံထွက်ကို စတင်ပေါ်လာစေသော အထွတ်အသံကို ခေါ်သည်။<br>
+➡️အဓိကအားဖြင့် အသံထွက်စစတင်ရာ မှာ အသံကို တားဆီးပေးတဲ့ သံအသံများကို ဗျည်း ဟုခေါ်ကြပါသည်။
+  </div>
+  <h2>📝သရ</h2>
+  <div class="example">
+    ➡️ သရ ဆိုသည်မှာ "အဆုတ်မှတက်လာသော လေသည်ခံတွင်းရှိစကားသံဖြစ်<br>
+     အင်္ဂါအစိတ်အပိုင်းတစ်ခုခု၏ပိတ်ဆို့တားဆီးခြင်း မခံရဘဲဖြောင့်ဖြောင့်ဖြူးဖြူး ထွက်သွားစဉ်ဖြစ်လာသောအသံ" ဖြစ်သည်။
+  <button class="bear-btn" onclick="goToTharaPage()">
+      <span class="eye left"></span>
+      <span class="eye right"></span>
+      <span class="mouth"></span>
+      </button>
+  </div>
+</div>
+
+
+<div id="thara" class="content">
+  <h2>📝ရေးတော့အမှန် ဖတ်တော့အသံ</h2>
+  <div class="example">“ရေးတော့အမှန် ဖတ်တော့အသံ” ဆိုသည်မှာ မြန်မာစာပေ၏ ထူးခြားသော လက္ခဏာရပ်တစ်ခုကို ဖော်ပြသော ဆိုရိုးစကားဖြစ်သည်။</div>
+  <div class="example">“ရေးတော့အမှန်”– စာလုံးများကို စာလုံးပေါင်းအတိုင်းမှန်ကန်စွာ ရေးသားရမည်။<br>
+      “ဖတ်တော့အသံ”– အချို့သော စာလုံးများကို ဖတ်ရာတွင် ရေးထားသည့်အတိုင်း မဖတ်ပဲ<br> ပုံမှန်အသံထွက်အတိုင်း
+      အပြောင်းအလဲရှိနိုင်သည်။
+      
+      <button class="bear-btn" onclick="goToAyaayPage()">
+      <span class="eye left"></span>
+      <span class="eye right"></span>
+      <span class="mouth"></span>
+      </button>
+    </div>
+</div>
+<div class="back-btn-wrap">
+    <button class="back-btn" onclick="goNext()">ရှေ့သို့ ဆက်သွားမည်</button>
+  </div>
+  </div>
+
+  <script>
+  function showTab(id) {
+    const contents = document.querySelectorAll('.content');
+    contents.forEach(c => c.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  function playSound(soundId) {
+    const audio = new Audio(`sounds/${soundId}.mp3`);
+    audio.play();
+  }
+
+  function goToTutuPage() {
+    window.location.href = "tutu.html";
+  }
+
+  function goToTharaPage() {
+    window.location.href = "thara.html";
+  }
+
+  function goToAyaayPage() {
+    window.location.href = "Ayaay.html";
+  }
+
+  function goNext() {
+      window.location.href = "b.html";
+    }
+</script>
+
+</body>
+</html>

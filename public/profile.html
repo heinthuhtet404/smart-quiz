@@ -19,7 +19,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 25px;
+      padding: 25px 25px;
       background: #4A90E2;
       color: #fff;
     }
@@ -33,7 +33,7 @@
 
     .navbar .logo i {
       margin-right: 10px;
-      color: #EF476F;
+      color: #ffc400;
     }
 
     .profile-card {
@@ -66,7 +66,7 @@
 
     .logout-btn {
       margin-top: 20px;
-      background: #EF476F;
+      background: #e73434;
       color: white;
       border: none;
       padding: 10px 20px;
@@ -74,6 +74,24 @@
       cursor: pointer;
       font-weight: 600;
     }
+
+    .hein {
+    background-color: #ffd566;
+    padding: 16px 28px;
+    border: 1px solid white;
+    border-radius: 30px;
+    color: #333;
+    text-decoration: none; /* link underline မပေါ်အောင် */
+    transition: all 0.3s ease; /* ကြွပြီး smooth ဖြစ်အောင် */
+  }
+
+  .hein:hover {
+    background-color: #ffcc33; /* hover ဖြစ်တဲ့အချိန် နည်းနည်းနက် */
+     /* အနည်းငယ်ကြွတက် */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* မျက်နှာကျက်ထဲကနေ ထွက်ပေါ် */
+    transform: scale(1.1);
+  }
+    
   </style>
 </head>
 
@@ -81,13 +99,13 @@
   <header class="navbar">
     <div class="logo"><i class="fas fa-leaf"></i> KidsLearn</div>
     <nav>
-      <a href="homepage.html" style="color:white;text-decoration:none;margin-right:15px;">ပင်မစာမျက်နှာ</a>
-      <a href="chat.html" style="color:white;text-decoration:none;">စကားပြောရန်</a>
+      <a href="home.html" style="background-color: #ffd566; padding: 16px 28px; border: 1px solid white; border-radius: 30px; color: #333;" class="hein">ပင်မစာမျက်နှာ</a>
+      <a href="chat.html" style="background-color: #6596ce; padding: 16px 28px; border: 1px solid white; border-radius: 30px; color: #333; " class="hein">စကားပြောရန်</a>
     </nav>
   </header>
 
   <div class="profile-card" id="profileCard">
-    <img src="https://i.ibb.co/sq7YtZf/avatar.png" alt="Profile">
+    <img style="background-color: #4A90E2; color: #4A90E2;" alt="Profile">
     <h2>Loading...</h2>
     <p>Email: -</p>
     <p>Joined: -</p>
@@ -102,10 +120,10 @@
         const user = await res.json();
         const card = document.getElementById('profileCard');
         card.innerHTML = `
-      <img src="${user.profilePic || 'https://i.ibb.co/sq7YtZf/avatar.png'}">
+      <img style="background-color: #4A90E2;" src="${user.profilePic || ''}">
       <h2>${user.name}</h2>
       <p>Email: ${user.email}</p>
-      <p>Joined: ${new Date(user.createdAt).toLocaleDateString()}</p>
+      
       <button class="logout-btn" onclick="logout()">ထွက်မယ်</button>
     `;
       } catch (e) {

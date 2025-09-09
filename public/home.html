@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="my">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KidsLearn | ကလေးများအတွက်ပညာသင်ကြားမှု</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="html.css">
+    <style>
+        /* style.css */
+        :root {
+            --primary: #4A90E2;
+            --secondary: #50E3C2;
+            --accent1: #FFD166;
+            --accent2: #EF476F;
+            --accent3: #A78BFA;
+            --background: #F9F7FE;
+            --card-bg: #FFFFFF;
+            --text: #333333;
+            --text-light: #666666;
+            --border: #E0E0E0;
+
+            --font-heading: 'Fredoka', cursive;
+            --font-body: 'Nunito', sans-serif;
+            --font-size-base: 16px;
+            --font-size-md: 18px;
+            --font-size-lg: 22px;
+
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-xxl: 48px;
+
+            --animation-speed: 0.3s;
+            --animation-ease: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+            --card-gap: 40px;
+            /* Increased gap between cards */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: var(--font-size-base);
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+
+        .logo {
+            display: flex;
+            position: absolute;
+            left: 0;
+            top: 3%;
+            font-size: 28px;
+            font-family: 'Fredoka One', cursive;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            font-size: 32px;
+            color: #FFD166;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            background: #4A90E2;
+            padding: 15px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+        }
+
+        .nav-item {
+            text-align: center;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 16px 28px;
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            text-decoration: none;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            min-height: 54px;
+            min-width: 54px;
+        }
+
+        .nav-link:hover {
+            background-color: #50E3C2;
+            color: #fff;
+            transform: scale(1.08);
+        }
+
+        .nav-link.active {
+            background-color: #ffd566;
+            color: #333;
+            box-shadow: 0 4px 14px rgba(255, 213, 102, 0.5);
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        main {
+            margin-top: 70px;
+            padding: 0 5%;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: var(--space-lg);
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: var(--space-md);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent2);
+            color: white;
+            padding: var(--space-md) var(--space-lg);
+            border-radius: 50px;
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            margin-top: var(--space-md);
+            transition: transform 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Subject Cards */
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            text-align: center;
+            margin: var(--space-xl) 0;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--accent2);
+            border-radius: 2px;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            /* Fixed to 2 columns */
+            gap: var(--card-gap);
+            /* Using the increased gap variable */
+            justify-content: center;
+            margin-bottom: var(--space-xxl);
+            max-width: 1100px;
+            /* Increased container width to accommodate larger gaps */
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+            /* Added padding for more space on sides */
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-image {
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .subject-title {
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #2d3436;
+            font-family: var(--font-heading);
+        }
+
+        .description {
+            color: #636e72;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            flex-grow: 1;
+            font-family: var(--font-body);
+        }
+
+        .progress-container {
+            margin-bottom: 20px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            color: #636e72;
+            font-size: 0.9rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+        }
+
+        .action-button {
+            background-color: #0984e3;
+            color: white;
+            border: none;
+            padding: 12px 0;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1rem;
+            font-family: var(--font-body);
+        }
+
+        .action-button {
+            display: inline-block;
+            width: 100%;
+            /* same width as science button */
+        }
+
+        .action-button:hover {
+            background-color: #0770c3;
+        }
+
+        /* Subject-specific colors */
+        .purple .progress-fill {
+            background-color: #6c5ce7;
+        }
+
+        .purple .card-image {
+            background-color: #a29bfe;
+        }
+
+        .blue .progress-fill {
+            background-color: #0984e3;
+        }
+
+        .blue .card-image {
+            background-color: #74b9ff;
+        }
+
+        .yellow .progress-fill {
+            background-color: #fdcb6e;
+        }
+
+        .yellow .card-image {
+            background-color: #ffeaa7;
+        }
+
+        .green .progress-fill {
+            background-color: #00b894;
+        }
+
+        .green .card-image {
+            background-color: #55efc4;
+        }
+
+        .red .progress-fill {
+            background-color: #d63031;
+        }
+
+        .red .card-image {
+            background-color: #ff7675;
+        }
+
+        /* Daily Lesson */
+        .daily-lesson {
+            background: linear-gradient(135deg, var(--accent1), #E6A800);
+            border-radius: 20px;
+            padding: var(--space-xl);
+            text-align: center;
+            color: #333;
+            margin-bottom: var(--space-xxl);
+            box-shadow: 0 10px 25px rgba(255, 213, 102, 0.3);
+        }
+
+        .daily-lesson h2 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: var(--space-md);
+        }
+
+        .daily-lesson p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto var(--space-md);
+        }
+
+        /* Fun Fact */
+        .extra-fun-fact {
+            border-radius: 24px;
+            padding: var(--space-xl);
+            margin: var(--space-xxl) auto;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            max-width: 1100px;
+            background: linear-gradient(135deg, #ffd1e3, #ffd6ff);
+            color: #333;
+        }
+
+        .extra-challenge {
+            border-radius: 24px;
+            padding: var(--space-xl);
+            margin: var(--space-xxl) auto;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            max-width: 1100px;
+            background: #cfe6ff;
+        }
+
+        .extra-heading {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: var(--space-md);
+            color: #5b6ee1;
+        }
+
+        .extra-text {
+            font-size: 1.1rem;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .extra-question {
+            font-size: 1.4rem;
+            text-align: center;
+            margin: var(--space-lg) auto;
+            font-weight: 700;
+            color: #2b2b2b;
+        }
+
+        .extra-options {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-lg);
+            margin-top: var(--space-lg);
+        }
+
+        .option-btn {
+            background: #fff;
+            border: 3px solid #8da4ff;
+            border-radius: 16px;
+            padding: 18px 12px;
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+            transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+        }
+
+        .option-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .option-btn:active {
+            transform: translateY(0);
+        }
+
+        .option-btn.selected {
+            background: var(--accent1);
+            color: #333;
+            border-color: #ffd166;
+            box-shadow: 0 0 0 4px rgba(255, 209, 102, 0.45) inset;
+        }
+
+        .extra-status {
+            text-align: center;
+            margin-top: var(--space-md);
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 820px) {
+            .extra-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-list {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .cards-container {
+                grid-template-columns: 1fr;
+                /* Single column on mobile */
+                max-width: 400px;
+                gap: 30px;
+                /* Slightly reduced gap on mobile */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-list {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .extra-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <ul class="nav-list">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>KidsLearn</span>
+                </div>
+                <li class="nav-item"><a href="home.html" class="nav-link active" data-page="home"
+                        onclick="navigateTo('home')">ပင်မစာမျက်နှာ</a></li>
+                <li class="nav-item"><a href="#lesson" class="nav-link" data-page="tutorial"
+                        onclick="navigateTo('tutorial')">သင်ခန်းစာများ</a></li>
+                <li class="nav-item"><a href="chat.html" class="nav-link" data-page="chat"
+                        onclick="navigateTo('chat')">စကားပြောခန်း</a></li>
+                <li class="nav-item"><a href="profile.html" class="nav-link" data-page="login"
+                        onclick="navigateTo('login')">အကောင့်</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <main style="margin: 0;">
+        <section id="home-page" class="page active">
+
+            <div style="text-align: left;">
+                <h1 id="welcomeMessage" class="welcome"
+                    style="font-size: 2rem; font-weight: bold; color: #2c3e50; font-family: 'Nunito', sans-serif; margin: 0;">
+                    👋 Welcome
+                </h1>
+            </div>
+
+            <!-- Hero Banner -->
+            <div class="hero">
+                <img src="home photo.jpg" alt="home page photo" width="300px" height="250px">
+                <h1>အတူတကွ သင်ကြားကြမယ်!</h1>
+                <p>ကလေးများအတွက် ပျော်စရာ၊ အကျိုးရှိပြီး လေ့လာနိုင်သည့် သင်ခန်းစာများ။ ကျွန်ုပ်တို့၏ သရုပ်ပြ friendly
+                    guides များနှင့် လေ့လာမှုစတင်လိုက်ပါ။</p>
+                <a href="#" class="cta-button">ဘာသာရပ်များကိုလေ့လာရန်</a>
+            </div>
+
+            <!-- Daily Lesson -->
+            <div class="daily-lesson">
+                <h2>🌟 အထူးသင်ခန်းစာ (ယနေ့)</h2>
+                <p>မြန်မာအက္ခရာ: သရုပ်ပြပုံများနှင့် စာပေဖြင့် မြန်မာစာလေ့လာပါ။</p>
+                <button class="cta-button" style="background: #FF6B6B;">ယနေ့သင်ခန်းစာ စတင်ပါ</button>
+            </div>
+
+            <!-- Subjects -->
+            <h2 class="section-title">သင်ကြားရန်ဘာသာရပ်များ</h2>
+            <div class="cards-container" id="lesson">
+                <!-- Myanmar Language Card -->
+                <div class="card purple">
+                    <div class="card-image">
+                        <img src="myanmarsar.jpg" alt="Myanmar Language">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="subject-title">မြန်မာစာ</h2>
+                        <p class="description">မြန်မာဘာသာစကားနှင့် စာပေကို နက်ရှိုင်းစွာ လေ့လာပါ။ ရှေးဟောင်းကဗျာများမှ
+                            အခြေခံအကြောင်းအရာများအထိ။</p>
+                        <div class="progress-container">
+                            <div class="progress-info">
+                                <span>တိုးတက်မှု</span>
+                                <span>၇၅%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                        <a href="b.html"><button class="action-button">သင်ခန်းစာများ</button></a>
+                    </div>
+                </div>
+
+                <!-- English Card -->
+                <div class="card blue">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                            alt="English Language">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="subject-title">အင်္ဂလိပ်စာ</h2>
+                        <p class="description">နေ့စဉ်သုံး စကားပြောမှ စီးပွားရေးဆိုင်ရာ အင်္ဂလိပ်စာအထိ လေ့လာနိုင်ပါသည်။
+                        </p>
+                        <div class="progress-container">
+                            <div class="progress-info">
+                                <span>တိုးတက်မှု</span>
+                                <span>၆၀%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 60%;"></div>
+                            </div>
+                        </div>
+                        <a href="eng.html"><button class="action-button">သင်ခန်းစာများ</button></a>
+                    </div>
+                </div>
+
+                <!-- Mathematics Card -->
+                <div class="card yellow">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                            alt="Mathematics">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="subject-title">သင်္ချာ</h2>
+                        <p class="description">ဂဏန်းသင်္ချာမှ အက္ခရာသင်္ချာအထိ နှင့် ရှုပ်ထွေးသော ညီမျှခြင်းများကို
+                            ဖြေရှင်းနည်းများ။</p>
+                        <div class="progress-container">
+                            <div class="progress-info">
+                                <span>တိုးတက်မှု</span>
+                                <span>၈၅%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <a href="math.html"><button class="action-button">သင်ခန်းစာများ</button></a>
+                    </div>
+                </div>
+
+                <!-- Science Card -->
+                <div class="card green">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                            alt="Science">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="subject-title">သိပ္ပံ</h2>
+                        <p class="description">သဘာဝကမ္ဘာကြီးအကြောင်း လေ့လာပါ။ ဓာတ်ခွဲခန်းစမ်းသပ်မှုများနှင့်
+                            သီအိုရီများ။</p>
+                        <div class="progress-container">
+                            <div class="progress-info">
+                                <span>တိုးတက်မှု</span>
+                                <span>၄၀%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 40%;"></div>
+                            </div>
+                        </div>
+                        <a href="FF.html"><button class="action-button">သင်ခန်းစာများ</button></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fun Fact -->
+            <div class="extra-fun-fact" id="extra-fun-fact" role="region" aria-labelledby="funfact-title">
+                <h2 class="extra-heading" id="funfact-title">💡 ဗဟုသုတ သတင်း</h2>
+                <p class="extra-text">သင်သိပါသလား? Octopus များတွင် နှလုံး ၃ လုံးရှိသည်။ နှလုံး ၂ လုံးက gills
+                    ကိုသွေးပေးပြီး တစ်လုံးက ကိုယ်ခန္ဓာအတွင်းသို့ သွေးပေးသည်။ စီးနေစဉ်နှလုံးတစ်လုံး ရပ်တန့်သည်။</p>
+            </div>
+
+            <!-- Daily Challenge -->
+            <div class="extra-challenge" id="extra-challenge" role="region" aria-labelledby="challenge-title">
+                <h2 class="extra-heading" id="challenge-title">🎯 ယနေ့ စိန်ခေါ်မှု</h2>
+                <p class="extra-question">သင့်တွင် <b>ပန်းသီး အနီရောင် </b> ၃လုံးနှင့် <b>ပန်းသီး အစီမ်းရောင် ၄ လုံး
+                    </b> အားလုံး စုစုပေါင်းဘယ် လောက်ရမလဲ?</p>
+                <div class="extra-options">
+                    <button class="option-btn" type="button">၆</button>
+                    <button class="option-btn" type="button" data-correct="true">၇</button>
+                    <button class="option-btn" type="button">၈</button>
+                    <button class="option-btn" type="button">၅</button>
+                </div>
+                <div id="extra-challenge-status" class="extra-status"></div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        async function fetchCurrentUser() {
+            try {
+                const res = await fetch('/current-user');
+                if (!res.ok) throw new Error('Not logged in');
+
+                const user = await res.json();
+                if (!user || !user._id) throw new Error('Not logged in');
+
+                // Name ကိုယူ
+                const userName = user.name;
+                // Email ကိုယူ
+                const userEmail = user.email;
+
+                console.log("Username:", userName);
+                console.log("Email:", userEmail);
+
+                // Page update လုပ်နိုင်ပါတယ်
+                document.getElementById('welcomeMessage').textContent = `Welcome ${userName} `;
+            } catch (err) {
+                console.error(err);
+                alert('You are not logged in! Redirecting to login page.');
+                window.location.href = '/login.html';
+            }
+        }
+        // Daily Challenge JS
+        (function () {
+            const container = document.getElementById('extra-challenge');
+            if (!container) return;
+            const buttons = container.querySelectorAll('.option-btn');
+            const status = document.getElementById('extra-challenge-status');
+
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    buttons.forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+
+                    if (btn.dataset.correct === 'true') {
+                        status.textContent = '✅ မှန်ကန်ပါတယ်!';
+                        status.style.color = '#1f8b4c';
+                    } else {
+                        status.textContent = '❌ ပြန်ကြိုးစားပါ!';
+                        status.style.color = '#D62E6B';
+                    }
+                });
+            });
+        })();
+
+        fetchCurrentUser();
+    </script>
+</body>
+
+</html>

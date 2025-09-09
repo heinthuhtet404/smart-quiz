@@ -1,0 +1,2754 @@
+<!DOCTYPE html>
+<html lang="my">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ကလေးများအတွက် သင်္ချာ 🚀</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+            min-height: 100vh;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            background: #4A90E2;
+            padding: 15px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+        }
+
+        .nav-item {
+            text-align: center;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 16px 28px;
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            text-decoration: none;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            min-height: 54px;
+            min-width: 54px;
+        }
+
+        .nav-link:hover {
+            background-color: #50E3C2;
+            color: #fff;
+            transform: scale(1.08);
+        }
+
+        .nav-link.active {
+            background-color: #ffd566;
+            color: #333;
+            box-shadow: 0 4px 14px rgba(255, 213, 102, 0.5);
+        }
+
+        header {
+            background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+            padding: 25px;
+            font-size: 36px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            animation: pulse 4s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            padding: 25px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 25px;
+            padding: 20px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+            height: 220px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #84d4f8, #00aaff);
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 15px;
+            object-fit: cover;
+            margin-top: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.1);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .quiz-area {
+            margin-top: 25px;
+            padding: 25px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            margin: 25px auto;
+            position: relative;
+        }
+
+        .quiz-area h2 {
+            color: #00aaff;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        button,
+        .quiz-options button {
+            background: linear-gradient(135deg, #84d4f8, #00aaff);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 8px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            min-width: 120px;
+            height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        button:hover,
+        .quiz-options button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .score {
+            font-size: 24px;
+            margin-top: 20px;
+            color: #4ecdc4;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        input[type="number"],
+        input[type="text"] {
+            padding: 12px;
+            border-radius: 10px;
+            border: 2px solid #ccc;
+            font-size: 18px;
+            text-align: center;
+            width: 150px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="number"]:focus,
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #00aaff;
+        }
+
+        #quiz-image {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            display: block;
+            border-radius: 15px;
+            object-fit: contain;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        canvas {
+            border: 5px solid #ffcc66;
+            border-radius: 50%;
+            background: white;
+            margin: 20px auto;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .lesson-section {
+            padding: 25px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: 25px auto;
+        }
+
+        .lesson-section p {
+            font-size: 20px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #4ecdc4, #44a08d);
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #f0f;
+            position: absolute;
+            animation: confetti-fall 3s linear forwards;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .number-scroll-container {
+            display: flex;
+            overflow-x: auto;
+            padding: 10px 0;
+            width: 100%;
+            scrollbar-width: thin;
+            scrollbar-color: #00aaff #f1f1f1;
+            white-space: nowrap;
+            margin-bottom: 10px;
+        }
+
+        .number-scroll-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .number-scroll-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .number-scroll-container::-webkit-scrollbar-thumb {
+            background: #00aaff;
+            border-radius: 10px;
+        }
+
+        .number-scroll-container span {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            margin: 0 5px;
+            border-radius: 50%;
+            background: #f0f8ff;
+            color: #00aaff;
+            font-weight: bold;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+
+        .number-scroll-container span:hover {
+            background: #00aaff;
+            color: white;
+            transform: scale(1.2);
+        }
+
+        .slideshow-container {
+            max-width: 800px;
+            position: relative;
+            margin: auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .slideshow-container h2 {
+            color: #00aaff;
+            margin-bottom: 20px;
+            font-size: 28px;
+            text-align: center;
+        }
+
+        .number-display {
+            font-size: 120px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            color: #00aaff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .object-display {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            min-height: 60px;
+        }
+
+        .object-item {
+            font-size: 40px;
+            animation: bounce 0.5s ease infinite alternate;
+        }
+
+        @keyframes bounce {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-10px);
+            }
+        }
+
+        .slide-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .slide-controls button {
+            background: linear-gradient(135deg, #84d4f8, #00aaff);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            color: white;
+            min-width: 120px;
+            height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide-controls button:hover {
+            transform: translateY(-2px);
+        }
+
+        .number-info {
+            text-align: center;
+            margin: 15px 0;
+            font-size: 24px;
+            color: #00aaff;
+            font-weight: 600;
+        }
+
+        .slideshow-progress {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .slideshow-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b6b, #ff9a9e);
+            border-radius: 4px;
+            width: 1%;
+            transition: width 0.3s ease;
+        }
+
+        .multiplication-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .multiplication-table th,
+        .multiplication-table td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+
+        .multiplication-table th {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: white;
+            font-weight: bold;
+        }
+
+        .multiplication-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .multiplication-table tr:hover {
+            background-color: #f0f8ff;
+        }
+
+        .operation-card {
+            background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .operation-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .operation-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #00aaff;
+        }
+
+        .operation-card p {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        .operation-card .emoji {
+            font-size: 40px;
+            margin: 10px 0;
+        }
+
+        .math-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .math-tab {
+            background: #f0f8ff;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 15px 15px 0 0;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 120px;
+            height: 45px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .math-tab.active {
+            background: linear-gradient(135deg, #84d4f8, #00aaff);
+            color: white;
+        }
+
+        .math-tab:hover {
+            transform: translateY(-3px);
+        }
+
+        .math-content {
+            display: none;
+        }
+
+        .math-content.active {
+            display: block;
+        }
+
+        /* Larger money cards */
+        .money-card {
+            height: 280px !important;
+        }
+
+        .money-card img {
+            width: 150px !important;
+            height: 150px !important;
+        }
+
+        .money-quiz img {
+            width: 120px !important;
+            height: 120px !important;
+        }
+
+        /* Quiz Navigation Styles - Updated for center positioning */
+        .quiz-navigation-bottom {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            gap: 15px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .quiz-navigation-bottom button {
+            min-width: 140px;
+            height: 50px;
+            font-size: 16px;
+        }
+
+        .quiz-progress {
+            margin: 15px 0;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #00aaff;
+        }
+
+        .quiz-result {
+            background: linear-gradient(135deg, #d4fc79, #96e6a1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: none;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .quiz-result.show {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        /* Multiple choice styles */
+        .quiz-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .quiz-options button {
+            min-width: 120px;
+        }
+
+        .quiz-options button.selected {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        }
+
+        /* Answer review styles */
+        .answer-review {
+            margin-top: 20px;
+            text-align: left;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .answer-item {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .answer-item.correct {
+            background-color: #d4edda;
+            border-left: 4px solid #28a745;
+        }
+
+        .answer-item.incorrect {
+            background-color: #f8d7da;
+            border-left: 4px solid #dc3545;
+        }
+
+        .answer-icon {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        /* Results section styles */
+        .results-section {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            max-width: 800px;
+            margin: 25px auto;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .results-section h2 {
+            color: #00aaff;
+            margin-bottom: 20px;
+            font-size: 28px;
+            text-align: center;
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, #f0f8ff, #e6f7ff);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .result-card h3 {
+            color: #00aaff;
+            font-size: 22px;
+        }
+
+        .result-card p {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+
+        .result-score {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4ecdc4;
+        }
+
+        .no-results {
+            text-align: center;
+            font-size: 20px;
+            color: #666;
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .logo {
+            display: flex;
+            position: absolute;
+            left: 0;
+            top: 3%;
+            font-size: 28px;
+            font-family: 'Fredoka One', cursive;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            font-size: 32px;
+            color: #FFD166;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul class="nav-list">
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                <span>KidsLearn</span>
+            </div>
+            <li class="nav-item"><a href="home.html" class="nav-link active" data-page="home"
+                    onclick="navigateTo('home')">ပင်မစာမျက်နှာ</a></li>
+            <li class="nav-item"><a href="home.html" class="nav-link" data-page="tutorial"
+                    onclick="navigateTo('tutorial')">သင်ခန်းစာများ</a></li>
+            <li class="nav-item"><a href="chat.html" class="nav-link" data-page="chat"
+                    onclick="navigateTo('chat')">စကားပြောခန်း</a></li>
+            <li class="nav-item"><a href="profile.html" class="nav-link" data-page="login"
+                    onclick="navigateTo('login')">အကောင့်ဝင်ရန်</a></li>
+        </ul>
+    </nav>
+    <header>
+        <span id="headerTitle">🎉 ကလေးများအတွက် သင်္ချာ 🎉</span>
+    </header>
+    <!-- Home Section -->
+    <section id="home">
+        <div class="container" style="display: grid; grid-template-columns: repeat(3, 1fr);">
+            <div class="card" onclick="showSection('numbers')">
+                <img src="numbers.jpg" alt="Numbers"><br>
+                <h3 id="numbersCard">🔢 ဂဏန်းများ</h3>
+            </div>
+            <div class="card" onclick="showSection('math-operations')">
+                <img src="math.jpg" alt="Math Operations"><br>
+                <h3 id="mathOpsCard">🧮 ပေါင်း၊နုတ်၊မြှောက်၊စား</h3>
+            </div>
+            <div class="card" onclick="showSection('shapes')">
+                <img src="shapes.jpg" alt="Shapes"><br>
+                <h3 id="shapesCard">🔺 ပုံသဏ္ဍာန်များ</h3>
+            </div>
+            <div class="card" onclick="showSection('patterns')">
+                <img src="pattern.jpg" alt="Patterns"><br>
+                <h3 id="patternsCard">🎨 Pattern များ</h3>
+            </div>
+            <div class="card" onclick="showSection('time')">
+                <img src="time.jpg" alt="Time"><br>
+                <h3 id="timeCard">⏰ အချိန်</h3>
+            </div>
+            <div class="card" onclick="showSection('money')">
+                <img src="money.jpg" alt="Money"><br>
+                <h3 id="moneyCard">💰 ငွေကြေး</h3>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 25px;">
+            <button onclick="showResults()" id="viewResultsBtn">ရလဒ်များကြည့်ရန်</button>
+        </div>
+    </section>
+    <!-- Numbers Section -->
+    <section id="numbers" class="hidden">
+        <div id="numbersLearning" class="lesson-section">
+            <p id="numbersLearnText">ကဲ... ကလေးတို့ရေ ၁ မှ ၂၀ အထိရေတွက်တာကို လေ့လာကြရအောင်။</p>
+            <div class="slideshow-container">
+                <div class="slideshow-progress">
+                    <div class="slideshow-progress-bar" id="slideshowProgressBar"></div>
+                </div>
+                <div class="number-display" id="slideNumber">1</div>
+                <div class="object-display" id="slideObjects">
+                    <span class="object-item">🍎</span>
+                </div>
+                <div class="number-info" id="numberInfo">ပန်းသီးတစ်လုံး</div>
+                <div class="slide-controls">
+                    <button id="prevNumberBtn" onclick="previousNumber()" style="display: none;"
+                        id="prevNumberBtnText">← ရှေ့သို့</button>
+                    <button onclick="playPause()" id="playPauseBtn">▶️ ဖွင့်မည်</button>
+                    <button onclick="nextSlideNumber()" id="nextNumberBtnText">နောက်သို့ →</button>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 25px;">
+                <button onclick="startNumberQuiz()" id="startNumberQuizBtn">ဉာဏ်စမ်း 🎯</button>
+                <button onclick="goHome()" id="backToHomeBtn1">🏠 မူလနေရာသို့</button>
+            </div>
+        </div>
+        <div id="numbersQuiz" class="hidden quiz-area">
+            <h2 id="countObjectsTitle">အသီးများကို ရေတွက်ပါ။ </h2>
+            <div class="quiz-progress" id="numberQuizProgress">မေးခွန်း ၁ မှ ၁၀</div>
+            <div class="progress-bar">
+                <div class="progress" id="numberQuizProgressBar"></div>
+            </div>
+            <div id="numberCard" style="font-size: 40px; margin: 20px; text-align: center;"></div>
+            <div class="quiz-options" id="number-options"></div>
+        </div>
+        <div class="quiz-navigation-bottom hidden" id="numbersQuizNavigation">
+            <button onclick="showSection('numbers')" id="backToLearningBtn1"> သင်ခန်းစာသို့</button>
+            <button id="numberPrevBtn" class="prev-btn" onclick="previousNumberQuestion()" style="display: none;"
+                id="prevNumberBtnText2">← ရှေ့သို့</button>
+            <button id="numberNextBtn" class="next-btn" onclick="nextNumberQuestion()" id="nextNumberBtnText2">နောက်သို့
+                →</button>
+            <button onclick="goHome()" id="backToHomeBtn2">🏠 မူလနေရာသို့</button>
+        </div>
+        <div id="numberQuizResult" class="quiz-result">
+            <p id="numberResultText"></p>
+            <div id="numberAnswerReview" class="answer-review"></div>
+            <button onclick="goHome()" id="backToHomeBtn3">🏠 မူလနေရာသို့</button>
+        </div>
+    </section>
+    <!-- Math Operations Section -->
+    <section id="math-operations" class="hidden">
+        <div id="mathOperationsLearning" class="lesson-section">
+            <p id="mathOpsLearnText">ကဲ... ကလေးတို့ရေ ပေါင်းခြင်း၊ နုတ်ခြင်း၊ မြှောက်ခြင်းနှင့် စားခြင်းတွေကို
+                လေ့လာကြရအောင်။</p>
+            <div class="math-tabs">
+                <button class="math-tab active" onclick="showMathContent('addition')" id="additionTab">➕
+                    ပေါင်းခြင်း</button>
+                <button class="math-tab" onclick="showMathContent('subtraction')" id="subtractionTab">➖
+                    နုတ်ခြင်း</button>
+                <button class="math-tab" onclick="showMathContent('multiplication')" id="multiplicationTab">✖️
+                    မြှောက်ခြင်း</button>
+                <button class="math-tab" onclick="showMathContent('division')" id="divisionTab">➗ စားခြင်း</button>
+            </div>
+            <div id="addition-content" class="math-content active">
+                <div class="operation-card">
+                    <h3 id="addingFruitsTitle">သစ်သီးများ ပေါင်းခြင်း</h3>
+                    <div class="emoji">🍎 + 🍎 = 🍎🍎</div>
+                    <p id="addingFruitsText">ပန်းသီး ၁ လုံး + ပန်းသီး ၁ လုံး = ပန်းသီး ၂ လုံး</p>
+                </div>
+                <div class="operation-card">
+                    <h3 id="addingAnimalsTitle">တိရစ္ဆာန်များ ပေါင်းခြင်း</h3>
+                    <div class="emoji">🐱🐱 + 🐱 = 🐱🐱🐱</div>
+                    <p id="addingAnimalsText">ကြောင် ၂ ကောင် + ကြောင် ၁ ကောင် = ကြောင် ၃ ကောင်</p>
+                </div>
+                <div class="operation-card">
+                    <h3 id="addingShapesTitle">ပုံသဏ္ဍာန်များ ပေါင်းခြင်း</h3>
+                    <div class="emoji">🔵🔵 + 🔵🔵🔵🔵 = 🔵🔵🔵🔵🔵🔵</div>
+                    <p id="addingShapesText">စက်ဝိုင်း ၂ ခု + စက်ဝိုင်း ၄ ခု = စက်ဝိုင်း ၆ ခု</p>
+                </div>
+                <div class="operation-card">
+                    <h3 id="addingToysTitle">ကစားစရာများ ပေါင်းခြင်း</h3>
+                    <div class="emoji">🚗🚗 + 🚗🚗 = 🚗🚗🚗🚗</div>
+                    <p id="addingToysText">ကားအရုပ် ၂ ခု + ကားအရုပ် ၂ ခု = ကားအရုပ် ၄ ခု</p>
+                </div>
+                <div class="operation-card">
+                    <h3 id="addingFoodTitle">အစားအစာများ ပေါင်းခြင်း</h3>
+                    <div class="emoji">🍔🍔🍔🍔 + 🍔 = 🍔🍔🍔🍔🍔</div>
+                    <p id="addingFoodText">ဟမ်ဘာဂါ ၄ ခု + ဟမ်ဘာဂါ ၁ ခု = ဟမ်ဘာဂါ ၅ ခု</p>
+                </div>
+                <div style="text-align: center; margin-top: 25px;">
+                    <button onclick="startMathOperationsQuiz('addition')" id="startAdditionQuizBtn">ဉာဏ်စမ်း 🎯</button>
+                    <button onclick="goHome()" id="backToHomeBtn4">🏠 မူလနေရာသို့</button>
+                </div>
+            </div>
+            <div id="subtraction-content" class="math-content">
+                <div class="operation-card">
+                    <h3 id="subtractingFruitsTitle">သစ်သီးများ နုတ်ခြင်း</h3>
+                    <div class="emoji">🍎🍎 - 🍎 = 🍎</div>
+                    <p id="subtractingFruitsText">ပန်းသီး ၂ လုံး - ပန်းသီး ၁ လုံး = ပန်းသီး ၁ လုံး</p>
+                </div>
+                <div class="operation-card">
+                    <h3 id="subtractingAnimalsTitle">တိရစ္ဆာန်များ နုတ်ခြင်း</h3>
+                    <div class="emoji">🐶🐶🐶 - 🐶 = 🐶🐶</div>
+                    <p id="subtractingAnimalsText">ခွေး ၃ ကောင် - ခွေး ၁ ကောင် = ခွေး ၂ ကောင်</p>
+                </div>
+                <div class="operation-card">
+                    <h3 id="subtractingShapesTitle">ပုံသဏ္ဍာန်များ နုတ်ခြင်း</h3>
+                    <div class="emoji">🔺🔺🔺🔺 - 🔺🔺 = 🔺🔺</div>
+                    <p id="subtractingShapesText">တြိဂံ ၄ ခု - တြိဂံ ၂ ခု = တြိဂံ ၂ ခု</p>
+                </div>
+                <div class="operation-card">
+                    <h3 id="subtractingToysTitle">ကစားစရာများ နုတ်ခြင်း</h3>
+                    <div class="emoji">🧸🧸🧸🧸🧸 - 🧸🧸 = 🧸🧸🧸</div>
+                    <p id="subtractingToysText">ဝက်ဝံအရုပ် ၅ ရုပ် - ဝက်ဝံအရုပ် ၂ ရုပ် = ဝက်ဝံအရုပ် ၃ ရုပ်</p>
+                </div>
+                <div class="operation-card">
+                    <h3 id="subtractingFoodTitle">အစားအစာများ နုတ်ခြင်း</h3>
+                    <div class="emoji">🍕🍕🍕🍕 - 🍕🍕 = 🍕🍕</div>
+                    <p id="subtractingFoodText">ပီဇာ ၄ ချပ် - ပီဇာ ၂ ချပ် = ပီဇာ ၂ ချပ်</p>
+                </div>
+                <div style="text-align: center; margin-top: 25px;">
+                    <button onclick="startMathOperationsQuiz('subtraction')" id="startSubtractionQuizBtn">ဉာဏ်စမ်း
+                        🎯</button>
+                    <button onclick="goHome()" id="backToHomeBtn5">🏠 မူလနေရာသို့</button>
+                </div>
+            </div>
+            <div id="multiplication-content" class="math-content">
+                <div class="operation-card">
+                    <h3 id="multiplicationTableTitle">မြှောက်လဒ်ဇယား</h3>
+                    <table class="multiplication-table">
+                        <tr>
+                            <th>×</th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>5</th>
+                            <th>6</th>
+                            <th>7</th>
+                            <th>8</th>
+                            <th>9</th>
+                            <th>10</th>
+                        </tr>
+                        <tr>
+                            <th>1</th>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                            <td>6</td>
+                            <td>7</td>
+                            <td>8</td>
+                            <td>9</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <td>2</td>
+                            <td>4</td>
+                            <td>6</td>
+                            <td>8</td>
+                            <td>10</td>
+                            <td>12</td>
+                            <td>14</td>
+                            <td>16</td>
+                            <td>18</td>
+                            <td>20</td>
+                        </tr>
+                        <tr>
+                            <th>3</th>
+                            <td>3</td>
+                            <td>6</td>
+                            <td>9</td>
+                            <td>12</td>
+                            <td>15</td>
+                            <td>18</td>
+                            <td>21</td>
+                            <td>24</td>
+                            <td>27</td>
+                            <td>30</td>
+                        </tr>
+                        <tr>
+                            <th>4</th>
+                            <td>4</td>
+                            <td>8</td>
+                            <td>12</td>
+                            <td>16</td>
+                            <td>20</td>
+                            <td>24</td>
+                            <td>28</td>
+                            <td>32</td>
+                            <td>36</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <th>5</th>
+                            <td>5</td>
+                            <td>10</td>
+                            <td>15</td>
+                            <td>20</td>
+                            <td>25</td>
+                            <td>30</td>
+                            <td>35</td>
+                            <td>40</td>
+                            <td>45</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <th>6</th>
+                            <td>6</td>
+                            <td>12</td>
+                            <td>18</td>
+                            <td>24</td>
+                            <td>30</td>
+                            <td>36</td>
+                            <td>42</td>
+                            <td>48</td>
+                            <td>54</td>
+                            <td>60</td>
+                        </tr>
+                        <tr>
+                            <th>7</th>
+                            <td>7</td>
+                            <td>14</td>
+                            <td>21</td>
+                            <td>28</td>
+                            <td>35</td>
+                            <td>42</td>
+                            <td>49</td>
+                            <td>56</td>
+                            <td>63</td>
+                            <td>70</td>
+                        </tr>
+                        <tr>
+                            <th>8</th>
+                            <td>8</td>
+                            <td>16</td>
+                            <td>24</td>
+                            <td>32</td>
+                            <td>40</td>
+                            <td>48</td>
+                            <td>56</td>
+                            <td>64</td>
+                            <td>72</td>
+                            <td>80</td>
+                        </tr>
+                        <tr>
+                            <th>9</th>
+                            <td>9</td>
+                            <td>18</td>
+                            <td>27</td>
+                            <td>36</td>
+                            <td>45</td>
+                            <td>54</td>
+                            <td>63</td>
+                            <td>72</td>
+                            <td>81</td>
+                            <td>90</td>
+                        </tr>
+                        <tr>
+                            <th>10</th>
+                            <td>10</td>
+                            <td>20</td>
+                            <td>30</td>
+                            <td>40</td>
+                            <td>50</td>
+                            <td>60</td>
+                            <td>70</td>
+                            <td>80</td>
+                            <td>90</td>
+                            <td>100</td>
+                        </tr>
+                    </table><br>
+                </div>
+                <div class="operation-card">
+                    <h3 id="multiplyingFruitsTitle">သစ်သီးများ မြှောက်ခြင်း</h3>
+                    <div class="emoji">🍎🍎🍎 × 2 = 🍎🍎🍎🍎🍎🍎</div>
+                    <p id="multiplyingFruitsText">ပန်းသီး ၃ လုံး × ၂ = ပန်းသီး ၆ လုံး</p>
+                </div>
+                <div class="operation-card">
+                    <h3 id="multiplyingAnimalsTitle">တိရစ္ဆာန်များ မြှောက်ခြင်း</h3>
+                    <div class="emoji">🐶🐶 × 3 = 🐶🐶🐶🐶🐶🐶</div>
+                    <p id="multiplyingAnimalsText">ခွေး ၂ ကောင် × ၃ = ခွေး ၆ ကောင်</p>
+                </div>
+                <div class="operation-card">
+                    <h3 id="multiplyingShapesTitle">ပုံသဏ္ဍာန်များ မြှောက်ခြင်း</h3>
+                    <div class="emoji">🔺🔺🔺🔺 × 2 = 🔺🔺🔺🔺🔺🔺🔺🔺</div>
+                    <p id="multiplyingShapesText">တြိဂံ ၄ ခု × ၂ = တြိဂံ ၈ ခု</p>
+                </div>
+                <div class="operation-card">
+                    <h3 id="multiplyingToysTitle">ကစားစရာများ မြှောက်ခြင်း</h3>
+                    <div class="emoji">🧸🧸🧸 × 3 = 🧸🧸🧸🧸🧸🧸🧸🧸🧸</div>
+                    <p id="multiplyingToysText">ဝက်ဝံအရုပ် ၃ ရုပ် × ၃ = ဝက်ဝံအရုပ် ၉ ရုပ်</p>
+                </div>
+                <div class="operation-card">
+                    <h3 id="multiplyingFoodTitle">အစားအစာများ မြှောက်ခြင်း</h3>
+                    <div class="emoji">🍕🍕 × 4 = 🍕🍕🍕🍕🍕🍕🍕🍕</div>
+                    <p id="multiplyingFoodText">ပီဇာ ၂ ချပ် × ၄ = ပီဇာ ၈ ချပ်</p>
+                </div>
+                <div style="text-align: center; margin-top: 25px;">
+                    <button onclick="startMathOperationsQuiz('multiplication')" id="startMultiplicationQuizBtn">ဉာဏ်စမ်း
+                        🎯</button>
+                    <button onclick="goHome()" id="backToHomeBtn6">🏠 မူလနေရာသို့</button>
+                </div>
+            </div>
+            <div id="division-content" class="math-content">
+                <div class="operation-card">
+                    <h3 id="dividingFruitsTitle">သစ်သီးများ စားခြင်း</h3>
+                    <div class="emoji">🍎🍎🍎🍎 ÷ 2 = 🍎🍎</div>
+                    <p id="dividingFruitsText">ပန်းသီး ၄ လုံး ÷ ၂ = တစ်စုတွင် ပန်းသီး ၂ လုံးစီ</p>
+                </div>
+                <div class="operation-card">
+                    <h3 id="dividingAnimalsTitle">တိရစ္ဆာန်များ စားခြင်း</h3>
+                    <div class="emoji">🐶🐶🐶🐶🐶🐶 ÷ 3 = 🐶🐶</div>
+                    <p id="dividingAnimalsText">ခွေး ၆ ကောင် ÷ ၃ = တစ်စုတွင် ခွေး ၂ ကောင်စီ</p>
+                </div>
+                <div class="operation-card">
+                    <h3 id="dividingShapesTitle">ပုံသဏ္ဍာန်များ စားခြင်း</h3>
+                    <div class="emoji">🔺🔺🔺🔺🔺🔺🔺🔺 ÷ 4 = 🔺🔺</div>
+                    <p id="dividingShapesText">တြိဂံ ၈ ခု ÷ ၄ = တစ်စုတွင် တြိဂံ ၂ ခုစီ</p>
+                </div>
+                <div class="operation-card">
+                    <h3 id="dividingToysTitle">ကစားစရာများ စားခြင်း</h3>
+                    <div class="emoji">🧸🧸🧸🧸🧸🧸🧸🧸🧸🧸 ÷ 5 = 🧸🧸</div>
+                    <p id="dividingToysText">ဝက်ဝံအရုပ် ၁၀ ရုပ် ÷ ၅ = တစ်စုတွင် ဝက်ဝံအရုပ် ၂ ခုစီ</p>
+                </div>
+                <div class="operation-card">
+                    <h3 id="dividingFoodTitle">အစားအစာများ စားခြင်း</h3>
+                    <div class="emoji">🍕🍕🍕🍕🍕🍕 ÷ 3 = 🍕🍕</div>
+                    <p id="dividingFoodText">ပီဇာ ၆ ချပ် ÷ ၃ = တစ်စုတွင် ပီဇာ ၂ ချပ်စီ</p>
+                </div>
+                <div style="text-align: center; margin-top: 25px;">
+                    <button onclick="startMathOperationsQuiz('division')" id="startDivisionQuizBtn">ဉာဏ်စမ်း 🎯</button>
+                    <button onclick="goHome()" id="backToHomeBtn7">🏠 မူလနေရာသို့</button>
+                </div>
+            </div>
+        </div>
+        <div id="mathOperationsQuiz" class="hidden quiz-area">
+            <h2 id="mathQuizTitle">🧮 သင်္ချာပုစ္ဆာကို ဖြေရှင်းပါ!</h2>
+            <div class="quiz-progress" id="mathQuizProgress">မေးခွန်း ၁ မှ ၁၀</div>
+            <div class="progress-bar">
+                <div class="progress" id="mathQuizProgressBar"></div>
+            </div>
+            <p id="mathEquation" style="font-size: 32px; font-weight: bold; text-align: center; margin: 20px 0;"></p>
+            <div class="quiz-options" id="math-options"></div>
+        </div>
+        <div class="quiz-navigation-bottom hidden" id="mathOperationsQuizNavigation">
+            <button onclick="showSection('math-operations')" id="backToLearningBtn2"> သင်ခန်းစာသို့</button>
+            <button id="mathPrevBtn" class="prev-btn" onclick="previousMathQuestion()" style="display: none;"
+                id="prevMathBtnText">← ရှေ့သို့</button>
+            <button id="mathNextBtn" class="next-btn" onclick="nextMathQuestion()" id="nextMathBtnText">နောက်သို့
+                →</button>
+            <button onclick="goHome()" id="backToHomeBtn8">🏠 မူလနေရာသို့</button>
+        </div>
+        <div id="mathQuizResult" class="quiz-result">
+            <p id="mathResultText"></p>
+            <div id="mathAnswerReview" class="answer-review"></div>
+            <button onclick="goHome()" id="backToHomeBtn9">🏠 မူလနေရာသို့</button>
+        </div>
+    </section>
+    <!-- Shapes Section -->
+    <section id="shapes" class="hidden">
+        <div id="shapesLearning" class="lesson-section">
+            <p id="shapesLearnText">ကဲ... ကလေးတို့ရေ ပုံသဏ္ဍာန်လေးတွေကိုလေ့လာကြရအောင်။</p>
+            <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));">
+                <div class="card" style="height: auto; padding: 10px;" onclick="showSection('shapes')">
+                    <h3 id="circleTitle">စက်ဝိုင်း</h3>
+                    <img src="circle.jpg" style="width: 100px; height: 100px;">
+                </div>
+                <div class="card" style="height: auto; padding: 10px;" onclick="showSection('shapes')">
+                    <h3 id="squareTitle">စတုရန်း</h3>
+                    <img src="square.jpg" style="width: 100px; height: 100px;"><br>
+                </div>
+                <div class="card" style="height: auto; padding: 10px;" onclick="showSection('shapes')">
+                    <h3 id="triangleTitle">တြိဂံ</h3>
+                    <img src="triangle.jpg" style="width: 100px; height: 100px;"><br>
+                </div>
+                <div class="card" style="height: auto; padding: 10px;" onclick="showSection('shapes')">
+                    <h3 id="starTitle">ကြယ်</h3>
+                    <img src="star.jpg" style="width: 100px; height: 100px;"><br>
+                </div>
+                <div class="card" style="height: auto; padding: 10px;" onclick="showSection('shapes')">
+                    <h3 id="heartTitle">အသဲပုံ</h3>
+                    <img src="heart.jpg" style="width: 100px; height: 100px;"><br>
+                </div>
+                <div class="card" style="height: auto; padding: 10px;" onclick="showSection('shapes')">
+                    <h3 id="diamondTitle">စိန်</h3>
+                    <img src="diamond.jpg" style="width: 100px; height: 100px;"><br>
+                </div>
+                <div class="card" style="height: auto; padding: 10px;" onclick="showSection('shapes')">
+                    <h3 id="pentagonTitle">ပဉ္စဂံ</h3>
+                    <img src="pentagon.jpg" style="width: 100px; height: 100px;"><br>
+                </div>
+                <div class="card" style="height: auto; padding: 10px;" onclick="showSection('shapes')">
+                    <h3 id="hexagonTitle">ဆဋ္ဌဂံ</h3>
+                    <img src="hexagon.jpg" style="width: 100px; height: 100px;"><br>
+                </div>
+                <div class="card" style="height: auto; padding: 10px;" onclick="showSection('shapes')">
+                    <h3 id="octagonTitle">အဋ္ဌဂံ</h3>
+                    <img src="octagon.jpg" style="width: 100px; height: 100px;"><br>
+                </div>
+                <div class="card" style="height: auto; padding: 10px;" onclick="showSection('shapes')">
+                    <h3 id="ovalTitle">ဘဲဥပုံ</h3>
+                    <img src="oval.jpg" style="width: 100px; height: 100px;"><br>
+                </div>
+                <div class="card" style="height: auto; padding: 10px;" onclick="showSection('shapes')">
+                    <h3 id="crescentTitle">လခြမ်း</h3><br>
+                    <img src="crescent.jpg" style="width: 100px; height: 100px;">
+                </div>
+                <div class="card" style="height: auto; padding: 10px;" onclick="showSection('shapes')">
+                    <h3 id="rectangleTitle">ထောင့်မှန်စတုဂံ</h3>
+                    <img src="rectangle.jpg" style="width: 100px; height: 100px;">
+                </div>
+                <div class="card" style="height: auto; padding: 10px;" onclick="showSection('shapes')">
+                    <h3 id="arrowTitle">မြှား</h3><br>
+                    <img src="arrow.jpg" style="width: 100px; height: 100px;">
+                </div>
+                <div class="card" style="height: auto; padding: 10px;" onclick="showSection('shapes')">
+                    <h3 id="trapeziumTitle">တြာပီဇီယမ်</h3><br>
+                    <img src="trapezium.jpg" style="width: 100px; height: 100px;">
+                </div>
+                <div class="card" style="height: auto; padding: 10px;" onclick="showSection('shapes')">
+                    <h3 id="rhombusTitle">အနားပြိုင်<br>စတုဂံ</h3>
+                    <img src="rhombus.jpg" style="width: 100px; height: 100px;"><br>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 25px;">
+                <button onclick="startShapeQuiz()" id="startShapeQuizBtn">ဉာဏ်စမ်း 🎯</button>
+                <button onclick="goHome()" id="backToHomeBtn10">🏠 မူလနေရာသို့</button>
+            </div>
+        </div>
+        <div id="shapesQuiz" class="hidden quiz-area">
+            <h2 id="shapeQuizTitle">ဒီပုံလေးကဘာပုံလဲ ကလေးတို့ရေ။</h2>
+            <div class="quiz-progress" id="shapeQuizProgress">မေးခွန်း ၁ မှ ၁၀</div>
+            <div class="progress-bar">
+                <div class="progress" id="shapeQuizProgressBar"></div>
+            </div>
+            <img id="quiz-shape-image" src="" alt="Shape to guess"
+                style="width: 200px; height: 200px; object-fit: contain; display: block; margin: 0 auto;">
+            <div class="quiz-options" id="shape-options" style="text-align: center; margin: 20px 0;"></div>
+        </div>
+        <div class="quiz-navigation-bottom hidden" id="shapesQuizNavigation">
+            <button onclick="showSection('shapes')" id="backToLearningBtn3"> သင်ခန်းစာသို့</button>
+            <button id="shapePrevBtn" class="prev-btn" onclick="previousShapeQuestion()" style="display: none;"
+                id="prevShapeBtnText">← ရှေ့သို့</button>
+            <button id="shapeNextBtn" class="next-btn" onclick="nextShapeQuestion()" id="nextShapeBtnText">နောက်သို့
+                →</button>
+            <button onclick="goHome()" id="backToHomeBtn11">🏠 မူလနေရာသို့</button>
+        </div>
+        <div id="shapeQuizResult" class="quiz-result">
+            <p id="shapeResultText"></p>
+            <div id="shapeAnswerReview" class="answer-review"></div>
+            <button onclick="goHome()" id="backToHomeBtn12">🏠 မူလနေရာသို့</button>
+        </div>
+    </section>
+    <!-- Patterns Section -->
+    <section id="patterns" class="hidden">
+        <div id="patternsLearning" class="lesson-section">
+            <p id="patternsLearnText"> ကလေးတို့ရေ Pattern လေးတွေကိုလေ့လာကြရအောင်။</p>
+            <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>🟥 🟦 🟥 🟦 ...</p>
+                    <p style="margin-top: 10px;" id="pattern1Text"> အနီ၊ အပြာ၊ အနီ၊ အပြာ...</p>
+                </div>
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>🍓 🍌 🍓 🍌 ...</p>
+                    <p style="margin-top: 10px;" id="pattern2Text"> စတော်ဘယ်ရီသီး၊ ငှက်ပျောသီး၊ စတော်ဘယ်ရီသီး၊
+                        ငှက်ပျောသီး...</p>
+                </div>
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>🟩 🟩 🟨 🟨 ...</p>
+                    <p style="margin-top: 10px;" id="pattern3Text"> အစိမ်း၊ အစိမ်း၊ အဝါ၊ အဝါ...</p>
+                </div>
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>🔵 🟢 🟡 🔵 ...</p>
+                    <p style="margin-top: 10px;" id="pattern4Text"> အပြာ၊ အစိမ်း၊ အဝါ၊ အပြာ...</p>
+                </div>
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>🌞 🌙 🌞 🌙 ...</p>
+                    <p style="margin-top: 10px;" id="pattern5Text"> နေ၊ လ၊ နေ၊ လ...</p>
+                </div>
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>🚗 🚕 🚙 🚗 ...</p>
+                    <p style="margin-top: 10px;" id="pattern6Text"> ကား၊ တက္ကစီ၊ ထရပ်ကား၊ ကား...</p>
+                </div>
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>🔺 🔻 🔺 🔻 ...</p>
+                    <p style="margin-top: 10px;" id="pattern8Text"> အပေါ်တြိဂံ၊ အောက်တြိဂံ၊ အပေါ်တြိဂံ၊ အောက်တြိဂံ...
+                    </p>
+                </div>
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>🐶 🐱 🐶 🐱 ...</p>
+                    <p style="margin-top: 10px;" id="pattern9Text"> ခွေး၊ ကြောင်၊ ခွေး၊ ကြောင်...</p>
+                </div>
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>🎈 🎈 🎁 🎈 ...</p>
+                    <p style="margin-top: 10px;" id="pattern11Text"> ပူဖောင်း၊ ပူဖောင်း၊ လက်ဆောင်၊ ပူဖောင်း...</p>
+                </div>
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>🌈 ☀️ 🌈 ☀️ ...</p>
+                    <p style="margin-top: 10px;" id="pattern12Text"> သက်တန့်၊ နေ၊ သက်တန့်၊ နေ...</p>
+                </div>
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>🍂 🍃 🍂 🍃 ...</p>
+                    <p style="margin-top: 10px;" id="pattern13Text"> ရွက်ဝါ၊ ရွက်စိမ်း၊ ရွက်ဝါ၊ ရွက်စိမ်း...</p>
+                </div>
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>🦋 🐝 🦋 🐝 ...</p>
+                    <p style="margin-top: 10px;" id="pattern15Text"> လိပ်ပြာ၊ ပျား၊ လိပ်ပြာ၊ ပျား...</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 25px;">
+                <button onclick="startPatternQuiz()" id="startPatternQuizBtn">ဉာဏ်စမ်း 🎯</button>
+                <button onclick="goHome()" id="backToHomeBtn13">🏠 မူလနေရာသို့</button>
+            </div>
+        </div>
+        <div id="patternsQuiz" class="hidden quiz-area">
+            <h2 id="patternQuizTitle">🎨 Pattern လေးတွေကိုဖြေကြည့်ကြမယ်။</h2>
+            <div class="quiz-progress" id="patternQuizProgress">မေးခွန်း ၁ မှ ၁၀</div>
+            <div class="progress-bar">
+                <div class="progress" id="patternQuizProgressBar"></div>
+            </div>
+            <p id="pattern" style="font-size: 32px; font-weight: bold; text-align: center; margin: 20px 0;"></p>
+            <div class="quiz-options" id="pattern-options"></div>
+        </div>
+        <div class="quiz-navigation-bottom hidden" id="patternsQuizNavigation">
+            <button onclick="showSection('patterns')" id="backToLearningBtn4"> သင်ခန်းစာသို့</button>
+            <button id="patternPrevBtn" class="prev-btn" onclick="previousPatternQuestion()" style="display: none;"
+                id="prevPatternBtnText">← ရှေ့သို့</button>
+            <button id="patternNextBtn" class="next-btn" onclick="nextPatternQuestion()"
+                id="nextPatternBtnText">နောက်သို့ →</button>
+            <button onclick="goHome()" id="backToHomeBtn14">🏠 မူလနေရာသို့</button>
+        </div>
+        <div id="patternQuizResult" class="quiz-result">
+            <p id="patternResultText"></p>
+            <div id="patternAnswerReview" class="answer-review"></div>
+            <button onclick="goHome()" id="backToHomeBtn15">🏠 မူလနေရာသို့</button>
+        </div>
+    </section>
+    <!-- Time Section -->
+    <section id="time" class="hidden">
+        <div id="timeLearning" class="lesson-section">
+            <p id="timeLearnText">ကလေးတို့ရေ နာရီတွေကိုဖတ်တတ်ဖို့ လေ့ကျင့်ကြရအောင်။</p>
+            <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>၃:၀၀</p>
+                    <img src="3.jpg" style="width: 120px; height: 120px;">
+                </div>
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>၁:၀၀</p>
+                    <img src="1.jpg" style="width: 120px; height: 120px;">
+                </div>
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>၂:၅၀</p>
+                    <img src="2_50.jpg" style="width: 120px; height: 120px;">
+                </div>
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>၃:၁၅</p>
+                    <img src="3_15.jpg" style="width: 120px; height: 120px;">
+                </div>
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>၅:၃၀</p>
+                    <img src="5_30.jpg" style="width: 120px; height: 120px;">
+                </div>
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>၆:၀၀</p>
+                    <img src="6.jpg" style="width: 120px; height: 120px;">
+                </div>
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>၆:၃၅</p>
+                    <img src="6_35.jpg" style="width: 120px; height: 120px;">
+                </div>
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>၇:၁၀</p>
+                    <img src="7_10.jpg" style="width: 120px; height: 120px;">
+                </div>
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>၇:၃၀</p>
+                    <img src="7_30.jpg" style="width: 120px; height: 120px;">
+                </div>
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>၈:၁၅</p>
+                    <img src="8_15.jpg" style="width: 120px; height: 120px;">
+                </div>
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>၁၀:၀၀</p>
+                    <img src="10.jpg" style="width: 120px; height: 120px;">
+                </div>
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>၁၁:၂၀</p>
+                    <img src="11_20.jpg" style="width: 120px; height: 120px;">
+                </div>
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>၁၂:၀၀</p>
+                    <img src="12.jpg" style="width: 120px; height: 120px;">
+                </div>
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>၁၂:၁၅</p>
+                    <img src="12_15.jpg" style="width: 120px; height: 120px;">
+                </div>
+                <div class="card" style="height: auto; padding: 15px;">
+                    <p>၁၁:၄၅</p>
+                    <img src="11_45.jpg" style="width: 120px; height: 120px;">
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 25px;">
+                <button onclick="startTimeQuiz()" id="startTimeQuizBtn">ဉာဏ်စမ်း 🎯</button>
+                <button onclick="goHome()" id="backToHomeBtn16">🏠 မူလနေရာသို့</button>
+            </div>
+        </div>
+        <div id="timeQuiz" class="hidden quiz-area">
+            <h2 id="timeQuizTitle">⏰ ဘယ်နှနာရီထိုးပီလဲ။?</h2>
+            <div class="quiz-progress" id="timeQuizProgress">မေးခွန်း ၁ မှ ၁၀</div>
+            <div class="progress-bar">
+                <div class="progress" id="timeQuizProgressBar"></div>
+            </div>
+            <canvas id="clockCanvas" width="250" height="250"></canvas>
+            <div class="quiz-options" id="time-options"></div>
+        </div>
+        <div class="quiz-navigation-bottom hidden" id="timeQuizNavigation">
+            <button onclick="showSection('time')" id="backToLearningBtn5"> သင်ခန်းစာသို့</button>
+            <button id="timePrevBtn" class="prev-btn" onclick="previousTimeQuestion()" style="display: none;"
+                id="prevTimeBtnText">← ရှေ့သို့</button>
+            <button id="timeNextBtn" class="next-btn" onclick="nextTimeQuestion()" id="nextTimeBtnText">နောက်သို့
+                →</button>
+            <button onclick="goHome()" id="backToHomeBtn17">🏠 မူလနေရာသို့</button>
+        </div>
+        <div id="timeQuizResult" class="quiz-result">
+            <p id="timeResultText"></p>
+            <div id="timeAnswerReview" class="answer-review"></div>
+            <button onclick="goHome()" id="backToHomeBtn18">🏠 မူလနေရာသို့</button>
+        </div>
+    </section>
+    <!-- Money Section -->
+    <section id="money" class="hidden">
+        <div id="moneyLearning" class="lesson-section">
+            <p id="moneyLearnText">မြန်မာငွေကျပ်များ ရေတွက်တတ်ဖို့ လေ့လာကြရအောင်။</p>
+            <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));">
+                <div class="card money-card" style="height: auto; padding: 15px;">
+                    <h3 id="kyat1Title">၁ ကျပ်</h3>
+                    <img src="1kyat.jpg" style="width: 150px; height: 150px;">
+                </div>
+                <div class="card money-card" style="height: auto; padding: 15px;">
+                    <h3 id="kyat5Title">၅ ကျပ်</h3>
+                    <img src="5kyat.jpg" style="width: 150px; height: 150px;">
+                </div>
+                <div class="card money-card" style="height: auto; padding: 15px;">
+                    <h3 id="kyat10Title">၁၀ ကျပ်</h3>
+                    <img src="10kyat.jpg" style="width: 150px; height: 150px;">
+                </div>
+                <div class="card money-card" style="height: auto; padding: 15px;">
+                    <h3 id="kyat50Title">၅၀ ကျပ်</h3>
+                    <img src="50kyat.jpg" style="width: 150px; height: 150px;">
+                </div>
+                <div class="card money-card" style="height: auto; padding: 15px;">
+                    <h3 id="kyat100Title">၁၀၀ ကျပ်</h3>
+                    <img src="100kyat.jpg" style="width: 150px; height: 150px;">
+                </div>
+                <div class="card money-card" style="height: auto; padding: 15px;">
+                    <h3 id="kyat200Title">၂၀၀ ကျပ်</h3>
+                    <img src="200kyat.jpg" style="width: 150px; height: 150px;">
+                </div>
+                <div class="card money-card" style="height: auto; padding: 15px;">
+                    <h3 id="kyat500Title">၅၀၀ ကျပ်</h3>
+                    <img src="500kyat.jpg" style="width: 150px; height: 150px;">
+                </div>
+                <div class="card money-card" style="height: auto; padding: 15px;">
+                    <h3 id="kyat1000Title">၁၀၀၀ ကျပ်</h3>
+                    <img src="1000kyat.jpg" style="width: 150px; height: 150px;">
+                </div>
+                <div class="card money-card" style="height: auto; padding: 15px;">
+                    <h3 id="kyat5000Title">၅၀၀၀ ကျပ်</h3>
+                    <img src="5000kyat.jpg" style="width: 150px; height: 150px;">
+                </div>
+                <div class="card money-card" style="height: auto; padding: 15px;">
+                    <h3 id="kyat10000Title">၁၀၀၀၀ ကျပ်</h3>
+                    <img src="10000kyat.jpg" style="width: 150px; height: 150px;">
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 25px;">
+                <button onclick="startMoneyQuiz()" id="startMoneyQuizBtn">ဉာဏ်စမ်း 🎯</button>
+                <button onclick="goHome()" id="backToHomeBtn19">🏠 မူလနေရာသို့</button>
+            </div>
+        </div>
+        <div id="moneyQuiz" class="hidden quiz-area">
+            <h2 id="moneyQuizTitle">💰 ငွေစုစုပေါင်း ဘယ်လောက်လဲ?</h2>
+            <div class="quiz-progress" id="moneyQuizProgress">မေးခွန်း ၁ မှ ၁၀</div>
+            <div class="progress-bar">
+                <div class="progress" id="moneyQuizProgressBar"></div>
+            </div>
+            <div id="coinCard" class="money-quiz" style="margin: 20px; text-align: center;"></div>
+            <div class="quiz-options" id="money-options"></div>
+        </div>
+        <div class="quiz-navigation-bottom hidden" id="moneyQuizNavigation">
+            <button onclick="showSection('money')" id="backToLearningBtn6"> သင်ခန်းစာသို့</button>
+            <button id="moneyPrevBtn" class="prev-btn" onclick="previousMoneyQuestion()" style="display: none;"
+                id="prevMoneyBtnText">← ရှေ့သို့</button>
+            <button id="moneyNextBtn" class="next-btn" onclick="nextMoneyQuestion()" id="nextMoneyBtnText">နောက်သို့
+                →</button>
+            <button onclick="goHome()" id="backToHomeBtn20">🏠 မူလနေရာသို့</button>
+        </div>
+        <div id="moneyQuizResult" class="quiz-result">
+            <p id="moneyResultText"></p>
+            <div id="moneyAnswerReview" class="answer-review"></div>
+            <button onclick="goHome()" id="backToHomeBtn21">🏠 မူလနေရာသို့</button>
+        </div>
+    </section>
+    <!-- Results Section -->
+    <section id="results" class="hidden">
+        <div class="results-section">
+            <h2 id="resultsTitle">ဉာဏ်စမ်းရလဒ်များ</h2>
+            <div id="resultsContent">
+                <p class="no-results" id="noResultsText">ဉာဏ်စမ်းရလဒ်များ မရှိသေးပါ။ ဉာဏ်စမ်းများဖြေဆိုပြီးမှ
+                    သင့်ရလဒ်များကို ဤနေရာတွင် မြင်ရမည်ဖြစ်ပါသည်။</p>
+            </div>
+            <div style="text-align: center; margin-top: 25px;">
+                <button onclick="goHome()" id="backToHomeBtn22">🏠 မူလနေရာသို့</button>
+            </div>
+        </div>
+    </section>
+    <script>
+        let currentNumber = 0, correctMathOperation, correctPattern, correctHour, correctMinute, correctMoney;
+        let totalProgress = 0;
+        let slideNumber = 1;
+        let slideshowInterval;
+        let isPlaying = false;
+        let currentMathOperation = '';
+        // Quiz state objects
+        const quizStates = {
+            numbers: {
+                currentQuestion: 0,
+                totalQuestions: 10,
+                answers: new Array(10).fill(null),
+                questions: []
+            },
+            math: {
+                currentQuestion: 0,
+                totalQuestions: 10,
+                answers: new Array(10).fill(null),
+                questions: []
+            },
+            shapes: {
+                currentQuestion: 0,
+                totalQuestions: 10,
+                answers: new Array(10).fill(null),
+                questions: []
+            },
+            patterns: {
+                currentQuestion: 0,
+                totalQuestions: 10,
+                answers: new Array(10).fill(null),
+                questions: []
+            },
+            time: {
+                currentQuestion: 0,
+                totalQuestions: 10,
+                answers: new Array(10).fill(null),
+                questions: []
+            },
+            money: {
+                currentQuestion: 0,
+                totalQuestions: 10,
+                answers: new Array(10).fill(null),
+                questions: []
+            }
+        };
+        // Results storage
+        const quizResults = {
+            numbers: null,
+            math: null,
+            shapes: null,
+            patterns: null,
+            time: null,
+            money: null
+        };
+        const shapes = [
+            { name: "စက်ဝိုင်း", img: "circle.jpg" },
+            { name: "စတုရန်း", img: "square.jpg" },
+            { name: "တြိဂံ", img: "triangle.jpg" },
+            { name: "ကြယ်", img: "star.jpg" },
+            { name: "အသဲပုံ", img: "heart.jpg" },
+            { name: "စိန်", img: "diamond.jpg" },
+            { name: "ပဉ္စဂံ", img: "pentagon.jpg" },
+            { name: "ဆဋ္ဌဂံ", img: "hexagon.jpg" },
+            { name: "အဋ္ဌဂံ", img: "octagon.jpg" },
+            { name: "ဘဲဥပုံ", img: "oval.jpg" },
+            { name: "လခြမ်း", img: "crescent.jpg" },
+            { name: "မြှား", img: "arrow.jpg" },
+            { name: "တြာပီဇီယမ်", img: "trapezium.jpg" },
+            { name: "အနားပြိုင်စတုဂံ", img: "rhombus.jpg" },
+            { name: "ထောင့်မှန်စတုဂံ", img: "rectangle.jpg" }
+        ];
+        const kyats = [
+            { val: 1, img: "1kyat.jpg" },
+            { val: 5, img: "5kyat.jpg" },
+            { val: 10, img: "10kyat.jpg" },
+            { val: 50, img: "50kyat.jpg" },
+            { val: 100, img: "100kyat.jpg" },
+            { val: 200, img: "200kyat.jpg" },
+            { val: 500, img: "500kyat.jpg" },
+            { val: 1000, img: "1000kyat.jpg" },
+            { val: 5000, img: "5000kyat.jpg" },
+            { val: 10000, img: "10000kyat.jpg" }
+        ];
+        // Filtered kyats for quiz (excluding 1, 5, 10)
+        const quizKyats = kyats.filter(k => k.val !== 1 && k.val !== 5 && k.val !== 10);
+        const fruits = [
+            { emoji: "🍎", name: "ပန်းသီး" },
+            { emoji: "🍌", name: "ငှက်ပျောသီး" },
+            { emoji: "🍇", name: "စပျစ်သီး" },
+            { emoji: "🍊", name: "လိမ္မော်သီး" },
+            { emoji: "🍓", name: "စတော်ဘယ်ရီသီး" },
+            { emoji: "🍉", name: "ဖရဲသီး" },
+            { emoji: "🥝", name: "ကီဝီသီး" },
+            { emoji: "🍑", name: "မက်မွန်သီး" },
+            { emoji: "🍒", name: "ချယ်ရီသီး" },
+            { emoji: "🥭", name: "သရက်သီး" }
+        ];
+        const numberNames = [
+            "", "တစ်", "နှစ်", "သုံး", "လေး", "ငါး", "ခြောက်", "ခုနစ်", "ရှစ်", "ကိုး", "တစ်ဆယ်",
+            "ဆယ့်တစ်", "ဆယ့်နှစ်", "ဆယ့်သုံး", "ဆယ့်လေး", "ဆယ့်ငါး", "ဆယ့်ခြောက်", "ဆယ့်ခုနစ်", "ဆယ့်ရှစ်", "ဆယ့်ကိုး", "နှစ်ဆယ်"
+        ];
+        function showSection(id) {
+            document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
+            // Special handling for math operations section
+            if (id === 'math-operations') {
+                document.getElementById('mathOperationsLearning').classList.remove('hidden');
+                document.getElementById('mathOperationsQuiz').classList.add('hidden');
+                document.getElementById('mathOperationsQuizNavigation').classList.add('hidden');
+                resetMathOperationsSection();
+            } else {
+                document.getElementById(id + 'Learning').classList.remove('hidden');
+                document.getElementById(id + 'Quiz').classList.add('hidden');
+                document.getElementById(id + 'QuizNavigation').classList.add('hidden');
+            }
+            // Stop slideshow if it's playing
+            if (slideshowInterval) {
+                clearInterval(slideshowInterval);
+                isPlaying = false;
+                document.getElementById('playPauseBtn').innerText = '▶️ ဖွင့်မည်';
+            }
+        }
+        function goHome() {
+            document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+            document.getElementById('home').classList.remove('hidden');
+            resetQuizzes();
+            // Stop slideshow if it's playing
+            if (slideshowInterval) {
+                clearInterval(slideshowInterval);
+                isPlaying = false;
+            }
+        }
+        function showResults() {
+            document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+            document.getElementById('results').classList.remove('hidden');
+            displayResults();
+        }
+        function resetQuizzes() {
+            // Reset quiz states
+            Object.keys(quizStates).forEach(key => {
+                quizStates[key].currentQuestion = 0;
+                quizStates[key].answers = new Array(10).fill(null);
+                quizStates[key].questions = [];
+            });
+        }
+        function resetMathOperationsSection() {
+            // Reset math operations quiz state
+            quizStates.math.currentQuestion = 0;
+            quizStates.math.answers = new Array(10).fill(null);
+            quizStates.math.questions = [];
+            // Reset UI elements
+            document.getElementById('mathOperationsLearning').classList.remove('hidden');
+            document.getElementById('mathOperationsQuiz').classList.add('hidden');
+            document.getElementById('mathOperationsQuizNavigation').classList.add('hidden');
+            document.getElementById('mathQuizResult').classList.remove('show');
+            document.getElementById('math-options').style.display = 'flex';
+            // Reset tabs to addition
+            document.querySelectorAll('.math-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelector('.math-tab').classList.add('active');
+            document.querySelectorAll('.math-content').forEach(content => content.classList.remove('active'));
+            document.getElementById('addition-content').classList.add('active');
+        }
+        function updateProgress() {
+            totalProgress = 0;
+            const progressBar = document.getElementById('mainProgress');
+            if (progressBar) {
+                progressBar.style.width = `${Math.min(totalProgress * 5, 100)}%`;
+            }
+        }
+        // Helper function to update navigation buttons
+        function updateNavigationButtons(state, prevBtnId, nextBtnId) {
+            const prevBtn = document.getElementById(prevBtnId);
+            const nextBtn = document.getElementById(nextBtnId);
+
+            if (state.currentQuestion === 0) {
+                prevBtn.style.display = 'none';
+            } else {
+                prevBtn.style.display = 'inline-flex';
+            }
+
+            if (state.currentQuestion === state.totalQuestions - 1) {
+                nextBtn.innerHTML = "ပြီးဆုံးသည်";
+            } else {
+                nextBtn.innerHTML = "နောက်သို့ →";
+            }
+        }
+        // Number Slideshow
+        function updateSlide() {
+            document.getElementById('slideNumber').innerText = slideNumber;
+            // Update progress bar
+            const progressBar = document.getElementById('slideshowProgressBar');
+            progressBar.style.width = `${(slideNumber / 20) * 100}%`;
+            // Create objects based on the current number
+            const objectsContainer = document.getElementById('slideObjects');
+            objectsContainer.innerHTML = '';
+            const fruit = fruits[slideNumber % fruits.length];
+            const maxObjects = slideNumber; // Changed from Math.min(slideNumber, 20)
+            for (let i = 0; i < maxObjects; i++) {
+                const objectItem = document.createElement('span');
+                objectItem.className = 'object-item';
+                objectItem.innerText = fruit.emoji;
+                objectItem.style.animationDelay = `${i * 0.1}s`;
+                objectsContainer.appendChild(objectItem);
+            }
+            // Update number info
+            const numberInfo = document.getElementById('numberInfo');
+            numberInfo.innerText = `${numberNames[slideNumber]}`;
+            // Show/hide previous button based on slide number
+            const prevButton = document.getElementById('prevNumberBtn');
+            if (slideNumber === 1) {
+                prevButton.style.display = 'none';
+            } else {
+                prevButton.style.display = 'inline-block';
+            }
+        }
+        function nextSlideNumber() {
+            if (slideNumber < 20) { // Changed from 50 to 20
+                slideNumber++;
+                updateSlide();
+            }
+        }
+        function previousNumber() {
+            if (slideNumber > 1) {
+                slideNumber--;
+                updateSlide();
+            }
+        }
+        function playPause() {
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            if (isPlaying) {
+                clearInterval(slideshowInterval);
+                playPauseBtn.innerText = '▶️ ဖွင့်မည်';
+                isPlaying = false;
+            } else {
+                slideshowInterval = setInterval(() => {
+                    if (slideNumber < 20) { // Changed from 50 to 20
+                        slideNumber++;
+                        updateSlide();
+                    } else {
+                        clearInterval(slideshowInterval);
+                        playPauseBtn.innerText = '▶️ ဖွင့်မည်';
+                        isPlaying = false;
+                    }
+                }, 1500);
+                playPauseBtn.innerText = '⏸️ ရပ်မည်';
+                isPlaying = true;
+            }
+        }
+        // Numbers Quiz
+        function startNumberQuiz() {
+            document.getElementById('numbersLearning').classList.add('hidden');
+            document.getElementById('numbersQuiz').classList.remove('hidden');
+            document.getElementById('numbersQuizNavigation').classList.remove('hidden');
+            // Reset quiz state
+            quizStates.numbers.currentQuestion = 0;
+            quizStates.numbers.answers = new Array(10).fill(null);
+            quizStates.numbers.questions = [];
+            // Generate questions
+            for (let i = 0; i < 10; i++) {
+                const num = Math.floor(Math.random() * 15) + 1;
+                const fruit = fruits[Math.floor(Math.random() * fruits.length)];
+                // Generate multiple choice options
+                let options = [num];
+                while (options.length < 4) {
+                    const option = Math.floor(Math.random() * 15) + 1;
+                    if (!options.includes(option)) {
+                        options.push(option);
+                    }
+                }
+                // Shuffle options
+                options.sort(() => Math.random() - 0.5);
+                quizStates.numbers.questions.push({
+                    number: num,
+                    fruit: fruit,
+                    objects: fruit.emoji.repeat(num),
+                    options: options
+                });
+            }
+            // Show first question
+            showNumberQuestion();
+            updateNumberQuizProgress();
+        }
+        function showNumberQuestion() {
+            const state = quizStates.numbers;
+            const question = state.questions[state.currentQuestion];
+            document.getElementById('numberCard').innerHTML = `<h3>${question.objects}</h3>`;
+            // Create multiple choice buttons
+            const optionsContainer = document.getElementById('number-options');
+            optionsContainer.innerHTML = '';
+            question.options.forEach(option => {
+                const button = document.createElement('button');
+                button.innerText = option;
+                button.onclick = () => checkNumber(option);
+                // If the user has already answered this question, mark the selected option
+                if (state.answers[state.currentQuestion] === option) {
+                    button.classList.add('selected');
+                }
+                optionsContainer.appendChild(button);
+            });
+            // Update navigation buttons
+            updateNavigationButtons(state, 'numberPrevBtn', 'numberNextBtn');
+        }
+        function updateNumberQuizProgress() {
+            const state = quizStates.numbers;
+            const progress = (state.currentQuestion + 1) / state.totalQuestions * 100;
+            document.getElementById('numberQuizProgressBar').style.width = `${progress}%`;
+            document.getElementById('numberQuizProgress').innerText =
+                `မေးခွန်း ${state.currentQuestion + 1} မှ ${state.totalQuestions}`;
+        }
+        function checkNumber(selectedOption) {
+            const state = quizStates.numbers;
+            const question = state.questions[state.currentQuestion];
+            // Record the answer
+            state.answers[state.currentQuestion] = selectedOption;
+            // Update button selection
+            const buttons = document.querySelectorAll('#number-options button');
+            buttons.forEach(button => {
+                button.classList.remove('selected');
+                if (button.innerText == selectedOption) {
+                    button.classList.add('selected');
+                }
+            });
+        }
+        function nextNumberQuestion() {
+            const state = quizStates.numbers;
+            if (state.currentQuestion < state.totalQuestions - 1) {
+                // Move to next question
+                state.currentQuestion++;
+                showNumberQuestion();
+                updateNumberQuizProgress();
+            } else {
+                // Finish quiz
+                finishNumberQuiz();
+            }
+        }
+        function previousNumberQuestion() {
+            const state = quizStates.numbers;
+            if (state.currentQuestion > 0) {
+                state.currentQuestion--;
+                showNumberQuestion();
+                updateNumberQuizProgress();
+            }
+        }
+        function finishNumberQuiz() {
+            const state = quizStates.numbers;
+            let correctCount = 0;
+            for (let i = 0; i < state.totalQuestions; i++) {
+                if (state.answers[i] === state.questions[i].number) {
+                    correctCount++;
+                }
+            }
+            // Store result
+            quizResults.numbers = {
+                score: correctCount,
+                total: state.totalQuestions,
+                date: new Date().toLocaleDateString()
+            };
+            // Show result
+            document.getElementById('numberResultText').innerText = `သင်ရရှိသောအမှတ် ${correctCount} / ${state.totalQuestions} `;
+            document.getElementById('numberQuizResult').classList.add('show');
+            // Show answer review
+            const reviewContainer = document.getElementById('numberAnswerReview');
+            reviewContainer.innerHTML = `<h3>အဖြေပြန်စစ်ဆေးခြင်း:</h3>`;
+            for (let i = 0; i < state.totalQuestions; i++) {
+                const question = state.questions[i];
+                const userAnswer = state.answers[i];
+                const isCorrect = userAnswer === question.number;
+                const answerItem = document.createElement('div');
+                answerItem.className = `answer-item ${isCorrect ? 'correct' : 'incorrect'}`;
+                const icon = document.createElement('span');
+                icon.className = 'answer-icon';
+                icon.innerText = isCorrect ? '✓' : '✗';
+                const text = document.createElement('span');
+                text.innerHTML = `မေးခွန်း ${i + 1}: ${question.objects} = ${question.number} ${isCorrect ? '' : `(သင့်အဖြေ: ${userAnswer})`}`;
+                answerItem.appendChild(icon);
+                answerItem.appendChild(text);
+                reviewContainer.appendChild(answerItem);
+            }
+            // Hide navigation and options
+            document.getElementById('numbersQuizNavigation').classList.add('hidden');
+            document.getElementById('number-options').style.display = 'none';
+        }
+        // Math Operations
+        function showMathContent(operation) {
+            // Hide all math content
+            document.querySelectorAll('.math-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            // Remove active class from all tabs
+            document.querySelectorAll('.math-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            // Show selected content
+            document.getElementById(`${operation}-content`).classList.add('active');
+            // Find the tab corresponding to the operation and set it active
+            const activeTab = Array.from(document.querySelectorAll('.math-tab')).find(
+                tab => tab.getAttribute('onclick').includes(`'${operation}'`)
+            );
+            if (activeTab) {
+                activeTab.classList.add('active');
+            }
+        }
+        function startMathOperationsQuiz(operation) {
+            currentMathOperation = operation;
+            document.getElementById('mathOperationsLearning').classList.add('hidden');
+            document.getElementById('mathOperationsQuiz').classList.remove('hidden');
+            document.getElementById('mathOperationsQuizNavigation').classList.remove('hidden');
+            // Update quiz title based on operation
+            const titles = {
+                'addition': ' ပေါင်းခြင်းဉာဏ်စမ်း။',
+                'subtraction': ' နုတ်ခြင်းဉာဏ်စမ်း။',
+                'multiplication': ' မြှောက်ခြင်းဉာဏ်စမ်း။',
+                'division': ' စားခြင်းဉာဏ်စမ်း။'
+            };
+            document.getElementById('mathQuizTitle').innerText = titles[operation];
+            // Reset quiz state
+            quizStates.math.currentQuestion = 0;
+            quizStates.math.answers = new Array(10).fill(null);
+            quizStates.math.questions = [];
+            // Generate questions for the specific operation
+            for (let i = 0; i < 10; i++) {
+                let a, b, answer;
+                if (operation === 'addition') {
+                    a = Math.floor(Math.random() * 20) + 1;
+                    b = Math.floor(Math.random() * 20) + 1;
+                    answer = a + b;
+                } else if (operation === 'subtraction') {
+                    a = Math.floor(Math.random() * 20) + 10;
+                    b = Math.floor(Math.random() * a) + 1;
+                    answer = a - b;
+                } else if (operation === 'multiplication') {
+                    a = Math.floor(Math.random() * 10) + 1;
+                    b = Math.floor(Math.random() * 10) + 1;
+                    answer = a * b;
+                } else if (operation === 'division') {
+                    b = Math.floor(Math.random() * 10) + 1;
+                    answer = Math.floor(Math.random() * 10) + 1;
+                    a = b * answer;
+                }
+                // Generate multiple choice options
+                let options = [answer];
+                while (options.length < 4) {
+                    let option;
+                    if (operation === 'addition') {
+                        option = Math.floor(Math.random() * 40) + 1;
+                    } else if (operation === 'subtraction') {
+                        option = Math.floor(Math.random() * 20) + 1;
+                    } else if (operation === 'multiplication') {
+                        option = Math.floor(Math.random() * 100) + 1;
+                    } else if (operation === 'division') {
+                        option = Math.floor(Math.random() * 10) + 1;
+                    }
+                    if (!options.includes(option)) {
+                        options.push(option);
+                    }
+                }
+                // Shuffle options
+                options.sort(() => Math.random() - 0.5);
+                quizStates.math.questions.push({
+                    a: a,
+                    b: b,
+                    operation: operation === 'addition' ? '+' : operation === 'subtraction' ? '-' : operation === 'multiplication' ? '×' : '÷',
+                    answer: answer,
+                    equation: `${a} ${operation === 'addition' ? '+' : operation === 'subtraction' ? '-' : operation === 'multiplication' ? '×' : '÷'} ${b} = ?`,
+                    options: options
+                });
+            }
+            // Show first question
+            showMathQuestion();
+            updateMathQuizProgress();
+        }
+        function showMathQuestion() {
+            const state = quizStates.math;
+            const question = state.questions[state.currentQuestion];
+            document.getElementById('mathEquation').innerText = question.equation;
+            // Create multiple choice buttons
+            const optionsContainer = document.getElementById('math-options');
+            optionsContainer.innerHTML = '';
+            question.options.forEach(option => {
+                const button = document.createElement('button');
+                button.innerText = option;
+                button.onclick = () => checkMathOperation(option);
+                // If the user has already answered this question, mark the selected option
+                if (state.answers[state.currentQuestion] === option) {
+                    button.classList.add('selected');
+                }
+                optionsContainer.appendChild(button);
+            });
+            // Update navigation buttons
+            updateNavigationButtons(state, 'mathPrevBtn', 'mathNextBtn');
+        }
+        function updateMathQuizProgress() {
+            const state = quizStates.math;
+            const progress = (state.currentQuestion + 1) / state.totalQuestions * 100;
+            document.getElementById('mathQuizProgressBar').style.width = `${progress}%`;
+            document.getElementById('mathQuizProgress').innerText =
+                `မေးခွန်း ${state.currentQuestion + 1} မှ ${state.totalQuestions}`;
+        }
+        function checkMathOperation(selectedOption) {
+            const state = quizStates.math;
+            const question = state.questions[state.currentQuestion];
+            // Record the answer
+            state.answers[state.currentQuestion] = selectedOption;
+            // Update button selection
+            const buttons = document.querySelectorAll('#math-options button');
+            buttons.forEach(button => {
+                button.classList.remove('selected');
+                if (button.innerText == selectedOption) {
+                    button.classList.add('selected');
+                }
+            });
+        }
+        function nextMathQuestion() {
+            const state = quizStates.math;
+            if (state.currentQuestion < state.totalQuestions - 1) {
+                // Move to next question
+                state.currentQuestion++;
+                showMathQuestion();
+                updateMathQuizProgress();
+            } else {
+                // Finish quiz
+                finishMathQuiz();
+            }
+        }
+        function previousMathQuestion() {
+            const state = quizStates.math;
+            if (state.currentQuestion > 0) {
+                state.currentQuestion--;
+                showMathQuestion();
+                updateMathQuizProgress();
+            }
+        }
+        function finishMathQuiz() {
+            const state = quizStates.math;
+            let correctCount = 0;
+            for (let i = 0; i < state.totalQuestions; i++) {
+                if (state.answers[i] === state.questions[i].answer) {
+                    correctCount++;
+                }
+            }
+            // Store result
+            quizResults.math = {
+                score: correctCount,
+                total: state.totalQuestions,
+                date: new Date().toLocaleDateString()
+            };
+            // Show result
+            document.getElementById('mathResultText').innerText = `သင်ရရှိသောအမှတ် ${correctCount} / ${state.totalQuestions} `;
+            document.getElementById('mathQuizResult').classList.add('show');
+            // Show answer review
+            const reviewContainer = document.getElementById('mathAnswerReview');
+            reviewContainer.innerHTML = `<h3>အဖြေပြန်စစ်ဆေးခြင်း:</h3>`;
+            for (let i = 0; i < state.totalQuestions; i++) {
+                const question = state.questions[i];
+                const userAnswer = state.answers[i];
+                const isCorrect = userAnswer === question.answer;
+                const answerItem = document.createElement('div');
+                answerItem.className = `answer-item ${isCorrect ? 'correct' : 'incorrect'}`;
+                const icon = document.createElement('span');
+                icon.className = 'answer-icon';
+                icon.innerText = isCorrect ? '✓' : '✗';
+                const text = document.createElement('span');
+                text.innerHTML = `မေးခွန်း ${i + 1}: ${question.equation.replace('?', question.answer)} ${isCorrect ? '' : `(သင့်အဖြေ: ${userAnswer})`}`;
+                answerItem.appendChild(icon);
+                answerItem.appendChild(text);
+                reviewContainer.appendChild(answerItem);
+            }
+            // Hide navigation and options
+            document.getElementById('mathOperationsQuizNavigation').classList.add('hidden');
+            document.getElementById('math-options').style.display = 'none';
+        }
+        // Shapes Quiz
+        let currentShape;
+        function startShapeQuiz() {
+            document.getElementById('shapesLearning').classList.add('hidden');
+            document.getElementById('shapesQuiz').classList.remove('hidden');
+            document.getElementById('shapesQuizNavigation').classList.remove('hidden');
+            // Reset quiz state
+            quizStates.shapes.currentQuestion = 0;
+            quizStates.shapes.answers = new Array(10).fill(null);
+            quizStates.shapes.questions = [];
+            // Generate questions
+            for (let i = 0; i < 10; i++) {
+                const allShapes = [...shapes];
+                const correctShape = allShapes[Math.floor(Math.random() * allShapes.length)];
+                let incorrectOptions = allShapes.filter(s => s.name !== correctShape.name);
+                let options = [correctShape.name];
+                while (options.length < 3) {
+                    const randomOption = incorrectOptions[Math.floor(Math.random() * incorrectOptions.length)];
+                    if (!options.includes(randomOption.name)) {
+                        options.push(randomOption.name);
+                    }
+                }
+                // Shuffle options
+                options.sort(() => Math.random() - 0.5);
+                quizStates.shapes.questions.push({
+                    shape: correctShape,
+                    options: options,
+                    correctAnswer: correctShape.name
+                });
+            }
+            // Show first question
+            showShapeQuestion();
+            updateShapeQuizProgress();
+        }
+        function showShapeQuestion() {
+            const state = quizStates.shapes;
+            const question = state.questions[state.currentQuestion];
+            document.getElementById('quiz-shape-image').src = question.shape.img;
+            const optionsContainer = document.getElementById('shape-options');
+            optionsContainer.innerHTML = '';
+            question.options.forEach(option => {
+                const button = document.createElement('button');
+                button.innerText = option;
+                button.onclick = () => checkShape(option);
+                // If the user has already answered this question, mark the selected option
+                if (state.answers[state.currentQuestion] === option) {
+                    button.classList.add('selected');
+                }
+                optionsContainer.appendChild(button);
+            });
+            // Update navigation buttons
+            updateNavigationButtons(state, 'shapePrevBtn', 'shapeNextBtn');
+        }
+        function updateShapeQuizProgress() {
+            const state = quizStates.shapes;
+            const progress = (state.currentQuestion + 1) / state.totalQuestions * 100;
+            document.getElementById('shapeQuizProgressBar').style.width = `${progress}%`;
+            document.getElementById('shapeQuizProgress').innerText =
+                `မေးခွန်း ${state.currentQuestion + 1} မှ ${state.totalQuestions}`;
+        }
+        function checkShape(selectedName) {
+            const state = quizStates.shapes;
+            const question = state.questions[state.currentQuestion];
+            // Record the answer
+            state.answers[state.currentQuestion] = selectedName;
+            // Update button selection
+            const buttons = document.querySelectorAll('#shape-options button');
+            buttons.forEach(button => {
+                button.classList.remove('selected');
+                if (button.innerText == selectedName) {
+                    button.classList.add('selected');
+                }
+            });
+        }
+        function nextShapeQuestion() {
+            const state = quizStates.shapes;
+            if (state.currentQuestion < state.totalQuestions - 1) {
+                // Move to next question
+                state.currentQuestion++;
+                showShapeQuestion();
+                updateShapeQuizProgress();
+            } else {
+                // Finish quiz
+                finishShapeQuiz();
+            }
+        }
+        function previousShapeQuestion() {
+            const state = quizStates.shapes;
+            if (state.currentQuestion > 0) {
+                state.currentQuestion--;
+                showShapeQuestion();
+                updateShapeQuizProgress();
+            }
+        }
+        function finishShapeQuiz() {
+            const state = quizStates.shapes;
+            let correctCount = 0;
+            for (let i = 0; i < state.totalQuestions; i++) {
+                if (state.answers[i] === state.questions[i].correctAnswer) {
+                    correctCount++;
+                }
+            }
+            // Store result
+            quizResults.shapes = {
+                score: correctCount,
+                total: state.totalQuestions,
+                date: new Date().toLocaleDateString()
+            };
+            // Show result
+            document.getElementById('shapeResultText').innerText = `သင်ရရှိသောအမှတ် ${correctCount} / ${state.totalQuestions} `;
+            document.getElementById('shapeQuizResult').classList.add('show');
+            // Show answer review
+            const reviewContainer = document.getElementById('shapeAnswerReview');
+            reviewContainer.innerHTML = `<h3>အဖြေပြန်စစ်ဆေးခြင်း:</h3>`;
+            for (let i = 0; i < state.totalQuestions; i++) {
+                const question = state.questions[i];
+                const userAnswer = state.answers[i];
+                const isCorrect = userAnswer === question.correctAnswer;
+                const answerItem = document.createElement('div');
+                answerItem.className = `answer-item ${isCorrect ? 'correct' : 'incorrect'}`;
+                const icon = document.createElement('span');
+                icon.className = 'answer-icon';
+                icon.innerText = isCorrect ? '✓' : '✗';
+                const text = document.createElement('span');
+                text.innerHTML = `မေးခွန်း ${i + 1}: ${question.correctAnswer} ${isCorrect ? '' : `(သင့်အဖြေ: ${userAnswer})`}`;
+                answerItem.appendChild(icon);
+                answerItem.appendChild(text);
+                reviewContainer.appendChild(answerItem);
+            }
+            // Hide navigation and options
+            document.getElementById('shapesQuizNavigation').classList.add('hidden');
+            document.getElementById('shape-options').style.display = 'none';
+        }
+        // Patterns Quiz
+        function startPatternQuiz() {
+            document.getElementById('patternsLearning').classList.add('hidden');
+            document.getElementById('patternsQuiz').classList.remove('hidden');
+            document.getElementById('patternsQuizNavigation').classList.remove('hidden');
+            // Reset quiz state
+            quizStates.patterns.currentQuestion = 0;
+            quizStates.patterns.answers = new Array(10).fill(null);
+            quizStates.patterns.questions = [];
+            // Generate questions
+            const patterns = [
+                { seq: ["🟥", "🟦", "🟥", "🟦", "🟥"], next: "🟦" },
+                { seq: ["🟩", "🟩", "🟨", "🟨", "🟩"], next: "🟩" },
+                { seq: ["🔵", "🟢", "🟡", "🔵", "🟢"], next: "🟡" },
+                { seq: ["🍓", "🍌", "🍓", "🍌", "🍓"], next: "🍌" },
+                { seq: ["🌞", "🌙", "🌞", "🌙", "🌞"], next: "🌙" },
+                { seq: ["🚗", "🚕", "🚙", "🚗", "🚕"], next: "🚙" },
+                { seq: ["⭐", "⭐", "🌟", "⭐", "⭐"], next: "🌟" },
+                { seq: ["🔺", "🔻", "🔺", "🔻", "🔺"], next: "🔻" },
+                { seq: ["🐶", "🐱", "🐶", "🐱", "🐶"], next: "🐱" },
+                { seq: ["🌸", "🌺", "🌸", "🌺", "🌸"], next: "🌺" },
+                { seq: ["🎈", "🎈", "🎁", "🎈", "🎈"], next: "🎁" },
+                { seq: ["🌈", "☀️", "🌈", "☀️", "🌈"], next: "☀️" },
+                { seq: ["🍂", "🍃", "🍂", "🍃", "🍂"], next: "🍃" },
+                { seq: ["🎵", "🎶", "🎵", "🎶", "🎵"], next: "🎶" },
+                { seq: ["🦋", "🐝", "🦋", "🐝", "🦋"], next: "🐝" },
+                { seq: ["🌙", "⭐", "🌙", "⭐", "🌙"], next: "⭐" }
+            ];
+            for (let i = 0; i < 10; i++) {
+                const pattern = patterns[Math.floor(Math.random() * patterns.length)];
+                // Generate multiple choice options
+                let options = [pattern.next];
+                const allEmojis = ["🟥", "🟦", "🟩", "🟨", "🔵", "🟢", "🟡", "🍓", "🍌", "🌞", "🌙", "🚗", "🚕", "🚙", "⭐", "🌟", "🔺", "🔻", "🐶", "🐱", "🌸", "🌺", "🎈", "🎁", "🌈", "☀️", "🍂", "🍃", "🎵", "🎶", "🦋", "🐝"];
+                while (options.length < 4) {
+                    const emoji = allEmojis[Math.floor(Math.random() * allEmojis.length)];
+                    if (!options.includes(emoji)) {
+                        options.push(emoji);
+                    }
+                }
+                // Shuffle options
+                options.sort(() => Math.random() - 0.5);
+                quizStates.patterns.questions.push({
+                    pattern: pattern.seq,
+                    correctAnswer: pattern.next,
+                    options: options
+                });
+            }
+            // Show first question
+            showPatternQuestion();
+            updatePatternQuizProgress();
+        }
+        function showPatternQuestion() {
+            const state = quizStates.patterns;
+            const question = state.questions[state.currentQuestion];
+            document.getElementById('pattern').innerText = question.pattern.join(' ') + " ...";
+            // Create multiple choice buttons
+            const optionsContainer = document.getElementById('pattern-options');
+            optionsContainer.innerHTML = '';
+            question.options.forEach(option => {
+                const button = document.createElement('button');
+                button.innerText = option;
+                button.style.fontSize = '24px';
+                button.onclick = () => checkPattern(option);
+                // If the user has already answered this question, mark the selected option
+                if (state.answers[state.currentQuestion] === option) {
+                    button.classList.add('selected');
+                }
+                optionsContainer.appendChild(button);
+            });
+            // Update navigation buttons
+            updateNavigationButtons(state, 'patternPrevBtn', 'patternNextBtn');
+        }
+        function updatePatternQuizProgress() {
+            const state = quizStates.patterns;
+            const progress = (state.currentQuestion + 1) / state.totalQuestions * 100;
+            document.getElementById('patternQuizProgressBar').style.width = `${progress}%`;
+            document.getElementById('patternQuizProgress').innerText =
+                `မေးခွန်း ${state.currentQuestion + 1} မှ ${state.totalQuestions}`;
+        }
+        function checkPattern(selectedOption) {
+            const state = quizStates.patterns;
+            const question = state.questions[state.currentQuestion];
+            // Record the answer
+            state.answers[state.currentQuestion] = selectedOption;
+            // Update button selection
+            const buttons = document.querySelectorAll('#pattern-options button');
+            buttons.forEach(button => {
+                button.classList.remove('selected');
+                if (button.innerText == selectedOption) {
+                    button.classList.add('selected');
+                }
+            });
+        }
+        function nextPatternQuestion() {
+            const state = quizStates.patterns;
+            if (state.currentQuestion < state.totalQuestions - 1) {
+                // Move to next question
+                state.currentQuestion++;
+                showPatternQuestion();
+                updatePatternQuizProgress();
+            } else {
+                // Finish quiz
+                finishPatternQuiz();
+            }
+        }
+        function previousPatternQuestion() {
+            const state = quizStates.patterns;
+            if (state.currentQuestion > 0) {
+                state.currentQuestion--;
+                showPatternQuestion();
+                updatePatternQuizProgress();
+            }
+        }
+        function finishPatternQuiz() {
+            const state = quizStates.patterns;
+            let correctCount = 0;
+            for (let i = 0; i < state.totalQuestions; i++) {
+                if (state.answers[i] === state.questions[i].correctAnswer) {
+                    correctCount++;
+                }
+            }
+            // Store result
+            quizResults.patterns = {
+                score: correctCount,
+                total: state.totalQuestions,
+                date: new Date().toLocaleDateString()
+            };
+            // Show result
+            document.getElementById('patternResultText').innerText = `သင်ရရှိသောအမှတ် ${correctCount} / ${state.totalQuestions} `;
+            document.getElementById('patternQuizResult').classList.add('show');
+            // Show answer review
+            const reviewContainer = document.getElementById('patternAnswerReview');
+            reviewContainer.innerHTML = `<h3>အဖြေပြန်စစ်ဆေးခြင်း:</h3>`;
+            for (let i = 0; i < state.totalQuestions; i++) {
+                const question = state.questions[i];
+                const userAnswer = state.answers[i];
+                const isCorrect = userAnswer === question.correctAnswer;
+                const answerItem = document.createElement('div');
+                answerItem.className = `answer-item ${isCorrect ? 'correct' : 'incorrect'}`;
+                const icon = document.createElement('span');
+                icon.className = 'answer-icon';
+                icon.innerText = isCorrect ? '✓' : '✗';
+                const text = document.createElement('span');
+                text.innerHTML = `မေးခွန်း ${i + 1}: ${question.pattern.join(' ')} ... ${question.correctAnswer} ${isCorrect ? '' : `(သင့်အဖြေ: ${userAnswer})`}`;
+                answerItem.appendChild(icon);
+                answerItem.appendChild(text);
+                reviewContainer.appendChild(answerItem);
+            }
+            // Hide navigation and options
+            document.getElementById('patternsQuizNavigation').classList.add('hidden');
+            document.getElementById('pattern-options').style.display = 'none';
+        }
+        // Time Quiz
+        function startTimeQuiz() {
+            document.getElementById('timeLearning').classList.add('hidden');
+            document.getElementById('timeQuiz').classList.remove('hidden');
+            document.getElementById('timeQuizNavigation').classList.remove('hidden');
+            // Reset quiz state
+            quizStates.time.currentQuestion = 0;
+            quizStates.time.answers = new Array(10).fill(null);
+            quizStates.time.questions = [];
+            // Generate questions
+            for (let i = 0; i < 10; i++) {
+                const hour = Math.floor(Math.random() * 12) + 1;
+                const minute = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55][Math.floor(Math.random() * 12)];
+                const formattedTime = `${hour === 12 ? '12' : hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+                // Generate multiple choice options
+                let options = [formattedTime];
+                while (options.length < 4) {
+                    const randomHour = Math.floor(Math.random() * 12) + 1;
+                    const randomMinute = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55][Math.floor(Math.random() * 12)];
+                    const option = `${randomHour === 12 ? '12' : randomHour.toString().padStart(2, '0')}:${randomMinute.toString().padStart(2, '0')}`;
+                    if (!options.includes(option)) {
+                        options.push(option);
+                    }
+                }
+                // Shuffle options
+                options.sort(() => Math.random() - 0.5);
+                quizStates.time.questions.push({
+                    hour: hour,
+                    minute: minute,
+                    formattedTime: formattedTime,
+                    options: options
+                });
+            }
+            // Show first question
+            showTimeQuestion();
+            updateTimeQuizProgress();
+        }
+        function showTimeQuestion() {
+            const state = quizStates.time;
+            const question = state.questions[state.currentQuestion];
+            drawClock(question.hour, question.minute);
+            // Create multiple choice buttons
+            const optionsContainer = document.getElementById('time-options');
+            optionsContainer.innerHTML = '';
+            question.options.forEach(option => {
+                const button = document.createElement('button');
+                button.innerText = option;
+                button.onclick = () => checkTime(option);
+                // If the user has already answered this question, mark the selected option
+                if (state.answers[state.currentQuestion] === option) {
+                    button.classList.add('selected');
+                }
+                optionsContainer.appendChild(button);
+            });
+            // Update navigation buttons
+            updateNavigationButtons(state, 'timePrevBtn', 'timeNextBtn');
+        }
+        function updateTimeQuizProgress() {
+            const state = quizStates.time;
+            const progress = (state.currentQuestion + 1) / state.totalQuestions * 100;
+            document.getElementById('timeQuizProgressBar').style.width = `${progress}%`;
+            document.getElementById('timeQuizProgress').innerText =
+                `မေးခွန်း ${state.currentQuestion + 1} မှ ${state.totalQuestions}`;
+        }
+        function drawClock(hour, minute) {
+            const canvas = document.getElementById('clockCanvas');
+            const ctx = canvas.getContext('2d');
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const radius = 100;
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            // Draw clock face
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+            ctx.fillStyle = 'white';
+            ctx.fill();
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = '#333';
+            ctx.stroke();
+            // Draw clock numbers
+            ctx.font = 'bold 18px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillStyle = '#333';
+            for (let i = 1; i <= 12; i++) {
+                const angle = (Math.PI / 6) * i - Math.PI / 2;
+                const x = centerX + Math.cos(angle) * (radius - 20);
+                const y = centerY + Math.sin(angle) * (radius - 20);
+                ctx.fillText(i, x, y);
+            }
+            // Draw minute hand
+            const minAngle = (Math.PI / 30) * minute - Math.PI / 2;
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.lineTo(centerX + 0.8 * radius * Math.cos(minAngle), centerY + 0.8 * radius * Math.sin(minAngle));
+            ctx.lineWidth = 5;
+            ctx.strokeStyle = '#f07167';
+            ctx.stroke();
+            // Draw hour hand
+            const hourAngle = (Math.PI / 6) * hour + (Math.PI / 360) * minute - Math.PI / 2;
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.lineTo(centerX + 0.5 * radius * Math.cos(hourAngle), centerY + 0.5 * radius * Math.sin(hourAngle));
+            ctx.lineWidth = 8;
+            ctx.strokeStyle = '#00aaff';
+            ctx.stroke();
+            // Draw center circle
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, 5, 0, 2 * Math.PI);
+            ctx.fillStyle = '#333';
+            ctx.fill();
+        }
+        function checkTime(selectedOption) {
+            const state = quizStates.time;
+            const question = state.questions[state.currentQuestion];
+            // Record the answer
+            state.answers[state.currentQuestion] = selectedOption;
+            // Update button selection
+            const buttons = document.querySelectorAll('#time-options button');
+            buttons.forEach(button => {
+                button.classList.remove('selected');
+                if (button.innerText == selectedOption) {
+                    button.classList.add('selected');
+                }
+            });
+        }
+        function nextTimeQuestion() {
+            const state = quizStates.time;
+            if (state.currentQuestion < state.totalQuestions - 1) {
+                // Move to next question
+                state.currentQuestion++;
+                showTimeQuestion();
+                updateTimeQuizProgress();
+            } else {
+                // Finish quiz
+                finishTimeQuiz();
+            }
+        }
+        function previousTimeQuestion() {
+            const state = quizStates.time;
+            if (state.currentQuestion > 0) {
+                state.currentQuestion--;
+                showTimeQuestion();
+                updateTimeQuizProgress();
+            }
+        }
+        function finishTimeQuiz() {
+            const state = quizStates.time;
+            let correctCount = 0;
+            for (let i = 0; i < state.totalQuestions; i++) {
+                if (state.answers[i] === state.questions[i].formattedTime) {
+                    correctCount++;
+                }
+            }
+            // Store result
+            quizResults.time = {
+                score: correctCount,
+                total: state.totalQuestions,
+                date: new Date().toLocaleDateString()
+            };
+            // Show result
+            document.getElementById('timeResultText').innerText = `သင်ရရှိသောအမှတ် ${correctCount} / ${state.totalQuestions} `;
+            document.getElementById('timeQuizResult').classList.add('show');
+            // Show answer review
+            const reviewContainer = document.getElementById('timeAnswerReview');
+            reviewContainer.innerHTML = `<h3>အဖြေပြန်စစ်ဆေးခြင်း:</h3>`;
+            for (let i = 0; i < state.totalQuestions; i++) {
+                const question = state.questions[i];
+                const userAnswer = state.answers[i];
+                const isCorrect = userAnswer === question.formattedTime;
+                const answerItem = document.createElement('div');
+                answerItem.className = `answer-item ${isCorrect ? 'correct' : 'incorrect'}`;
+                const icon = document.createElement('span');
+                icon.className = 'answer-icon';
+                icon.innerText = isCorrect ? '✓' : '✗';
+                const text = document.createElement('span');
+                text.innerHTML = `မေးခွန်း ${i + 1}: ${question.formattedTime} ${isCorrect ? '' : `(သင့်အဖြေ: ${userAnswer})`}`;
+                answerItem.appendChild(icon);
+                answerItem.appendChild(text);
+                reviewContainer.appendChild(answerItem);
+            }
+            // Hide navigation and options
+            document.getElementById('timeQuizNavigation').classList.add('hidden');
+            document.getElementById('time-options').style.display = 'none';
+        }
+        // Money Quiz
+        function startMoneyQuiz() {
+            document.getElementById('moneyLearning').classList.add('hidden');
+            document.getElementById('moneyQuiz').classList.remove('hidden');
+            document.getElementById('moneyQuizNavigation').classList.remove('hidden');
+            // Reset quiz state
+            quizStates.money.currentQuestion = 0;
+            quizStates.money.answers = new Array(10).fill(null);
+            quizStates.money.questions = [];
+            // Generate questions
+            for (let i = 0; i < 10; i++) {
+                const count = Math.floor(Math.random() * 4) + 2;
+                let total = 0;
+                let html = "";
+                let coins = [];
+                for (let j = 0; j < count; j++) {
+                    // Use filtered kyats array for quiz (excluding 1, 5, 10)
+                    const coin = quizKyats[Math.floor(Math.random() * quizKyats.length)];
+                    total += coin.val;
+                    coins.push(coin);
+                }
+                // Generate multiple choice options
+                let options = [total];
+                while (options.length < 4) {
+                    // Generate random amounts within a reasonable range
+                    const randomTotal = Math.floor(Math.random() * 20000) + 1;
+                    if (!options.includes(randomTotal)) {
+                        options.push(randomTotal);
+                    }
+                }
+                // Shuffle options
+                options.sort(() => Math.random() - 0.5);
+                quizStates.money.questions.push({
+                    coins: coins,
+                    total: total,
+                    options: options
+                });
+            }
+            // Show first question
+            showMoneyQuestion();
+            updateMoneyQuizProgress();
+        }
+        function showMoneyQuestion() {
+            const state = quizStates.money;
+            const question = state.questions[state.currentQuestion];
+            let html = "";
+            question.coins.forEach(coin => {
+                html += `<img src='${coin.img}' style='width: 120px; height: 120px; margin: 5px;'>`;
+            });
+            document.getElementById('coinCard').innerHTML = html;
+            // Create multiple choice buttons
+            const optionsContainer = document.getElementById('money-options');
+            optionsContainer.innerHTML = '';
+            question.options.forEach(option => {
+                const button = document.createElement('button');
+                button.innerText = option;
+                button.onclick = () => checkMoney(option);
+                // If the user has already answered this question, mark the selected option
+                if (state.answers[state.currentQuestion] === option) {
+                    button.classList.add('selected');
+                }
+                optionsContainer.appendChild(button);
+            });
+            // Update navigation buttons
+            updateNavigationButtons(state, 'moneyPrevBtn', 'moneyNextBtn');
+        }
+        function updateMoneyQuizProgress() {
+            const state = quizStates.money;
+            const progress = (state.currentQuestion + 1) / state.totalQuestions * 100;
+            document.getElementById('moneyQuizProgressBar').style.width = `${progress}%`;
+            document.getElementById('moneyQuizProgress').innerText =
+                `မေးခွန်း ${state.currentQuestion + 1} မှ ${state.totalQuestions}`;
+        }
+        function checkMoney(selectedOption) {
+            const state = quizStates.money;
+            const question = state.questions[state.currentQuestion];
+            // Record the answer
+            state.answers[state.currentQuestion] = selectedOption;
+            // Update button selection
+            const buttons = document.querySelectorAll('#money-options button');
+            buttons.forEach(button => {
+                button.classList.remove('selected');
+                if (button.innerText == selectedOption) {
+                    button.classList.add('selected');
+                }
+            });
+        }
+        function nextMoneyQuestion() {
+            const state = quizStates.money;
+            if (state.currentQuestion < state.totalQuestions - 1) {
+                // Move to next question
+                state.currentQuestion++;
+                showMoneyQuestion();
+                updateMoneyQuizProgress();
+            } else {
+                // Finish quiz
+                finishMoneyQuiz();
+            }
+        }
+        function previousMoneyQuestion() {
+            const state = quizStates.money;
+            if (state.currentQuestion > 0) {
+                state.currentQuestion--;
+                showMoneyQuestion();
+                updateMoneyQuizProgress();
+            }
+        }
+        function finishMoneyQuiz() {
+            const state = quizStates.money;
+            let correctCount = 0;
+            for (let i = 0; i < state.totalQuestions; i++) {
+                if (state.answers[i] === state.questions[i].total) {
+                    correctCount++;
+                }
+            }
+            // Store result
+            quizResults.money = {
+                score: correctCount,
+                total: state.totalQuestions,
+                date: new Date().toLocaleDateString()
+            };
+            // Show result
+            document.getElementById('moneyResultText').innerText = `သင်ရရှိသောအမှတ် ${correctCount} / ${state.totalQuestions} `;
+            document.getElementById('moneyQuizResult').classList.add('show');
+            // Show answer review
+            const reviewContainer = document.getElementById('moneyAnswerReview');
+            reviewContainer.innerHTML = `<h3>အဖြေပြန်စစ်ဆေးခြင်း:</h3>`;
+            for (let i = 0; i < state.totalQuestions; i++) {
+                const question = state.questions[i];
+                const userAnswer = state.answers[i];
+                const isCorrect = userAnswer === question.total;
+                const answerItem = document.createElement('div');
+                answerItem.className = `answer-item ${isCorrect ? 'correct' : 'incorrect'}`;
+                const icon = document.createElement('span');
+                icon.className = 'answer-icon';
+                icon.innerText = isCorrect ? '✓' : '✗';
+                const text = document.createElement('span');
+                text.innerHTML = `မေးခွန်း ${i + 1}: ${question.total} ကျပ် ${isCorrect ? '' : `(သင့်အဖြေ: ${userAnswer} ကျပ်)`}`;
+                answerItem.appendChild(icon);
+                answerItem.appendChild(text);
+                reviewContainer.appendChild(answerItem);
+            }
+            // Hide navigation and options
+            document.getElementById('moneyQuizNavigation').classList.add('hidden');
+            document.getElementById('money-options').style.display = 'none';
+        }
+        // Display results function
+        function displayResults() {
+            const resultsContent = document.getElementById('resultsContent');
+            resultsContent.innerHTML = '';
+            // Check if there are any results
+            const hasResults = Object.values(quizResults).some(result => result !== null);
+            if (!hasResults) {
+                resultsContent.innerHTML = `<p class="no-results" id="noResultsText">ဉာဏ်စမ်းရလဒ်များ မရှိသေးပါ။ ဉာဏ်စမ်းများ ဖြေဆိုပြီးမှ သင့်ရလဒ်များကို ဤနေရာတွင် မြင်ရမည်ဖြစ်ပါသည်။</p>`;
+                return;
+            }
+            // Display each result
+            const quizNames = {
+                numbers: 'ဂဏန်းများဉာဏ်စမ်း',
+                math: 'သင်္ချာဉာဏ်စမ်း',
+                shapes: 'ပုံသဏ္ဍာန်များဉာဏ်စမ်း',
+                patterns: 'Patternဉာဏ်စမ်း',
+                time: 'အချိန်ဉာဏ်စမ်း',
+                money: 'ငွေကြေးဉာဏ်စမ်း'
+            };
+            Object.keys(quizResults).forEach(quizType => {
+                const result = quizResults[quizType];
+                if (result) {
+                    const resultCard = document.createElement('div');
+                    resultCard.className = 'result-card';
+                    const percentage = Math.round((result.score / result.total) * 100);
+                    resultCard.innerHTML = `
+            <div>
+              <h3>${quizNames[quizType]}</h3>
+              <p>ရက်စွဲ: ${result.date}</p>
+            </div>
+            <div class="result-score">
+              ${result.score}/${result.total} (${percentage}%)
+            </div>
+          `;
+                    resultsContent.appendChild(resultCard);
+                }
+            });
+        }
+        // Initialize progress bar
+        window.onload = function () {
+            updateProgress();
+            // Initialize the slideshow with number 1
+            updateSlide();
+        };
+    </script>
+</body>
+
+</html>

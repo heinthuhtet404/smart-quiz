@@ -11,25 +11,25 @@ const Navigation = () => {
       </div>
       <ul className="nav-list">
         <li className="nav-item">
-          <NavLink to="/" end className="nav-link">
+          <a href="http://localhost:5000/home.html" className="nav-link">
             ပင်မစာမျက်နှာ
-          </NavLink>
+          </a>
         </li>
         <li className="nav-item">
-          <NavLink to="/tutorial" className="nav-link">
+          <a href="http://localhost:5000/home.html#lesson" className="nav-link">
             သင်ခန်းစာများ
-          </NavLink>
+          </a>
         </li>
         <li className="nav-item">
           <NavLink to="/chat-page" className="nav-link">
             စကားပြောခန်း
           </NavLink>
         </li>
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <NavLink to="/login" className="nav-link">
             အကောင့်ဝင်ရန်
           </NavLink>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );

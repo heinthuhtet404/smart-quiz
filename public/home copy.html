@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="my">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KidsLearn | ကလေးများအတွက်ပညာသင်ကြားမှု</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="project.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header style="padding-top: 15px; padding-bottom: 15px; background-color: transparent; backdrop-filter: blur(5px);">
+        <nav style="display:flex; align-items:center; justify-content:space-between;">
+            <ul class="nav-list" style="display:flex; list-style:none; gap:20px; margin:0; padding:0;">
+                <li class="nav-item"><a href="home.html" class="nav-link active" data-page="home">ပင်မစာမျက်နှာ</a></li>
+                <li class="nav-item"><a href="tutorial.html" class="nav-link" data-page="tutorial">သင်ခန်းစာများ</a>
+                </li>
+                <li class="nav-item"><a href="chat.html" class="nav-link" data-page="chat">စကားပြောခန်း</a></li>
+                <li class="nav-item"><a href="profile.html" class="nav-link" data-page="translate">အကောင့်ဝင်ရန်</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main style="margin: 0 50px; margin-top: 120px;">
+        <section id="home-page" class="page active">
+            <!-- Hero Banner -->
+            <div class="hero">
+                <div class="mascot" aria-label="Friendly learning mascot">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h1>အတူတကွ သင်ကြားကြမယ်!</h1>
+                <p>ကလေးများအတွက် ပျော်စရာ၊ အကျိုးရှိပြီး လေ့လာနိုင်သည့် သင်ခန်းစာများ။ ကျွန်ုပ်တို့၏ သရုပ်ပြ friendly
+                    guides များနှင့် လေ့လာမှုစတင်လိုက်ပါ။</p>
+                <a href="#" class="cta-button">ဘာသာရပ်များကိုလေ့လာရန်</a>
+            </div>
+
+            <!-- Daily Lesson -->
+            <div class="daily-lesson">
+                <h2>🌟 အထူးသင်ခန်းစာ (ယနေ့)</h2>
+                <p>မြန်မာအက္ခရာ: သရုပ်ပြပုံများနှင့် စာပေဖြင့် မြန်မာစာလေ့လာပါ။</p>
+                <button class="cta-button" style="background: #FF6B6B; box-shadow: none;">ယနေ့သင်ခန်းစာ စတင်ပါ</button>
+            </div>
+
+            <!-- Subjects -->
+            <h2 class="section-title">သင်ကြားရန်ဘာသာရပ်များ</h2>
+            <div class="subjects-grid">
+                <!-- Myanmar -->
+                <div class="subject-card">
+                    <div class="card-icon myanmar-icon"><img src="" alt=""></div>
+                    <div class="card-content">
+                        <h3>မြန်မာစာ</h3>
+                        <p>ပျော်စရာဇာတ်လမ်းများနှင့် အက္ခရာများဖြင့် မြန်မာစာလေ့လာပါ။</p>
+                        <div class="progress">
+                            <div class="progress-label">တိုးတက်မှု</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <button class="start-btn">စတင်လေ့လာရန်</button>
+                    </div>
+                </div>
+
+                <!-- English -->
+                <div class="subject-card">
+                    <div class="card-icon english-icon"></i></div>
+                    <div class="card-content">
+                        <h3>အင်္ဂလိပ်စာ</h3>
+                        <p>စကားလုံးအသစ်များနှင့် စကားပြောကျွမ်းကျင်မှုကို ဂိမ်းများဖြင့် လေ့ကျင့်ပါ။</p>
+                        <div class="progress">
+                            <div class="progress-label">တိုးတက်မှု</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 40%"></div>
+                            </div>
+                        </div>
+                        <button class="start-btn">စတင်လေ့လာရန်</button>
+                    </div>
+                </div>
+
+                <!-- Math -->
+                <div class="subject-card">
+                    <div class="card-icon math-icon"><i class="fas fa-calculator"></i></div>
+                    <div class="card-content">
+                        <h3>သင်္ချာ</h3>
+                        <p>ဂဏန်းများကို ပျော်စရာနည်းဖြင့် လေ့လာပါ။ ပေါင်းခြင်း၊ ဖြုတ်ခြင်းကို ဂိမ်းများဖြင့်
+                            ကျွမ်းကျင်ပါ။</p>
+                        <div class="progress">
+                            <div class="progress-label">တိုးတက်မှု</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <button class="start-btn">စတင်လေ့လာရန်</button>
+                    </div>
+                </div>
+
+                <!-- Science -->
+                <div class="subject-card">
+                    <div class="card-icon science-icon"><i class="fas fa-flask"></i></div>
+                    <div class="card-content">
+                        <h3>သိပ္ပံ</h3>
+                        <p>ရိုးရိုးရှင်းရှင်း စမ်းသပ်မှုများနှင့် သဘာဝကို စူးစမ်းပါ။</p>
+                        <div class="progress">
+                            <div class="progress-label">တိုးတက်မှု</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 25%"></div>
+                            </div>
+                        </div>
+                        <button class="start-btn">စတင်လေ့လာရန်</button>
+                    </div>
+                </div>
+
+                <!-- Art -->
+                <div class="subject-card">
+                    <div class="card-icon art-icon"><i class="fas fa-paint-brush"></i></div>
+                    <div class="card-content">
+                        <h3>အနုပညာ</h3>
+                        <p>ပန်းချီ၊ အရောင်စုံရေးခြင်းနှင့် လက်ရာဖန်တီးခြင်းများဖြင့် စွန့်ဦးတီထွင်မှုကို ဖြန့်ချိပါ။</p>
+                        <div class="progress">
+                            <div class="progress-label">တိုးတက်မှု</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <button class="start-btn">စတင်လေ့လာရန်</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fun Fact -->
+            <div class="extra-fun-fact" id="extra-fun-fact" role="region" aria-labelledby="funfact-title">
+                <h2 class="extra-heading" id="funfact-title">💡 အံ့သြစရာ သတင်း</h2>
+                <p class="extra-text">သင်သိပါသလား? Octopus များတွင် နှလုံး ၃ လုံးရှိသည်။ နှလုံး ၂ လုံးက gills
+                    ကိုသွေးပေးပြီး တစ်လုံးက ကိုယ်ခန္ဓာအတွင်းသို့ သွေးပေးသည်။ စီးနေစဉ်နှလုံးတစ်လုံး ရပ်တန့်သည်။</p>
+            </div>
+
+            <!-- Daily Challenge -->
+            <div class="extra-challenge" id="extra-challenge" role="region" aria-labelledby="challenge-title">
+                <h2 class="extra-heading" id="challenge-title">🎯 ယနေ့ စိန်ခေါ်မှု</h2>
+                <p class="extra-question">သင်တွင် <b>လက်ပေါင်းသီး ၃ လုံး</b> အနီရောင်နှင့် <b>လက်ပေါင်းသီး ၄ လုံး</b>
+                    အစိမ်းရောင်ရှိပါက အားလုံး စုစုပေါင်းဘယ်လောက်ရမလဲ?</p>
+                <div class="extra-options">
+                    <button class="option-btn" type="button">၆</button>
+                    <button class="option-btn" type="button" data-correct="true">၇</button>
+                    <button class="option-btn" type="button">၈</button>
+                    <button class="option-btn" type="button">၅</button>
+                </div>
+                <div id="extra-challenge-status" style="margin-top:10px; font-weight:bold;"></div>
+            </div>
+
+        </section>
+    </main>
+
+    <script>
+        // Daily Challenge JS
+        (function () {
+            const container = document.getElementById('extra-challenge');
+            if (!container) return;
+            const buttons = container.querySelectorAll('.option-btn');
+            const status = document.getElementById('extra-challenge-status');
+
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    buttons.forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+
+                    if (btn.dataset.correct === 'true') {
+                        status.textContent = '✅ မှန်ကန်ပါတယ်! အလန်းစားပါပဲ!';
+                        status.style.color = '#1f8b4c';
+                    } else {
+                        status.textContent = '❌ ပြန်ကြိုးစားပါ!';
+                        status.style.color = '#D62E6B';
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+
+</html>

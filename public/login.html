@@ -30,36 +30,36 @@
   </style>
 </head>
 
-<body class="min-h-screen bg-[#FFF7F0] flex items-center justify-center relative">
+<body class="min-h-screen bg-[#FFD166] flex items-center justify-center relative">
 
   <div
-    class="flex flex-col md:flex-row bg-white rounded-3xl shadow-lg overflow-hidden w-[90%] max-w-4xl border border-[#FCECEC]">
-    <div class="w-full md:w-1/2 bg-[#F0F6FF] flex items-center justify-center p-6">
+    class="flex flex-col md:flex-row bg-white rounded-3xl shadow-lg overflow-hidden w-[90%] max-w-4xl border border-[#FFE8B0]">
+    <div class="w-full md:w-1/2 bg-[#E6F0FF] flex items-center justify-center p-6">
       <img src="kidb.png" alt="Child Illustration" class="w-4/5 object-contain" />
     </div>
 
-    <div class="w-full md:w-1/2 p-8 md:p-10 bg-[#FFF1F1] flex flex-col justify-center">
+    <div class="w-full md:w-1/2 p-8 md:p-10 bg-[#FFF9E6] flex flex-col justify-center">
       <img src="Baby.jpeg" id="profileImage"
         class="w-32 h-32 mx-auto rounded-full mb-6 object-cover shadow-md opacity-0 transition-opacity duration-700"
         alt="Kid Cartoon">
 
       <div id="formContainer" class="opacity-0 pointer-events-none transition-opacity duration-700">
-        <h2 class="text-3xl font-semibold text-[#F47174] text-center mb-6">Welcome Back!</h2>
+        <h2 class="text-3xl font-semibold text-[#4A90E2] text-center mb-6">Welcome Back!</h2>
 
         <form id="loginForm" class="space-y-4">
           <input type="email" name="email" placeholder="Email" required
-            class="w-full p-3 rounded-xl border border-gray-200 focus:border-[#F47174] outline-none transition" />
+            class="w-full p-3 rounded-xl border border-gray-200 focus:border-[#4A90E2] outline-none transition" />
           <input type="password" name="password" placeholder="Password" required
-            class="w-full p-3 rounded-xl border border-gray-200 focus:border-[#F47174] outline-none transition" />
+            class="w-full p-3 rounded-xl border border-gray-200 focus:border-[#4A90E2] outline-none transition" />
           <button type="submit"
-            class="w-full py-3 bg-[#F47174] text-white font-bold rounded-xl hover:bg-[#e85c60] transition duration-300">
+            class="w-full py-3 bg-[#4A90E2] text-white font-bold rounded-xl hover:bg-[#357ABD] transition duration-300">
             Login
           </button>
         </form>
 
         <p class="mt-5 text-sm text-center text-gray-600">
           Don't have an account?
-          <a href="signup.html" class="text-[#F47174] font-semibold hover:underline">Signup</a>
+          <a href="signup.html" class="text-[#4A90E2] font-semibold hover:underline">Signup</a>
         </p>
       </div>
     </div>
@@ -91,7 +91,7 @@
         const data = await res.json();
         if (res.ok && data.success) {
           alert('Login successful!');
-          window.location.href = '/homepage.html';
+          window.location.href = '/home.html';
         } else {
           alert(data.message || 'Error connecting to server.');
         }

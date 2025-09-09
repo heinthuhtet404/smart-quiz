@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="my">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>သံတူစကားလုံး Matching Activity</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #28e0f8;
+      font-family: "Baloo 2", cursive;
+      padding: 20px;
+      color: #333;
+    }
+
+    header {
+      text-align: center;
+      font-size: 2.5em;
+      color: #593737c8;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .game-area {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 90px;
+      position: relative;
+      margin-bottom: 30px;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .item {
+      background: linear-gradient(135deg, #fff9c4, #ffe082);
+      border: 4px dashed #ff9800;
+      border-radius: 30px;
+      padding: 20px;
+      width: 100px;
+      min-height: 60px;
+      font-size: 15px;
+      font-weight: bold;
+      color: #4e342e;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-image: url("https://i.imgur.com/3Y3ZKXQ.png");
+      /* Optional cartoon sticker background */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .item:hover {
+      transform: scale(1.05) rotate(-2deg);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .item.selected {
+      animation: bounce 0.6s infinite;
+    }
+
+    .item.matched {
+      background: linear-gradient(135deg, #c8e6c9, #e8f1e9);
+      color: tomato;
+      border: 4px solid white;
+      box-shadow: none;
+      transform: scale(1);
+    }
+
+    @keyframes fadeOut {
+      0% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(2);
+      }
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.08);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    svg.lines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .buttons {
+      text-align: center;
+      gap: 30px;
+    }
+
+    .buttons button {
+      padding: 10px 10px;
+      font-size: 10px;
+      font-weight: bold;
+      text-align: center;
+      margin: 5px;
+      border: 3px solid tomato;
+      border-radius: 12px;
+      cursor: pointer;
+      background: tomato;
+      transition: background 0.3s;
+      width: 95px;
+      height: 50px;
+    }
+
+    .buttons button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .popup.hidden {
+      display: none;
+    }
+
+    .popup-content {
+      background: #fff8dc;
+      border: 4px solid #fff8dc;
+      border-radius: 20px;
+      padding: 30px 40px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #4c7919;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      animation: popUp 0.4s ease;
+    }
+
+    @keyframes popUp {
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .logo {
+      display: flex;
+      position: absolute;
+      left: 0;
+      top: 3%;
+      font-size: 28px;
+      font-family: 'Fredoka One', cursive;
+    }
+
+    .logo i {
+      margin-left: 10px;
+      font-size: 32px;
+      color: #FFD166;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      background: #4A90E2;
+      padding: 15px 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-list {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
+    }
+
+    .nav-item {
+      text-align: center;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 16px 28px;
+      background-color: rgba(255, 255, 255, 0.15);
+      color: white;
+      text-decoration: none;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      min-height: 25px;
+      min-width: 54px;
+    }
+
+    .nav-link:hover {
+      background-color: #50E3C2;
+      color: #fff;
+      transform: scale(1.08);
+    }
+
+    .nav-link.active {
+      background-color: #ffd566;
+      color: #333;
+      box-shadow: 0 4px 14px rgba(255, 213, 102, 0.5);
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <ul class="nav-list">
+      <div class="logo">
+        <i class="fas fa-leaf"></i>
+        <span>KidsLearn</span>
+
+      </div>
+      <li class="nav-item"><a href="home.html" class="nav-link active" data-page="home"
+          onclick="navigateTo('home')">ပင်မစာမျက်နှာ</a></li>
+      <li class="nav-item"><a href="home.html" class="nav-link" data-page="tutorial"
+          onclick="navigateTo('tutorial')">သင်ခန်းစာများ</a></li>
+      <li class="nav-item"><a href="chat.html" class="nav-link" data-page="chat" onclick="navigateTo('chat')">စကားပြောခန်း</a>
+      </li>
+      <li class="nav-item"><a href="profile.html" class="nav-link" data-page="login"
+          onclick="navigateTo('login')">အကောင့်ဝင်ရန်</a></li>
+    </ul>
+  </nav>
+  <header>သံတူစကားလုံး Matching Activity</header>
+
+  <div class="game-area" id="game">
+    <div class="column" id="words"></div>
+    <div class="column" id="defs"></div>
+    <svg class="lines" id="svg"></svg>
+  </div>
+  <div class="buttons">
+    <button onclick="checkAll()">စစ်ဆေးမည်</button>
+    <button onclick="resetGame()">ထပ်ကြိုးစားမယ်</button>
+    <button onclick="gotonextpage()">ရှေ့ဆက်ရန်</button>
+  </div>
+
+  <div id="popup" class="popup hidden">
+    <div class="popup-content" id="popup-message">✔️</div>
+  </div>
+
+  <script>
+    const pairs = [
+      { word: "ကာရံ", def: "ကာရန်" },
+      { word: "ခရင်း", def: "ခက်ရင်း" },
+      { word: "ချို့ယွင်း", def: "ချွတ်ယွင်း" },
+      { word: "သဒ္ဒါ", def: "သဒ္ဓါ" },
+    ];
+
+    const wordsCol = document.getElementById("words");
+    const defsCol = document.getElementById("defs");
+    const svg = document.getElementById("svg");
+    let selected = null;
+
+    function createItem(text, col, type, idx) {
+      const div = document.createElement("div");
+      div.className = "item";
+      div.innerText = text;
+      div.dataset.type = type;
+      div.dataset.idx = idx;
+      col.appendChild(div);
+
+      div.addEventListener("click", () => {
+        if (div.classList.contains("matched")) return;
+        if (type === "word") {
+          if (selected) selected.classList.remove("selected");
+          selected = div;
+          div.classList.add("selected");
+        } else if (selected) {
+          matchPair(selected, div);
+        }
+      });
+    }
+
+    function matchPair(w, d) {
+      const wIdx = w.dataset.idx;
+      const dIdx = d.dataset.idx;
+      if (pairs[wIdx].word === pairs[dIdx].word) {
+        w.classList.add("matched");
+        d.classList.add("matched");
+        drawLine(w, d);
+
+        // Sparkle burst
+        const sparkle = document.createElement("div");
+        sparkle.className = "sparkle";
+        sparkle.innerText = "✨";
+        sparkle.style.position = "absolute";
+        sparkle.style.top = "50%";
+        sparkle.style.left = "50%";
+        sparkle.style.transform = "translate(-50%, -50%)";
+        sparkle.style.fontSize = "2em";
+        sparkle.style.animation = "fadeOut 1s ease forwards";
+        w.appendChild(sparkle);
+      }
+      w.classList.remove("selected");
+      selected = null;
+    }
+
+    function drawLine(a, b) {
+      const ra = a.getBoundingClientRect();
+      const rb = b.getBoundingClientRect();
+      const rg = document.getElementById("game").getBoundingClientRect();
+
+      const x1 = ra.right - rg.left;
+      const y1 = ra.top + ra.height / 2 - rg.top;
+      const x2 = rb.left - rg.left;
+      const y2 = rb.top + rb.height / 2 - rg.top;
+
+      const line = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "line"
+      );
+      line.setAttribute("x1", x1);
+      line.setAttribute("y1", y1);
+      line.setAttribute("x2", x2);
+      line.setAttribute("y2", y2);
+      line.setAttribute("stroke", "#FFEB3B");
+      line.setAttribute("stroke-width", "4");
+      svg.appendChild(line);
+    }
+
+    function checkAll() {
+      const matchedCount = document.querySelectorAll(".item.matched").length;
+      const popup = document.getElementById("popup");
+      const message = document.getElementById("popup-message");
+
+      if (matchedCount === pairs.length * 2) {
+        message.innerText = "🎉 သင်မှန်ကန်စွာ တွဲနိုင်ခဲ့ပါတယ်!";
+      } else {
+        message.innerText = "ပြန်ကြိုးစားကြည့်ပါနော်!";
+      }
+
+      popup.classList.remove("hidden");
+
+      // Auto-hide after 3 seconds
+      setTimeout(() => {
+        popup.classList.add("hidden");
+      }, 3000);
+    }
+
+
+    function resetGame() {
+      // Clear previous
+      wordsCol.innerHTML = "";
+      defsCol.innerHTML = "";
+      svg.innerHTML = "";
+      selected = null;
+      initGame();
+    }
+
+    function shuffle(array) {
+      return array.sort(() => Math.random() - 0.5);
+    }
+
+    function initGame() {
+      const shuffledWords = shuffle(
+        pairs.map((p, i) => ({ text: p.word, idx: i }))
+      );
+      const shuffledDefs = shuffle(
+        pairs.map((p, i) => ({ text: p.def, idx: i }))
+      );
+
+      shuffledWords.forEach((p) =>
+        createItem(p.text, wordsCol, "word", p.idx)
+      );
+      shuffledDefs.forEach((p) => createItem(p.text, defsCol, "def", p.idx));
+    }
+    function gotonextpage() {
+      window.location.href = "tutu2.html";
+    }
+
+    initGame();
+  </script>
+</body>
+
+</html>

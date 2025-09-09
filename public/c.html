@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cartoon Envelope Scrollable Letter</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: linear-gradient(135deg, #ffd6e0, #fdfdc4, #c3fbd8, #a1c4fd);
+      --envelope-body: #fffbe7;
+      --envelope-flap: #ffefb7;
+      --envelope-border: #333;
+      --letter-bg: #fff;
+      --seal-color: #ff6b6b;
+      --text-color: #333;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      display: flex;
+      justify-content: center;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      /* padding: 30px; */
+      flex-direction: column;
+      align-items: center;
+      background-size: 400% 400%;
+      animation: gradient 12s ease infinite;
+      background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+    }
+
+    .logo {
+      display: flex;
+      position: absolute;
+      left: 0;
+      top: 3%;
+      font-size: 28px;
+      font-family: 'Fredoka One', cursive;
+    }
+
+    .logo i {
+      font-size: 32px;
+      color: #FFD166;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      background: #4A90E2;
+      padding: 15px 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-list {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
+    }
+
+    .nav-item {
+      text-align: center;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 16px 28px;
+      background-color: rgba(255, 255, 255, 0.15);
+      color: white;
+      text-decoration: none;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      min-height: 54px;
+      min-width: 54px;
+    }
+
+    .nav-link:hover {
+      background-color: #50E3C2;
+      color: #fff;
+      transform: scale(1.08);
+    }
+
+    .nav-link.active {
+      background-color: #ffd566;
+      color: #333;
+      box-shadow: 0 4px 14px rgba(255, 213, 102, 0.5);
+    }
+
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%
+      }
+
+      50% {
+        background-position: 100% 50%
+      }
+
+      100% {
+        background-position: 0% 50%
+      }
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .container {
+      perspective: 1200px;
+      transform: translateX(200%);
+      opacity: 0;
+      transition: transform 0.7s ease, opacity 0.7s ease;
+    }
+
+    .container.show {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .envelope-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 100%;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .envelope-wrapper:hover {
+      transform: scale(1.05);
+    }
+
+    .envelope {
+      position: absolute;
+      inset: 0;
+      background: var(--envelope-body);
+      border: 4px solid var(--envelope-border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 5px 6px 0px #000;
+    }
+
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: var(--envelope-flap);
+      border-bottom: 4px solid var(--envelope-border);
+      transform-origin: top;
+      transition: transform 0.7s cubic-bezier(.68, -0.55, .27, 1.55);
+      z-index: 2;
+    }
+
+    .letter {
+      position: absolute;
+      bottom: 18%;
+      left: -120%;
+      width: 90%;
+      max-height: 250px;
+      overflow-y: auto;
+      background: var(--letter-bg);
+      border: 3px solid #000;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 3px 4px 0px #000;
+      text-align: center;
+      opacity: 0;
+      transition: left 0.8s ease, opacity 0.8s ease;
+    }
+
+    .letter img {
+      width: 180px;
+      border-radius: 8px;
+      border: 3px solid #000;
+      margin-bottom: 12px;
+      box-shadow: 2px 3px 0px #000;
+    }
+
+    .letter .text {
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 1.5;
+      color: var(--text-color);
+      white-space: pre-line;
+    }
+
+    .letter .inner-arrow {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 22px;
+      cursor: pointer;
+      z-index: 5;
+      user-select: none;
+      transition: transform 0.3s ease;
+    }
+
+    .seal {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 80px;
+      background: var(--seal-color);
+      border: 3px solid #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: bold;
+      box-shadow: 3px 4px 0px #000;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      z-index: 3;
+      color: #fff;
+    }
+
+    .top-text {
+      position: absolute;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 25px;
+      font-weight: bold;
+      color: #333;
+      transition: opacity 0.5s ease;
+      z-index: 4;
+    }
+
+    .open .flap {
+      transform: rotateX(180deg);
+    }
+
+    .open .letter {
+      left: 5%;
+      opacity: 1;
+    }
+
+    .open .seal {
+      opacity: 0;
+      transform: translateX(-50%) scale(0);
+    }
+
+    .open .top-text {
+      opacity: 0;
+    }
+
+    .open .letter .inner-arrow {
+      transform: rotate(180deg);
+    }
+
+    #nextPage,
+    #prevPage,
+    #homePage {
+      font-size: 30px;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 10px;
+      background-color: #ff6b6b;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 3px 3px 0px #000;
+      transition: transform 0.2s;
+    }
+
+    #homePage {
+      background-color: #4CAF50;
+    }
+
+    #nextPage:hover,
+    #prevPage:hover,
+    #homePage:hover {
+      transform: scale(1.1);
+    }
+
+    .last-row {
+      grid-column: span 5;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .last-row .cell {
+      flex: 0 0 90px;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="nav-container">
+      <div class="logo">
+        <i class="fas fa-leaf"></i>
+        <span>KidsLearn</span>
+      </div>
+      <ul class="nav-list">
+        <li><a href="home.html" class="nav-link active" onclick="navigateTo('home')">ပင်မစာမျက်နှာ</a></li>
+        <li><a href="home.html" class="nav-link" onclick="navigateTo('tutorial')">သင်ခန်းစာများ</a></li>
+        <li><a href="chat.html" class="nav-link" onclick="navigateTo('chat')">စကားပြောခန်း</a></li>
+        <li><a href="profile.html" class="nav-link" onclick="navigateTo('login')">အကောင့်ဝင်ရန်</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="grid"></div>
+
+
+  <!-- Navigation Buttons: Home ဘယ်, Prev/Next ညာ -->
+  <div class="navigation-buttons"
+    style="display:flex; justify-content:space-between; width:100%; max-width:400px; margin-top:25px;">
+    <button id="homePage">ပင်မစာမျက်နှာသို့🏠</button>
+    <div style="display:flex; gap:10px;">
+      <button id="prevPage">&#8592;</button>
+      <button id="nextPage">&#8594;</button>
+    </div>
+  </div>
+
+  <script>
+    const envelopesData = [
+      { img: 'cat.jpg', text: 'ငါးကြော်ကိုတွေ့ပါလျက် မစားသောကြောင်သည် ကြောင်မိုက်ဖြစ်သကဲ့သို့ အခွင့်ကောင်းရပါလျက် မယူလိုက်သူသည် လူမိုက်သာဖြစ်သည်။' },
+      { img: 'slip.jpg', text: 'ချော်လဲသည်ကိုပင် တမင်ထိုင်ချလေဟန်ပြုသကဲ့သို ရုတ်တရတ်ဖြစ်ပေါ်လာသောအခြေအနေနှင့် အလိုက်သင့် အလျားသင့် ပြုမူပြောဆိုသည်။' },
+      { img: 'baby.jpg', text: 'ငိုတော့မည့်ဆဲဆဲကလေးငယ်သည်လက်ဖြင့်အတိုခံရရုံမျှဖြင့် ငိုဖြစ်သွာစသကဲ့သို တစ်စုံတစ်ရာပြုလုပ်ရန် ထက်သန်နေသူတစ်ဦးကို အနည်းငယ်တိုထိလိုက်ရုံမျှဖြင့် လုပ်ဖြစ်သွားသည်။' },
+      { img: 'bird.jpg', text: 'ထန်းခိုင်မှ ထန်းသီးကြွေသည့်အချိန်နှင့် ထိုထန်းသီးကို ကျီးနင်းသည့်အချိန် တိုက်ဆိုင်ကြုံကြိုက်သွားသကဲ့သို ဖြစ်ရပ်တစ်ခုနှင့် တစ်ခုသည် တိုက်တိုက်ဆိုင်ဆိုင် ဖြစ်သွားသည်။' },
+      { img: 'earing.jpg', text: 'စိန်နားကပ်အရောင်ဟပ်မှုကြောင့် ပါးပြောင်ခြင်းဖြစ်သကဲ့သို သူတစ်ပါး၏ဂုဏ်အရှိန်အဝါကြောင့် လူလူသူသူ ဖြစ်နေသည်။' },
+      { img: '.jpg', text: 'ငါးဖယ်သည် ထုလေမာလေဖြစ်သကဲ့သို သွန်သင်ဆုံးမလေ ပိုခေါင်းမာလေ ဖြစ်နေသည်။' },
+      { img: 'meat.jpg', text: 'သဲအလူးလူး ဖြစ်နေသော အသားတုံးကို စွန့်ပစ်ရန်လည်းအခက်၊ စားသုံးရန်လည်း အခက်ဖြစ်နေသကဲ့သို အပြစ်အနာအဆာရှိသော နှစ်သက်မက်မောဖွယ် အရာတစ်ခုကို ငြင်းပယ်ရန်လည်းအခက်၊ လက်ခံရန်လည်းအခက် ဖြစ်နေသည်။' },
+      { img: 'dog2.jpg', text: 'ခွေးကိုငယ်စဉ်က လက်ပေးမသင်ဘဲ ကြီးမှသင်သကဲ့သို သင်ထိုက်သောအတတ်ပညာကို မသင်ခဲ့ဘဲ အရွယ်လွန်ခါမှသင်သည်။' },
+      { img: 'elephant.jpg', text: 'ဆင်ဖြူတော်အတွက် ဆက်သသော ကြံကို ဆင်ထိန်းကကပ်မြှောင်၍ စုပ်သကဲ့သို အရှိန်အဝါရှိသူကို မှီ၍ အခွင့်အရေးယူသည်။' },
+      { img: 'artist.jpg', text: 'ကျွမ်းကျင်သော ပန်းချီဆရာသည် ဆေးစက်ကျရာမှာ ရုပ်ပုံဖြစ်အောင် စွမ်းဆောင်နိုင်သကဲ့သို အတတ်ပညာတစ်ခု၌ ကျွမ်းကျင်သူသည် ထိုအတတ်ပညာဆိုင်ရာတွင် ပြုလုပ်သမျှ တင့်တယ်သည်။' },
+      { img: 'mouse.jpg', text: 'ကြွက်များကိုမနိုင်သဖြင့် ကြွက်ခိုအောင်းသည့်ကျီကို မီးရှိသကဲ့သိုတစ်ဦးတစ်ယောက်ကိုမနိုင်၍ ထိုသူနှင့်ပတ်သတ်သည့် နိုင်ရာကို အနိုင်အထက်ပြုမူသည်။' },
+      { img: 'arrow.jpg', text: 'စစ်မရောက်မီ မြှားကုန် စစ်မရောက်ခင်ကပင် အစိုးရိမ်ကြီးကာ ကြိုတင်စမ်းသပ်ရင်း မြားကုန်နှင့်သကဲ့သို လုပ်ရမည့် အလုပ်တစ်ခုကို မလုပ်မီကပင် အစိုးရိမ်ကြီးကာ အခက်အခဲများကို တွေးတောရင်း အားကုန်နှင့်သည်။' },
+      { img: 'village.jpg', text: 'ခရီးပေါက်ခဲ့သော်လည်း လမ်း၌မည်သည့်ရွာများကိုဖြတ်သန်းလာခဲ့မှန်း မသိသကဲ့သို လုပ်ငန်းသာပြီးဆုံးသွားသော်လည်း မိမိဆောင်ရွက်ခဲ့သောလုပ်ငန်းအကြောင်းကို ကောင်းစွာမသိဘဲရှိသည်။' },
+      { img: 'owl.jpg', text: 'ဇီးကွက်၏ အလှမျှလောက်ကား ငှက်တိုင်းတွင် ရှိသည် ဖြစ်သကဲ့သို သာမန်မျှလောက်သော အရည်အချင်းမျိုးကား လူတိုင်း၌ ရှိသည်ချည်း ဖြစ်သည်။' },
+      { img: 'fish2.jpg', text: 'ညှော်နံ့ ခံရသော်လည်း ငါးကြော်ကိုမူ မစားရသကဲ့သို အခွင့်အရေးကို မြင်တွေ့ မျှော်လင့်ရသော်လည်း မခံစားရချေ။ မစားရ အညှော်ခံ−နှင့် အတူတူ။' },
+      { img: 'bean.jpg', text: 'သည်ပုတ်ထဲက သည်ပဲ”နှင့် အတူတူ။ လူချင်းတူသော်လည်း အသက်ရှူချင်းကွဲ‘နှင့် နှိင်းယှဉ်။' },
+      { img: 'sun.png', text: 'ထမင်းတစ်လုတ် စားရဖိုအတွက် တုတ်ဖြင့် တစ်ချက်အရိုက်ခံရသကဲ့သို အနည်းငယ်သော အကျိုးအတွက် အကျိုးနှင့် မမျှသော ဆင်းရဲဒုက္ခကို အရင်းအနှီး ပြုရသည်။' },
+      { img: 'heart.png', text: 'သူတစ်ပါး၏ ငါးချဉ်သည် မချဉ်၊ မိမိငါးချဉ်မှသာ ချဉ်သည်ဟု ထုတ်ဖော် ပြောဆို သကဲ့သို မိမိနှင့်စပ်ဆိုင်သည့် အရာကို မှကောင်းသည်ဟု မှတ်ယူ ပြောဆို သည်။' }
+    ];
+
+    let currentPage = 0;
+    const perPage = 9;
+    const grid = document.querySelector(".grid");
+    const nextBtn = document.getElementById("nextPage");
+    const prevBtn = document.getElementById("prevPage");
+
+    function renderPage() {
+      grid.innerHTML = '';
+      const start = currentPage * perPage;
+      const end = start + perPage;
+      const pageData = envelopesData.slice(start, end);
+
+      // Page-specific topTexts
+      const pageTopTexts = currentPage === 0
+        ? ["ငါးကြော်မကြိုက်ကြောင်မိုက်", "ချော်လဲရောထိုင်", "ငိုချင်လျက်လက်တို့", "ထန်းသီးကြွေခိုက်၊ ကျီးနင်းခိုက်", "စိန်နားကပ်ရောင်ကြောင့် ပါးပြောင်", "ထုလေမာလေ ငါးဖယ်တေ", "စားရမှာလည်းသဲနှင့်ရှပ်ရှပ် ပြစ်ရမှာလည်း အဆီနှင့်ဝင်းဝင်း", "ခွေးကြီးမှလက်ပေးသင်", "ဆင်ဖြူတော်မှီကြံစုပ်"]
+        : ["ဆေးစက်ကျရာအရုပ်ထင်", "ကြွက်မနိုင် ကျီမီးရှိ", "စစ်မရောက်မီမြားကုန်", "ခရီးတွင်လို ရွာစဉ်မသိ", "ဇီးကွက်လောက်တော့ ငှက်တိုင်းလှ", "ညှော်သာညှော် ငါးကြော်မစားရ", "ဒီပုတ်ထဲက ဒီပဲ", "ထမင်းတစ်လုတ် တုတ်တစ်ချက်", "ကိုယ့်ငါးချဉ် ကိုယ်ချဉ်"];
+
+      pageData.forEach((data, index) => {
+        const container = document.createElement("div");
+        container.className = "container";
+        container.innerHTML = `
+      <div class="envelope-wrapper">
+        <div class="top-text">${pageTopTexts[index] || ''}</div>
+        <div class="envelope">
+          <div class="flap"></div>
+          <div class="letter">
+            <div class="inner-arrow">&#8594;</div>
+            <img src="${data.img}" alt="Envelope Image">
+            <div class="text">${data.text}</div>
+          </div>
+        </div>
+        <div class="seal">နှိပ်ပါ</div>
+      </div>
+    `;
+        grid.appendChild(container);
+        setTimeout(() => { container.classList.add("show"); }, index * 100);
+      });
+
+      // click event for seal + inner arrow
+      document.querySelectorAll(".seal, .inner-arrow").forEach(btn => {
+        btn.addEventListener("click", e => {
+          e.stopPropagation();
+          const wrapper = btn.closest(".envelope-wrapper");
+          wrapper.classList.toggle("open");
+        });
+      });
+
+
+      prevBtn.style.display = currentPage === 0 ? "none" : "inline-block";
+      nextBtn.style.display = (currentPage + 1) * perPage >= envelopesData.length ? "none" : "inline-block";
+    }
+
+    renderPage();
+
+    nextBtn.addEventListener("click", () => {
+      if ((currentPage + 1) * perPage < envelopesData.length) {
+        currentPage++;
+        renderPage();
+      }
+    });
+
+    prevBtn.addEventListener("click", () => {
+      if (currentPage > 0) {
+        currentPage--;
+        renderPage();
+      }
+    });
+
+    // Home button click
+    const homeBtn = document.getElementById("homePage");
+    homeBtn.addEventListener("click", () => {
+      window.location.href = "b.html";
+    });
+  </script>
+</body>
+
+</html>

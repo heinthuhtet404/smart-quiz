@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="my">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>သံတူစကားလုံး Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Noto Sans Myanmar", sans-serif;
+            background: #fff8e1;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #d84315;
+        }
+
+        .task {
+            background: #fff3e0;
+            border: 2px solid #ffcc80;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+            font-size: 20px;
+            width: 100%;
+            height: auto;
+        }
+
+        .task {
+            background: white;
+            border: 2px solid black;
+            border-radius: 15px;
+            padding: 16px;
+            margin-bottom: 20px;
+            font-size: 20px;
+            width: 100%;
+            height: auto;
+        }
+
+        .word-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .word-item {
+            background: #ffe0b2;
+            border: 2px solid #1b1818;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .submit-btn {
+            margin-top: 30px;
+            display: block;
+            background: #ff9800;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+            font-weight: bold;
+        }
+
+        :root {
+            --cols: 5;
+            /* column = 5 */
+            --inner: 0.5px;
+            --size: min(20vw, 600px);
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            padding: 18px;
+            display: grid;
+            place-items: center;
+            background: #28E0F8;
+            font-family: "Myanmar Text", "Noto Sans Myanmar", "Padauk", system-ui, sans-serif;
+            color: #0e0e0e;
+        }
+
+        .frame {
+            width: var(--size);
+            border-radius: 10px;
+            background: #0a0a0a;
+            padding: 2px;
+            margin-top: 10px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, .1);
+            margin-left: 400px;
+
+        }
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(var(--cols), 1fr);
+            border-radius: 14px;
+            overflow: hidden;
+            background-color: white;
+
+        }
+
+        .cell {
+            aspect-ratio: 1/1;
+            display: grid;
+            place-items: center;
+            background: #fff;
+            font-size: clamp(24px, 6.2vw, 14px);
+            line-height: 0.5;
+            font-weight: 200;
+            border-right: var(--inner) solid #c9c9c9;
+            border-bottom: var(--inner) solid #c9c9c9;
+            user-select: none;
+        }
+
+        .cell:nth-child(5n) {
+            border-right: none;
+        }
+
+        .cell:nth-last-child(-n + 5) {
+            border-bottom: none;
+        }
+
+        .text {
+            margin-top: 20px;
+            font-size: 15px;
+            text-align: justify;
+        }
+
+        .example {
+            margin: 15px 0;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #fff3e0;
+            padding: 10px 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(69, 211, 29, 0.1);
+        }
+
+        .title {
+            font-size: 30px;
+            font-style: italic;
+            color: #0a0a0a;
+        }
+
+        .back-btn {
+            background-color: rgb(225, 225, 235);
+            color: #333;
+            border: 2px solid black;
+            border-radius: 15px;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px rgba(200, 37, 37, 0.3);
+            transition: transform 0.2s ease;
+            font-weight: bold;
+            margin-left: 60%;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .back-btn-wrap {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .logo i {
+            margin-left: 10px;
+            font-size: 32px;
+            color: #FFD166;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            background: #4A90E2;
+            padding: 15px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+        }
+
+        .nav-item {
+            text-align: center;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 16px 28px;
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            text-decoration: none;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            min-height: 25px;
+            min-width: 54px;
+        }
+
+        .nav-link:hover {
+            background-color: #50E3C2;
+            color: #fff;
+            transform: scale(1.08);
+        }
+
+        .nav-link.active {
+            background-color: #ffd566;
+            color: #333;
+            box-shadow: 0 4px 14px rgba(255, 213, 102, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul class="nav-list">
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                <span>KidsLearn</span>
+
+            </div>
+            <li class="nav-item"><a href="home.html" class="nav-link active" data-page="home"
+                    onclick="navigateTo('home')">ပင်မစာမျက်နှာ</a></li>
+            <li class="nav-item"><a href="home.html" class="nav-link" data-page="tutorial"
+                    onclick="navigateTo('tutorial')">သင်ခန်းစာများ</a></li>
+            <li class="nav-item"><a href="chat.html" class="nav-link" data-page="chat"
+                    onclick="navigateTo('chat')">စကားပြောခန်း</a></li>
+            <li class="nav-item"><a href="profile.html" class="nav-link" data-page="login"
+                    onclick="navigateTo('login')">အကောင့်ဝင်ရန်</a></li>
+        </ul>
+    </nav>
+    <h1 class="title">မြန်မာဗျည်းနှင့်သရ</h1>
+
+    <div class="task">
+        <b>🎯ဗျည်းဆိုသည်မှာ သရနှင့်မှီတွဲဖက်မှသာ အသံထွက်နိုင်သော အက္ခရာများဖြစ်သည်။ မြန်မာဗျည်း (၃၃) လုံး ရှိသည်။
+            ၎င်းတို့မှာ</b>
+        <div class="frame">
+            <div class="board">
+                <!-- Row 1 -->
+                <div class="cell">က</div>
+                <div class="cell">ခ</div>
+                <div class="cell">ဂ</div>
+                <div class="cell">ဃ</div>
+                <div class="cell">င</div>
+
+                <!-- Row 2 -->
+                <div class="cell">စ</div>
+                <div class="cell">ဆ</div>
+                <div class="cell">ဇ</div>
+                <div class="cell">စျ</div>
+                <div class="cell">ည</div>
+
+                <!-- Row 3 -->
+                <div class="cell">ဋ</div>
+                <div class="cell">ဌ</div>
+                <div class="cell">ဍ</div>
+                <div class="cell">ဎ</div>
+                <div class="cell">ဏ</div>
+
+                <!-- Row 4 -->
+                <div class="cell">တ</div>
+                <div class="cell">ထ</div>
+                <div class="cell">ဒ</div>
+                <div class="cell">ဓ</div>
+                <div class="cell">န</div>
+
+                <!-- Row 5 -->
+                <div class="cell">ပ</div>
+                <div class="cell">ဖ</div>
+                <div class="cell">ဗ</div>
+                <div class="cell">ဘ</div>
+                <div class="cell">မ</div>
+
+                <div class="cell">ယ</div>
+                <div class="cell">ရ</div>
+                <div class="cell">လ</div>
+                <div class="cell">ဝ</div>
+                <div class="cell">သ</div>
+
+                <!-- Row 6 (အလယ်မှာ ဟ၊ ဠ၊ အ) -->
+                <div class="cell"></div>
+                <div class="cell">ဟ</div>
+                <div class="cell">ဠ</div>
+                <div class="cell">အ</div>
+                <div class="cell"></div>
+            </div>
+        </div>
+        <div class="back-btn-wrap">
+            <button class="back-btn" onclick="goNext()">ရှေ့သို့ ဆက်သွားမည်</button>
+        </div>
+
+        <script>
+            function goNext() {
+                window.location.href = "thara1.html";
+            }
+        </script>
+
+
+    </div>
+
+</body>
+
+</html>

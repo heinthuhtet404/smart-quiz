@@ -1,0 +1,398 @@
+<title>တိုသံ · ကြာသံ · သံကွဲ</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap"
+  rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: "Noto Sans Myanmar", sans-serif;
+    background: #00E3FF;
+    color: #333;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    color: #150b04;
+    font-size: 35px;
+    margin-bottom: 20px;
+  }
+
+  .explain {
+    background: #00E3FF;
+    border-left: 6px solid #120c02;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+
+  .card-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+
+  .cat-container {
+    position: relative;
+    width: 150px;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* လုံးဝချင်ရင် ထားလို့ရ */
+    /* မလိုရင် border ဖျက် */
+    box-shadow: none;
+    /* မလိုရင် shadow ဖျက် */
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
+    border-radius: 20px;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    overflow: hidden;
+  }
+
+  .cat-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+
+
+  .cat-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .text-box-wrapper {
+    position: absolute;
+    top: 55%;
+    /* အပေါ်မှ 50% */
+    left: 50%;
+    bottom: 50%;
+    /* ဘယ်မှ 50% */
+    transform: translate(-50%, -50%);
+    /* တိကျအလယ် */
+  }
+
+  .text-input {
+    width: 50px;
+    height: 40px;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    background: #FFD38A;
+    color: #150b04;
+  }
+
+  .text-input:focus {
+    outline: 2px solid #FFD38A;
+  }
+
+  .chip {
+    display: inline-block;
+    background: #FCD997;
+    border: 2px solid #0a0a0a;
+    border-radius: 20px;
+    padding: 8px 14px;
+    margin: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .chip:hover {
+    transform: scale(1.05);
+    background: #FFD38A;
+  }
+
+  .arrow {
+    margin: 0 6px;
+    font-weight: bold;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 14px;
+    color: #999;
+  }
+
+  .back-btn {
+    background-color: rgb(225, 225, 235);
+    color: #333;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(200, 37, 37, 0.3);
+    transition: transform 0.2s ease;
+    font-weight: bold;
+    margin-left: 60%;
+  }
+
+  .back-btn:hover {
+    transform: scale(1.05);
+  }
+
+  .back-btn-wrap {
+    text-align: center;
+    margin: 40px 0;
+  }
+
+  .logo {
+    display: flex;
+    position: absolute;
+    left: 0;
+    top: 3%;
+    font-size: 28px;
+    font-family: 'Fredoka One', cursive;
+  }
+
+  .logo i {
+    margin-left: 10px;
+    font-size: 32px;
+    color: #FFD166;
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background: #4A90E2;
+    padding: 15px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-list {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .nav-item {
+    text-align: center;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 16px 28px;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+    text-decoration: none;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    min-height: 25px;
+    min-width: 54px;
+  }
+
+  .nav-link:hover {
+    background-color: #50E3C2;
+    color: #fff;
+    transform: scale(1.08);
+  }
+
+  .nav-link.active {
+    background-color: #ffd566;
+    color: #333;
+    box-shadow: 0 4px 14px rgba(255, 213, 102, 0.5);
+  }
+</style>
+</head>
+
+<body>
+  <nav>
+    <ul class="nav-list">
+      <div class="logo">
+        <i class="fas fa-leaf"></i>
+        <span>KidsLearn</span>
+
+      </div>
+      <li class="nav-item"><a href="home.html" class="nav-link active" data-page="home"
+          onclick="navigateTo('home')">ပင်မစာမျက်နှာ</a></li>
+      <li class="nav-item"><a href="home.html" class="nav-link" data-page="tutorial"
+          onclick="navigateTo('tutorial')">သင်ခန်းစာများ</a></li>
+      <li class="nav-item"><a href="chat.html" class="nav-link" data-page="chat" onclick="navigateTo('chat')">စကားပြောခန်း</a>
+      </li>
+      <li class="nav-item"><a href="profile.html" class="nav-link" data-page="login"
+          onclick="navigateTo('login')">အကောင့်ဝင်ရန်</a></li>
+    </ul>
+  </nav>
+  <h1>တိုသံ · ကြာသံ · သံကွဲ</h1>
+
+  <div class="explain">
+    <strong>တိုသံ</strong> = အသံကို မဆွဲဘဲ တိုတိုအတိုအထိ ဖတ်သွားတဲ့ သရအသံ ဖြစ်ပါသည်။<br><br>
+    <strong>ကြာသံ</strong> = အသံထွက်ကို ဆွဲကြာပြီး ဖတ်သောသရအသံ ဖြစ်ပါသည်။<br><br>
+    <strong>သံကွဲ</strong> = သရအသံတစ်မျိုးကို ထွက်စဉ်တွင် သရကြီးသံနဲ့ မတူသော်လည်း သရကြီးနဲ့ သရအသေးကြား
+    ထွက်သံအလယ်လမ်းမျိုး ဖြစ်တဲ့ အသံကိုခေါ်ပါသည်။<br><br>
+
+  </div>
+
+  <div class="explain"><strong>အောက်ကစာလုံးတွေကို နှိုင်းယှဉ်ကြည့်ရအောင်</strong></div>
+
+  <div class="card-row">
+    <!-- ရှိပြီးသား -->
+    <div class="cat-container">
+      <img class="cat-image" src="tutu2.png" alt="က">
+      <div class="text-box-wrapper">
+        <input type="text" class="text-input" value="က" readonly>
+      </div>
+    </div>
+
+    <div class="cat-container">
+      <img class="cat-image" src="tutu2Photo.png" alt="ကား">
+      <div class="text-box-wrapper">
+        <input type="text" class="text-input" value="ကား" readonly>
+      </div>
+    </div>
+
+    <div class="cat-container">
+      <img class="cat-image" src="tutu2Photo1.jpg" alt="အ">
+      <div class="text-box-wrapper">
+        <input type="text" class="text-input" value="အ" readonly>
+      </div>
+    </div>
+
+    <div class="cat-container">
+      <img class="cat-image" src="tutu2Photo1.jpg" alt="အား">
+      <div class="text-box-wrapper">
+        <input type="text" class="text-input" value="အား" readonly>
+      </div>
+    </div>
+
+
+    <!-- နောက်ထပ် ထည့်ချင်တာ -->
+    <div class="cat-container">
+      <img class="cat-image" src="tutu2Photo2.jpg" alt="စ">
+      <div class="text-box-wrapper">
+        <input type="text" class="text-input" value="စ" readonly>
+      </div>
+    </div>
+    <div class="cat-container">
+      <img class="cat-image" src="tutu2Photo2.jpg" alt="စား">
+      <div class="text-box-wrapper">
+        <input type="text" class="text-input" value="စား" readonly>
+      </div>
+    </div>
+
+    <div class="cat-container">
+      <img class="cat-image" src="tutu2Photo.png" alt="မ">
+      <div class="text-box-wrapper">
+        <input type="text" class="text-input" value="မ" readonly>
+      </div>
+    </div>
+
+    <div class="cat-container">
+      <img class="cat-image" src="tutu2Photo.png" alt="မား">
+      <div class="text-box-wrapper">
+        <input type="text" class="text-input" value="မား" readonly>
+      </div>
+    </div>
+  </div>
+  <div class="card-row">
+    <!-- ရှိပြီးသား -->
+    <div class="cat-container">
+      <img class="cat-image" src="tutu1Photo3.png" alt="ပ">
+      <div class="text-box-wrapper">
+        <input type="text" class="text-input" value="ပ" readonly>
+      </div>
+    </div>
+
+    <div class="cat-container">
+      <img class="cat-image" src="tutu1Photo3.png" alt="ပါး">
+      <div class="text-box-wrapper">
+        <input type="text" class="text-input" value="ပါး" readonly>
+      </div>
+    </div>
+
+    <div class="cat-container">
+      <img class="cat-image" src="tutu2Photo1.jpg" alt="မိ">
+      <div class="text-box-wrapper">
+        <input type="text" class="text-input" value="မိ" readonly>
+      </div>
+    </div>
+
+    <div class="cat-container">
+      <img class="cat-image" src="tutu2Photo1.jpg" alt="မီး">
+      <div class="text-box-wrapper">
+        <input type="text" class="text-input" value="မီး" readonly>
+      </div>
+    </div>
+
+    <!-- နောက်ထပ် ထည့်ချင်တာ -->
+    <div class="cat-container">
+      <img class="cat-image" src="tutu2Photo2.jpg" alt="စု">
+      <div class="text-box-wrapper">
+        <input type="text" class="text-input" value="စု" readonly>
+      </div>
+    </div>
+
+    <div class="cat-container">
+      <img class="cat-image" src="tutu2Photo2.jpg" alt="စူ">
+      <div class="text-box-wrapper">
+        <input type="text" class="text-input" value="စူ" readonly>
+      </div>
+    </div>
+
+    <div class="cat-container">
+      <img class="cat-image" src="tutu2Photo.png" alt="မ">
+      <div class="text-box-wrapper">
+        <input type="text" class="text-input" value="မ" readonly>
+      </div>
+    </div>
+
+    <div class="cat-container">
+      <img class="cat-image" src="tutu2Photo.png" alt="မား">
+      <div class="text-box-wrapper">
+        <input type="text" class="text-input" value="မား" readonly>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="back-btn-wrap">
+    <button class="back-btn" onclick="goNext()">ရှေ့သို့ ဆက်သွားမည်</button>
+  </div>
+  </div>
+
+
+  <script>
+    function speak(text, rate = 1) {
+      try {
+        const u = new SpeechSynthesisUtterance(text);
+        u.lang = "my-MM";
+        u.rate = rate;
+        speechSynthesis.cancel();
+        speechSynthesis.speak(u);
+      } catch (e) {
+        console.warn("TTS not available", e);
+      }
+    }
+
+    document.querySelectorAll('.text-input').forEach(input => {
+      input.addEventListener('click', () => {
+        speak(input.value, 1);
+      });
+    });
+
+    document.querySelectorAll('.chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const [a, b] = chip.dataset.pair.split('|');
+        speak(a, 1.05);
+        setTimeout(() => speak(b, 0.95), 700);
+      });
+    });
+
+    function goNext() {
+      window.location.href = "kk.html";
+    }
+  </script>

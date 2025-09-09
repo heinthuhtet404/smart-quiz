@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="my">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>🐻 ဆာလောင်နေသော ဝံပုလွေ</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Noto+Sans+Myanmar:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Baloo 2', 'Noto Sans Myanmar', sans-serif;
+      background: linear-gradient(180deg, #fdfcfb, #e6f9ff, #fff0f5);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* floating flower decorations */
+    .flower {
+      position: absolute;
+      width: 60px;
+      animation: floatDown 12s linear infinite;
+      opacity: 0.9;
+      z-index: 1;
+    }
+
+    @keyframes floatDown {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+      }
+
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
+
+    /* floating animal SVG */
+    .animal {
+      position: absolute;
+      width: 120px;
+      animation: bounce 6s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    .page {
+      position: relative;
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+      z-index: 5;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .badge {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 40px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 34px;
+      font-weight: 800;
+      color: #ff6f61;
+    }
+
+    .sub {
+      margin-top: 5px;
+      font-size: 16px;
+      color: #444;
+    }
+
+    .story-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      border: 3px solid #ffd1a9;
+      margin-top: 20px;
+    }
+
+    .meta {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .meta-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: #ff6f61;
+    }
+
+    .story-paragraph {
+      font-size: 18px;
+      line-height: 1.8;
+      margin: 15px 0;
+      color: #333;
+    }
+
+    .quote {
+      margin: 20px 0;
+      padding: 14px;
+      border-left: 6px solid #8fd14f;
+      background: #f6fff1;
+      border-radius: 12px;
+      font-style: italic;
+    }
+
+    .scene-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+
+    .scene {
+      flex: 1 1 220px;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .scene:hover {
+      transform: translateY(-6px) scale(1.03);
+    }
+
+    .scene .img {
+      height: 200px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .scene .caption {
+      padding: 10px;
+      font-weight: 600;
+    }
+
+    .moral {
+      background: #fff7da;
+      border: 2px dashed #ffb347;
+      border-radius: 18px;
+      padding: 15px;
+      margin-top: 20px;
+    }
+
+    .moral h3 {
+      margin: 0 0 10px;
+      color: #e67e22;
+    }
+
+    .cta {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      flex: 1;
+      min-width: 160px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 16px;
+      color: #fff;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.07);
+    }
+
+    .btn {
+      background: linear-gradient(90deg, #ff7eb9, #ff65a3);
+    }
+
+    .btn.alt {
+      background: linear-gradient(90deg, #36d1dc, #5b86e5);
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      place-items: center;
+      background: rgba(10, 20, 10, 0.45);
+      z-index: 9999;
+    }
+
+    .modal .box {
+      width: min(720px, 94%);
+      background: #fff;
+      border-radius: 14px;
+      padding: 18px;
+      text-align: left;
+    }
+
+    .choices {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .choice {
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: #f7f7f7;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+
+    .choice:hover {
+      transform: translateY(-4px);
+      border-color: rgba(136, 192, 87, 0.25);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .logo {
+      display: flex;
+      position: absolute;
+      left: 0;
+      top: 3%;
+      font-size: 28px;
+      font-family: 'Fredoka One', cursive;
+    }
+
+    .logo i {
+      margin-left: 10px;
+      font-size: 32px;
+      color: #FFD166;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      background: #4A90E2;
+      padding: 15px 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-list {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
+    }
+
+    .nav-item {
+      text-align: center;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 16px 28px;
+      background-color: rgba(255, 255, 255, 0.15);
+      color: white;
+      text-decoration: none;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      min-height: 25px;
+      min-width: 54px;
+    }
+
+    .nav-link:hover {
+      background-color: #50E3C2;
+      color: #fff;
+      transform: scale(1.08);
+    }
+
+    .nav-link.active {
+      background-color: #ffd566;
+      color: #333;
+      box-shadow: 0 4px 14px rgba(255, 213, 102, 0.5);
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <ul class="nav-list">
+      <div class="logo">
+        <i class="fas fa-leaf"></i>
+        <span>KidsLearn</span>
+
+      </div>
+      <li class="nav-item"><a href="home.html" class="nav-link active" data-page="home"
+          onclick="navigateTo('home')">ပင်မစာမျက်နှာ</a></li>
+      <li class="nav-item"><a href="home.html" class="nav-link" data-page="tutorial"
+          onclick="navigateTo('tutorial')">သင်ခန်းစာများ</a></li>
+      <li class="nav-item"><a href="chat.html" class="nav-link" data-page="chat" onclick="navigateTo('chat')">စကားပြောခန်း</a>
+      </li>
+      <li class="nav-item"><a href="profile.html" class="nav-link" data-page="login"
+          onclick="navigateTo('login')">အကောင့်ဝင်ရန်</a></li>
+    </ul>
+  </nav>
+
+  <div class="page">
+    <header>
+      <div class="badge">🐻</div>
+      <div>
+        <h1>ဆာလောင်နေသော ဝံပုလွေ</h1>
+        <div class="sub">ရိုးရာပုံပြင် — ကလေးများအတွက် သင်ခန်းစာနှင့် အနုပညာ 🎨🌸</div>
+      </div>
+    </header>
+
+    <section class="story-card">
+      <div class="meta">
+        <div class="meta-title">📖 ပုံပြင်အကျဉ်း</div>
+      </div>
+
+      <div id="p1" class="story-paragraph">
+        တစ်ခါတုန်းက <b>ဝံပုလွေ</b> တစ်ကောင်ဟာ <i>အလွန်ဆာလောင်မွတ်သိပ်</i>တဲ့အတွက် အစားအစာကို လိုက်ရှာနေခဲ့တယ်...
+      </div>
+      <div id="p2" class="story-paragraph">
+        ဒါပေမယ့် ဘယ်လိုမှ ရှာလို့ မရခဲ့ဘူး။ နောက်ဆုံးမှာတော့ ဝံပုလွေက သစ်ပင်တစ်ပင်၏ <b>အခေါင်းပေါက်</b> ထဲမှာ
+        ပေါင်မုန့်တစ်လုံးနဲ့ အသားဟင်းတစ်ထုပ်ကို တွေ့ရှိခဲ့တယ်။
+      </div>
+      <div id="p3" class="story-paragraph">
+        သစ်ပင်ရဲ့ အခေါင်းပေါက်က <b>ကျဉ်း</b>ပေမယ့် ဝံပုလွေက အတင်း၀င်သွားပြီး အစားအစာအားလုံးကို စားသောက်လိုက်တယ်။
+      </div>
+      <div class="quote">
+        “တကယ်တော့ အဲဒါက <strong>ထင်းခုတ်သမား</strong> တစ်ယောက်ရဲ့ <em>နေ့လည်စာ</em> ပဲ ဆိုတာ သူမသိခဲ့ဘူး။”
+      </div>
+      <div id="p4" class="story-paragraph">
+        နေ့လည်စာစားချိန်မှာ ထင်းခုတ်သမားက နေ့လည်စာ စားဖို့ သစ်ပင်ဆီကို ပြန်လာခဲ့တယ်။ ဒါပေမယ့် သူ့ရဲ့ နေ့လည်စာ
+        မရှိဘဲ ဝံပုလွေကိုသာ သူတွေ့သွားခဲ့တယ်။ သစ်သားခုတ်သမားကိုတွေ့တော့ ဝံပုလွေဟာ အခေါင်းထဲက ထွက်ဖို့ကြိုးစားခဲ့တယ်။
+        ဒါပေမယ့် သူ ရဲ့ဗိုက်ကအရမ်းပြည့်နေတဲ့အတွက် အခေါင်းပေါက်မှ ထွက်မရဖြစ်နေတယ်။
+      </div>
+      <div id="p5" class="story-paragraph">
+        ထင်းခုတ်သမား ဟာ ဝံပုလွေကို ဖမ်းမိပြီး သူ့နေ့လည်စာကို ခိုးစားတဲ့အတွက် ရိုက်နှက်ပြီး ဆုံးမလိုက်တယ်။
+      </div>
+
+      <!-- Scenes -->
+      <div class="scene-row">
+        <div class="scene">
+          <div class="img" style="background-image:url('StoryPhoto.png')"></div>
+          <div class="caption"></div>
+        </div>
+        <div class="scene">
+          <div class="img" style="background-image:url('StoryPhoto1.png')"></div>
+          <div class="caption"></div>
+        </div>
+      </div>
+
+      <div class="scene-row">
+        <div class="scene">
+          <div class="img" style="background-image:url('StoryPhoto3.png')"></div>
+          <div class="caption"></div>
+        </div>
+        <div class="scene">
+          <div class="img" style="background-image:url('StoryPhoto2.png')"></div>
+          <div class="caption"></div>
+        </div>
+      </div>
+
+      <!-- Moral -->
+      <div class="moral">
+        <h3>🐻 ကလေးတို့ မှတ်သားစရာ</h3>
+        <ul>
+          <li>📌 အခြားသူ့အရာကို ခိုးစားခြင်းသည် မကောင်းသောအကျင့်ဖြစ်သည်။</li>
+          <li>📌 ဆာလောင်မှုကြောင့် တစ်ခါတလေ အန္တရာယ်ရှိနိုင်သည်။</li>
+          <li>📌 အခြားသူအစားအစာကို ပိုင်ရှင်ကျွေးမှစားပါ။ ခိုးယူခြင်းသည် အလွန်ရှက်စရာကောင်းသည်။</li>
+        </ul>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta">
+        <button class="btn" onclick="openModal()">🧐 သင်က ဝံပုလွေဖြစ်ရင် ဘာလုပ်မယ်လဲ?</button>
+        <button class="btn alt" onclick="speakStory()">🔊 နားထောင်ရန်</button>
+        <button class="btn alt" onclick="window.location.href='may3.html';">ရှေ့ဆက်သွားရန်</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal" role="dialog" aria-hidden="true">
+    <div class="box">
+      <h3>သင်သာ ဝံပုလွေ ဖြစ်ရင် ဘာလုပ်မလဲ?</h3>
+      <p>အောက်ပါတို့မှ တစ်ခုကို ရွေးချယ်ပါ</p>
+      <div class="choices">
+        <div class="choice" onclick="selectChoice(this)" data-choice="1">📌 အစားအစာကို အလျင်အမြန်ယူပြီး ထွက်ပြေးမယ်
+        </div>
+        <div class="choice" onclick="selectChoice(this)" data-choice="2">📌 ကိုယ်စားမယ့်အစာ ကိုယ်တိုင်ရှာစားမယ်</div>
+        <div class="choice" onclick="selectChoice(this)" data-choice="3">📌 ထင်းခုတ်သမားကို ကိုက်ပြီး ပြေးမယ်</div>
+        <div class="choice" onclick="selectChoice(this)" data-choice="4">📌 ခိုးစားပြီးတော့ ထင်းခုတ်သမားကို
+          ပြန်တောင်းပန်မယ်</div>
+      </div>
+      <div style="margin-top:12px; text-align:right">
+        <button class="btn" onclick="closeModal()">ပိတ်မည်</button>
+        <button class="btn alt" onclick="submitChoice()">စမ်းကြည့်🧸</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // TTS for story reading
+    const paragraphs = [
+      document.getElementById('p1').innerText,
+      document.getElementById('p2').innerText,
+      document.getElementById('p3').innerText,
+      document.querySelector('.quote').innerText,
+      document.getElementById('p4').innerText,
+      document.getElementById('p5').innerText
+    ];
+    function speakStory() {
+      try {
+        let i = 0;
+        function next() {
+          if (i >= paragraphs.length) return;
+          const u = new SpeechSynthesisUtterance(paragraphs[i]);
+          u.lang = 'my-MM';
+          u.rate = 0.95;
+          speechSynthesis.cancel();
+          speechSynthesis.speak(u);
+          i++;
+          u.onend = () => setTimeout(next, 400);
+        }
+        next();
+      } catch (e) {
+        alert('ဤ device တွင် TTS မပံ့ပိုးနိုင်ပါ။');
+      }
+    }
+
+    // Modal logic
+    let selected = null;
+    function openModal() {
+      document.getElementById('modal').style.display = 'grid';
+      document.getElementById('modal').setAttribute('aria-hidden', 'false');
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+      document.getElementById('modal').setAttribute('aria-hidden', 'true');
+      document.querySelectorAll('.choice').forEach(c => {
+        c.style.background = '#f7f7f7';
+        c.style.borderColor = 'transparent';
+      });
+      selected = null;
+    }
+    function selectChoice(el) {
+      document.querySelectorAll('.choice').forEach(c => {
+        c.style.background = '#f7f7f7';
+        c.style.borderColor = 'transparent';
+      });
+      el.style.background = '#fff6e8';
+      el.style.borderColor = 'rgba(136,192,87,0.25)';
+      selected = el.dataset.choice;
+    }
+    function submitChoice() {
+      if (!selected) {
+        alert('ကျေးဇူးပြု၍ ရွေးချယ်ချက်တစ်ခု ရွေးပါ။');
+        return;
+      }
+      const modalBox = document.querySelector('.modal .box');
+      let resp = '';
+      switch (selected) {
+        case '1': resp = 'မှားပါတယ်နော်❌အဲ့လိုလုံးဝမလုပ်သင့်ပါဘူး။ခိုးတယ်ဆိုတာ ကောင်းတဲ့အလုပ်မဟုတ်ပါဘူး။'; break;
+        case '2': resp = 'မှန်ပါတယ်✅ အရမ်းတော်ပါတယ် ။ကိုယ်စားမယ့်အစာကို ကိုယ်တိုင်ရှာစားသင့်ပါတယ်။ ကိုယ့်အားကိုယ်ကိုးသင့်ပါတယ် ။'; break;
+        case '3': resp = '❌ မှားပါတယ် — အဲ့လို အကြမ်းမလုပ်သင့်ပါ။'; break;
+        case '4': resp = 'မှားပါတယ်❌ အမှားလုပ်ပြီးမှ ပြန်တောင်းပန်မယ့်အစား မလုပ်ခင်ထဲက အရင်ဆုံးစဉ်းစားပါ ။ ကောင်းတဲ့အလုပ်လား မကောင်းတဲ့အလုပ်လားဆိုတာ တွေးတောပါ'; break;
+      }
+      modalBox.innerHTML = `<h3>နိဂုံး</h3>
+        <p style="margin-top:8px">${resp}</p>
+        <div style="margin-top:12px; text-align:right">
+          <button class="btn" onclick="closeModal()">Close</button>
+        </div>`;
+    }
+  </script>
+</body>
+
+</html>
