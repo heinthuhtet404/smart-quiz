@@ -489,6 +489,19 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        .welcome {
+            opacity: 0;
+            transform: translateY(-10px);
+            animation: fadeIn 0.6s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 
@@ -508,7 +521,7 @@
                 <li class="nav-item"><a href="chat.html" class="nav-link" data-page="chat"
                         onclick="navigateTo('chat')">စကားပြောခန်း</a></li>
                 <li class="nav-item"><a href="profile.html" class="nav-link" data-page="login"
-                        onclick="navigateTo('login')">အကောင့်</a></li>
+                        onclick="navigateTo('login')">ကိုယ်ပိုင်စာမျက်နှာ</a></li>
             </ul>
         </nav>
     </header>
@@ -517,9 +530,9 @@
     <main style="margin: 0;">
         <section id="home-page" class="page active">
 
-            <div style="text-align: left;">
+            <div class="welcome-container" style="text-align: center; margin: 20px 0;">
                 <h1 id="welcomeMessage" class="welcome"
-                    style="font-size: 2rem; font-weight: bold; color: #2c3e50; font-family: 'Nunito', sans-serif; margin: 0;">
+                    style="font-size: 2rem; font-weight: bold; color: #4A90E2; font-family: 'Nunito', sans-serif; margin: 0;">
                     👋 Welcome
                 </h1>
             </div>
@@ -530,14 +543,14 @@
                 <h1>အတူတကွ သင်ကြားကြမယ်!</h1>
                 <p>ကလေးများအတွက် ပျော်စရာ၊ အကျိုးရှိပြီး လေ့လာနိုင်သည့် သင်ခန်းစာများ။ ကျွန်ုပ်တို့၏ သရုပ်ပြ friendly
                     guides များနှင့် လေ့လာမှုစတင်လိုက်ပါ။</p>
-                <a href="#" class="cta-button">ဘာသာရပ်များကိုလေ့လာရန်</a>
+                <a href="#lesson" class="cta-button">ဘာသာရပ်များကိုလေ့လာရန်</a>
             </div>
 
             <!-- Daily Lesson -->
             <div class="daily-lesson">
                 <h2>🌟 အထူးသင်ခန်းစာ (ယနေ့)</h2>
                 <p>မြန်မာအက္ခရာ: သရုပ်ပြပုံများနှင့် စာပေဖြင့် မြန်မာစာလေ့လာပါ။</p>
-                <button class="cta-button" style="background: #FF6B6B;">ယနေ့သင်ခန်းစာ စတင်ပါ</button>
+                <a href="b.html" style="border: none;"><button class="cta-button" style="background: #FF6B6B;border: none; cursor: pointer;">ယနေ့သင်ခန်းစာ စတင်ပါ</button></a>
             </div>
 
             <!-- Subjects -->
@@ -675,14 +688,15 @@
                 console.log("Username:", userName);
                 console.log("Email:", userEmail);
 
-                // Page update လုပ်နိုင်ပါတယ်
-                document.getElementById('welcomeMessage').textContent = `Welcome ${userName} `;
+                // Page update with colors
+                document.getElementById('welcomeMessage').innerHTML = `<span style="color:#4A90E2">👋 Welcome</span> <span style="color:#FFD566">${userName}</span>`;
             } catch (err) {
                 console.error(err);
                 alert('You are not logged in! Redirecting to login page.');
                 window.location.href = '/login.html';
             }
         }
+
         // Daily Challenge JS
         (function () {
             const container = document.getElementById('extra-challenge');

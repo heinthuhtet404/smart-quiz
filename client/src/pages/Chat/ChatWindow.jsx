@@ -140,7 +140,7 @@ const ChatWindow = ({ selectedUser, loginUserName, loginUserEmail, loginUserId }
 
   return (
     <div className="chat-window">
-      <div className="chat-header">Chatting with {selectedUser.name}</div>
+      <div className="chat-header">Chatting with <span style={{ color: "#4a90e2" }}>{selectedUser.name}</span></div>
 
       <div className="message-container">
         {Object.keys(groupedMessages).map((date) => (

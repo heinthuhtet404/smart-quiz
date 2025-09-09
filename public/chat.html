@@ -13,7 +13,7 @@
     :root {
       --primary: #4A90E2;
       --secondary: #50E3C2;
-
+      --accent1: #FFD166;
       --accent2: #EF476F;
       --accent3: #A78BFA;
       --background: #e8ffe8;
@@ -35,14 +35,13 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 25px;
-      background: var(--primary);
+      padding: 23px 25px;
+      background: linear-gradient(90deg, var(--primary), #6FA8FF);
       color: #fff;
       position: sticky;
       top: 0;
       z-index: 1000;
-      border-bottom: 4px solid var(--accent1);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     }
 
     .navbar .logo {
@@ -61,14 +60,14 @@
     .navbar nav a {
       margin: 0 12px;
       text-decoration: none;
-      color: #fff;
+      color: #333;
       font-weight: 600;
       transition: transform 0.2s ease-in-out, color 0.2s ease;
     }
 
     .navbar nav a:hover {
-      transform: scale(1.1);
-      color: var(--secondary);
+      /* transform: scale(1.1); */
+      color: var(--accent1);
     }
 
     /* Search box */
@@ -78,7 +77,7 @@
       background: #ffffff;
       border-radius: 50px;
       padding: 5px 15px;
-      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
     }
 
     .search-box input {
@@ -93,7 +92,7 @@
     }
 
     .search-box button {
-      background: var(--accent2);
+      background: var(--primary);
       border: none;
       border-radius: 50%;
       width: 38px;
@@ -105,12 +104,12 @@
       justify-content: center;
       font-size: 18px;
       transition: transform 0.3s ease-in-out, background-color 0.3s ease;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
     }
 
     .search-box button:hover {
-      transform: scale(1.1);
-      background-color: var(--primary);
+      transform: scale(1.1) rotate(10deg);
+      background-color: var(--secondary);
     }
 
     .current-user {
@@ -131,7 +130,7 @@
       font-family: 'Fredoka One', cursive;
       font-size: 36px;
       color: var(--primary);
-      text-shadow: 2px 3px 5px rgba(0, 0, 0, 0.1);
+      text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.1);
     }
 
     /* User grid */
@@ -143,24 +142,28 @@
       justify-items: center;
     }
 
-    /* Kid-Friendly Card */
+    /* Card */
     .card {
       width: 200px;
       height: 280px;
-      background: linear-gradient(145deg, var(--card-bg), #f0f0f0);
-      color: var(--text);
+      background: var(--card-bg);
       border-radius: 20px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
       padding: 20px;
       text-align: center;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       position: relative;
       overflow: hidden;
+      border: 3px solid transparent;
+      background-image: linear-gradient(var(--card-bg), var(--card-bg)),
+        linear-gradient(135deg, var(--primary), var(--secondary));
+      background-origin: border-box;
+      background-clip: content-box, border-box;
     }
 
     .card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
 
     .card img {
@@ -170,7 +173,6 @@
       object-fit: cover;
       margin-bottom: 12px;
       border: 4px solid var(--secondary);
-      box-shadow: 0 0 0 3px rgba(80, 227, 194, 0.3);
       transition: transform 0.3s ease;
     }
 
@@ -193,24 +195,24 @@
     }
 
     .card button {
-      background: linear-gradient(145deg, var(--accent1), #ffb347);
+      background: linear-gradient(145deg, var(--accent2), var(--accent3));
       border: none;
       padding: 8px 14px;
       border-radius: 12px;
-      color: var(--text);
+      color: white;
       font-weight: 700;
       cursor: pointer;
-      font-family: 'Fredoka One', cursive;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      font-family: 'Nunito', sans-serif;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .card button:hover {
       transform: translateY(-2px) scale(1.05);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
     }
 
-    /* Simple modal */
+    /* Modal */
     .modal {
       position: fixed;
       top: 50%;
@@ -259,27 +261,56 @@
       }
 
       h2 {
-        font-size: 32px;
+        font-size: 30px;
       }
     }
 
-    .hein {
-    background-color: #ffd566;
-    padding: 16px 28px;
-    border: 1px solid white;
-    border-radius: 30px;
-    color: #333;
-    text-decoration: none; /* link underline မပေါ်အောင် */
-    transition: all 0.3s ease; /* ကြွပြီး smooth ဖြစ်အောင် */
-  }
+    /* nav buttons */
+    /* .hein {
+      background-color: #4a90e2;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 30px;
+      color: #333;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
 
-  .hein:hover {
-    background-color: #ffcc33; /* hover ဖြစ်တဲ့အချိန် နည်းနည်းနက် */
-     /* အနည်းငယ်ကြွတက် */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* မျက်နှာကျက်ထဲကနေ ထွက်ပေါ် */
-    transform: scale(1.1);
-  }
-    
+    .hein:hover {
+      background-color: #50e3c2;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transform: scale(1.05);
+      transition: 0.3s ease;
+    } */
+
+    .hein {
+      background-color: #4a90e2;
+      padding: 20px 24px;
+      border: none;
+      border-radius: 30px;
+      color: #333;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      font-size: 0.95rem;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+
+    .hein:hover {
+      background-color: #50e3c2;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transform: scale(1.05);
+      transition: 0.3s ease;
+      color: white;
+    }
+
+    .active {
+      background-color: #ffd566;
+      color: #333;
+      box-shadow: 0 4px 14px rgba(255, 213, 102, 0.5);
+    }
   </style>
 </head>
 
@@ -291,23 +322,30 @@
       <span>KidsLearn</span>
     </div>
 
-    <div class="search-box" style="background-color: #ffffff;">
+    <div class="search-box">
       <input type="text" id="searchInput" placeholder="အသုံးပြုသူ ရှာရန်...">
-      <button style="background-color: #4A90E2;"><i class="fas fa-search" ></i></button>
+      <button><i class="fas fa-search"></i></button>
     </div>
 
-    <div class="current-user" id="currentUser">
+    <!-- <div class="current-user" id="currentUser">
       <a href="profile.html" id="profileLink">👋 ဟယ်လို၊ အသုံးပြုသူ <i class="fas fa-user-circle"
           style="margin-left:5px;"></i></a>
-    </div>
+    </div> -->
 
     <nav>
-      <a href="home.html" style="background-color: #ffd566; padding: 16px 28px; border: 1px solid white; border-radius: 30px; color: #333;" class="hein">ပင်မစာမျက်နှာ</a>
-      <a href="profile.html" style="background-color: #6596ce; padding: 16px 28px; border: 1px solid white; border-radius: 30px; color: #333; " class="hein">ကိုယ်ပိုင်စာမျက်နှာ</a>
+      <a href="home.html" class="hein" style="color: white;">ပင်မစာမျက်နှာ</a>
+      <a href="http://localhost:5000/home.html#lesson" class="hein" style="color: white;">သင်ခန်းစာများ</a>
+      <a href="chat.html" class="hein active">စကားပြောခန်း</a>
+      <a href="profile.html" class="hein" style="color: white;">ကိုယ်ပိုင်စာမျက်နှာ</a>
     </nav>
   </header>
 
-  <h2>ကျွန်တော်တို့ရဲ့ အသုံးပြုသူများ</h2>
+  <div class="current-user" id="currentUser" style="text-align: center; margin-top: 10px;"> 
+    <a href="profile.html" id="profileLink">👋 ဟယ်လို၊ အသုံးပြုသူ <i class="fas fa-user-circle"
+        style="margin-left:5px;"></i></a>
+  </div>
+
+  <h2 style="margin-top: -10px; font-size: 1.8rem; text-align: left; margin-left: 20px;">အသုံးပြုသူများ</h2>
 
   <div class="user-grid" id="userList"></div>
 
@@ -316,15 +354,39 @@
       const modal = document.createElement('div');
       modal.className = 'modal';
       modal.innerHTML = `
-    <p>${message}</p>
-    <button onclick="this.parentElement.remove()">Close</button>
-  `;
+        <p>${message}</p>
+        <button onclick="this.parentElement.remove()">Close</button>
+      `;
       document.body.appendChild(modal);
     }
 
     let allUsers = [];
 
-    // အသုံးပြုသူစာရင်းယူရန်
+    async function fetchCurrentUser() {
+      try {
+        const res = await fetch('/current-user');
+        const user = await res.json();
+
+        if (user && user.name && user.email) {
+          const profileLink = document.getElementById('profileLink');
+          profileLink.innerHTML = `<span style="display:inline-flex; align-items:center; gap:5px; font-size:1.8rem; font-weight:600;">
+  <span style="color:#4A90E2;">👋</span>
+  <span style="color: #333;">ဟယ်လို၊ <span style="color:#FFD166;">${user.name}</span></span>
+</span>
+
+`;
+
+          localStorage.setItem('user', JSON.stringify({
+            _id: user._id,
+            name: user.name,
+            email: user.email
+          }));
+        }
+      } catch (err) {
+        console.error("လက်ရှိ အသုံးပြုသူ မရနိုင်ပါ:", err);
+      }
+    }
+
     async function fetchUsers() {
       try {
         const res = await fetch('/api/users');
@@ -336,8 +398,6 @@
       }
     }
 
-    // အသုံးပြုသူတွေကို UI မှာ ပြရန်
-
     function displayUserCards(users) {
       const userList = document.getElementById('userList');
       userList.innerHTML = '';
@@ -347,7 +407,6 @@
         return;
       }
 
-      // 👉 login user ကို localStorage ထဲကနေ ယူ
       const loginUser = JSON.parse(localStorage.getItem("user")) || {};
       const loginUserId = loginUser._id || "";
       const loginUserName = loginUser.name || "";
@@ -356,13 +415,12 @@
         const card = document.createElement('div');
         card.className = 'card';
         card.innerHTML = `
-      <img src="${u.profilePic ? u.profilePic : 'https://i.pravatar.cc/150?img=3'}" alt="profile">
-      <h3>${u.name}</h3>
-      <p>${u.email ? u.email : ''}</p>
-    `;
+          <img src="${u.profilePic ? u.profilePic : 'https://i.pravatar.cc/150?img=3'}" alt="profile">
+          <h3>${u.name}</h3>
+          <p>${u.email ? u.email : ''}</p>
+        `;
 
-        // ❌ login user ကိုယ်တိုင်ဆိုရင် ခလုပ်မထည့်
-        if (u._id?.toString() !== loginUserId?.toString() && u.name !== loginUserName) {
+        if (u._id?.toString() !== loginUserId?.toString()) {
           const btn = document.createElement('button');
           btn.textContent = '💌 စာပို့မယ်';
           btn.onclick = () => sendMessage(u._id, u.name);
@@ -373,8 +431,6 @@
       });
     }
 
-
-    // ရှာဖွေရေး
     document.getElementById('searchInput').addEventListener('input', (e) => {
       const keyword = e.target.value.toLowerCase();
       const filtered = allUsers.filter(u =>
@@ -385,21 +441,19 @@
     });
 
     function sendMessage(receiverId, receiverName) {
-      // fetch only the currently logged-in user
       const loginUser = JSON.parse(localStorage.getItem("user")) || {};
-      const loginUserId = loginUser._id || "";  // add userId
+      const loginUserId = loginUser._id || "";
       const loginUserName = loginUser.name || "Unknown";
       const loginUserEmail = loginUser.email || "";
 
       let dynamicUsers = JSON.parse(localStorage.getItem("dynamicSidebarUsers") || "[]");
 
-      // store receiver in dynamicUsers if not already present
       if (!dynamicUsers.find(u => u.id === receiverId)) {
         dynamicUsers.push({
           id: receiverId,
           name: receiverName,
           sender: {
-            id: loginUserId,       // store sender id
+            id: loginUserId,
             name: loginUserName,
             email: loginUserEmail,
           }
@@ -407,36 +461,9 @@
         localStorage.setItem("dynamicSidebarUsers", JSON.stringify(dynamicUsers));
       }
 
-      // open chat page with query params
       const url = `http://localhost:5173/chat-page?receiverId=${encodeURIComponent(receiverId)}&receiverName=${encodeURIComponent(receiverName)}&loginUserId=${encodeURIComponent(loginUserId)}&loginUserName=${encodeURIComponent(loginUserName)}&loginUserEmail=${encodeURIComponent(loginUserEmail)}`;
       window.open(url, "_blank");
     }
-
-
-
-    // လက်ရှိ အသုံးပြုသူကို ပြရန်
-    async function fetchCurrentUser() {
-      try {
-        const res = await fetch('/current-user');
-        const user = await res.json();
-
-        if (user && user.name && user.email) {
-          // 1️⃣ UI update
-          const profileLink = document.getElementById('profileLink');
-          profileLink.innerHTML = `👋 ဟယ်လို၊ ${user.name} <i class="fas fa-user-circle" style="margin-left:5px;"></i>`;
-
-          // 2️⃣ LocalStorage မှာ သိမ်း
-          localStorage.setItem('user', JSON.stringify({
-            _id: user._id,   // အရေးကြီးပါက backend မှ id ပါလာရမယ်
-            name: user.name,
-            email: user.email
-          }));
-        }
-      } catch (err) {
-        console.error("လက်ရှိ အသုံးပြုသူ မရနိုင်ပါ:", err);
-      }
-    }
-
 
     fetchCurrentUser();
     fetchUsers();

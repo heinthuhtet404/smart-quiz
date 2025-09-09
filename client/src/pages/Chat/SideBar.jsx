@@ -80,7 +80,7 @@ const SideBar = ({ onSelectUser, users: propUsers, loginUserName, loginUserEmail
 
   return (
     <div className="sidebar">
-      <h2 className="sidebar-title">Friends</h2>
+      <h2 className="sidebar-title">သူငယ်ချင်းများ</h2>
       <ul className="user-list">
   {users
     .filter(u => u.name !== loginUserName) // exclude login user by name

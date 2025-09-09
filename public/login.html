@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="my">
 
 <head>
   <meta charset="UTF-8" />
@@ -44,22 +44,30 @@
         alt="Kid Cartoon">
 
       <div id="formContainer" class="opacity-0 pointer-events-none transition-opacity duration-700">
-        <h2 class="text-3xl font-semibold text-[#4A90E2] text-center mb-6">Welcome Back!</h2>
+        <h2 class="text-3xl font-semibold text-[#4A90E2] text-center mb-6">ပြန်လည်ကြိုဆိုပါတယ်!</h2>
 
         <form id="loginForm" class="space-y-4">
-          <input type="email" name="email" placeholder="Email" required
-            class="w-full p-3 rounded-xl border border-gray-200 focus:border-[#4A90E2] outline-none transition" />
-          <input type="password" name="password" placeholder="Password" required
-            class="w-full p-3 rounded-xl border border-gray-200 focus:border-[#4A90E2] outline-none transition" />
+          <div>
+            <input type="email" name="email" placeholder="အီးမေးလ်" required
+              class="w-full p-3 rounded-xl border border-gray-200 focus:border-[#4A90E2] outline-none transition" />
+            <p id="emailError" class="text-red-500 text-xs mt-1 hidden">အီးမေးလ်မှားနေပါတယ်။ ထပ်မံကြိုးစားပါ။</p>
+          </div>
+
+          <div>
+            <input type="password" name="password" placeholder="စကားဝှက်" required
+              class="w-full p-3 rounded-xl border border-gray-200 focus:border-[#4A90E2] outline-none transition" />
+            <p id="passwordError" class="text-red-500 text-xs mt-1 hidden">စကားဝှက်မှားနေပါတယ်။ ထပ်မံကြိုးစားပါ။</p>
+          </div>
+
           <button type="submit"
             class="w-full py-3 bg-[#4A90E2] text-white font-bold rounded-xl hover:bg-[#357ABD] transition duration-300">
-            Login
+            ဝင်မယ်
           </button>
         </form>
 
         <p class="mt-5 text-sm text-center text-gray-600">
-          Don't have an account?
-          <a href="signup.html" class="text-[#4A90E2] font-semibold hover:underline">Signup</a>
+          အကောင့်မရှိသေးပါသလား?
+          <a href="signup.html" class="text-[#4A90E2] font-semibold hover:underline">အကောင့်သစ်ဖွင့်မယ်</a>
         </p>
       </div>
     </div>
@@ -82,6 +90,14 @@
       const email = e.target.email.value;
       const password = e.target.password.value;
 
+      // Error placeholders
+      const emailError = document.getElementById('emailError');
+      const passwordError = document.getElementById('passwordError');
+
+      // Clear previous errors
+      emailError.classList.add('hidden');
+      passwordError.classList.add('hidden');
+
       try {
         const res = await fetch('http://localhost:5000/api/auth/login', {
           method: 'POST',
@@ -89,15 +105,26 @@
           body: JSON.stringify({ email, password })
         });
         const data = await res.json();
+
         if (res.ok && data.success) {
-          alert('Login successful!');
+          // Success → no alert, just redirect
           window.location.href = '/home.html';
         } else {
-          alert(data.message || 'Error connecting to server.');
+          // Handle specific error messages
+          if (data.message?.toLowerCase().includes("email")) {
+            emailError.classList.remove('hidden');
+          } else if (data.message?.toLowerCase().includes("password")) {
+            passwordError.classList.remove('hidden');
+          } else {
+            // fallback error
+            passwordError.textContent = data.message || 'ဝင်မရနိုင်ပါ။ ထပ်မံကြိုးစားပါ။';
+            passwordError.classList.remove('hidden');
+          }
         }
       } catch (err) {
         console.error(err);
-        alert('Error connecting to server.');
+        passwordError.textContent = 'ဆာဗာနှင့် ချိတ်ဆက်မှုအမှား ဖြစ်နေပါသည်။';
+        passwordError.classList.remove('hidden');
       }
     });
   </script>

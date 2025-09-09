@@ -6,7 +6,7 @@ const Navigation = () => {
   return (
     <nav className="navbar">
       <div className="logo">
-        <i className="fas fa-leaf"></i>
+        {/* <i className="fas fa-leaf"></i> */}
         <span>KidsLearn</span>
       </div>
       <ul className="nav-list">
@@ -24,6 +24,11 @@ const Navigation = () => {
           <NavLink to="/chat-page" className="nav-link">
             စကားပြောခန်း
           </NavLink>
+        </li>
+        <li className="nav-item">
+          <a href="http://localhost:5000/profile.html" className="nav-link">
+            ကိုယ်ပိုင်စာမျက်နှာ
+          </a>
         </li>
         {/* <li className="nav-item">
           <NavLink to="/login" className="nav-link">

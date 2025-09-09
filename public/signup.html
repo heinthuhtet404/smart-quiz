@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="my">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Signup | KidsLearn</title>
+  <title>စာရင်းသွင်း | KidsLearn</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
   <style>
@@ -17,23 +17,29 @@
 <body class="min-h-screen bg-[#FFD166] flex items-center justify-center">
 
   <div class="bg-white p-8 rounded-3xl shadow-lg w-[90%] max-w-md">
-    <h2 class="text-3xl font-bold text-[#4A90E2] text-center mb-6">Create Account</h2>
+    <h2 class="text-3xl font-bold text-[#4A90E2] text-center mb-6">အကောင့်ဖန်တီးပါ</h2>
     <form id="signupForm" class="space-y-4">
-      <input type="text" name="name" placeholder="Name" required
+      <input type="text" name="name" placeholder="နာမည်" required
         class="w-full p-3 rounded-xl border border-gray-200 outline-none focus:border-[#4A90E2]" />
-      <input type="email" name="email" placeholder="Email" required
+      <input type="email" name="email" placeholder="အီးမေးလ်" required
         class="w-full p-3 rounded-xl border border-gray-200 outline-none focus:border-[#4A90E2]" />
-      <input type="password" name="password" placeholder="Password" required
-        class="w-full p-3 rounded-xl border border-gray-200 outline-none focus:border-[#4A90E2]" />
+
+      <div>
+        <input type="password" name="password" placeholder="စကားဝှက်" required
+          class="w-full p-3 rounded-xl border border-gray-200 outline-none focus:border-[#4A90E2]" />
+        <!-- Error message placeholder -->
+        <p id="passwordError" class="text-red-500 text-xs mt-1 hidden">စကားဝှက်သည် အနည်းဆုံး ၈ လုံးရှိရပါမည်</p>
+      </div>
+
       <button type="submit"
         class="w-full py-3 bg-[#4A90E2] text-white font-bold rounded-xl hover:bg-[#357ABD] transition duration-300">
-        Signup
+        စာရင်းသွင်းမည်
       </button>
     </form>
 
     <p class="mt-5 text-sm text-center text-gray-600">
-      Already have an account?
-      <a href="login.html" class="text-[#4A90E2] font-semibold hover:underline">Login</a>
+      အကောင့်ရှိပြီးသားလား?
+      <a href="login.html" class="text-[#4A90E2] font-semibold hover:underline">လော့ဂ်အင် ဝင်မည်</a>
     </p>
   </div>
 
@@ -44,6 +50,16 @@
       const email = e.target.email.value;
       const password = e.target.password.value;
 
+      const passwordError = document.getElementById('passwordError');
+
+      // စကားဝှက် အရှည်စစ်ဆေးခြင်း
+      if (password.length < 8) {
+        passwordError.classList.remove('hidden');
+        return; // Signup process ရပ်တန့်
+      } else {
+        passwordError.classList.add('hidden');
+      }
+
       try {
         const res = await fetch('http://localhost:5000/api/auth/signup', {
           method: 'POST',
@@ -52,16 +68,17 @@
         });
         const data = await res.json();
         if (res.ok && data.success) {
-          alert('Signup successful! Login now.');
+          alert('အကောင့်ဖန်တီးမှု အောင်မြင်ပါသည်! လော့ဂ်အင် ဝင်ပါ။');
           window.location.href = '/login.html';
         } else {
-          alert(data.message || 'Error connecting to server.');
+          alert(data.message || 'ဆာဗာနှင့် ဆက်သွယ်ရာတွင် အမှားရှိသည်။');
         }
       } catch (err) {
         console.error(err);
-        alert('Error connecting to server.');
+        alert('ဆာဗာနှင့် ဆက်သွယ်ရာတွင် အမှားရှိသည်။');
       }
     });
+
   </script>
 
 </body>
