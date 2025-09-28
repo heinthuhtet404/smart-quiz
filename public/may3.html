@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>📖 ပုံပြင်စာအုပ်</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+       font-family: 'Baloo 2', cursive;
+      background: linear-gradient(135deg, #dfe9f3, #ffffff);
+     
+    }
+   .logo {
+      display: flex;
+      position: absolute ;
+      left: 0;
+      top: 5%;
+      font-size: 28px;
+      font-family: 'Fredoka One', cursive;
+    }
+.logo i {
+      margin-left:px;
+      font-size: 32px;
+      color: #FFD166;
+    }
+
+    /* ✅ Navbar */
+ 
+        nav {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            background: #4A90E2;
+            padding: 15px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+        }
+        .nav-item {
+            text-align: center;
+        }
+        .nav-link {
+            display: block;
+            padding: 16px 28px;
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            text-decoration: none;
+           
+            font-weight: 700;
+            font-size: 15px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            min-height: 25px;
+            min-width: 54px;
+        }
+        .nav-link:hover {
+            background-color: #50E3C2;
+            color: #fff;
+            transform: scale(1.08);
+        }
+        .nav-link.active {
+            background-color: #ffd566;
+            color: #333;
+            box-shadow: 0 4px 14px rgba(255, 213, 102, 0.5);
+        }
+
+    /* Book */
+    .book {
+      margin-top: 20px; /* navbar အောက်မှာ book ကိုချထား */
+      width: 300px;
+      height: 500px;
+      perspective: 2000px;
+      position: relative;
+    }
+
+    .page {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform-style: preserve-3d;
+      transform-origin: left center;
+      transition: transform 1s ease;
+    }
+
+    .page:nth-child(1) { z-index: 4; }
+    .page:nth-child(2) { z-index: 3; }
+    .page:nth-child(3) { z-index: 2; }
+    .page:nth-child(4) { z-index: 1; }
+
+    .front, .back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      background-size: cover;
+      background-position: center;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    }
+
+    .back {
+      transform: rotateY(180deg);
+    }
+
+    .page.flipped {
+      transform: rotateY(-180deg);
+    }
+
+    .controls {
+      position: absolute;
+      bottom: -60px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    button {
+      padding: 10px 18px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      color: #fff;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">
+      <i class="fas fa-leaf"></i>
+      <span>KidsLearn</span>
+    </div>
+    <div class="nav-container">
+      <ul class="nav-list">
+        <li><a href="home.html" class="nav-link active">ပင်မစာမျက်နှာ</a></li>
+        <li><a href="http://localhost:5000/home.html#lesson" class="nav-link">သင်ခန်းစာများ</a></li>
+        <li><a href="chat.html" class="nav-link">စကားပြောခန်း</a></li>
+        <li><a href="profile.html" class="nav-link">ကိုယ်ပိုင်စာမျက်နှာ</a></li>
+      </ul>
+    </div>
+  </nav>
+    <div class="book">
+      <div class="page">
+        <div class="front" style="background-image: url('WolfPhoto.jpg');"></div>
+        <div class="back"  style="background-image: url('WolfPhoto1.jpg');"></div>
+      </div>
+      <div class="page">
+        <div class="front" style="background-image: url('StoryPhoto3.jpg');"></div>
+        <div class="back"  style="background-image: url('StoryPhoto4.jpg');"></div>
+      </div>
+      <div class="page">
+        <div class="front" style="background-image: url('WolfPhoto2.jpg');"></div>
+        <div class="back"  style="background-image: url('WolfPhoto3.jpg');"></div>
+      </div>
+      <div class="page">
+        <div class="front" style="background-image: url('WolfPhoto4.jpg');"></div>
+        <div class="back"  style="background-image: url('WolfPhoto5.jpg');"></div>
+      </div>
+
+      <div class="controls">
+        <button onclick="prevPage()">⬅️ နောက်သို့</button>
+        <button onclick="nextPage()">ရှေ့သို့ ➡️</button>
+      </div>
+    </div>
+ 
+
+  <script>
+    let current = 0;
+    const pages = document.querySelectorAll('.page');
+
+    function nextPage(){
+  if(current < pages.length - 1){
+    pages[current].classList.add('flipped');
+    current++;
+  }
+}
+
+
+    function prevPage(){
+      if(current > 0){
+        current--;
+        pages[current].classList.remove('flipped');
+      }
+    }
+  </script>
+</body>
+</html>
