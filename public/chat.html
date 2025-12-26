@@ -459,9 +459,9 @@
   </header>
 
   <div class="site-nav__search" style="margin: 10px;">
-        <input type="text" id="searchInput" placeholder="အသုံးပြုသူ ရှာရန်...">
-        <button><i class="fas fa-search"></i></button>
-      </div>
+    <input type="text" id="searchInput" placeholder="အသုံးပြုသူ ရှာရန်...">
+    <button><i class="fas fa-search"></i></button>
+  </div>
 
 
   <div class="current-user" id="currentUser" style="text-align: center; margin-top: 10px;">
@@ -565,29 +565,32 @@
     });
 
     function sendMessage(receiverId, receiverName) {
-      const loginUser = JSON.parse(localStorage.getItem("user")) || {};
-      const loginUserId = loginUser._id || "";
-      const loginUserName = loginUser.name || "Unknown";
-      const loginUserEmail = loginUser.email || "";
+  const loginUser = JSON.parse(localStorage.getItem("user")) || {};
+  const loginUserId = loginUser._id || "";
+  const loginUserName = loginUser.name || "Unknown";
+  const loginUserEmail = loginUser.email || "";
 
-      let dynamicUsers = JSON.parse(localStorage.getItem("dynamicSidebarUsers") || "[]");
+  let dynamicUsers = JSON.parse(localStorage.getItem("dynamicSidebarUsers") || "[]");
 
-      if (!dynamicUsers.find(u => u.id === receiverId)) {
-        dynamicUsers.push({
-          id: receiverId,
-          name: receiverName,
-          sender: {
-            id: loginUserId,
-            name: loginUserName,
-            email: loginUserEmail,
-          }
-        });
-        localStorage.setItem("dynamicSidebarUsers", JSON.stringify(dynamicUsers));
+  if (!dynamicUsers.find(u => u.id === receiverId)) {
+    dynamicUsers.push({
+      id: receiverId,
+      name: receiverName,
+      sender: {
+        id: loginUserId,
+        name: loginUserName,
+        email: loginUserEmail,
       }
+    });
+    localStorage.setItem("dynamicSidebarUsers", JSON.stringify(dynamicUsers));
+  }
 
-      const url = `http://localhost:5173/chat-page?receiverId=${encodeURIComponent(receiverId)}&receiverName=${encodeURIComponent(receiverName)}&loginUserId=${encodeURIComponent(loginUserId)}&loginUserName=${encodeURIComponent(loginUserName)}&loginUserEmail=${encodeURIComponent(loginUserEmail)}`;
-      window.open(url, "_blank");
-    }
+  const url = `http://localhost:5173/chat-page?receiverId=${encodeURIComponent(receiverId)}&receiverName=${encodeURIComponent(receiverName)}&loginUserId=${encodeURIComponent(loginUserId)}&loginUserName=${encodeURIComponent(loginUserName)}&loginUserEmail=${encodeURIComponent(loginUserEmail)}`;
+
+  // ✅ Navigate in the same tab
+  window.location.href = url;
+}
+
 
     fetchCurrentUser();
     fetchUsers();

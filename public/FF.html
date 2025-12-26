@@ -27,20 +27,12 @@
     nav {
       display: flex;
       justify-content: center;
-      width: 100%;
+      /* width: 100%; */
       background: #4A90E2;
       /* padding: 15px 0; */
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
-    .nav-list {
-      display: flex;
-      list-style: none;
-      gap: 25px;
-      margin: 0;
-      padding: 0;
-      justify-content: center;
-    }
 
     .nav-item {
       text-align: center;
@@ -79,7 +71,8 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+      /* background: linear-gradient(135deg, #a1c4fd, #c2e9fb); */
+      background-color: #f7faff;
       color: #333333;
       overflow-x: hidden;
       /* padding-top: 90px; Added padding to account for fixed nav */
@@ -88,8 +81,8 @@
     header {
       /* padding: 20px; */
       text-align: center;
-      background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
-
+      /* background: linear-gradient(135deg, #a1c4fd, #c2e9fb); */
+      background-color: #f7faff;
       top: 90px;
       /* Changed from 0 to nav height */
       z-index: 10;
@@ -97,7 +90,7 @@
     }
 
     header h1 {
-      margin: 0;
+      /* margin: 0; */
       font-size: 2em;
       color: #444444;
     }
@@ -509,7 +502,7 @@
     /* ================= NAVIGATION ================= */
     .site-nav {
       background: #ffffff;
-      padding: 0px;
+      padding: 16px 6%;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -535,6 +528,8 @@
       list-style: none;
       display: flex;
       gap: 26px;
+
+
     }
 
     .site-nav__item {}
@@ -588,7 +583,7 @@
 
 <body>
   <header>
-    <nav class="site-nav">
+    <nav class="site-nav" style="padding: 0px 6%;">
       <div class="site-nav__logo">
         <i class="fas fa-leaf"></i>
         <span>KidsLearn</span>
@@ -609,7 +604,7 @@
       </ul>
     </nav>
   </header>
-  <!-- <header>
+  <header>
     <h1>🔬 သိပ္ပံ Flash ကတ်များ</h1>
     <div class="toolbar">
       <button class="btn active" data-filter="all">အားလုံး</button>
@@ -621,7 +616,7 @@
       <button class="btn quiz-btn" id="quiz-btn">🧠 မေးခွန်းများ</button>
 
     </div>
-  </header> -->
+  </header>
 
   <main>
 
@@ -657,8 +652,8 @@
       </div>
     </div>
 
-    <!-- <div class="grid" id="grid">
-      
+    <div class="grid" id="grid">
+
       <div class="card" data-category="body" data-title="နှလုံး" data-detail="နှလုံးက တစ်ကိုယ်လုံးကို သွေးညှစ်ပေးပါတယ်။"
         data-extra="နှလုံးဟာ တစ်မိနစ်လျှင် ၆၀-၁၀၀ ကြိမ်ခုန်နိုင်ပါတယ်။">
         <div class="emoji">❤️</div>
@@ -979,16 +974,16 @@
         <div class="extra-info">ဆောင်းရာသီမှာ ဆောင်းခေါင်းတတ်ကြပါတယ်</div>
         <audio class="card-sound" src="33.m4a"></audio>
       </div>
-    </div> -->
+    </div>
   </main>
-  <!-- <div class="modal" id="modal">
+  <div class="modal" id="modal">
     <div class="modal-content">
       <span class="close" id="close">&times;</span>
       <h2 id="modal-title"></h2>
       <p id="modal-detail"></p>
       <div class="extra-info" id="modal-extra"></div>
     </div>
-  </div> -->
+  </div>
 
   <!-- 🔊 Sound Effects & Music -->
   <audio id="clickSound" src="https://www.fesliyanstudios.com/play-mp3/387"></audio>

@@ -2,9 +2,9 @@
 .app {
   display: flex;
   flex-direction: column;
-  height: 100vh; /* full viewport height */
+  height: 120vh; /* full viewport height */
   font-family: 'Courier New', Courier, monospace;
-  background-color: #fff7e6; /* match chat page pastel theme */
+  background-color: #f7faff; /* match chat page pastel theme */
 }
 
 /* Page content below navigation */
