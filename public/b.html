@@ -1,298 +1,353 @@
 <!DOCTYPE html>
 <html lang="my">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Math For Kids - Demo</title>
+  <title>KidsLearn | Myanmar Lessons</title>
+
+  <!-- Icons & Fonts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --bg: linear-gradient(180deg, #d6f0ff 0%, #cfe8ff 100%);
+      --primary: #5B8DEF;
+      --secondary: #6ED3CF;
+      --bg: #F7FAFF;
       --card-bg: #ffffff;
-      --shadow: none;
-      /* မျဉ်း/အရိပ် ဖျောက်လိုက် */
-      --radius: 14px;
-      --gap: 28px;
-      --container-w: 1200px;
-      --text-dark: #123445;
+      --text-main: #1F2937;
+      --text-muted: #6B7280;
+      --radius: 18px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      margin: 0;
-      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      font-family: 'Nunito', sans-serif;
       background: var(--bg);
-      color: var(--text-dark);
+      color: var(--text-main);
     }
 
+    /* ================= NAV ================= */
+    nav {
+      background: #ffffff;
+      padding: 16px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+    }
 
     .logo {
       display: flex;
-      position: absolute;
-      left: 0;
-      top: 3%;
-      font-size: 28px;
-      font-family: 'Fredoka One', cursive;
+      align-items: center;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--primary);
     }
 
     .logo i {
-      margin-left: 10px;
-      font-size: 32px;
-      color: #FFD166;
-    }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-      background: #4A90E2;
-      padding: 30px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      color: var(--secondary);
+      margin-right: 8px;
     }
 
     .nav-list {
-      display: flex;
       list-style: none;
-      gap: 25px;
-      margin: 0;
-      padding: 0;
-      justify-content: center;
-    }
-
-    .nav-item {
-      text-align: center;
+      display: flex;
+      gap: 26px;
     }
 
     .nav-link {
-      /* display: block; */
-      padding: 16px 28px;
-      background-color: rgba(255, 255, 255, 0.15);
-      color: white;
       text-decoration: none;
-      font-family: 'Fredoka', sans-serif;
-      font-weight: 700;
-      font-size: 18px;
-      border-radius: 30px;
-      transition: all 0.3s ease;
-      min-height: 54px;
-      min-width: 54px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #374151;
+      position: relative;
+      padding-bottom: 4px;
     }
 
-    .nav-link:hover {
-      background-color: #50E3C2;
-      color: #fff;
-      transform: scale(1.08);
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width .25s ease;
     }
 
+    .nav-link:hover,
     .nav-link.active {
-      background-color: #ffd566;
-      color: #333;
-      box-shadow: 0 4px 14px rgba(255, 213, 102, 0.5);
+      color: var(--primary);
     }
 
-    .page {
-      padding: 28px 16px 64px;
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    /* ================= PAGE ================= */
+    main {
+      padding: 48px 6% 80px;
       display: flex;
       justify-content: center;
     }
 
     .wrap {
       width: 100%;
-      max-width: var(--container-w);
+      max-width: 1200px;
     }
 
     .heading {
       text-align: center;
-      margin: 8px 0 26px;
+      margin-bottom: 42px;
     }
 
     .heading h2 {
-      margin: 0 0 8px;
-      font-size: 22px;
-      color: #d94a66;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.9rem;
+      margin-bottom: 8px;
+      color: var(--primary);
     }
 
-    /* Grid */
+    .heading p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* ================= GRID ================= */
     .grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 36px;
-      justify-items: center;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
     }
 
-    /* Card */
+    /* ================= CARD ================= */
     .card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       background: var(--card-bg);
       border-radius: var(--radius);
-      padding: 20px;
-      box-shadow: var(--shadow);
-      /* အရိပ်မရှိတော့ */
-      cursor: pointer;
-      transition: transform .18s ease;
-      text-align: center;
-      min-height: 300px;
-      max-width: 320px;
-      width: 100%;
+      padding: 22px;
       text-decoration: none;
       color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: all .25s ease;
+      border: 1px solid #EEF2F7;
     }
 
     .card:hover {
       transform: translateY(-6px);
-      box-shadow: none;
+      box-shadow: 0 18px 36px rgba(0,0,0,0.08);
     }
 
-    /* Image */
     .card img {
       width: 100%;
-      height: auto;
-      max-width: 250px;
-      /* ပုံက card ထဲမှာ အရမ်းကြီးမသွားအောင် ထိန်း */
-      border-radius: 12px;
-      margin-bottom: 16px;
+      height: 160px;
       object-fit: cover;
+      border-radius: 14px;
+      margin-bottom: 16px;
     }
 
-
-    /* Title & Description */
     .card .title {
-      font-weight: 700;
-      font-size: 20px;
-      margin-top: 8px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.15rem;
+      margin-bottom: 6px;
     }
 
     .card .desc {
-      font-size: 14px;
-      color: #4b6474;
-      opacity: 0.9;
-      margin-top: 6px;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--text-muted);
     }
 
-    /* Button */
+    /* ================= BUTTON ================= */
     .btn-wrap {
       text-align: center;
-      margin-top: 40px;
+      margin-top: 56px;
     }
 
     .btn-practice {
-      background: linear-gradient(90deg, #ff7b7b, #ffb87b);
-      border: none;
-      padding: 14px 32px;
-      font-size: 18px;
-      font-weight: 600;
-      border-radius: 12px;
-      cursor: pointer;
+      background: var(--primary);
       color: #fff;
-      transition: transform .2s ease, opacity .2s ease;
       text-decoration: none;
-      display: inline-block;
+      padding: 14px 38px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: transform .2s ease, opacity .2s ease;
     }
 
     .btn-practice:hover {
       transform: translateY(-3px);
-      opacity: 0.9;
+      opacity: .9;
     }
 
-    /* Responsive */
-    @media (max-width:1280px) {
-      .grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 24px;
+    /* ================= MOBILE ================= */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 14px;
       }
 
-      .card img {
-        max-width: 220px;
-        height: auto;
+      .nav-list {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 18px;
+      }
+
+      main {
+        padding: 36px 5% 64px;
       }
     }
+    /* ================= NAVIGATION ================= */
+.site-nav {
+  background: #ffffff;
+  padding: 16px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  font-family: 'Nunito', sans-serif;
+}
 
-    @media (max-width:640px) {
-      .grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
+.site-nav__logo {
+  display: flex;
+  align-items: center;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #5B8DEF;
+}
 
-      .card img {
-        width: 100%;
-        height: auto;
-        max-width: 100%;
-      }
+.site-nav__logo i {
+  color: #6ED3CF;
+  margin-right: 8px;
+}
 
-      .card {
-        min-height: auto;
-        max-width: 100%;
-      }
-    }
+.site-nav__list {
+  list-style: none;
+  display: flex;
+  gap: 26px;
+}
+
+.site-nav__item {}
+
+.site-nav__link {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #374151;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.25s ease;
+}
+
+.site-nav__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: #5B8DEF;
+  transition: width 0.25s ease;
+}
+
+.site-nav__link:hover,
+.site-nav__link--active {
+  color: #5B8DEF;
+}
+
+.site-nav__link:hover::after,
+.site-nav__link--active::after {
+  width: 100%;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .site-nav {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .site-nav__list {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+  }
+}
+
   </style>
 </head>
 
 <body>
-  <nav>
-    <div class="logo">
-      <i class="fas fa-leaf"></i>
-      <span>KidsLearn</span>
-    </div>
-    <ul class="nav-list">
-      <li class="nav-item"><a href="home.html" class="nav-link" data-page="home"
-          onclick="navigateTo('home')">ပင်မစာမျက်နှာ</a></li>
-      <li class="nav-item"><a href="home.html" class="nav-link active" data-page="tutorial"
-          onclick="navigateTo('tutorial')">သင်ခန်းစာများ</a></li>
-      <li class="nav-item"><a href="chat.html" class="nav-link" data-page="chat"
-          onclick="navigateTo('chat')">စကားပြောခန်း</a>
-      </li>
-      <li class="nav-item"><a href="profile.html" class="nav-link" data-page="login"
-          onclick="navigateTo('login')">ကိုယ်ပိုင်စာမျက်နှာ</a></li>
-    </ul>
-  </nav>
 
-  <main class="page">
+  <nav class="site-nav">
+  <div class="site-nav__logo">
+    <i class="fas fa-leaf"></i>
+    <span>KidsLearn</span>
+  </div>
+  <ul class="site-nav__list">
+    <li class="site-nav__item">
+      <a href="home.html" class="site-nav__link">ပင်မစာမျက်နှာ</a>
+    </li>
+    <li class="site-nav__item">
+      <a href="home.html" class="site-nav__link site-nav__link--active">သင်ခန်းစာများ</a>
+    </li>
+    <li class="site-nav__item">
+      <a href="chat.html" class="site-nav__link">စကားပြောခန်း</a>
+    </li>
+    <li class="site-nav__item">
+      <a href="profile.html" class="site-nav__link">ကိုယ်ပိုင်စာမျက်နှာ</a>
+    </li>
+  </ul>
+</nav>
+
+
+  <main>
     <div class="wrap">
       <div class="heading">
-        <h2>Choose Your Adventure! 👇</h2>
-        <p>Click on a card to start</p>
+        <h2>Choose Your Learning Path</h2>
+        <p>အောက်က အကြောင်းအရာတွေထဲက တစ်ခုကိုရွေးပါ</p>
       </div>
 
       <section class="grid">
-        <!-- Card 1 -->
         <a href="f.html" class="card">
-          <img src="home.jpg" alt="Numbers">
+          <img src="home.jpg" alt="">
           <div class="title">မြန်မာ့ဗျည်းအက္ခရာများ</div>
-          <div class="desc">မြန်မာဗျည်းအက္ခရာတွေကို ကဒ်လေးတွေနှိပ်ပြီး ပျော်ပျော်ရွှင်ရွှင်လေ့လာကြရအောင်။</div>
+          <div class="desc">ဗျည်းအက္ခရာတွေကို လွယ်လွယ်ကူကူ လေ့လာနိုင်ပါတယ်။</div>
         </a>
 
-        <!-- Card 2 -->
         <a href="kk.html" class="card">
-          <img src="home3.jpg" alt="Operations">
+          <img src="home3.jpg" alt="">
           <div class="title">မြန်မာအသံထွက်</div>
-          <div class="desc">မြန်မာအသံထွက်တွေကို ကဒ်လေးတွေနှိပ်ပြီး ပျော်ပျော်ရွှင်ရွှင်လေ့လာကြရအောင်။</div>
+          <div class="desc">အသံထွက်တွေကို မှန်ကန်စွာ လေ့လာနိုင်ပါတယ်။</div>
         </a>
 
-        <!-- Card 3 -->
         <a href="c.html" class="card">
-          <img src="home2.jpg" alt="Shapes">
+          <img src="home2.jpg" alt="">
           <div class="title">မြန်မာစကားပုံ</div>
-          <div class="desc">မြန်မာစကားပုံတွေကို ကဒ်လေးတွေနှိပ်ပြီး ပျော်ပျော်ရွှင်ရွှင်လေ့လာကြရအောင်။</div>
+          <div class="desc">အဓိပ္ပါယ်ရှိတဲ့ စကားပုံများကို လေ့လာပါ။</div>
         </a>
 
-        <!-- Card 4 -->
         <a href="may2.html" class="card">
-          <img src="home4.jpg" alt="Time">
+          <img src="home4.jpg" alt="">
           <div class="title">မြန်မာ့ရိုးရာပုံပြင်</div>
-          <div class="desc">မြန်မာ့ရိုးရာပုံပြင်တွေကို ကဒ်လေးတွေနှိပ်ပြီး ပျော်ပျော်ရွှင်ရွှင်လေ့လာကြရအောင်။</div>
+          <div class="desc">ရိုးရာပုံပြင်တွေကို ဖတ်ရှုလေ့လာနိုင်ပါတယ်။</div>
         </a>
       </section>
 
-      <!-- Button -->
       <div class="btn-wrap">
         <a href="myanQuiz.html" class="btn-practice">လေ့ကျင့်ရန်</a>
       </div>
     </div>
   </main>
-</body>
 
+</body>
 </html>

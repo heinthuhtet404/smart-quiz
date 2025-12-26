@@ -1623,23 +1623,109 @@
       color: #34495e;
       margin: 80px 0 15px;
     }
+
+    /* ================= NAVIGATION ================= */
+.site-nav {
+  background: #ffffff;
+  padding: 16px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  font-family: 'Nunito', sans-serif;
+}
+
+.site-nav__logo {
+  display: flex;
+  align-items: center;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #5B8DEF;
+}
+
+.site-nav__logo i {
+  color: #6ED3CF;
+  margin-right: 8px;
+}
+
+.site-nav__list {
+  list-style: none;
+  display: flex;
+  gap: 26px;
+}
+
+.site-nav__item {}
+
+.site-nav__link {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #374151;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.25s ease;
+}
+
+.site-nav__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: #5B8DEF;
+  transition: width 0.25s ease;
+}
+
+.site-nav__link:hover,
+.site-nav__link--active {
+  color: #5B8DEF;
+}
+
+.site-nav__link:hover::after,
+.site-nav__link--active::after {
+  width: 100%;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .site-nav {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .site-nav__list {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+  }
+}
   </style>
 </head>
 
 <body>
   <header>
-    <nav>
-      <ul class="nav-list">
-        <div class="logo">
-          <i class="fas fa-leaf"></i>
-          <span>KidsLearn</span>
-        </div>
-        <li class="nav-item"><a href="home.html" class="nav-link" data-page="home">ပင်မစာမျက်နှာ</a></li>
-        <li class="nav-item"><a href="home.html" class="nav-link active" data-page="tutorial">သင်ခန်းစာများ</a></li>
-        <li class="nav-item"><a href="chat.html" class="nav-link" data-page="chat">စကားပြောခန်း</a></li>
-        <li class="nav-item"><a href="profile.html" class="nav-link" data-page="translate">ကိုယ်ပိုင်စာမျက်နှာ</a></li>
-      </ul>
-    </nav>
+    <nav class="site-nav">
+    <div class="site-nav__logo">
+      <i class="fas fa-leaf"></i>
+      <span>KidsLearn</span>
+    </div>
+    <ul class="site-nav__list">
+      <li class="site-nav__item">
+        <a href="home.html" class="site-nav__link">ပင်မစာမျက်နှာ</a>
+      </li>
+      <li class="site-nav__item">
+        <a href="home.html" class="site-nav__link site-nav__link--active">သင်ခန်းစာများ</a>
+      </li>
+      <li class="site-nav__item">
+        <a href="chat.html" class="site-nav__link">စကားပြောခန်း</a>
+      </li>
+      <li class="site-nav__item">
+        <a href="profile.html" class="site-nav__link">ကိုယ်ပိုင်စာမျက်နှာ</a>
+      </li>
+    </ul>
+  </nav>
   </header>
   <div id="homePage" class="home-page">
     <h1>English for Kids</h1>

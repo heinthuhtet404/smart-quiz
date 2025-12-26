@@ -5,46 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KidsLearn | ကလေးများအတွက်ပညာသင်ကြားမှု</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap"
-        rel="stylesheet">
+
+    <!-- Icons & Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="html.css">
+
     <style>
-        /* style.css */
         :root {
-            --primary: #4A90E2;
-            --secondary: #50E3C2;
-            --accent1: #FFD166;
-            --accent2: #EF476F;
-            --accent3: #A78BFA;
-            --background: #F9F7FE;
-            --card-bg: #FFFFFF;
-            --text: #333333;
-            --text-light: #666666;
-            --border: #E0E0E0;
+            --primary: #5B8DEF;
+            --secondary: #6ED3CF;
+            --accent: #FFD36E;
+            --danger: #FF7A7A;
 
-            --font-heading: 'Fredoka', cursive;
-            --font-body: 'Nunito', sans-serif;
-            --font-size-base: 16px;
-            --font-size-md: 18px;
-            --font-size-lg: 22px;
+            --bg-main: #FFFDF8;
+            --bg-card: #FFFFFF;
 
-            --space-sm: 8px;
-            --space-md: 16px;
-            --space-lg: 24px;
-            --space-xl: 32px;
-            --space-xxl: 48px;
+            --text-main: #2E2E2E;
+            --text-muted: #6B7280;
 
-            --animation-speed: 0.3s;
-            --animation-ease: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-
-            --card-gap: 40px;
-            /* Increased gap between cards */
+            --font-heading: 'Fredoka', 'Noto Sans Myanmar', sans-serif;
+            --font-body: 'Nunito', 'Noto Sans Myanmar', sans-serif;
         }
 
         * {
@@ -55,451 +38,537 @@
 
         body {
             font-family: var(--font-body);
-            font-size: var(--font-size-base);
-            background-color: var(--background);
-            color: var(--text);
-            line-height: 1.5;
+            background: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
         }
 
-
-        .logo {
-            display: flex;
-            position: absolute;
-            left: 0;
-            top: 3%;
-            font-size: 28px;
-            font-family: 'Fredoka One', cursive;
-        }
-
-        .logo i {
-            margin-left: 10px;
-            font-size: 32px;
-            color: #FFD166;
-        }
-
+        /* ================= NAV ================= */
         nav {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            background: #4A90E2;
-            padding: 15px 0;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background: var(--primary);
+            padding: 14px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
         }
 
         .nav-list {
             display: flex;
-            list-style: none;
-            gap: 25px;
-            margin: 0;
-            padding: 0;
             justify-content: center;
+            align-items: center;
+            gap: 18px;
+            list-style: none;
+            position: relative;
         }
 
-        .nav-item {
-            text-align: center;
+        .logo {
+            position: absolute;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            font-family: var(--font-heading);
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .logo i {
+            color: var(--accent);
+            margin-right: 6px;
         }
 
         .nav-link {
-            display: block;
-            padding: 16px 28px;
-            background-color: rgba(255, 255, 255, 0.15);
-            color: white;
-            text-decoration: none;
-            font-family: 'Fredoka', sans-serif;
-            font-weight: 700;
-            font-size: 18px;
+            background: rgba(255, 255, 255, .18);
+            padding: 12px 22px;
             border-radius: 30px;
-            transition: all 0.3s ease;
-            min-height: 54px;
-            min-width: 54px;
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+            transition: .25s;
         }
 
         .nav-link:hover {
-            background-color: #50E3C2;
-            color: #fff;
-            transform: scale(1.08);
+            background: var(--secondary);
         }
 
         .nav-link.active {
-            background-color: #ffd566;
+            background: var(--accent);
             color: #333;
-            box-shadow: 0 4px 14px rgba(255, 213, 102, 0.5);
         }
 
-        /* ===== MAIN CONTENT ===== */
+        /* ================= HERO ================= */
         main {
-            margin-top: 70px;
-            padding: 0 5%;
+            padding: 24px 5%;
         }
 
         .hero {
             text-align: center;
-            margin-bottom: var(--space-lg);
+            margin-bottom: 40px;
         }
 
         .hero h1 {
             font-family: var(--font-heading);
-            font-size: 2.2rem;
             color: var(--primary);
-            margin-bottom: var(--space-md);
+            font-size: 2.2rem;
+            margin-top: 16px;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            color: var(--text-light);
             max-width: 600px;
-            margin: 0 auto;
+            margin: 10px auto;
+            color: var(--text-muted);
         }
 
         .cta-button {
-            display: inline-block;
-            background: var(--accent2);
-            color: white;
-            padding: var(--space-md) var(--space-lg);
-            border-radius: 50px;
+            background: var(--danger);
+            color: #fff;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 40px;
             font-family: var(--font-heading);
             font-size: 1rem;
-            font-weight: 700;
+            cursor: pointer;
             text-decoration: none;
-            margin-top: var(--space-md);
-            transition: transform 0.2s;
+            display: inline-block;
+            margin-top: 16px;
         }
 
-        .cta-button:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Subject Cards */
+        /* ================= SECTIONS ================= */
         .section-title {
+            text-align: center;
             font-family: var(--font-heading);
             font-size: 1.8rem;
-            text-align: center;
-            margin: var(--space-xl) 0;
+            margin: 40px 0 24px;
             color: var(--primary);
-            position: relative;
         }
 
-        .section-title::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: var(--accent2);
-            border-radius: 2px;
-        }
-
+        /* ================= CARDS ================= */
         .cards-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            /* Fixed to 2 columns */
-            gap: var(--card-gap);
-            /* Using the increased gap variable */
-            justify-content: center;
-            margin-bottom: var(--space-xxl);
+            gap: 32px;
             max-width: 1100px;
-            /* Increased container width to accommodate larger gaps */
-            margin-left: auto;
-            margin-right: auto;
-            padding: 0 20px;
-            /* Added padding for more space on sides */
+            margin: auto;
         }
 
         .card {
-            background: white;
-            border-radius: 20px;
+            background: var(--bg-card);
+            border-radius: 22px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
+            transition: transform .25s;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
-        }
-
-        .card-image {
-            height: 180px;
-            overflow: hidden;
-            position: relative;
+            transform: translateY(-6px);
         }
 
         .card-image img {
             width: 100%;
-            height: 100%;
+            height: 180px;
             object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .card:hover .card-image img {
-            transform: scale(1.05);
         }
 
         .card-content {
             padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
         }
 
         .subject-title {
-            font-weight: 700;
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            color: #2d3436;
             font-family: var(--font-heading);
+            font-size: 1.4rem;
+            margin-bottom: 8px;
         }
 
         .description {
-            color: #636e72;
-            margin-bottom: 20px;
-            line-height: 1.5;
-            flex-grow: 1;
-            font-family: var(--font-body);
-        }
-
-        .progress-container {
-            margin-bottom: 20px;
-        }
-
-        .progress-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-            color: #636e72;
-            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
         }
 
         .progress-bar {
+            background: #E5E7EB;
             height: 8px;
-            background-color: #e0e0e0;
-            border-radius: 4px;
+            border-radius: 8px;
             overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
-            border-radius: 4px;
+            background: var(--primary);
         }
 
         .action-button {
-            background-color: #0984e3;
-            color: white;
-            border: none;
-            padding: 12px 0;
-            border-radius: 30px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-size: 1rem;
-            font-family: var(--font-body);
-        }
-
-        .action-button {
-            display: inline-block;
+            margin-top: 16px;
             width: 100%;
-            /* same width as science button */
+            padding: 12px;
+            border-radius: 30px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
         }
 
-        .action-button:hover {
-            background-color: #0770c3;
-        }
-
-        /* Subject-specific colors */
-        .purple .progress-fill {
-            background-color: #6c5ce7;
-        }
-
-        .purple .card-image {
-            background-color: #a29bfe;
-        }
-
-        .blue .progress-fill {
-            background-color: #0984e3;
-        }
-
-        .blue .card-image {
-            background-color: #74b9ff;
-        }
-
-        .yellow .progress-fill {
-            background-color: #fdcb6e;
-        }
-
-        .yellow .card-image {
-            background-color: #ffeaa7;
-        }
-
-        .green .progress-fill {
-            background-color: #00b894;
-        }
-
-        .green .card-image {
-            background-color: #55efc4;
-        }
-
-        .red .progress-fill {
-            background-color: #d63031;
-        }
-
-        .red .card-image {
-            background-color: #ff7675;
-        }
-
-        /* Daily Lesson */
+        /* ================= DAILY ================= */
         .daily-lesson {
-            background: linear-gradient(135deg, var(--accent1), #E6A800);
-            border-radius: 20px;
-            padding: var(--space-xl);
+            background: linear-gradient(135deg, var(--accent), #FFE8A3);
+            border-radius: 24px;
+            padding: 28px;
             text-align: center;
-            color: #333;
-            margin-bottom: var(--space-xxl);
-            box-shadow: 0 10px 25px rgba(255, 213, 102, 0.3);
+            margin: 48px auto;
+            max-width: 900px;
         }
 
-        .daily-lesson h2 {
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            margin-bottom: var(--space-md);
-        }
-
-        .daily-lesson p {
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto var(--space-md);
-        }
-
-        /* Fun Fact */
-        .extra-fun-fact {
-            border-radius: 24px;
-            padding: var(--space-xl);
-            margin: var(--space-xxl) auto;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            max-width: 1100px;
-            background: linear-gradient(135deg, #ffd1e3, #ffd6ff);
-            color: #333;
-        }
-
+        /* ================= FUN ================= */
+        .extra-fun-fact,
         .extra-challenge {
+            background: #F0F6FF;
             border-radius: 24px;
-            padding: var(--space-xl);
-            margin: var(--space-xxl) auto;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            max-width: 1100px;
-            background: #cfe6ff;
+            padding: 28px;
+            max-width: 1000px;
+            margin: 48px auto;
         }
 
         .extra-heading {
             font-family: var(--font-heading);
-            font-size: 1.5rem;
             text-align: center;
-            margin-bottom: var(--space-md);
-            color: #5b6ee1;
-        }
-
-        .extra-text {
-            font-size: 1.1rem;
-            text-align: center;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .extra-question {
-            font-size: 1.4rem;
-            text-align: center;
-            margin: var(--space-lg) auto;
-            font-weight: 700;
-            color: #2b2b2b;
+            color: var(--primary);
+            margin-bottom: 16px;
         }
 
         .extra-options {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: var(--space-lg);
-            margin-top: var(--space-lg);
+            gap: 16px;
+            margin-top: 20px;
         }
 
         .option-btn {
-            background: #fff;
-            border: 3px solid #8da4ff;
+            padding: 16px;
             border-radius: 16px;
-            padding: 18px 12px;
+            border: 3px solid var(--primary);
+            background: #fff;
             font-family: var(--font-heading);
-            font-size: 1.2rem;
             cursor: pointer;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
-            transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
-        }
-
-        .option-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .option-btn:active {
-            transform: translateY(0);
         }
 
         .option-btn.selected {
-            background: var(--accent1);
-            color: #333;
-            border-color: #ffd166;
-            box-shadow: 0 0 0 4px rgba(255, 209, 102, 0.45) inset;
+            background: var(--accent);
         }
 
-        .extra-status {
-            text-align: center;
-            margin-top: var(--space-md);
-            font-weight: 800;
-            font-size: 1.1rem;
-        }
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 768px) {
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
 
-        /* Responsive adjustments */
-        @media (max-width: 820px) {
             .extra-options {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
+        /* ================= CARD IMAGE UPGRADE ================= */
+
+        /* Subject accent colors */
+        .card.purple {
+            --card-accent: #8B5CF6;
+        }
+
+        .card.blue {
+            --card-accent: #3B82F6;
+        }
+
+        .card.yellow {
+            --card-accent: #F59E0B;
+        }
+
+        .card.green {
+            --card-accent: #10B981;
+        }
+
+        /* Card accent line */
+        .card {
+            border-top: 6px solid var(--card-accent);
+        }
+
+        /* Image container */
+        .card-image {
+            position: relative;
+            height: 190px;
+            overflow: hidden;
+        }
+
+        /* Image animation */
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        /* Soft gradient overlay */
+        .card-image::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom,
+                    rgba(0, 0, 0, 0.05),
+                    rgba(0, 0, 0, 0.35));
+        }
+
+        /* Emoji badge (kids + adult friendly) */
+        .card-image::before {
+            content: attr(data-icon);
+            position: absolute;
+            bottom: 12px;
+            left: 14px;
+            font-size: 32px;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 8px 12px;
+            border-radius: 14px;
+            z-index: 2;
+        }
+
+        /* Hover zoom */
+        .card:hover .card-image img {
+            transform: scale(1.08);
+        }
+
+        /* ========== MODERN CARD RESET ========== */
+        .cards-container {
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 28px;
+            padding: 10px 0;
+        }
+
+        /* Card */
+        .card {
+            border-radius: 18px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+            border: 1px solid #EEF2F7;
+            transition: all 0.25s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Image – minimal */
+        .card-image {
+            height: 140px;
+            background: #F3F6FB;
+        }
+
+        .card-image img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            filter: saturate(0.9) contrast(1.05);
+        }
+
+        /* Content spacing */
+        .card-content {
+            padding: 18px 20px 22px;
+        }
+
+        /* Title */
+        .subject-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        /* Description */
+        .description {
+            font-size: 0.92rem;
+            line-height: 1.55;
+            color: var(--text-muted);
+        }
+
+        /* Progress clean */
+        .progress-container {
+            margin-top: 14px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #6B7280;
+            margin-bottom: 6px;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #E5E7EB;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #5B8DEF, #6ED3CF);
+        }
+
+        /* Button – modern flat */
+        .action-button {
+            margin-top: 18px;
+            background: transparent;
+            border: 1.5px solid var(--primary);
+            color: var(--primary);
+            font-size: 0.9rem;
+            padding: 10px;
+        }
+
+        .action-button:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        /* ================= MODERN NAV (MATCH b.html) ================= */
+
+        nav {
+            background: #ffffff;
+            padding: 16px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-family: 'Fredoka', 'Noto Sans Myanmar', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo i {
+            color: var(--secondary);
+            margin-right: 8px;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            gap: 26px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #374151;
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width .25s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Mobile */
         @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 14px;
+            }
+
             .nav-list {
                 flex-wrap: wrap;
-                gap: 15px;
-            }
-
-            .cards-container {
-                grid-template-columns: 1fr;
-                /* Single column on mobile */
-                max-width: 400px;
-                gap: 30px;
-                /* Slightly reduced gap on mobile */
+                justify-content: center;
+                gap: 18px;
             }
         }
 
-        @media (max-width: 480px) {
-            .nav-list {
+        /* ================= NAVIGATION ================= */
+        .site-nav {
+            background: #ffffff;
+            padding: 16px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .site-nav__logo {
+            display: flex;
+            align-items: center;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #5B8DEF;
+        }
+
+        .site-nav__logo i {
+            color: #6ED3CF;
+            margin-right: 8px;
+        }
+
+        .site-nav__list {
+            list-style: none;
+            display: flex;
+            gap: 26px;
+        }
+
+        .site-nav__item {}
+
+        .site-nav__link {
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #374151;
+            position: relative;
+            padding-bottom: 4px;
+            transition: color 0.25s ease;
+        }
+
+        .site-nav__link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0;
+            height: 2px;
+            background: #5B8DEF;
+            transition: width 0.25s ease;
+        }
+
+        .site-nav__link:hover,
+        .site-nav__link--active {
+            color: #5B8DEF;
+        }
+
+        .site-nav__link:hover::after,
+        .site-nav__link--active::after {
+            width: 100%;
+        }
+
+        /* ================= MOBILE ================= */
+        @media (max-width: 768px) {
+            .site-nav {
                 flex-direction: column;
-                gap: 10px;
+                gap: 14px;
             }
 
-            .extra-options {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .welcome {
-            opacity: 0;
-            transform: translateY(-10px);
-            animation: fadeIn 0.6s forwards;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            .site-nav__list {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 18px;
             }
         }
     </style>
@@ -508,20 +577,24 @@
 <body>
     <!-- Header -->
     <header>
-        <nav>
-            <ul class="nav-list">
-                <div class="logo">
-                    <i class="fas fa-leaf"></i>
-                    <span>KidsLearn</span>
-                </div>
-                <li class="nav-item"><a href="home.html" class="nav-link active" data-page="home"
-                        onclick="navigateTo('home')">ပင်မစာမျက်နှာ</a></li>
-                <li class="nav-item"><a href="#lesson" class="nav-link" data-page="tutorial"
-                        onclick="navigateTo('tutorial')">သင်ခန်းစာများ</a></li>
-                <li class="nav-item"><a href="chat.html" class="nav-link" data-page="chat"
-                        onclick="navigateTo('chat')">စကားပြောခန်း</a></li>
-                <li class="nav-item"><a href="profile.html" class="nav-link" data-page="login"
-                        onclick="navigateTo('login')">ကိုယ်ပိုင်စာမျက်နှာ</a></li>
+        <nav class="site-nav">
+            <div class="site-nav__logo">
+                <i class="fas fa-leaf"></i>
+                <span>KidsLearn</span>
+            </div>
+            <ul class="site-nav__list">
+                <li class="site-nav__item">
+                    <a href="home.html" class="site-nav__link site-nav__link--active">ပင်မစာမျက်နှာ</a>
+                </li>
+                <li class="site-nav__item">
+                    <a href="home.html#lesson" class="site-nav__link ">သင်ခန်းစာများ</a>
+                </li>
+                <li class="site-nav__item">
+                    <a href="chat.html" class="site-nav__link">စကားပြောခန်း</a>
+                </li>
+                <li class="site-nav__item">
+                    <a href="profile.html" class="site-nav__link">ကိုယ်ပိုင်စာမျက်နှာ</a>
+                </li>
             </ul>
         </nav>
     </header>
@@ -550,7 +623,8 @@
             <div class="daily-lesson">
                 <h2>🌟 အထူးသင်ခန်းစာ (ယနေ့)</h2>
                 <p>မြန်မာအက္ခရာ: သရုပ်ပြပုံများနှင့် စာပေဖြင့် မြန်မာစာလေ့လာပါ။</p>
-                <a href="b.html" style="border: none;"><button class="cta-button" style="background: #FF6B6B;border: none; cursor: pointer;">ယနေ့သင်ခန်းစာ စတင်ပါ</button></a>
+                <a href="b.html" style="border: none;"><button class="cta-button"
+                        style="background: #FF6B6B;border: none; cursor: pointer;">ယနေ့သင်ခန်းစာ စတင်ပါ</button></a>
             </div>
 
             <!-- Subjects -->
@@ -558,14 +632,13 @@
             <div class="cards-container" id="lesson">
                 <!-- Myanmar Language Card -->
                 <div class="card purple">
-                    <div class="card-image">
-                        <img src="myanmarsar.jpg" alt="Myanmar Language">
+                    <div class="card-image" data-icon="📘">
+                        <img src="myanmarsubjectone.jpg" alt="Myanmar Language">
                     </div>
                     <div class="card-content">
                         <h2 class="subject-title">မြန်မာစာ</h2>
-                        <p class="description">မြန်မာဘာသာစကားနှင့် စာပေကို နက်ရှိုင်းစွာ လေ့လာပါ။ ရှေးဟောင်းကဗျာများမှ
-                            အခြေခံအကြောင်းအရာများအထိ။</p>
-                        <div class="progress-container">
+                        <p class="description">မြန်မာဘာသာစကားနှင့် စာပေကို နက်ရှိုင်းစွာ လေ့လာပါ။</p>
+                        <!-- <div class="progress-container">
                             <div class="progress-info">
                                 <span>တိုးတက်မှု</span>
                                 <span>၇၅%</span>
@@ -573,22 +646,22 @@
                             <div class="progress-bar">
                                 <div class="progress-fill" style="width: 75%;"></div>
                             </div>
-                        </div>
+                        </div> -->
                         <a href="b.html"><button class="action-button">သင်ခန်းစာများ</button></a>
                     </div>
                 </div>
 
                 <!-- English Card -->
                 <div class="card blue">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    <div class="card-image" data-icon="🌍">
+                        <img src="engsubjectone.jpg"
                             alt="English Language">
                     </div>
                     <div class="card-content">
                         <h2 class="subject-title">အင်္ဂလိပ်စာ</h2>
                         <p class="description">နေ့စဉ်သုံး စကားပြောမှ စီးပွားရေးဆိုင်ရာ အင်္ဂလိပ်စာအထိ လေ့လာနိုင်ပါသည်။
                         </p>
-                        <div class="progress-container">
+                        <!-- <div class="progress-container">
                             <div class="progress-info">
                                 <span>တိုးတက်မှု</span>
                                 <span>၆၀%</span>
@@ -596,22 +669,22 @@
                             <div class="progress-bar">
                                 <div class="progress-fill" style="width: 60%;"></div>
                             </div>
-                        </div>
+                        </div> -->
                         <a href="eng.html"><button class="action-button">သင်ခန်းစာများ</button></a>
                     </div>
                 </div>
 
                 <!-- Mathematics Card -->
                 <div class="card yellow">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    <div class="card-image" data-icon="➕">
+                        <img src="mathsubjectone.jpg"
                             alt="Mathematics">
                     </div>
                     <div class="card-content">
                         <h2 class="subject-title">သင်္ချာ</h2>
                         <p class="description">ဂဏန်းသင်္ချာမှ အက္ခရာသင်္ချာအထိ နှင့် ရှုပ်ထွေးသော ညီမျှခြင်းများကို
                             ဖြေရှင်းနည်းများ။</p>
-                        <div class="progress-container">
+                        <!-- <div class="progress-container">
                             <div class="progress-info">
                                 <span>တိုးတက်မှု</span>
                                 <span>၈၅%</span>
@@ -619,22 +692,22 @@
                             <div class="progress-bar">
                                 <div class="progress-fill" style="width: 85%;"></div>
                             </div>
-                        </div>
+                        </div> -->
                         <a href="math.html"><button class="action-button">သင်ခန်းစာများ</button></a>
                     </div>
                 </div>
 
                 <!-- Science Card -->
                 <div class="card green">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                    <div class="card-image" data-icon="🔬">
+                        <img src="sciencesubjectone.png"
                             alt="Science">
                     </div>
                     <div class="card-content">
                         <h2 class="subject-title">သိပ္ပံ</h2>
                         <p class="description">သဘာဝကမ္ဘာကြီးအကြောင်း လေ့လာပါ။ ဓာတ်ခွဲခန်းစမ်းသပ်မှုများနှင့်
                             သီအိုရီများ။</p>
-                        <div class="progress-container">
+                        <!-- <div class="progress-container">
                             <div class="progress-info">
                                 <span>တိုးတက်မှု</span>
                                 <span>၄၀%</span>
@@ -642,21 +715,21 @@
                             <div class="progress-bar">
                                 <div class="progress-fill" style="width: 40%;"></div>
                             </div>
-                        </div>
+                        </div> -->
                         <a href="FF.html"><button class="action-button">သင်ခန်းစာများ</button></a>
                     </div>
                 </div>
             </div>
 
             <!-- Fun Fact -->
-            <div class="extra-fun-fact" id="extra-fun-fact" role="region" aria-labelledby="funfact-title">
+            <!-- <div class="extra-fun-fact" id="extra-fun-fact" role="region" aria-labelledby="funfact-title">
                 <h2 class="extra-heading" id="funfact-title">💡 ဗဟုသုတ သတင်း</h2>
                 <p class="extra-text">သင်သိပါသလား? Octopus များတွင် နှလုံး ၃ လုံးရှိသည်။ နှလုံး ၂ လုံးက gills
                     ကိုသွေးပေးပြီး တစ်လုံးက ကိုယ်ခန္ဓာအတွင်းသို့ သွေးပေးသည်။ စီးနေစဉ်နှလုံးတစ်လုံး ရပ်တန့်သည်။</p>
-            </div>
+            </div> -->
 
             <!-- Daily Challenge -->
-            <div class="extra-challenge" id="extra-challenge" role="region" aria-labelledby="challenge-title">
+            <!-- <div class="extra-challenge" id="extra-challenge" role="region" aria-labelledby="challenge-title">
                 <h2 class="extra-heading" id="challenge-title">🎯 ယနေ့ စိန်ခေါ်မှု</h2>
                 <p class="extra-question">သင့်တွင် <b>ပန်းသီး အနီရောင် </b> ၃လုံးနှင့် <b>ပန်းသီး အစီမ်းရောင် ၄ လုံး
                     </b> အားလုံး စုစုပေါင်းဘယ် လောက်ရမလဲ?</p>
@@ -667,7 +740,7 @@
                     <button class="option-btn" type="button">၅</button>
                 </div>
                 <div id="extra-challenge-status" class="extra-status"></div>
-            </div>
+            </div> -->
         </section>
     </main>
 
