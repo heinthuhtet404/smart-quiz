@@ -18,7 +18,8 @@
 
         body {
             font-family: 'Fredoka', sans-serif;
-            background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+            /* background: linear-gradient(135deg, #a1c4fd, #c2e9fb); */
+            background-color: #F7FAFF;
             min-height: 100vh;
             color: #333;
             overflow-x: hidden;
@@ -74,7 +75,8 @@
         }
 
         header {
-            background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+            /* background: linear-gradient(135deg, #a1c4fd, #c2e9fb); */
+            background-color: #F7FAFF;
             padding: 25px;
             font-size: 36px;
             font-weight: bold;
@@ -740,61 +742,278 @@
             font-size: 32px;
             color: #FFD166;
         }
+
+        /* ================= NAVIGATION ================= */
+        .site-nav {
+            background: #ffffff;
+            padding: 16px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .site-nav__logo {
+            display: flex;
+            align-items: center;
+            /* font-family: 'Fredoka', sans-serif; */
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #5B8DEF;
+        }
+
+        .site-nav__logo i {
+            color: #6ED3CF;
+            margin-right: 8px;
+        }
+
+        .site-nav__list {
+            list-style: none;
+            display: flex;
+            gap: 26px;
+        }
+
+        .site-nav__item {}
+
+        .site-nav__link {
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #374151;
+            position: relative;
+            padding-bottom: 4px;
+            transition: color 0.25s ease;
+        }
+
+        .site-nav__link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0;
+            height: 2px;
+            background: #5B8DEF;
+            transition: width 0.25s ease;
+        }
+
+        .site-nav__link:hover,
+        .site-nav__link--active {
+            color: #5B8DEF;
+        }
+
+        .site-nav__link:hover::after,
+        .site-nav__link--active::after {
+            width: 100%;
+        }
+
+        /* ================= MOBILE ================= */
+        @media (max-width: 768px) {
+            .site-nav {
+                flex-direction: column;
+                gap: 14px;
+            }
+
+            .site-nav__list {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 18px;
+            }
+        }
+
+        /* Home Section */
+/* #home {
+    background: linear-gradient(180deg, #f6f9ff, #ffffff);
+    padding: 40px 20px 60px;
+    min-height: 100vh;
+    font-family: 'Segoe UI', 'Noto Sans Myanmar', sans-serif;
+} */
+
+/* ===== Container Grid ===== */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        /* ===== Card ===== */
+        .learn-card {
+            background: #fff;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .learn-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        /* ===== Card Image ===== */
+        .card-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        /* ===== Card Info ===== */
+        .card-info {
+            padding: 16px;
+            text-align: center;
+        }
+        .card-info h3 {
+            margin: 8px 0 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+        }
+        .card-info p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        /* ===== Card Button ===== */
+        .card-info button {
+            background: linear-gradient(135deg, #6c63ff, #8f8bff);
+            color: #fff;
+            border: none;
+            padding: 10px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card-info button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 18px rgba(108, 99, 255, 0.35);
+        }
+
+        /* ===== Optional: Result Button ===== */
+        .result-btn-wrapper {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .result-btn {
+            background: linear-gradient(135deg, #ff9800, #ffb74d);
+            color: #fff;
+            border: none;
+            padding: 14px 36px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            border-radius: 999px;
+            cursor: pointer;
+            box-shadow: 0 10px 22px rgba(255, 152, 0, 0.35);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .result-btn:hover {
+            transform: scale(1.06);
+            box-shadow: 0 14px 30px rgba(255, 152, 0, 0.45);
+        }
+        .result-btn:active {
+            transform: scale(0.98);
+        }
+
     </style>
 </head>
 
 <body>
-    <nav>
-        <ul class="nav-list">
-            <div class="logo">
-                <i class="fas fa-leaf"></i>
-                <span>KidsLearn</span>
-            </div>
-            <li class="nav-item"><a href="home.html" class="nav-link" data-page="home"
-                    onclick="navigateTo('home')">ပင်မစာမျက်နှာ</a></li>
-            <li class="nav-item"><a href="home.html" class="nav-link active" data-page="tutorial"
-                    onclick="navigateTo('tutorial')">သင်ခန်းစာများ</a></li>
-            <li class="nav-item"><a href="chat.html" class="nav-link" data-page="chat"
-                    onclick="navigateTo('chat')">စကားပြောခန်း</a></li>
-            <li class="nav-item"><a href="profile.html" class="nav-link" data-page="login"
-                    onclick="navigateTo('login')">ကိုယ်ပိုင်စာမျက်နှာ</a></li>
+    <nav class="site-nav">
+        <div class="site-nav__logo">
+            <i class="fas fa-leaf"></i>
+            <span>KidsLearn</span>
+        </div>
+        <ul class="site-nav__list">
+            <li class="site-nav__item">
+                <a href="home.html" class="site-nav__link site-nav__link--active">ပင်မစာမျက်နှာ</a>
+            </li>
+            <!-- <li class="site-nav__item">
+                    <a href="home.html#lesson" class="site-nav__link ">သင်ခန်းစာများ</a>
+                </li> -->
+            <li class="site-nav__item">
+                <a href="chat.html" class="site-nav__link">စကားပြောခန်း</a>
+            </li>
+            <li class="site-nav__item">
+                <a href="profile.html" class="site-nav__link">ကိုယ်ပိုင်စာမျက်နှာ</a>
+            </li>
         </ul>
     </nav>
-    <header>
+    <!-- <header>
         <span id="headerTitle">🎉 ကလေးများအတွက် သင်္ချာ 🎉</span>
-    </header>
+    </header> -->
     <!-- Home Section -->
     <section id="home">
-        <div class="container" style="display: grid; grid-template-columns: repeat(3, 1fr);">
-            <div class="card" onclick="showSection('numbers')">
-                <img src="numbers.jpg" alt="Numbers"><br>
-                <h3 id="numbersCard">🔢 ဂဏန်းများ</h3>
+        <div class="card-grid">
+            <!-- Numbers Card -->
+            <div class="learn-card">
+                <img src="numbers.jpg" alt="Numbers" class="card-img">
+                <div class="card-info">
+                    <h3>🔢 ဂဏန်းများ</h3>
+                    <p>Numbers learning</p>
+                    <button onclick="showSection('numbers')">Start</button>
+                </div>
             </div>
-            <div class="card" onclick="showSection('math-operations')">
-                <img src="math.jpg" alt="Math Operations"><br>
-                <h3 id="mathOpsCard">🧮 ပေါင်း၊နုတ်၊မြှောက်၊စား</h3>
+
+            <!-- Math Operations Card -->
+            <div class="learn-card">
+                <img src="math.jpg" alt="Math Operations" class="card-img">
+                <div class="card-info">
+                    <h3>🧮 ပေါင်း • နုတ် • မြှောက် • စား</h3>
+                    <p>Math operations</p>
+                    <button onclick="showSection('math-operations')">Start</button>
+                </div>
             </div>
-            <div class="card" onclick="showSection('shapes')">
-                <img src="shapes.jpg" alt="Shapes"><br>
-                <h3 id="shapesCard">🔺 ပုံသဏ္ဍာန်များ</h3>
+
+            <!-- Shapes Card -->
+            <div class="learn-card">
+                <img src="shapes.jpg" alt="Shapes" class="card-img">
+                <div class="card-info">
+                    <h3>🔺 ပုံသဏ္ဍာန်များ</h3>
+                    <p>Shapes learning</p>
+                    <button onclick="showSection('shapes')">Start</button>
+                </div>
             </div>
-            <div class="card" onclick="showSection('patterns')">
-                <img src="pattern.jpg" alt="Patterns"><br>
-                <h3 id="patternsCard">🎨 Pattern များ</h3>
+
+            <!-- Patterns Card -->
+            <div class="learn-card">
+                <img src="pattern.jpg" alt="Patterns" class="card-img">
+                <div class="card-info">
+                    <h3>🎨 Pattern များ</h3>
+                    <p>Patterns learning</p>
+                    <button onclick="showSection('patterns')">Start</button>
+                </div>
             </div>
-            <div class="card" onclick="showSection('time')">
-                <img src="time.jpg" alt="Time"><br>
-                <h3 id="timeCard">⏰ အချိန်</h3>
+
+            <!-- Time Card -->
+            <div class="learn-card">
+                <img src="time.jpg" alt="Time" class="card-img">
+                <div class="card-info">
+                    <h3>⏰ အချိန်</h3>
+                    <p>Time learning</p>
+                    <button onclick="showSection('time')">Start</button>
+                </div>
             </div>
-            <div class="card" onclick="showSection('money')">
-                <img src="money.jpg" alt="Money"><br>
-                <h3 id="moneyCard">💰 ငွေကြေး</h3>
+
+            <!-- Money Card -->
+            <div class="learn-card">
+                <img src="money.jpg" alt="Money" class="card-img">
+                <div class="card-info">
+                    <h3>💰 ငွေကြေး</h3>
+                    <p>Money learning</p>
+                    <button onclick="showSection('money')">Start</button>
+                </div>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 25px;">
-            <button onclick="showResults()" id="viewResultsBtn">ရလဒ်များကြည့်ရန်</button>
+
+        <div class="result-btn-wrapper">
+            <button class="result-btn" onclick="showResults()">ရလဒ်များကြည့်ရန်</button>
         </div>
     </section>
+
     <!-- Numbers Section -->
     <section id="numbers" class="hidden">
         <div id="numbersLearning" class="lesson-section">
