@@ -593,7 +593,7 @@
                     <a href="home.html#lesson" class="site-nav__link ">သင်ခန်းစာများ</a>
                 </li> -->
                 <li class="site-nav__item">
-                    <a href="chat.html" class="site-nav__link">စကားပြောခန်း</a>
+                    <a href="chat.html" class="site-nav__link">စကားပြောခန်း</a>  <!-- noted to fix -->
                 </li>
                 <li class="site-nav__item">
                     <a href="profile.html" class="site-nav__link">ကိုယ်ပိုင်စာမျက်နှာ</a>
@@ -750,7 +750,7 @@
     <script>
         async function fetchCurrentUser() {
             try {
-                const res = await fetch('/current-user');
+                const res = await fetch('/current-user'); // noted to fix
                 if (!res.ok) throw new Error('Not logged in');
 
                 const user = await res.json();
@@ -769,7 +769,7 @@
             } catch (err) {
                 console.error(err);
                 alert('You are not logged in! Redirecting to login page.');
-                window.location.href = '/login.html';
+                window.location.href = '/login.html';  //noted to fix
             }
         }
 

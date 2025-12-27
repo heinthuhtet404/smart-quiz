@@ -1,4 +1,6 @@
 // backend/server.js
+require('dotenv').config();
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -21,12 +23,21 @@ const server = http.createServer(app);
 
 // ------------------- SOCKET.IO -------------------
 const io = new Server(server, {
-  cors: { origin: ['http://localhost:5173'], methods: ['GET','POST'] }
+  cors: {
+    origin: process.env.CLIENT_URL,
+    methods: ['GET','POST'],
+    credentials: true
+  }
 });
+
 app.set('io', io);
 
 // ------------------- MIDDLEWARE -------------------
-app.use(cors());
+app.use(cors({
+  origin: process.env.CLIENT_URL,
+  credentials: true
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../public')));
@@ -34,13 +45,19 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // ------------------- SESSION -------------------
 app.use(session({
-  secret: 'your-secret-key',
+  secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
+  }
 }));
 
+
 // ------------------- MONGODB -------------------
-mongoose.connect('mongodb://localhost:27017/chat-app', {
+mongoose.connect(process.env.MONGO_URI, { 
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
