@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Sidebar.css';
+import './SideBar.css';
 
 const SideBar = ({ onSelectUser, users: propUsers, loginUserName, loginUserEmail, loginUserId }) => {
   const [users, setUsers] = useState(propUsers || []);
