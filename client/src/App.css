@@ -2,7 +2,7 @@
 .app {
   display: flex;
   flex-direction: column;
-  height: 120vh; /* full viewport height */
+  height: 100vh; /* full viewport height */
   font-family: 'Courier New', Courier, monospace;
   background-color: #f7faff; /* match chat page pastel theme */
 }
@@ -11,7 +11,7 @@
 .page-container {
   flex: 1; /* fill remaining space */
   overflow-y: auto;
-  padding: 16px; /* optional: spacing around pages */
+  padding: 10px 16px 0px; /* optional: spacing around pages */
 }
 
 /* Optional: hide scrollbar if you want consistent style */

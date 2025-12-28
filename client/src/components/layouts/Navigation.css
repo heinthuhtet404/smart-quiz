@@ -13,6 +13,7 @@ body {
             align-items: center;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
             font-family: 'Nunito', sans-serif;
+            margin-bottom: 5px;
         }
 
         .site-nav__logo {
