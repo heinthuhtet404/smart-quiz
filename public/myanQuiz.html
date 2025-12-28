@@ -5,6 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>English Quiz for Kids</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap"
+    rel="stylesheet">
   <style>
     body {
       font-family: 'Comic Sans MS', 'Arial', sans-serif;
@@ -12,7 +15,7 @@
       background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
       margin: 0;
       /* padding: 20px; */
-      min-height: 100vh;
+      min-height: 150vh;
     }
 
     h1 {
@@ -404,22 +407,111 @@
       color: #333;
       box-shadow: 0 4px 12px rgba(255, 213, 102, 0.5);
     }
+
+    /* ================= NAVIGATION ================= */
+    .site-nav {
+      background: #ffffff;
+      padding: 0px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+      font-family: 'Nunito', sans-serif;
+      margin: 0;
+    }
+
+    .site-nav__logo {
+      display: flex;
+      align-items: center;
+      /* font-family: 'Fredoka', sans-serif; */
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #5B8DEF;
+    }
+
+    .site-nav__logo i {
+      color: #6ED3CF;
+      margin-right: 8px;
+    }
+
+    .site-nav__list {
+      list-style: none;
+      display: flex;
+      gap: 26px;
+    }
+
+    .site-nav__item {}
+
+    .site-nav__link {
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #374151;
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.25s ease;
+    }
+
+    .site-nav__link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 2px;
+      background: #5B8DEF;
+      transition: width 0.25s ease;
+    }
+
+    .site-nav__link:hover,
+    .site-nav__link--active {
+      color: #5B8DEF;
+    }
+
+    .site-nav__link:hover::after,
+    .site-nav__link--active::after {
+      width: 100%;
+    }
+
+    /* ================= MOBILE ================= */
+    @media (max-width: 768px) {
+      .site-nav {
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .site-nav__list {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 18px;
+      }
+    }
   </style>
 </head>
 
 <body>
-  <nav>
-    <div class="logo">
-      <i class="fas fa-leaf"></i>
-      <span>KidsLearn</span>
-    </div>
-    <ul class="nav-list">
-      <li class="nav-item"><a href="home.html" class="nav-link" data-page="home" onclick="navigateTo('home')">ပင်မစာမျက်နှာ</a></li>
-      <li class="nav-item"><a href="home.html" class="nav-link active" data-page="tutorial" onclick="navigateTo('tutorial')">သင်ခန်းစာများ</a></li>
-      <li class="nav-item"><a href="chat.html" class="nav-link" data-page="chat" onclick="navigateTo('chat')">စကားပြောခန်း</a></li>
-      <li class="nav-item"><a href="profile.html" class="nav-link" data-page="login" onclick="navigateTo('login')">ကိုယ်ပိုင်စာမျက်နှာ</a></li>
-    </ul>
-  </nav>
+  <header>
+    <nav class="site-nav">
+      <div class="site-nav__logo">
+        <i class="fas fa-leaf"></i>
+        <span>KidsLearn</span>
+      </div>
+      <ul class="site-nav__list">
+        <li class="site-nav__item">
+          <a href="home.html" class="site-nav__link">ပင်မစာမျက်နှာ</a>
+        </li>
+        <!-- <li class="site-nav__item">
+          <a href="home.html" class="site-nav__link site-nav__link--active">သင်ခန်းစာများ</a>
+        </li> -->
+        <li class="site-nav__item">
+          <a href="chat.html" class="site-nav__link">စကားပြောခန်း</a>
+        </li>
+        <li class="site-nav__item">
+          <a href="profile.html" class="site-nav__link">ကိုယ်ပိုင်စာမျက်နှာ</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
   <h1>ကလေးတို့ရဲ့ဗဟုသုတကိုစမ်းကြည့်မယ်</h1>
   <h2>မေးခွန်းတွေဖြေကြရအောင်</h2>
 

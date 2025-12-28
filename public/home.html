@@ -96,7 +96,7 @@
 
         /* ================= HERO ================= */
         main {
-            padding: 24px 5%;
+            /* padding: 24px 5%; */
         }
 
         .hero {
@@ -573,7 +573,51 @@
             }
         }
 
-        
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* --- ✨ Global Reveal Animation System --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px) scale(0.9);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            visibility: hidden;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            visibility: visible;
+        }
+
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 10% 40px;
+            border-radius: 60px 60px 0 0;
+        }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
     </style>
 </head>
 
@@ -606,12 +650,116 @@
     <main style="margin: 0;">
         <section id="home-page" class="page active">
 
-            <div class="welcome-container" style="text-align: center; margin: 20px 0;">
+            <div class="welcome-container" style="text-align: center; margin: 40px 0px; margin-top: 30px;">
                 <h1 id="welcomeMessage" class="welcome"
                     style="font-size: 2rem; font-weight: bold; color: #4A90E2; font-family: 'Nunito', sans-serif; margin: 0;">
                     👋 Welcome
                 </h1>
             </div>
+
+            <!-- senki part -->
+            <!-- ================= BACKGROUND BLOBS ================= -->
+            <div style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;overflow:hidden;">
+                <div
+                    style="position:absolute;width:500px;height:500px;background:#a29bfe;top:-100px;left:-100px;border-radius:50%;filter:blur(60px);opacity:0.3;">
+                </div>
+                <div
+                    style="position:absolute;width:400px;height:400px;background:#fab1a0;bottom:-50px;right:-50px;border-radius:50%;filter:blur(60px);opacity:0.3;">
+                </div>
+            </div>
+
+            <!-- ================= PROMO SLIDER ================= -->
+            <div style="display:flex;justify-content:center;">
+                <div class="reveal"
+                    style="position:relative;max-width:1000px;width:100%;height:450px;overflow:hidden;border-radius:40px;box-shadow:0 30px 60px rgba(0,0,0,0.1);background:white;">
+
+                    <div id="mainSlider"
+                        style="display:flex;height:100%;transition:transform 0.8s cubic-bezier(0.65,0,0.35,1);">
+
+                        <!-- Myanmar -->
+                        <div class="slide"
+                            style="min-width:100%;display:flex;align-items:center;justify-content:space-between;padding:0 80px;background:linear-gradient(135deg,#FF9A9E,#FAD0C4);color:white;">
+                            <div>
+                                <h1 style="font-size:3.5rem;margin-bottom:10px;">မြန်မာစာ</h1>
+                                <p style="font-size:1.3rem;line-height:1.4;">စာပေနှင့် အရေးအသားကို ပျော်ပျော်ရွှင်ရွှင်
+                                    လေ့လာကြမယ်။</p>
+                            </div>
+                            <img src="https://cdn-icons-png.flaticon.com/512/3976/3976631.png"
+                                style="width:250px;animation:bounce 4s infinite;">
+                        </div>
+
+                        <!-- English -->
+                        <div class="slide"
+                            style="min-width:100%;display:flex;align-items:center;justify-content:space-between;padding:0 80px;background:linear-gradient(135deg,#A1C4FD,#C2E9FB);color:white;">
+                            <div>
+                                <h1 style="font-size:3.5rem;margin-bottom:10px;">English</h1>
+                                <p style="font-size:1.3rem;">Master your ABCs with fun games!</p>
+                            </div>
+                            <img src="https://cdn-icons-png.flaticon.com/512/3898/3898082.png"
+                                style="width:250px;animation:bounce 4s infinite;">
+                        </div>
+
+                        <!-- Math -->
+                        <div class="slide"
+                            style="min-width:100%;display:flex;align-items:center;justify-content:space-between;padding:0 80px;background:linear-gradient(135deg,#F093FB,#F5576C);color:white;">
+                            <div>
+                                <h1 style="font-size:3.5rem;">Mathematics</h1>
+                                <p style="font-size:1.3rem;">ဂဏန်းသင်္ချာကို အလွယ်ကူဆုံး တွက်ချက်ကြမယ်။</p>
+                            </div>
+                            <img src="https://cdn-icons-png.flaticon.com/512/3771/3771278.png"
+                                style="width:250px;animation:bounce 4s infinite;">
+                        </div>
+
+                        <!-- Science -->
+                        <div class="slide"
+                            style="min-width:100%;display:flex;align-items:center;justify-content:space-between;padding:0 80px;background:linear-gradient(135deg,#5EE7DF,#B490CA);color:white;">
+                            <div>
+                                <h1 style="font-size:3.5rem;">Science</h1>
+                                <p style="font-size:1.3rem;">ပတ်ဝန်းကျင်နဲ့ သိပ္ပံအကြောင်း ထူးဆန်းတာတွေကို ရှာဖွေစို့။
+                                </p>
+                            </div>
+                            <img src="https://cdn-icons-png.flaticon.com/512/3655/3655551.png"
+                                style="width:250px;animation:bounce 4s infinite;">
+                        </div>
+
+                    </div>
+                    <button onclick="changeSlide(-1)" style="position:absolute;top:50%;left:20px;transform:translateY(-50%);
+    width:46px;height:46px;border-radius:50%;border:none;
+    background:rgba(255,255,255,0.35);cursor:pointer;">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+
+                    <button onclick="changeSlide(1)" style="position:absolute;top:50%;right:20px;transform:translateY(-50%);
+    width:46px;height:46px;border-radius:50%;border:none;
+    background:rgba(255,255,255,0.35);cursor:pointer;">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+
+
+
+            <!-- ================= ANIMALS ================= -->
+            <!-- <div style="display:flex;justify-content:center;gap:50px;padding:100px 20px;flex-wrap:wrap;">
+                <img src="bear-removebg-preview.png" style="width:160px;transition:0.4s;">
+                <img src="bird-removebg-preview.png" style="width:160px;transition:0.4s;">
+                <img src="lion-removebg-preview.png" style="width:160px;transition:0.4s;">
+            </div> -->
+
+            <!-- ================= MID SECTION ================= -->
+            <!-- <section class="reveal"
+                style="display:flex;align-items:center;max-width:1000px;margin:100px auto;padding:60px;gap:40px;background:white;border-radius:50px;box-shadow:0 30px 60px rgba(0,0,0,0.05);flex-wrap:wrap;">
+                <div>
+                    <h1 style="font-size:2.8rem;color:#6c5ce7;margin-bottom:20px;">Welcome To Kid Learn</h1>
+                    <p style="line-height:1.8;color:#636e72;">ကလေးတွေအတွက် ပျော်စရာကောင်းတဲ့ ပညာရေးခရီးစဉ်။</p>
+                </div>
+                <img src="senki-removebg-preview.png" style="width:300px;animation:float 4s infinite;">
+            </section> -->
+
+
+
+
 
             <!-- Hero Banner -->
             <!-- <div class="hero">
@@ -632,9 +780,9 @@
 
             <!-- Subjects -->
             <!-- <h2 class="section-title">သင်ကြားရန်ဘာသာရပ်များ</h2> -->
-            <div class="cards-container" id="lesson">
+            <div class="cards-container" id="lesson" style="padding: 60px 0px;">
                 <!-- Myanmar Language Card -->
-                <div class="card purple">
+                <div class="card purple reveal" style="transition-delay: 0.1s;">
                     <div class="card-image" data-icon="📘">
                         <img src="myanmarsubjectone.jpg" alt="Myanmar Language">
                     </div>
@@ -655,10 +803,9 @@
                 </div>
 
                 <!-- English Card -->
-                <div class="card blue">
+                <div class="card blue reveal" style="transition-delay: 0.2s;">
                     <div class="card-image" data-icon="🌍">
-                        <img src="engsubjectone.jpg"
-                            alt="English Language">
+                        <img src="engsubjectone.jpg" alt="English Language">
                     </div>
                     <div class="card-content">
                         <h2 class="subject-title">အင်္ဂလိပ်စာ</h2>
@@ -678,10 +825,9 @@
                 </div>
 
                 <!-- Mathematics Card -->
-                <div class="card yellow">
+                <div class="card yellow reveal" style="transition-delay: 0.3s;">
                     <div class="card-image" data-icon="➕">
-                        <img src="mathsubjectone.jpg"
-                            alt="Mathematics">
+                        <img src="mathsubjectone.jpg" alt="Mathematics">
                     </div>
                     <div class="card-content">
                         <h2 class="subject-title">သင်္ချာ</h2>
@@ -701,10 +847,9 @@
                 </div>
 
                 <!-- Science Card -->
-                <div class="card green">
+                <div class="card green reveal" style="transition-delay: 0.4s;">
                     <div class="card-image" data-icon="🔬">
-                        <img src="sciencesubjectone.png"
-                            alt="Science">
+                        <img src="sciencesubjectone.png" alt="Science">
                     </div>
                     <div class="card-content">
                         <h2 class="subject-title">သိပ္ပံ</h2>
@@ -723,6 +868,22 @@
                     </div>
                 </div>
             </div>
+
+            <!-- ================= FOOTER ================= -->
+            <footer class="footer-grid" style="background:#2d3436;color:white;padding:80px 10% 40px;border-radius:60px 60px 0 0;">
+                <div class="reveal">
+                    <h2 style="color:#fdcb6e;">Kid Learn 🚀</h2>
+                    <p style="margin-top:10px;color:#bdc3c7;">ကလေးများအတွက် အပျော်ဆုံးနေရာ။</p>
+                </div>
+                <div class="reveal" style="transition-delay: 0.2s;">
+                    <h3 style="color: var(--success);">Contact</h3>
+                    <p>help@kidlearn.com</p>
+                </div>
+                <div class="reveal" style="transition-delay: 0.3s;">
+                    <h3 style="color: var(--success);">Follow Us</h3>
+                    <p>Facebook / YouTube</p>
+                </div>
+            </footer>
 
             <!-- Fun Fact -->
             <!-- <div class="extra-fun-fact" id="extra-fun-fact" role="region" aria-labelledby="funfact-title">
@@ -797,6 +958,60 @@
         })();
 
         fetchCurrentUser();
+
+        const observerOptions = { threshold: 0.15 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else {
+                    entry.target.classList.remove('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        let currentPos = 0;
+        const slider = document.getElementById("mainSlider");
+        // Slide အရေအတွက်ကို dynamic ယူပါတယ် (အခု ၄ ခုဖြစ်သွားပါပြီ)
+        const totalSlides = document.querySelectorAll(".slide").length;
+
+        function changeSlide(n) {
+            currentPos += n;
+            if (currentPos >= totalSlides) currentPos = 0;
+            if (currentPos < 0) currentPos = totalSlides - 1;
+            slider.style.transform = `translateX(${-currentPos * 100}%)`;
+        }
+
+        setInterval(() => changeSlide(1), 5000);
+
+        let startX = 0;
+        let isDragging = false;
+
+        slider.addEventListener("mousedown", (e) => {
+            startX = e.pageX;
+            isDragging = true;
+        });
+
+        slider.addEventListener("mouseup", (e) => {
+            if (!isDragging) return;
+            const diff = e.pageX - startX;
+            if (diff > 80) changeSlide(-1);
+            if (diff < -80) changeSlide(1);
+            isDragging = false;
+        });
+
+        slider.addEventListener("touchstart", (e) => {
+            startX = e.touches[0].clientX;
+        });
+
+        slider.addEventListener("touchend", (e) => {
+            const diff = e.changedTouches[0].clientX - startX;
+            if (diff > 80) changeSlide(-1);
+            if (diff < -80) changeSlide(1);
+        });
+
     </script>
 </body>
 

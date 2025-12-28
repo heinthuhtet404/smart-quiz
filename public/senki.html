@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kid Learn - Interactive UI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #ff7675;
+            --accent: #fdcb6e;
+            --success: #55efc4;
+            --dark: #2d3436;
+            --bg-light: #f7faff;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Fredoka', 'Pyidaungsu', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg-light);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- ✨ Global Reveal Animation System --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px) scale(0.9);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            visibility: hidden;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            visibility: visible;
+        }
+
+        .bg-blobs {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+        }
+
+        /* --- 🎡 Promo Slider Section --- */
+        .promo-container {
+            padding: 80px 20px 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .promo-slider {
+            position: relative;
+            max-width: 1000px;
+            width: 100%;
+            height: 450px;
+            overflow: hidden;
+            border-radius: 40px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            background: white;
+        }
+
+        .slides {
+            display: flex;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .slide {
+            min-width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 80px;
+            color: white;
+            box-sizing: border-box;
+        }
+
+        .myanmar { background: linear-gradient(135deg, #FF9A9E, #FAD0C4); }
+        .english { background: linear-gradient(135deg, #A1C4FD, #C2E9FB); }
+        .math { background: linear-gradient(135deg, #F093FB, #F5576C); }
+        .science { background: linear-gradient(135deg, #5EE7DF, #B490CA); }
+
+        .slide-content h1 { font-size: 3.5rem; margin-bottom: 10px; }
+        .slide-content p { font-size: 1.3rem; margin-bottom: 25px; line-height: 1.4; }
+
+        .slide-image img {
+            width: 250px;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15));
+            animation: bounce 4s infinite ease-in-out;
+        }
+
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+            border: none;
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .prev { left: 20px; } .next { right: 20px; }
+
+        /* --- 🐾 Animal Cards --- */
+        .up {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .animal-card {
+            position: relative;
+            width: 160px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .animal-card img {
+            width: 100%;
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .animal-card:hover img { transform: translateY(-20px) scale(1.1); }
+
+        .animal-card::after {
+            content: attr(data-name);
+            display: block;
+            margin-top: 10px;
+            font-weight: 700;
+            color: var(--primary);
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .animal-card:hover::after { opacity: 1; }
+
+        /* --- 🌟 Content Section --- */
+        .mid {
+            display: flex;
+            align-items: center;
+            max-width: 1000px;
+            margin: 100px auto;
+            padding: 60px;
+            gap: 40px;
+            background: white;
+            border-radius: 50px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+        }
+
+        .mid-content h1 { font-size: 2.8rem; color: var(--primary); margin-bottom: 20px; }
+        .mid-content p { color: #636e72; line-height: 1.8; }
+        .mid-image-container { flex: 1; }
+        .mid-image-container img { width: 100%; animation: float 4s infinite ease-in-out; }
+
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 10% 40px;
+            border-radius: 60px 60px 0 0;
+        }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+
+        @media (max-width: 850px) {
+            .slide { flex-direction: column; text-align: center; padding: 30px; }
+            .slide-content h1 { font-size: 2rem; }
+            .slide-image img { width: 130px; }
+            .mid { flex-direction: column; text-align: center; padding: 30px; margin: 20px; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-blobs">
+        <div class="blob" style="width: 500px; height: 500px; background: #a29bfe; top: -100px; left: -100px;"></div>
+        <div class="blob" style="width: 400px; height: 400px; background: #fab1a0; bottom: -50px; right: -50px;"></div>
+    </div>
+
+    <div class="promo-container">
+        <div class="promo-slider reveal">
+            <div class="slides" id="mainSlider">
+                <div class="slide myanmar">
+                    <div class="slide-content">
+                        <h1>မြန်မာစာ</h1>
+                        <p>စာပေနှင့် အရေးအသားကို ပျော်ပျော်ရွှင်ရွှင် လေ့လာကြမယ်။</p>
+                    </div>
+                    <div class="slide-image"><img src="https://cdn-icons-png.flaticon.com/512/3976/3976631.png" alt="MM"></div>
+                </div>
+                <div class="slide english">
+                    <div class="slide-content">
+                        <h1>English</h1>
+                        <p>Master your ABCs with fun games!</p>
+                    </div>
+                    <div class="slide-image"><img src="https://cdn-icons-png.flaticon.com/512/3898/3898082.png" alt="EN"></div>
+                </div>
+                <div class="slide math">
+                    <div class="slide-content">
+                        <h1>Mathematics</h1>
+                        <p>ဂဏန်းသင်္ချာကို အလွယ်ကူဆုံး တွက်ချက်ကြမယ်။</p>
+                    </div>
+                    <div class="slide-image"><img src="https://cdn-icons-png.flaticon.com/512/3771/3771278.png" alt="Math"></div>
+                </div>
+                <div class="slide science">
+                    <div class="slide-content">
+                        <h1>Science</h1>
+                        <p>ပတ်ဝန်းကျင်နဲ့ သိပ္ပံအကြောင်း ထူးဆန်းတာတွေကို ရှာဖွေစို့။</p>
+                    </div>
+                    <div class="slide-image"><img src="https://cdn-icons-png.flaticon.com/512/3655/3655551.png" alt="Science"></div>
+                </div>
+            </div>
+            <button class="nav-btn prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+            <button class="nav-btn next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <div class="up">
+        <div class="animal-card reveal" data-name="Mr. Bear 🐻" style="transition-delay: 0.1s;">
+            <img src="bear-removebg-preview.png" alt="Bear">
+        </div>
+        <div class="animal-card reveal" data-name="Little Bird 🐦" style="transition-delay: 0.2s;">
+            <img src="bird-removebg-preview.png" alt="Bird">
+        </div>
+        <div class="animal-card reveal" data-name="Brave Lion 🦁" style="transition-delay: 0.3s;">
+            <img src="lion-removebg-preview.png" alt="Lion">
+        </div>
+    </div>
+
+    <section class="mid reveal">
+        <div class="mid-content">
+            <h1>Welcome To Kid Learn</h1>
+            <p>ကလေးတွေအတွက် ပျော်စရာကောင်းတဲ့ ပညာရေးခရီးစဉ်။ ဖုန်းနဲ့ Tablet တွေကို အကျိုးရှိရှိ အသုံးချပြီး စာသင်ကြမယ်။</p>
+        </div>
+        <div class="mid-image-container">
+            <img src="senki-removebg-preview.png" alt="Student">
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="reveal">
+                <h2 style="color: var(--accent);">Kid Learn 🚀</h2>
+                <p style="margin-top: 10px; color: #bdc3c7;">ကလေးများအတွက် အပျော်ဆုံးနေရာ။</p>
+            </div>
+            <div class="reveal" style="transition-delay: 0.2s;">
+                <h3 style="color: var(--success);">Contact</h3>
+                <p>help@kidlearn.com</p>
+            </div>
+            <div class="reveal" style="transition-delay: 0.3s;">
+                <h3 style="color: var(--success);">Follow Us</h3>
+                <p>Facebook / YouTube</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const observerOptions = { threshold: 0.15 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else {
+                    entry.target.classList.remove('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        let currentPos = 0;
+        const slider = document.getElementById("mainSlider");
+        // Slide အရေအတွက်ကို dynamic ယူပါတယ် (အခု ၄ ခုဖြစ်သွားပါပြီ)
+        const totalSlides = document.querySelectorAll(".slide").length;
+
+        function changeSlide(n) {
+            currentPos += n;
+            if (currentPos >= totalSlides) currentPos = 0;
+            if (currentPos < 0) currentPos = totalSlides - 1;
+            slider.style.transform = `translateX(${-currentPos * 100}%)`;
+        }
+
+        setInterval(() => changeSlide(1), 5000);
+    </script>
+</body>
+</html>
